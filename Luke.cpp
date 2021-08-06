@@ -32,116 +32,116 @@ void Luke::update()
 
 void Luke::SwitchImage()
 {
-    switch (_enemyStatement)
+   switch (_enemyStatement)
     {
     case ENEMYSTATEMENT::IDLE:
         _imageName = IMAGEMANAGER->findImage("LUKE_IDLE");
         if (_direction == 0)
         {
-            _motionName = KEYANIMANAGER->findAnimation("LukeleftIdle");
+            _motionName = KEYANIMANAGER->findAnimation("LUKEleftIdle");
         }
         else
         {
-            _motionName = KEYANIMANAGER->findAnimation("LukerightIdle");
+            _motionName = KEYANIMANAGER->findAnimation("LUKErightIdle");
         }
         break;
     case ENEMYSTATEMENT::WALK:
         _imageName = IMAGEMANAGER->findImage("LUKE_WALK");
         if (_direction == 0)
         {
-            _motionName = KEYANIMANAGER->findAnimation("LukeleftWalk");
+            _motionName = KEYANIMANAGER->findAnimation("LUKEleftWalk");
         }
         else
         {
-            _motionName = KEYANIMANAGER->findAnimation("LukerightWalk");
+            _motionName = KEYANIMANAGER->findAnimation("LUKErightWalk");
         }
         break;
     case ENEMYSTATEMENT::RUN:
         _imageName = IMAGEMANAGER->findImage("LUKE_RUN");
         if (_direction == 0)
         {
-            _motionName = KEYANIMANAGER->findAnimation("LukeleftRUN");
+            _motionName = KEYANIMANAGER->findAnimation("LUKEleftRun");
         }
         else
         {
-            _motionName = KEYANIMANAGER->findAnimation("LukerightRUN");
+            _motionName = KEYANIMANAGER->findAnimation("LUKErightRun");
         }
         break;
     case ENEMYSTATEMENT::JUMP:
         _imageName = IMAGEMANAGER->findImage("LUKE_JUMP");
         if (_direction == 0)
         {
-            _motionName = KEYANIMANAGER->findAnimation("LukeleftJUMP");
+            _motionName = KEYANIMANAGER->findAnimation("LUKEleftJump");
         }
         else
         {
-            _motionName = KEYANIMANAGER->findAnimation("LukerightJUMP");
+            _motionName = KEYANIMANAGER->findAnimation("LUKErightJump");
         }
         break;
     case ENEMYSTATEMENT::GUARD:
         _imageName = IMAGEMANAGER->findImage("LUKE_GUARD");
         if (_direction == 0)
         {
-            _motionName = KEYANIMANAGER->findAnimation("LukeleftGUARD");
+            _motionName = KEYANIMANAGER->findAnimation("LUKEleftGuard");
         }
         else
         {
-            _motionName = KEYANIMANAGER->findAnimation("LukerightGUARD");
+            _motionName = KEYANIMANAGER->findAnimation("LUKErightGuard");
         }
         break;
     case ENEMYSTATEMENT::DOWN:
         _imageName = IMAGEMANAGER->findImage("LUKE_DOWN");
         if (_direction == 0)
         {
-            _motionName = KEYANIMANAGER->findAnimation("LukeleftDOWN");
+            _motionName = KEYANIMANAGER->findAnimation("LUKEleftDown");
         }
         else
         {
-            _motionName = KEYANIMANAGER->findAnimation("LukerightDOWN");
+            _motionName = KEYANIMANAGER->findAnimation("LUKErightDown");
         }
         break;
     case ENEMYSTATEMENT::DAMAGED:
         _imageName = IMAGEMANAGER->findImage("LUKE_DAMAGED");
         if (_direction == 0)
         {
-            _motionName = KEYANIMANAGER->findAnimation("LukeleftDAMAGED");
+            _motionName = KEYANIMANAGER->findAnimation("LUKEleftDamaged");
         }
         else
         {
-            _motionName = KEYANIMANAGER->findAnimation("LukerightDAMAGED");
+            _motionName = KEYANIMANAGER->findAnimation("LUKErightDamaged");
         }
         break;
     case ENEMYSTATEMENT::ATTACK1:
         _imageName = IMAGEMANAGER->findImage("LUKE_ATTACK1");
         if (_direction == 0)
         {
-            _motionName = KEYANIMANAGER->findAnimation("LukeleftATTACK1");
+            _motionName = KEYANIMANAGER->findAnimation("LUKEleftAttack1");
         }
         else
         {
-            _motionName = KEYANIMANAGER->findAnimation("LukerightATTACK1");
+            _motionName = KEYANIMANAGER->findAnimation("LUKErightAttack1");
         }
         break;
     case ENEMYSTATEMENT::ATTACK3:
         _imageName = IMAGEMANAGER->findImage("LUKE_ATTACK3");
         if (_direction == 0)
         {
-            _motionName = KEYANIMANAGER->findAnimation("LukeleftATTACK3");
+            _motionName = KEYANIMANAGER->findAnimation("LUKEleftAttack3");
         }
         else
         {
-            _motionName = KEYANIMANAGER->findAnimation("LukerightATTACK3");
+            _motionName = KEYANIMANAGER->findAnimation("LUKErightAttack3");
         }
         break;
     case ENEMYSTATEMENT::UP:
         _imageName = IMAGEMANAGER->findImage("LUKE_UP");
         if (_direction == 0)
         {
-            _motionName = KEYANIMANAGER->findAnimation("LukeleftUP");
+            _motionName = KEYANIMANAGER->findAnimation("LUKEleftUp");
         }
         else
         {
-            _motionName = KEYANIMANAGER->findAnimation("LukerightUP");
+            _motionName = KEYANIMANAGER->findAnimation("LUKErightUp");
         }
         break;
 
@@ -154,7 +154,7 @@ void Luke::SwitchImage()
 //약공격 콤보어택 콜백함수
 void Luke::ComboAttack1(void* obj)
 {
-    Enemy* e = (Enemy*)obj;
+   Enemy* e = (Enemy*)obj;
 
     e->SetEnemyStatement(ENEMYSTATEMENT::ATTACK1);
     e->SetMotionName(KEYANIMANAGER->findAnimation("LUKEleftAttack2"));

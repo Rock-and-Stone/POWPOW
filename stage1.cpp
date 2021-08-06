@@ -15,6 +15,13 @@ HRESULT stage1::init()
 	_cm = new CameraManager;
 	_cm->init(31812, _maxY);
 
+	_em = new EnemyManager;
+	_em->init();
+	_em->SetCamera(_cm);
+	_em->SetLuke();
+	_em->SetMike();
+	_em->SetMalcolm();
+
 	_ui = new UserInterface;
 	_ui->init();
 
@@ -50,6 +57,7 @@ void stage1::update()
 
 	}
 
+	_em->update();
 	_ui->update();
 
 }
@@ -64,10 +72,11 @@ void stage1::render()
 	
 	_player->setRendX(_cm->getRenderPosX());
 	_player->setRendY(_cm->getRenderPosY());
-
+	_em->render();
 	RENDERMANAGER->render(getMemDC());
 
 	//_player->render(_cm->getRenderPosX(), _cm->getRenderPosY());
+
 	_ui->render();
 
 #pragma region µð¹ö±ë

@@ -7,6 +7,8 @@
 #include "Ramona.h"
 #include "UserInterface.h"
 #include "SettingScene.h"
+#include "Enemy.h"
+#include "EnemyManager.h"
 
 #define ARRSIZE 10
 
@@ -16,6 +18,8 @@ private:
 	CameraManager* _cm;
 	player* _player;
 	UserInterface* _ui;
+	EnemyManager* _em;
+	Enemy* _enemy;
 
 	int _posX;
 	int _posY;
