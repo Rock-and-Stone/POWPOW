@@ -26,7 +26,6 @@ void Luke::update()
 {
 	_state->update();
 	Move();
-	//SwitchImage();
     TracePlayer();
 
 }

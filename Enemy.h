@@ -137,7 +137,9 @@ public:
 	animation* GetEnemyMotion() { return _motionName; }
 	void SetEnemyMotion(animation* ani) { _motionName = ani; }
 
-	bool chaseSession();
+	bool ChaseSession();
+
+	bool AttackSession();
 
 	void SetPlayerLink(player* player) { _player = player; }
 

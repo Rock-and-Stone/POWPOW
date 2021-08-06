@@ -41,7 +41,6 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
     _guard->SetEnemy(this);
 
     _state = _idle;
-    //_enemyDirection = ENEMYDIRECTION::LEFT;
     _direction = 0;
     _enemyStatement = ENEMYSTATEMENT::IDLE;
 
@@ -162,14 +161,23 @@ void Enemy::ChangeStatement()
 
 }
 
-bool Enemy::chaseSession()
+bool Enemy::ChaseSession()
 {
-    if (getDistance(_player->getPosX(), _player->getPosY(), _posX, _posY) < 100)
+    if (getDistance(_player->getPosX(), _player->getPosY(), _posX, _posY) < 300)
     {
         return true;
     }
     else return false;
 
+}
+
+bool Enemy::AttackSession()
+{
+    if (ChaseSession() && getDistance(_player->getPosX(), _player->getPosY(), _posX, _posY) < 30)
+    {
+        return true;
+    }
+    return false;
 }
 
 void Enemy::StartAnim()

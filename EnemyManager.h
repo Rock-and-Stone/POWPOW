@@ -5,6 +5,7 @@
 #include "Mike.h"
 #include "Malcolm.h"
 #include "CameraManager.h"
+#include "Luke.h"
 
 
 
@@ -27,6 +28,7 @@ private:
 	CameraManager* _cm;
 	player* _player;
 	
+	Luke* _Luke;
 
 public:
 	HRESULT init();
