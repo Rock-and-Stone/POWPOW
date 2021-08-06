@@ -16,7 +16,5 @@ public:
 
 	virtual void SwitchImage() override;
 
-	static void ComboAttack1(void* obj);
-	static void ComboAttack2(void* obj);
 };
 

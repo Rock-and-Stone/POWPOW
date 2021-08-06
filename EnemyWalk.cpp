@@ -18,7 +18,6 @@ void EnemyWalk::update()
 	if (_enemy->AttackSession())
 	{
 		_enemy->SetEnemyStatement(ENEMYSTATEMENT::ATTACK1);
-
 		_enemy->ChangeStatement();
 	}
 }

@@ -23,7 +23,9 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
     _run = new EnemyRun;
     _jump = new EnemyJump;
     _attack1 = new EnemyAttack1;
+    _attack2 = new EnemyAttack2;
     _attack3 = new EnemyAttack3;
+    _attack4 = new EnemyAttack4;
     _damaged = new EnemyDamaged;
     _down = new EnemyDown;
     _up = new EnemyUp;
@@ -34,7 +36,9 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
     _run->SetEnemy(this);
     _jump->SetEnemy(this);
     _attack1->SetEnemy(this);
+    _attack2->SetEnemy(this);
     _attack3->SetEnemy(this);
+    _attack4->SetEnemy(this);
     _damaged->SetEnemy(this);
     _down->SetEnemy(this);
     _up->SetEnemy(this);
@@ -48,6 +52,7 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
     _imageName = IMAGEMANAGER->findImage(imageName);
 
     _motionName = KEYANIMANAGER->findAnimation(animationName);
+    _motionName->GetNowPlayIdx();
 
     _posX = position.x;
     _posY = position.y;
@@ -149,8 +154,14 @@ void Enemy::ChangeStatement()
     case ENEMYSTATEMENT::ATTACK1:
         _state = _attack1;
         break;
+    case ENEMYSTATEMENT::ATTACK2:
+        _state = _attack2;
+        break;
     case ENEMYSTATEMENT::ATTACK3:
         _state = _attack3;
+        break;
+    case ENEMYSTATEMENT::ATTACK4:
+        _state = _attack4;
         break;
     case ENEMYSTATEMENT::UP:
         _state = _up;
