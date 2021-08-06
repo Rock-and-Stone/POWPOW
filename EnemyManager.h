@@ -25,7 +25,7 @@ private:
 	viEnemy _viMalcolm;
 
 	CameraManager* _cm;
-	
+	player* _player;
 	
 
 public:
@@ -52,7 +52,7 @@ public:
 	vector<Enemy*>::iterator GetVIMalcolm() { return _viMalcolm; }
 
 	void SetCamera(CameraManager* cm) { _cm = cm; }
-
+	void SetPlayerLink(player* player) { _player = player; }
 	
 };
 

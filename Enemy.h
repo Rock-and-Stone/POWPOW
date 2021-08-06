@@ -136,5 +136,11 @@ public:
 	//모션에 대한 접근자 설정자
 	animation* GetEnemyMotion() { return _motionName; }
 	void SetEnemyMotion(animation* ani) { _motionName = ani; }
+
+	bool chaseSession();
+
+	void SetPlayerLink(player* player) { _player = player; }
+
+	void StartAnim();
 };
 

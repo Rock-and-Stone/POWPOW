@@ -347,6 +347,7 @@ void EnemyManager::SetLuke()
         luke = new Luke;
         luke->SetCamera(_cm);
         luke->init("LUKE_IDLE", "LUKEleftIdle" , PointMake(800 * i + 800, 700));
+        luke->SetPlayerLink(_player);
         _vLuke.push_back(luke);
     }
 }
@@ -359,6 +360,7 @@ void EnemyManager::SetMike()
         mike = new Mike;
         mike->SetCamera(_cm);
         mike->init("MIKE_IDLE", "MIKEleftIdle", PointMake(800 * i + 1000, 500));
+        mike->SetPlayerLink(_player);
         _vLuke.push_back(mike);
     }
 }
@@ -371,6 +373,7 @@ void EnemyManager::SetMalcolm()
         malcolm = new Malcolm;
         malcolm->SetCamera(_cm);
         malcolm->init("MALCOLM_IDLE", "MALCOLMleftIdle", PointMake(800 * i + 1200, 900));
+        malcolm->SetPlayerLink(_player);
         _vLuke.push_back(malcolm);
     }
 }

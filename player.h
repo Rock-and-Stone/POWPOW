@@ -40,7 +40,7 @@ protected:
 	bool			_isAttack;
 	bool			_isAir;
 
-	int				_posX, _posY;
+	float				_posX, _posY;
 	int				_probeX, _probeY;
 	int				_groundY, _airY;
 	float			_jumpPower, _gravity;
@@ -83,11 +83,11 @@ public:
 	int getAirY() { return _airY; }
 	void setAirY(int airY) { _airY = airY; }
 
-	int getPosX() { return _posX; }
-	void setPosX(int posX) { _posX = posX; }
+	float getPosX() { return _posX; }
+	void setPosX(float posX) { _posX = posX; }
 
-	int getPosY() { return _posY; }
-	void setPosY(int posY) { _posY = posY; }
+	float getPosY() { return _posY; }
+	void setPosY(float posY) { _posY = posY; }
 
 	int getGroundY() { return _groundY; }
 
@@ -110,5 +110,7 @@ public:
 
 	int getSpeedY() { return _speedY; }
 	void setSpeedY(int speedY) { _speedY = speedY; }
+
+
 };
 

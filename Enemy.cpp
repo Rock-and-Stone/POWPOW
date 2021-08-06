@@ -72,11 +72,7 @@ void Enemy::release()
 
 void Enemy::update()
 {
-   
-    _rc = RectMakeCenter(_posX, _posY,
-        _imageName->getFrameWidth(), _imageName->getFrameHeight());
 
-   
 }
 
 void Enemy::render()
@@ -102,19 +98,32 @@ void Enemy::Move()
 void Enemy::Draw()
 {
     _imageName->aniRender(getMemDC(), _rc.left - _cm->getCamX() , _rc.top - _cm->getCamY(), _motionName);
+    LineMake(getMemDC(), _posX, _posY, _player->getPosX(), _player->getPosY());
+
 }
 
 void Enemy::Collision()
 {
 }
 
-void Enemy::TracePlayer()
+void Enemy::TracePlayer() // 플레이어 추적하여 좌우 변경
 {
-    _distance = getDistance(_player->getPosX(), _player->getPosY(), _posX, _posY);
+    if (_player->getPosX() < _posX && _direction == 1)
+    {
+        _direction = 0;
+        SwitchImage();
+
+    }
+    else if (_player->getPosX() >= _posX && _direction == 0)
+    {
+        _direction = 1;
+        SwitchImage();
+    }
 }
 
 void Enemy::ChangeStatement()
 {
+    
     switch (_enemyStatement)
     {
     case ENEMYSTATEMENT::IDLE:
@@ -147,9 +156,25 @@ void Enemy::ChangeStatement()
     case ENEMYSTATEMENT::UP:
         _state = _up;
         break;
-
-        _state->init();
     }
+    SwitchImage();
+    _state->init();
+
+}
+
+bool Enemy::chaseSession()
+{
+    if (getDistance(_player->getPosX(), _player->getPosY(), _posX, _posY) < 100)
+    {
+        return true;
+    }
+    else return false;
+
+}
+
+void Enemy::StartAnim()
+{
+
 }
 
 

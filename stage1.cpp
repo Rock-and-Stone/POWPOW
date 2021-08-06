@@ -17,6 +17,7 @@ HRESULT stage1::init()
 
 	_em = new EnemyManager;
 	_em->init();
+	_em->SetPlayerLink(_player);
 	_em->SetCamera(_cm);
 	_em->SetLuke();
 	_em->SetMike();
@@ -72,6 +73,7 @@ void stage1::render()
 	
 	_player->setRendX(_cm->getRenderPosX());
 	_player->setRendY(_cm->getRenderPosY());
+
 	_em->render();
 	RENDERMANAGER->render(getMemDC());
 
@@ -84,14 +86,14 @@ void stage1::render()
 	char str[256];
 	HFONT oldFont, font1;
 
-	sprintf_s(str, "char X : %d", _player->getPosX());
+	sprintf_s(str, "char X : %f", _player->getPosX());
 	TextOut(getMemDC(), 100, 90, str, strlen(str));
 
 	sprintf_s(str, "render X : %d", _cm->getRenderPosX());
 	TextOut(getMemDC(), 100, 110, str, strlen(str));
 
 
-	sprintf_s(str, "char Y : %d", _player->getPosY());
+	sprintf_s(str, "char Y : %f", _player->getPosY());
 	TextOut(getMemDC(), 100, 130, str, strlen(str));
 
 	sprintf_s(str, "render Y : %d", _cm->getRenderPosY());

@@ -26,8 +26,9 @@ void Luke::update()
 {
 	_state->update();
 	Move();
-	SwitchImage();
-	
+	//SwitchImage();
+    TracePlayer();
+
 }
 
 void Luke::SwitchImage()
@@ -146,8 +147,7 @@ void Luke::SwitchImage()
         break;
 
     }
-
-
+    _motionName->start();
 }
 
 
