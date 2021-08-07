@@ -375,7 +375,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         //#pragma endregion
 
 
-		Sleep(1);
+		//Sleep(1);
 
 		loadingHelper->_currentCount++;
 	}
