@@ -6,7 +6,9 @@
 #include "EnemyRun.h"
 #include "EnemyJump.h"
 #include "EnemyAttack1.h"
+#include "EnemyAttack2.h"
 #include "EnemyAttack3.h"
+#include "EnemyAttack4.h"
 #include "EnemyDamaged.h"
 #include "EnemyGuard.h"
 #include "EnemyDown.h"
@@ -64,7 +66,9 @@ protected:
 	EnemyRun* _run;
 	EnemyJump* _jump;
 	EnemyAttack1* _attack1;
+	EnemyAttack2* _attack2;
 	EnemyAttack3* _attack3;
+	EnemyAttack4* _attack4;
 	EnemyDamaged* _damaged;
 	EnemyDown* _down;
 	EnemyGuard* _guard;
@@ -114,10 +118,6 @@ public:
 	void SetEnemyStatement(ENEMYSTATEMENT enemyStatement) { _enemyStatement = enemyStatement; }
 	ENEMYSTATEMENT GetEnemyStatement() { return _enemyStatement; }
 
-	//에너미 방향 설정자, 접근자
-	//void SetEnemyDirection(ENEMYDIRECTION enemyDirection) { _enemyDirection = enemyDirection; }
-	//ENEMYDIRECTION GetEnemyDirection() { return _enemyDirection; }
-
 	//이미지 접근자
 	image* GetImageName() { return _imageName; }
 	
@@ -129,9 +129,13 @@ public:
 	//카메라 설정
 	void SetCamera(CameraManager* cm) { _cm = cm; }
 
-	//상태에 대한 접근자 설정자
-	//ENEMYSTATEMENT GetEnemyStatement() { return _enemyStatement; }
-	//void SetEnemyStatement(ENEMYSTATEMENT statement) { _enemyStatement = statement; }
+	//에너미 x, y 좌표 설정자
+	float GetEnemyPosX() { return _posX; }
+	float GetEnemyPosY() { return _posY; }
+	void SetEnemyPosX(float x) { _posX = x; }
+	void SetEnemyPosY(float y) { _posY = y; }
+
+	
 
 	//모션에 대한 접근자 설정자
 	animation* GetEnemyMotion() { return _motionName; }
@@ -144,5 +148,7 @@ public:
 	void SetPlayerLink(player* player) { _player = player; }
 
 	void StartAnim();
+
+
 };
 
