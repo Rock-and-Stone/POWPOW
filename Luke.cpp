@@ -27,7 +27,6 @@ void Luke::update()
 	_state->update();
 	Move();
     TracePlayer();
-
 }
 
 void Luke::SwitchImage()
@@ -164,6 +163,18 @@ void Luke::SwitchImage()
         else
         {
             _motionName = KEYANIMANAGER->findAnimation("LUKErightUp");
+        }
+        break;
+
+    case ENEMYSTATEMENT::DAEGI:
+        _imageName = IMAGEMANAGER->findImage("LUKE_IDLE");
+        if (_direction == 0)
+        {
+            _motionName = KEYANIMANAGER->findAnimation("LUKEleftIdle");
+        }
+        else
+        {
+            _motionName = KEYANIMANAGER->findAnimation("LUKErightIdle");
         }
         break;
 

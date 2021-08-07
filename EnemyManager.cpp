@@ -331,7 +331,6 @@ void EnemyManager::render()
         RECT temp = (*_viMalcolm)->GetRect();
         (*_viMalcolm)->render();
     }
-
 }
 
 void EnemyManager::EnemyImageStorage()
@@ -341,12 +340,12 @@ void EnemyManager::EnemyImageStorage()
 
 void EnemyManager::SetLuke()
 {
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 1; i++)
     {
         Enemy* luke;
         luke = new Luke;
         luke->SetCamera(_cm);
-        luke->init("LUKE_IDLE", "LUKEleftIdle" , PointMake(800 * i + 800, 700));
+        luke->init("LUKE_IDLE", "LUKEleftIdle" , PointMake(1200, 700));
         luke->SetPlayerLink(_player);
         _vLuke.push_back(luke);
     }
@@ -354,7 +353,7 @@ void EnemyManager::SetLuke()
 
 void EnemyManager::SetMike()
 {
-    for (int i = 0; i < 10; i++)
+  /*  for (int i = 0; i < 10; i++)
     {
         Enemy* mike;
         mike = new Mike;
@@ -362,12 +361,12 @@ void EnemyManager::SetMike()
         mike->init("MIKE_IDLE", "MIKEleftIdle", PointMake(800 * i + 1000, 500));
         mike->SetPlayerLink(_player);
         _vLuke.push_back(mike);
-    }
+    }*/
 }
 
 void EnemyManager::SetMalcolm()
 {
-    for (int i = 0; i < 10; i++)
+    /*for (int i = 0; i < 10; i++)
     {
         Enemy* malcolm;
         malcolm = new Malcolm;
@@ -375,7 +374,7 @@ void EnemyManager::SetMalcolm()
         malcolm->init("MALCOLM_IDLE", "MALCOLMleftIdle", PointMake(800 * i + 1200, 900));
         malcolm->SetPlayerLink(_player);
         _vLuke.push_back(malcolm);
-    }
+    }*/
 }
 
 

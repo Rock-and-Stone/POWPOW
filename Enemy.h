@@ -16,7 +16,7 @@
 #include "EnemyDaegi.h"
 #include "player.h"
 
-#define ENEMYSPEED 5.0f
+#define ENEMYSPEED 5
 
 //에너미 방향 enum 클래스
 //enum class ENEMYDIRECTION
@@ -78,10 +78,12 @@ protected:
 	EnemyDaegi* _daegi;
 	
 	int _direction;			//에너미의 방향
+	int _highlow;			//에너미 높낮이 (플레이어와의 비교)
 
 	bool _isJump;
 
 	float _posX, _posY;				//에너미 x, y 좌표
+	float _rendX, _rendY;
 	float _probeX, _probeY;			//픽셀 충돌 시
 	float _jumpPower, _gravity;		//점프, 중력
 	float _distance; //플레이어와의 거리 계산
@@ -109,7 +111,11 @@ public:
 	void Collision();
 
 	void TracePlayer();
+	
 	void ChangeStatement();
+
+	void KeyTest();
+	void ChaseRun();
 
 	
 
