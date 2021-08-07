@@ -47,7 +47,7 @@ void titleScene::update()
 
 		else 
 		{
-			SCENEMANAGER->changeScene("selectScene");
+			SCENEMANAGER->changeScene("loadingScene");
 		}
 	}
 

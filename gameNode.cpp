@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "gameNode.h"
 
-
 gameNode::gameNode()
 {
 }
