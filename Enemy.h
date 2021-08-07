@@ -13,6 +13,7 @@
 #include "EnemyGuard.h"
 #include "EnemyDown.h"
 #include "EnemyUp.h"
+#include "EnemyDaegi.h"
 #include "player.h"
 
 #define ENEMYSPEED 5.0f
@@ -44,7 +45,8 @@ enum class ENEMYSTATEMENT
 	GUARD,						//가드
 	OBJECT_ATTACK,				//오브젝트 들고 공격
 	OBJECT_THROW,				//오브젝트 던지기
-	OBJECT_GRAB					//오브젝트 들기
+	OBJECT_GRAB,				//오브젝트 들기
+	DAEGI						//말그대로 대기상태
 };
 
 class Enemy : public gameNode
@@ -73,6 +75,7 @@ protected:
 	EnemyDown* _down;
 	EnemyGuard* _guard;
 	EnemyUp* _up;
+	EnemyDaegi* _daegi;
 	
 	int _direction;			//에너미의 방향
 
@@ -147,7 +150,6 @@ public:
 
 	void SetPlayerLink(player* player) { _player = player; }
 
-	void StartAnim();
 
 
 };

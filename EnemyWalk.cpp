@@ -21,3 +21,4 @@ void EnemyWalk::update()
 		_enemy->ChangeStatement();
 	}
 }
+

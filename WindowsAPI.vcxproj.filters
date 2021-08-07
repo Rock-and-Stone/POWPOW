@@ -246,6 +246,9 @@
     <ClInclude Include="EnemyWalk.h">
       <Filter>playGround\Enemy\EnemyState</Filter>
     </ClInclude>
+    <ClInclude Include="EnemyDaegi.h">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsAPI.cpp">
@@ -408,6 +411,9 @@
       <Filter>playGround\Enemy\EnemyState</Filter>
     </ClCompile>
     <ClCompile Include="EnemyWalk.cpp">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyDaegi.cpp">
       <Filter>playGround\Enemy\EnemyState</Filter>
     </ClCompile>
   </ItemGroup>

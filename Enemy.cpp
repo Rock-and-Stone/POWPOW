@@ -166,6 +166,9 @@ void Enemy::ChangeStatement()
     case ENEMYSTATEMENT::UP:
         _state = _up;
         break;
+    case ENEMYSTATEMENT::DAEGI:
+        _state = _daegi;
+        break;
     }
     SwitchImage();
     _state->init();
@@ -191,9 +194,5 @@ bool Enemy::AttackSession()
     return false;
 }
 
-void Enemy::StartAnim()
-{
-
-}
 
 
