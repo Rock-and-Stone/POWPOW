@@ -3,8 +3,6 @@
 
 HRESULT SettingScene::init()
 {
-	IMAGEMANAGER->addImage("settingBackGround", "source/settingScene.bmp", WINSIZEX, WINSIZEY, true, MAGENTA);
-
 	return S_OK;
 }
 

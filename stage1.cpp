@@ -4,7 +4,7 @@
 HRESULT stage1::init()
 {
 	IMAGEMANAGER->addImage("background", "source/Level 1 - Frozen Suburbs.bmp", 31812, 1400, true, MAGENTA);
-	IMAGEMANAGER->addImage("배경", "backdu bisch ein archground.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("배경", "source/backdu bisch ein archground.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 
 	_player = new Ramona;
 	_player->init();

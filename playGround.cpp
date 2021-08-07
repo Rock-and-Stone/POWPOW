@@ -20,6 +20,7 @@ HRESULT playGround::init()
 	SCENEMANAGER->addScene("settingScene", new SettingScene);
 	SCENEMANAGER->addScene("titleScene", new titleScene);
 	SCENEMANAGER->addScene("selectScene", new SelectScene);
+	SCENEMANAGER->addScene("loadingScene", new loadingScene);
 
 	SCENEMANAGER->changeScene("titleScene");
 

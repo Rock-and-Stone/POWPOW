@@ -7,6 +7,7 @@
 #include "stage1.h"
 #include "titleScene.h"
 #include "selectScene.h"
+#include "loadingScene.h"
 
 
 

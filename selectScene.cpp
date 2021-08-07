@@ -3,8 +3,7 @@
 
 HRESULT SelectScene::init()
 {
-	IMAGEMANAGER->addImage("mainMenu", "source/mainMenu.bmp", WINSIZEX, WINSIZEY, false, MAGENTA);
-	IMAGEMANAGER->addImage("mainMenubox", "source/mainmenubox.bmp", 200, 50, true, MAGENTA);
+
 
 	_selectNum = 0;
 
