@@ -64,6 +64,9 @@
     <Filter Include="playGround\Enemy\Enemies">
       <UniqueIdentifier>{2d87ae5a-afc9-4bfe-9ea1-c7960c53ca6d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\Enemy\EnemyState">
+      <UniqueIdentifier>{a05efe7d-e032-494e-b7ec-49e985494037}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -177,43 +180,7 @@
     <ClInclude Include="State.h">
       <Filter>2DGameFramework\State</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyDamaged.h">
-      <Filter>playGround\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyDown.h">
-      <Filter>playGround\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyGuard.h">
-      <Filter>playGround\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyIdle.h">
-      <Filter>playGround\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyJump.h">
-      <Filter>playGround\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyManager.h">
-      <Filter>playGround\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyRun.h">
-      <Filter>playGround\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyState.h">
-      <Filter>playGround\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyUp.h">
-      <Filter>playGround\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyWalk.h">
-      <Filter>playGround\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Enemy.h">
-      <Filter>playGround\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyAttack1.h">
-      <Filter>playGround\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyAttack3.h">
       <Filter>playGround\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="cafeScene.h">
@@ -236,6 +203,51 @@
     </ClInclude>
     <ClInclude Include="Mike.h">
       <Filter>playGround\Enemy\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyAttack1.h">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyAttack2.h">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyAttack3.h">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyAttack4.h">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyDamaged.h">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyDown.h">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyGuard.h">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyIdle.h">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyJump.h">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyRun.h">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyState.h">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyUp.h">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyWalk.h">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyDaegi.h">
+      <Filter>playGround\Enemy\EnemyState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -335,43 +347,7 @@
     <ClCompile Include="State.cpp">
       <Filter>2DGameFramework\State</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyDown.cpp">
-      <Filter>playGround\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyGuard.cpp">
-      <Filter>playGround\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyIdle.cpp">
-      <Filter>playGround\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyJump.cpp">
-      <Filter>playGround\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyManager.cpp">
-      <Filter>playGround\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyRun.cpp">
-      <Filter>playGround\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyState.cpp">
-      <Filter>playGround\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyUp.cpp">
-      <Filter>playGround\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyWalk.cpp">
-      <Filter>playGround\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="Enemy.cpp">
-      <Filter>playGround\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyAttack1.cpp">
-      <Filter>playGround\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyAttack3.cpp">
-      <Filter>playGround\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyDamaged.cpp">
       <Filter>playGround\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="cafeScene.cpp">
@@ -394,6 +370,51 @@
     </ClCompile>
     <ClCompile Include="Luke.cpp">
       <Filter>playGround\Enemy\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyAttack1.cpp">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyAttack2.cpp">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyAttack3.cpp">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyAttack4.cpp">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyDamaged.cpp">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyDown.cpp">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyGuard.cpp">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyIdle.cpp">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyJump.cpp">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyRun.cpp">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyState.cpp">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyUp.cpp">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyWalk.cpp">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyDaegi.cpp">
+      <Filter>playGround\Enemy\EnemyState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

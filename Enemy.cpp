@@ -23,25 +23,30 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
     _run = new EnemyRun;
     _jump = new EnemyJump;
     _attack1 = new EnemyAttack1;
+    _attack2 = new EnemyAttack2;
     _attack3 = new EnemyAttack3;
+    _attack4 = new EnemyAttack4;
     _damaged = new EnemyDamaged;
     _down = new EnemyDown;
     _up = new EnemyUp;
     _guard = new EnemyGuard;
+    _daegi = new EnemyDaegi;
 
     _idle->SetEnemy(this);
     _walk->SetEnemy(this);
     _run->SetEnemy(this);
     _jump->SetEnemy(this);
     _attack1->SetEnemy(this);
+    _attack2->SetEnemy(this);
     _attack3->SetEnemy(this);
+    _attack4->SetEnemy(this);
     _damaged->SetEnemy(this);
     _down->SetEnemy(this);
     _up->SetEnemy(this);
     _guard->SetEnemy(this);
+    _daegi->SetEnemy(this);
 
     _state = _idle;
-    //_enemyDirection = ENEMYDIRECTION::LEFT;
     _direction = 0;
     _enemyStatement = ENEMYSTATEMENT::IDLE;
 
@@ -49,6 +54,7 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
     _imageName = IMAGEMANAGER->findImage(imageName);
 
     _motionName = KEYANIMANAGER->findAnimation(animationName);
+    _motionName->GetNowPlayIdx();
 
     _posX = position.x;
     _posY = position.y;
@@ -72,7 +78,7 @@ void Enemy::release()
 
 void Enemy::update()
 {
-
+   
 }
 
 void Enemy::render()
@@ -93,12 +99,28 @@ void Enemy::Move()
         _gravity = 0;
         _jumpPower = 0;
     }
+
 }
+
+
 
 void Enemy::Draw()
 {
-    _imageName->aniRender(getMemDC(), _rc.left - _cm->getCamX() , _rc.top - _cm->getCamY(), _motionName);
-    LineMake(getMemDC(), _posX, _posY, _player->getPosX(), _player->getPosY());
+    _distance = getDistance(_player->getRendX(), _player->getGroundY(), _posX, _posY);
+    //_renderX = _rc.left - _cm->getCamX();
+    //_renderY = _rc.top - _cm->getCamY();
+    _rendX = _posX  - _cm->getCamX();
+    _rendY = _posY  - _cm->getCamY();
+    _imageName->aniRender(getMemDC(), _rendX , _rendY, _motionName);
+    LineMake(getMemDC(), _rendX + (_rc.right - _rc.left) / 2 , _rendY - (_rc.top - _rc.bottom) / 2 , _player->getAbsolX(), _player->getAbsolY());
+
+    char str[128];
+    sprintf_s(str, "Enemy X : %f", _posX);
+    TextOut(getMemDC(), 100, 170, str, strlen(str));
+
+    sprintf_s(str, "Enemy Y : %f", _posY);
+    TextOut(getMemDC(), 100, 190, str, strlen(str));
+    
 
 }
 
@@ -108,18 +130,34 @@ void Enemy::Collision()
 
 void Enemy::TracePlayer() // 플레이어 추적하여 좌우 변경
 {
-    if (_player->getPosX() < _posX && _direction == 1)
+    if (_player->getRendX() < _posX && _direction == 1)
     {
         _direction = 0;
         SwitchImage();
 
     }
-    else if (_player->getPosX() >= _posX && _direction == 0)
+    else if (_player->getRendX() >= _posX && _direction == 0)
     {
         _direction = 1;
         SwitchImage();
     }
+    //만약 플레이어가 에너미보다 위에 있으면
+    if (_player->getGroundY() - 20 < _posY)
+    {
+        _highlow = -1;
+    }
+    //만약 플레이어가 에너미보다 아래에 있으면
+    if (_player->getGroundY() + 20 > _posY)
+    {
+        _highlow = 1;
+    }
+    else
+    {
+        _highlow = 0;
+    }
 }
+
+
 
 void Enemy::ChangeStatement()
 {
@@ -150,11 +188,20 @@ void Enemy::ChangeStatement()
     case ENEMYSTATEMENT::ATTACK1:
         _state = _attack1;
         break;
+    case ENEMYSTATEMENT::ATTACK2:
+        _state = _attack2;
+        break;
     case ENEMYSTATEMENT::ATTACK3:
         _state = _attack3;
         break;
+    case ENEMYSTATEMENT::ATTACK4:
+        _state = _attack4;
+        break;
     case ENEMYSTATEMENT::UP:
         _state = _up;
+        break;
+    case ENEMYSTATEMENT::DAEGI:
+        _state = _daegi;
         break;
     }
     SwitchImage();
@@ -162,9 +209,29 @@ void Enemy::ChangeStatement()
 
 }
 
-bool Enemy::chaseSession()
+void Enemy::KeyTest()
 {
-    if (getDistance(_player->getPosX(), _player->getPosY(), _posX, _posY) < 100)
+   
+}
+
+void Enemy::ChaseRun()
+{
+    if (ChaseSession())
+    {
+        if (_player->getRendX() < _posX)
+        {
+            _posX -= ENEMYSPEED;
+        }
+        if (_player->getRendX() > _posX)
+        {
+            _posX += ENEMYSPEED;
+        }
+    }
+}
+
+bool Enemy::ChaseSession()
+{
+    if (_distance < 500)
     {
         return true;
     }
@@ -172,9 +239,14 @@ bool Enemy::chaseSession()
 
 }
 
-void Enemy::StartAnim()
+bool Enemy::AttackSession()
 {
-
+    if (ChaseSession() && _distance < 150)
+    {
+        return true;
+    }
+    return false;
 }
+
 
 

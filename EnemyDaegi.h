@@ -1,8 +1,10 @@
 #pragma once
 #include "EnemyState.h"
+
 class Enemy;
-class EnemyAttack1 :
-	public EnemyState
+
+class EnemyDaegi :
+    public EnemyState
 {
 private:
 	Enemy* _enemy;
@@ -14,4 +16,6 @@ public:
 	virtual void update() override;
 
 	void SetEnemy(Enemy* enemy) { _enemy = enemy; }
+
 };
+

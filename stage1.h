@@ -6,7 +6,6 @@
 #include "CameraManager.h"
 #include "Ramona.h"
 #include "UserInterface.h"
-#include "SettingScene.h"
 #include "Enemy.h"
 #include "EnemyManager.h"
 

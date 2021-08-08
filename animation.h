@@ -74,5 +74,7 @@ public:
 
 	inline int getFrameWidth()	{ return _frameWidth; }
 	inline int getFrameHeight() { return _frameHeight; }
+
+	DWORD GetNowPlayIdx() { return _nowPlayIdx; }
 };
 

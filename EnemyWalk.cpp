@@ -14,5 +14,6 @@ void EnemyWalk::release()
 
 void EnemyWalk::update()
 {
-	//지금이 어택이 가능한상태인가?
+	
 }
+

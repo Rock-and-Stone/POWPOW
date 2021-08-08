@@ -4,7 +4,7 @@
 HRESULT stage1::init()
 {
 	IMAGEMANAGER->addImage("background", "source/Level 1 - Frozen Suburbs.bmp", 31812, 1400, true, MAGENTA);
-	IMAGEMANAGER->addImage("배경", "backdu bisch ein archground.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("배경", "source/backdu bisch ein archground.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 
 	_player = new Ramona;
 	_player->init();
@@ -32,14 +32,13 @@ HRESULT stage1::init()
 
 void stage1::update()
 {
-	if (KEYMANAGER->isOnceKeyDown(VK_F1)) SCENEMANAGER->changeScene("settingScene");
-
 	if (!_ui->GetIsPause())
 	{
 		_player->update();
 
 		_cm->update(_player->getPosX(), _player->getPosY());
 
+		_em->update();
 #pragma region 언덕카메라무브
 
 		if (_player->getPosX() >= 24765)
@@ -52,13 +51,11 @@ void stage1::update()
 			_maxY = 1400;
 		}
 
-		_cm->init(31812, _maxY);
-
+		_cm->init(31812, _maxY);	
 #pragma endregion
 
 	}
 
-	_em->update();
 	_ui->update();
 
 }

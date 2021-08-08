@@ -17,9 +17,10 @@ HRESULT playGround::init()
 	gameNode::init(true);
 
 	SCENEMANAGER->addScene("stage1", new stage1);
-	SCENEMANAGER->addScene("settingScene", new SettingScene);
 	SCENEMANAGER->addScene("titleScene", new titleScene);
 	SCENEMANAGER->addScene("selectScene", new SelectScene);
+	SCENEMANAGER->addScene("loadingScene", new loadingScene);
+	SCENEMANAGER->addScene("settingScene", new settingScene);
 
 	SCENEMANAGER->changeScene("titleScene");
 

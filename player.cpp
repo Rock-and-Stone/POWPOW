@@ -16,23 +16,7 @@ HRESULT player::InitVariables()
 
 HRESULT player::init()
 {
-#pragma region Ramona Images
-	IMAGEMANAGER->addFrameImage("Ramona_Idle", "Ramona/Idle.bmp", 2070, 960, 6, 2, true, MAGENTA);
-	IMAGEMANAGER->addFrameImage("Ramona_Jump", "Ramona/Jump_Loop.bmp", 345, 960, 1, 2, true, MAGENTA);
-	IMAGEMANAGER->addFrameImage("Ramona_Fall", "Ramona/Fall.bmp", 2070, 960, 6, 2, true, MAGENTA);
-	IMAGEMANAGER->addFrameImage("Ramona_Walk", "Ramona/Walk.bmp", 2070, 960, 6, 2, true, MAGENTA);
-	IMAGEMANAGER->addFrameImage("Ramona_Land", "Ramona/Walk.bmp", 345, 960, 1, 2, true, MAGENTA);
-	IMAGEMANAGER->addFrameImage("Ramona_Run", "Ramona/Run.bmp", 2760, 960, 8, 2, true, MAGENTA);
-#pragma endregion
 
-//#pragma region Ramona Images
-//	IMAGEMANAGER->addFrameImage("Ramona_Idle", "Ramona/Idle.bmp", 2070, 960, 6, 2, true, MAGENTA);
-//	IMAGEMANAGER->addFrameImage("Ramona_Jump", "Ramona/Jump_Loop.bmp", 345, 960, 1, 2, true, MAGENTA);
-//	IMAGEMANAGER->addFrameImage("Ramona_Fall", "Ramona/Fall.bmp", 2070, 960, 6, 2, true, MAGENTA);
-//	IMAGEMANAGER->addFrameImage("Ramona_Walk", "Ramona/Walk.bmp", 2070, 960, 6, 2, true, MAGENTA);
-//	IMAGEMANAGER->addFrameImage("Ramona_Land", "Ramona/Walk.bmp", 345, 960, 1, 2, true, MAGENTA);
-//	IMAGEMANAGER->addFrameImage("Ramona_Run", "Ramona/Run.bmp", 2760, 960, 8, 2, true, MAGENTA);
-//#pragma endregion
 	_idle = new Idle;
 	_walk = new Walk;
 	_jump = new Jump;

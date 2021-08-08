@@ -3,10 +3,11 @@
 
 #include "gameNode.h"
 #include "string"
-#include "SettingScene.h"
 #include "stage1.h"
 #include "titleScene.h"
 #include "selectScene.h"
+#include "loadingScene.h"
+#include "settingScene.h"
 
 
 

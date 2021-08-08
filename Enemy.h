@@ -6,14 +6,17 @@
 #include "EnemyRun.h"
 #include "EnemyJump.h"
 #include "EnemyAttack1.h"
+#include "EnemyAttack2.h"
 #include "EnemyAttack3.h"
+#include "EnemyAttack4.h"
 #include "EnemyDamaged.h"
 #include "EnemyGuard.h"
 #include "EnemyDown.h"
 #include "EnemyUp.h"
+#include "EnemyDaegi.h"
 #include "player.h"
 
-#define ENEMYSPEED 5.0f
+#define ENEMYSPEED 5
 
 //에너미 방향 enum 클래스
 //enum class ENEMYDIRECTION
@@ -42,7 +45,8 @@ enum class ENEMYSTATEMENT
 	GUARD,						//가드
 	OBJECT_ATTACK,				//오브젝트 들고 공격
 	OBJECT_THROW,				//오브젝트 던지기
-	OBJECT_GRAB					//오브젝트 들기
+	OBJECT_GRAB,				//오브젝트 들기
+	DAEGI						//말그대로 대기상태
 };
 
 class Enemy : public gameNode
@@ -64,17 +68,22 @@ protected:
 	EnemyRun* _run;
 	EnemyJump* _jump;
 	EnemyAttack1* _attack1;
+	EnemyAttack2* _attack2;
 	EnemyAttack3* _attack3;
+	EnemyAttack4* _attack4;
 	EnemyDamaged* _damaged;
 	EnemyDown* _down;
 	EnemyGuard* _guard;
 	EnemyUp* _up;
+	EnemyDaegi* _daegi;
 	
 	int _direction;			//에너미의 방향
+	int _highlow;			//에너미 높낮이 (플레이어와의 비교)
 
 	bool _isJump;
 
 	float _posX, _posY;				//에너미 x, y 좌표
+	float _rendX, _rendY;
 	float _probeX, _probeY;			//픽셀 충돌 시
 	float _jumpPower, _gravity;		//점프, 중력
 	float _distance; //플레이어와의 거리 계산
@@ -102,7 +111,11 @@ public:
 	void Collision();
 
 	void TracePlayer();
+	
 	void ChangeStatement();
+
+	void KeyTest();
+	void ChaseRun();
 
 	
 
@@ -113,10 +126,6 @@ public:
 	//에너미 상태 설정자, 접근자
 	void SetEnemyStatement(ENEMYSTATEMENT enemyStatement) { _enemyStatement = enemyStatement; }
 	ENEMYSTATEMENT GetEnemyStatement() { return _enemyStatement; }
-
-	//에너미 방향 설정자, 접근자
-	//void SetEnemyDirection(ENEMYDIRECTION enemyDirection) { _enemyDirection = enemyDirection; }
-	//ENEMYDIRECTION GetEnemyDirection() { return _enemyDirection; }
 
 	//이미지 접근자
 	image* GetImageName() { return _imageName; }
@@ -129,18 +138,25 @@ public:
 	//카메라 설정
 	void SetCamera(CameraManager* cm) { _cm = cm; }
 
-	//상태에 대한 접근자 설정자
-	//ENEMYSTATEMENT GetEnemyStatement() { return _enemyStatement; }
-	//void SetEnemyStatement(ENEMYSTATEMENT statement) { _enemyStatement = statement; }
+	//에너미 x, y 좌표 설정자
+	float GetEnemyPosX() { return _posX; }
+	float GetEnemyPosY() { return _posY; }
+	void SetEnemyPosX(float x) { _posX = x; }
+	void SetEnemyPosY(float y) { _posY = y; }
+
+	
 
 	//모션에 대한 접근자 설정자
 	animation* GetEnemyMotion() { return _motionName; }
 	void SetEnemyMotion(animation* ani) { _motionName = ani; }
 
-	bool chaseSession();
+	bool ChaseSession();
+
+	bool AttackSession();
 
 	void SetPlayerLink(player* player) { _player = player; }
 
-	void StartAnim();
+
+
 };
 

@@ -6,6 +6,7 @@ class SelectScene : public gameNode
 private:
 	RECT _selectRc;
 	int _selectNum;
+
 public:
 	virtual HRESULT init();
 	virtual void update();

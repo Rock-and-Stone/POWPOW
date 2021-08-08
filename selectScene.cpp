@@ -3,8 +3,7 @@
 
 HRESULT SelectScene::init()
 {
-	IMAGEMANAGER->addImage("mainMenu", "source/mainMenu.bmp", WINSIZEX, WINSIZEY, false, MAGENTA);
-	IMAGEMANAGER->addImage("mainMenubox", "source/mainmenubox.bmp", 200, 50, true, MAGENTA);
+
 
 	_selectNum = 0;
 
@@ -20,25 +19,29 @@ void SelectScene::update()
 	if (KEYMANAGER->isOnceKeyDown(VK_UP))
 	{
 		_selectNum--;
-		if (_selectNum < 0) {
+		if (_selectNum < 0)
+		{
 			_selectNum = 2;
 		}
 	}
 
 	if (KEYMANAGER->isOnceKeyDown(VK_DOWN)) {
 		_selectNum++;
-		if (_selectNum > 2) {
+		if (_selectNum > 2) 
+		{
 			_selectNum = 0;
 		}
 	}
 
-	if (KEYMANAGER->isOnceKeyDown(VK_RETURN)) 
+	if (KEYMANAGER->isOnceKeyDown(VK_RETURN))
 	{
-		switch (_selectNum)
-		{
+	
+			switch (_selectNum)
+			{
 			case 0:
 				SCENEMANAGER->changeScene("stage1");
 				break;
+
 
 			case 1:
 				SCENEMANAGER->changeScene("settingScene");
@@ -47,7 +50,7 @@ void SelectScene::update()
 			case 2:
 				PostQuitMessage(0);
 				break;
-		}
+			}
 	}
 }
 
@@ -57,6 +60,6 @@ void SelectScene::release()
 
 void SelectScene::render()
 {
-	IMAGEMANAGER->findImage("mainMenu")->render(getMemDC());
-	IMAGEMANAGER->findImage("mainMenubox")->render(getMemDC(),_selectRc.left,_selectRc.top);
+		IMAGEMANAGER->findImage("mainMenu")->render(getMemDC());
+		IMAGEMANAGER->findImage("mainMenubox")->render(getMemDC(), _selectRc.left, _selectRc.top);
 }

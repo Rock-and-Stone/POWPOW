@@ -15,7 +15,7 @@ HRESULT restaurantScene::init()
 
 	SOUNDMANAGER->addSound("상점", "상점.mp3", true, true);
 
-	SOUNDMANAGER->play("상점", 0.5f);
+	SOUNDMANAGER->play("상점", getBGMVolume());
 
 	return S_OK;
 }

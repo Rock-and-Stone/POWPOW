@@ -97,7 +97,9 @@ public:
 	int getRenderY() { return _hitRC.bottom; }
 
 	void setRendX(int rendX) { _rendX = rendX; }
+	float getRendX() { return _rendX; }
 	void setRendY(int rendY) { _rendY = rendY; }
+	float getRendY() { return _rendY; }
 
 	int getDirectionX() { return _dirX; }
 	void setDirectionX(int dirX) { _dirX = dirX; }
@@ -111,6 +113,7 @@ public:
 	int getSpeedY() { return _speedY; }
 	void setSpeedY(int speedY) { _speedY = speedY; }
 
-
+	int getAbsolX() { return _absolX; }
+	int getAbsolY() { return _absolY; }
 };
 

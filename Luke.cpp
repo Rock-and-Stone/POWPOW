@@ -26,9 +26,7 @@ void Luke::update()
 {
 	_state->update();
 	Move();
-	//SwitchImage();
     TracePlayer();
-
 }
 
 void Luke::SwitchImage()
@@ -123,6 +121,17 @@ void Luke::SwitchImage()
             _motionName = KEYANIMANAGER->findAnimation("LUKErightAttack1");
         }
         break;
+    case ENEMYSTATEMENT::ATTACK2:
+        _imageName = IMAGEMANAGER->findImage("LUKE_ATTACK1");
+        if (_direction == 0)
+        {
+            _motionName = KEYANIMANAGER->findAnimation("LUKEleftAttack2");
+        }
+        else
+        {
+            _motionName = KEYANIMANAGER->findAnimation("LUKErightAttack2");
+        }
+        break;
     case ENEMYSTATEMENT::ATTACK3:
         _imageName = IMAGEMANAGER->findImage("LUKE_ATTACK3");
         if (_direction == 0)
@@ -132,6 +141,17 @@ void Luke::SwitchImage()
         else
         {
             _motionName = KEYANIMANAGER->findAnimation("LUKErightAttack3");
+        }
+        break;
+    case ENEMYSTATEMENT::ATTACK4:
+        _imageName = IMAGEMANAGER->findImage("LUKE_ATTACK4");
+        if (_direction == 0)
+        {
+            _motionName = KEYANIMANAGER->findAnimation("LUKEleftAttack4");
+        }
+        else
+        {
+            _motionName = KEYANIMANAGER->findAnimation("LUKErightAttack4");
         }
         break;
     case ENEMYSTATEMENT::UP:
@@ -146,30 +166,23 @@ void Luke::SwitchImage()
         }
         break;
 
+    case ENEMYSTATEMENT::DAEGI:
+        _imageName = IMAGEMANAGER->findImage("LUKE_IDLE");
+        if (_direction == 0)
+        {
+            _motionName = KEYANIMANAGER->findAnimation("LUKEleftIdle");
+        }
+        else
+        {
+            _motionName = KEYANIMANAGER->findAnimation("LUKErightIdle");
+        }
+        break;
+
     }
     _motionName->start();
 }
 
 
-//약공격 콤보어택 콜백함수
-void Luke::ComboAttack1(void* obj)
-{
-   Enemy* e = (Enemy*)obj;
-
-    e->SetEnemyStatement(ENEMYSTATEMENT::ATTACK1);
-    e->SetMotionName(KEYANIMANAGER->findAnimation("LUKEleftAttack2"));
-    e->GetMotionName()->start();
-}
-
-//강공격 콤보어택 콜백함수
-void Luke::ComboAttack2(void* obj)
-{
-    Enemy* e = (Enemy*)obj;
-
-    e->SetEnemyStatement(ENEMYSTATEMENT::ATTACK1);
-    e->SetMotionName(KEYANIMANAGER->findAnimation("LUKEleftAttack2"));
-    e->GetMotionName()->start();
-}
 
 
 

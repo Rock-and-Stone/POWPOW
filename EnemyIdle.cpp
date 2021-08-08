@@ -14,11 +14,9 @@ void EnemyIdle::release()
 
 void EnemyIdle::update()
 {
-	if (_enemy->chaseSession())
+	if (_enemy->ChaseSession())
 	{
-		_enemy->SetEnemyStatement(ENEMYSTATEMENT::WALK);
-
+		_enemy->SetEnemyStatement(ENEMYSTATEMENT::RUN);
 		_enemy->ChangeStatement();
-
 	}
 }
