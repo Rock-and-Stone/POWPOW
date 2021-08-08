@@ -40,7 +40,7 @@ protected:
 	bool			_isAttack;
 	bool			_isAir;
 
-	float				_posX, _posY;
+	float			_posX, _posY;
 	int				_probeX, _probeY;
 	int				_groundY, _airY;
 	float			_jumpPower, _gravity;
