@@ -27,7 +27,7 @@ void Ramona::update()
 
 void Ramona::SwitchImage()
 {
-	_renderRC = RectMakeCenter(_posX, _posY, _img->getFrameWidth(), _img->getFrameHeight());
+	_renderRC = RectMakeCenter(_rendX, _rendY, _img->getFrameWidth(), _img->getFrameHeight());
 	switch (_statement)
 	{
 	case Statement::IDLE:

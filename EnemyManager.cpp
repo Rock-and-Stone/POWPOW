@@ -40,6 +40,16 @@ void EnemyManager::render()
     {
         RECT temp = (*_viLuke)->GetRect();
         (*_viLuke)->render();
+        if (_viLuke == _vLuke.begin())
+        {
+            char str[128];
+            sprintf_s(str, "Enemy X : %f", (*_viLuke)->GetEnemyPosX());
+            TextOut(getMemDC(), 100, 200, str, strlen(str));
+
+            sprintf_s(str, "Enemy Y : %f", (*_viLuke)->GetEnemyPosY());
+            TextOut(getMemDC(), 100, 230, str, strlen(str));
+        }
+       
     }
     for (_viMike = _vMike.begin(); _viMike != _vMike.end(); ++_viMike)
     {

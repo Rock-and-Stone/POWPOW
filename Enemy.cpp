@@ -61,8 +61,6 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
 
     _gravity = _jumpPower = 0;
 
-    _rc = RectMakeCenter(_posX, _posY,
-        _imageName->getFrameWidth(), _imageName->getFrameHeight());
 
     _motionName->start();
 
@@ -106,21 +104,17 @@ void Enemy::Move()
 
 void Enemy::Draw()
 {
-    _distance = getDistance(_player->getRendX(), _player->getGroundY(), _posX, _posY);
-    //_renderX = _rc.left - _cm->getCamX();
-    //_renderY = _rc.top - _cm->getCamY();
+    _distance = getDistance(_player->getRendX(), _player->getRendX(), _posX, _posY);
+
     _rendX = _posX  - _cm->getCamX();
     _rendY = _posY  - _cm->getCamY();
-    _imageName->aniRender(getMemDC(), _rendX , _rendY, _motionName);
-    LineMake(getMemDC(), _rendX + (_rc.right - _rc.left) / 2 , _rendY - (_rc.top - _rc.bottom) / 2 , _player->getAbsolX(), _player->getAbsolY());
 
-    char str[128];
-    sprintf_s(str, "Enemy X : %f", _posX);
-    TextOut(getMemDC(), 100, 170, str, strlen(str));
+    //Rectangle(getMemDC(), _rc);
+    _rc = RectMakeCenter(_rendX, _rendY, _imageName->getFrameWidth(), _imageName->getFrameHeight());
 
-    sprintf_s(str, "Enemy Y : %f", _posY);
-    TextOut(getMemDC(), 100, 190, str, strlen(str));
-    
+
+    _imageName->aniRender(getMemDC(), _rc.left , _rc.top, _motionName);
+    LineMake(getMemDC(), _rendX, _rendY, _player->getRendX(), _player->getRendY());
 
 }
 
@@ -130,13 +124,13 @@ void Enemy::Collision()
 
 void Enemy::TracePlayer() // 플레이어 추적하여 좌우 변경
 {
-    if (_player->getRendX() < _posX && _direction == 1)
+    if (_player->getPosX() < _posX && _direction == 1)
     {
         _direction = 0;
         SwitchImage();
 
     }
-    else if (_player->getRendX() >= _posX && _direction == 0)
+    else if (_player->getPosX() >= _posX && _direction == 0)
     {
         _direction = 1;
         SwitchImage();
@@ -218,11 +212,11 @@ void Enemy::ChaseRun()
 {
     if (ChaseSession())
     {
-        if (_player->getRendX() < _posX)
+        if (_player->getPosX() - 10 < _posX)
         {
             _posX -= ENEMYSPEED;
         }
-        if (_player->getRendX() > _posX)
+        if (_player->getPosX() + 10 > _posX)
         {
             _posX += ENEMYSPEED;
         }

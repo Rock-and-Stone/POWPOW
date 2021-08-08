@@ -161,6 +161,7 @@
     <ClInclude Include="EnemyAttack2.h" />
     <ClInclude Include="EnemyAttack3.h" />
     <ClInclude Include="EnemyAttack4.h" />
+    <ClInclude Include="EnemyDaegi.h" />
     <ClInclude Include="EnemyDamaged.h" />
     <ClInclude Include="EnemyDown.h" />
     <ClInclude Include="EnemyGuard.h" />
@@ -222,6 +223,7 @@
     <ClCompile Include="EnemyAttack2.cpp" />
     <ClCompile Include="EnemyAttack3.cpp" />
     <ClCompile Include="EnemyAttack4.cpp" />
+    <ClCompile Include="EnemyDaegi.cpp" />
     <ClCompile Include="EnemyDamaged.cpp" />
     <ClCompile Include="EnemyDown.cpp" />
     <ClCompile Include="EnemyGuard.cpp" />

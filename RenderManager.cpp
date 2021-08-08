@@ -43,7 +43,7 @@ void RenderManager::render(HDC hdc)
 	{
 		(*_viRender)->render();
 
-		sprintf_s(str, "%d", (*_viRender)->getRenderPosY());
+		sprintf_s(str, "%d", (*_viRender)->getRenderPosY()); //렌더의 Y값을 가져와서 보여줌.
 		TextOut(hdc, 300, 90 + i* 30, str, strlen(str));
 
 		i++;
@@ -69,7 +69,7 @@ void RenderManager::selectionSort()
 	{
 		minIndex = i;
 		for (j = i+1; j < _vRender.size(); j++)
-			if (_vRender[j]->getRenderPosY() < _vRender[minIndex]->getRenderPosY())
+			if (_vRender[j]->getRenderPosY() < _vRender[minIndex]->getRenderPosY()) //렌더의 Y값을 가져와서 비교하여 스왑.
 				minIndex = j;
 		
 

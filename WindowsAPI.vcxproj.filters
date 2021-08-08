@@ -150,9 +150,6 @@
     <ClInclude Include="UserInterface.h">
       <Filter>playGround</Filter>
     </ClInclude>
-    <ClInclude Include="gameDate.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
     <ClInclude Include="SoundPlayer.h">
       <Filter>playGround</Filter>
     </ClInclude>
@@ -245,6 +242,12 @@
     </ClInclude>
     <ClInclude Include="EnemyWalk.h">
       <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClInclude>
+    <ClInclude Include="gameData.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="loadingScene.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="EnemyDaegi.h">
       <Filter>playGround\Enemy\EnemyState</Filter>
@@ -412,6 +415,12 @@
     </ClCompile>
     <ClCompile Include="EnemyWalk.cpp">
       <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="gameData.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="loadingScene.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="EnemyDaegi.cpp">
       <Filter>playGround\Enemy\EnemyState</Filter>

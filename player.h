@@ -45,7 +45,6 @@ protected:
 	int				_groundY, _airY;
 	float			_jumpPower, _gravity;
 	int				_keyCount;
-	int				_absolX, _absolY;
 	int				_rendX, _rendY;
 
 	int				_speedX, _speedY;
@@ -98,6 +97,7 @@ public:
 
 	void setRendX(int rendX) { _rendX = rendX; }
 	float getRendX() { return _rendX; }
+
 	void setRendY(int rendY) { _rendY = rendY; }
 	float getRendY() { return _rendY; }
 
@@ -113,7 +113,5 @@ public:
 	int getSpeedY() { return _speedY; }
 	void setSpeedY(int speedY) { _speedY = speedY; }
 
-	int getAbsolX() { return _absolX; }
-	int getAbsolY() { return _absolY; }
 };
 

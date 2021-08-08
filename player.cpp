@@ -72,10 +72,8 @@ void player::render()
 		Rectangle(getMemDC(), _hitRC);
 		//LineMake(getMemDC(), _hitRC.left, _hitRC.bottom, _hitRC.right, _hitRC.bottom);
 	}
-	_absolX = _rendX - (_renderRC.right - _renderRC.left) / 2;
-	_absolY = _rendY - (_renderRC.bottom - _renderRC.top) / 2;
 
-	_img->frameRender(getMemDC(), _absolX, _absolY, _indexX, _dirX);
+	_img->frameRender(getMemDC(), _renderRC.left, _renderRC.top, _indexX, _dirX);
 	_hitRC = RectMakeCenter(_rendX, _rendY, 80, 180);
 
 }
