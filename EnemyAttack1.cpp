@@ -13,7 +13,7 @@ void EnemyAttack1::release()
 
 void EnemyAttack1::update()
 {
-	if (_enemy->GetEnemyMotion()->GetNowPlayIdx() == 3)
+	if (_enemy->GetMotionName()->GetNowPlayIdx() == 3)
 	{
 		_enemy->SetEnemyStatement(ENEMYSTATEMENT::ATTACK2);
 		_enemy->ChangeStatement();

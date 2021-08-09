@@ -42,7 +42,7 @@ public:
 	void SetMike();
 	void SetMalcolm();
 	
-
+	void Collision();
 
 	vector<Enemy*> GetVLuke() { return _vLuke; }
 	vector<Enemy*>::iterator GetVILuke() { return _viLuke; }

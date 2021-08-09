@@ -13,9 +13,9 @@ State::~State()
 HRESULT Idle::init()
 {
 	_player->setIsAir(false);
-	_player->setSpeedX(0);
-	_player->setSpeedY(0);
 	_player->setAirY(0);
+	_player->setIsRun(false);
+	_player->setAtkCount(0);
 	return S_OK;
 }
 
@@ -42,16 +42,14 @@ void Idle::Input()
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
 		_player->ChangeState(Statement::WALK);
-		_player->setDirectionX(0);
+		_player->setDirectionX(-1);
 		_player->setAnimLoop(true);
-		_player->setSpeedX(5);
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_player->ChangeState(Statement::WALK);
 		_player->setDirectionX(1);
 		_player->setAnimLoop(true);
-		_player->setSpeedX(5);
 	}
 
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
@@ -72,18 +70,26 @@ void Idle::Input()
 	if (KEYMANAGER->isOnceKeyDown('C'))
 	{
 		_player->ChangeState(Statement::JUMP);
-		_player->setJumpPower(7);
+		_player->setJumpPower(12.0f);
+	}
+
+	if (KEYMANAGER->isOnceKeyDown('X'))
+	{
+		_player->ChangeState(Statement::ATTACK);
+		_player->setAnimLoop(false);
+		_player->setSpeedX(2);
 	}
 }
 
 void Idle::Trigger()
 {
-
+	_player->ChangeState(Statement::IDLE);
+	_player->setAnimLoop(true);
 }
 
 HRESULT Walk::init()
 {
-
+	_player->setAnimLoop(true);
 	return S_OK;
 }
 
@@ -94,6 +100,7 @@ void Walk::release()
 void Walk::update()
 {
 	Input();
+	Speed();
 }
 	
 void Walk::render(HDC hdc)
@@ -106,64 +113,54 @@ void Walk::Input()
 	int currentDirX = _player->getDirectionX();
 	int currentDirY = _player->getDirectionY();
 
-	if (LEFTKEYDOWN)
+	if (KEYMANAGER->isOnceKeyDown(VK_SHIFT) && !_player->getIsRun())
 	{
-		_player->setDirectionX(0);
-		_player->setAnimLoop(true);
-		_player->setSpeedX(5);
+		_player->ChangeState(Statement::RUN);
+		_player->setIsRun(true);
 	}
 
-	if (LEFTKEYUP && currentDirX == 0)
+	if (LEFTKEYDOWN)
+	{
+		_player->setDirectionX(-1);
+	}
+
+	if (LEFTKEYUP && currentDirX == -1)
 	{
 		if(currentDirY == 0)_player->ChangeState(Statement::IDLE);
 		_player->setDirectionX(0);
-		_player->setAnimLoop(true);
-		_player->setSpeedX(0);
 	}
 
 	if (RIGHTKEYDOWN)
 	{
-		
 		_player->setDirectionX(1);
-		_player->setAnimLoop(true);
-		_player->setSpeedX(5);
 	}
 
 	if (RIGHTKEYUP && currentDirX == 1)
 	{
 		if (currentDirY == 0)_player->ChangeState(Statement::IDLE);
-		_player->setDirectionX(1);
-		_player->setAnimLoop(true);
-		_player->setSpeedX(0);
+		_player->setDirectionX(0);
 	}
 
 	if (UPKEYDOWN)
 	{
 		_player->setDirectionY(-1);
-		_player->setAnimLoop(true);
-		_player->setSpeedY(2);
 	}
 
 	if (UPKEYUP && currentDirY == -1)
 	{
-		if(_player->getSpeedX() == 0)_player->ChangeState(Statement::IDLE);
+		if (currentDirX == 0)_player->ChangeState(Statement::IDLE);
 		_player->setDirectionY(0);
-		_player->setAnimLoop(true);
-
 	}
 
 	if (DOWNKEYDOWN)
 	{
 		_player->setDirectionY(1);
-		_player->setAnimLoop(true);
-		_player->setSpeedY(2);
 	}
 
 	if (DOWNKEYUP && currentDirY == 1)
 	{
-		if (_player->getSpeedX() == 0)_player->ChangeState(Statement::IDLE);
+		if (currentDirX == 0)_player->ChangeState(Statement::IDLE);
 		_player->setDirectionY(0);
-		_player->setAnimLoop(true);
 	}
 
 	if (KEYMANAGER->isOnceKeyDown('C'))
@@ -171,11 +168,19 @@ void Walk::Input()
 		_player->ChangeState(Statement::JUMP);
 		_player->setJumpPower(12.0f);
 	}
+
+	
 }
 
 void Walk::Trigger()
 {
 
+}
+
+void Walk::Speed()
+{
+	if (_player->getDirectionX() != 0) _player->setSpeedX(_player->getSpeedX() + 2.0f);
+	if(_player->getDirectionY() != 0)  _player->setSpeedY(_player->getSpeedY() + 1.0f);
 }
 
 HRESULT Jump::init()
@@ -243,4 +248,38 @@ void Fall::Input()
 
 void Fall::Trigger()
 {
+}
+
+HRESULT Attack::init()
+{
+	return S_OK;
+}
+
+void Attack::release()
+{
+}
+
+void Attack::update()
+{
+	Input();
+	if (_player->getTrigger())Trigger();
+}
+
+void Attack::render(HDC hdc)
+{
+}
+
+void Attack::Input()
+{
+	if (KEYMANAGER->isOnceKeyDown('X') && _player->getAtkCount() < 2 && _player->getIndexX() > 0)
+	{
+		_player->setAtkCount(_player->getAtkCount() + 1);
+		_player->setSpeedX(2.0f);
+		_player->ChangeState(Statement::ATTACK);
+	}
+}
+
+void Attack::Trigger()
+{
+	_player->ChangeState(Statement::IDLE);
 }

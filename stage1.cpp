@@ -3,14 +3,12 @@
 
 HRESULT stage1::init()
 {
-	IMAGEMANAGER->addImage("background", "source/Level 1 - Frozen Suburbs.bmp", 31812, 1400, true, MAGENTA);
-	IMAGEMANAGER->addImage("¹è°æ", "source/backdu bisch ein archground.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 
 	_player = new Ramona;
 	_player->init();
 	_player->InitVariables();
 
-	_maxY = 1225;
+	_maxY = 1000;
 
 	_cm = new CameraManager;
 	_cm->init(31812, _maxY);
@@ -43,12 +41,12 @@ void stage1::update()
 
 		if (_player->getPosX() >= 24765)
 		{
-			if (_maxY <= 1400) _maxY = 1225 + 0.6 * (_player->getPosX() - 24765);
+			if (_maxY <= 1000) _maxY = 1000 + 0.6 * (_player->getPosX() - 24765);
 		}
 
-		if (_maxY >= 1400)
+		if (_maxY >= 1000)
 		{
-			_maxY = 1400;
+			_maxY = 1000;
 		}
 
 		_cm->init(31812, _maxY);	
@@ -57,7 +55,7 @@ void stage1::update()
 	}
 
 	_ui->update();
-
+	RENDERMANAGER->update();
 }
 
 void stage1::release()

@@ -25,7 +25,7 @@ HRESULT loadingScene::init()
 
     SOUNDMANAGER->addSound("menuBGM", "source/music/메뉴.mp3", true, true);
 
-    SOUNDMANAGER->play("menuBGM", 0.5f);
+    SOUNDMANAGER->play("menuBGM", 0.0f);
 
 	CreateThread(
 		NULL,				//스레드 보안속성(자식윈도우 존재할때)
@@ -71,7 +71,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 #pragma region 이미지 추가
     	IMAGEMANAGER->addImage("title", "source/titleImage.bmp", 1600, 900, false, RGB(255, 0, 255));
 		IMAGEMANAGER->addImage("sushiScene", "SHOP/SHOP_SUSHI.bmp", 1600, 900, true, RGB(255, 0, 255));
-		IMAGEMANAGER->addImage("background", "source/Level 1 - Frozen Suburbs.bmp", 31812, 1400, true, MAGENTA);
+		IMAGEMANAGER->addImage("background", "source/Level 1 - Frozen Suburbs.bmp", 31812, 1000, true, MAGENTA);
 		IMAGEMANAGER->addImage("배경", "source/backdu bisch ein archground.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 		IMAGEMANAGER->addImage("settingBackGround", "source/settingScene.bmp", WINSIZEX, WINSIZEY, true, MAGENTA);
 		IMAGEMANAGER->addImage("mainMenu", "source/mainMenu.bmp", WINSIZEX, WINSIZEY, false, MAGENTA);
@@ -375,6 +375,10 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         IMAGEMANAGER->addFrameImage("Ramona_Walk", "Ramona/Walk.bmp", 2070, 960, 6, 2, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("Ramona_Land", "Ramona/Walk.bmp", 345, 960, 1, 2, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("Ramona_Run", "Ramona/Run.bmp", 2760, 960, 8, 2, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("Ramona_Attack_0", "Ramona/Attack_Combo_0.bmp", 1035, 960, 3, 2, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("Ramona_Attack_1", "Ramona/Attack_Combo_1.bmp", 1035, 960, 3, 2, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("Ramona_Attack_2", "Ramona/Attack_Combo_2.bmp", 1035, 960, 3, 2, true, MAGENTA);
+        
 #pragma endregion
 
  //#pragma region Ramona Images

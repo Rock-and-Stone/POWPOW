@@ -24,12 +24,12 @@ void CameraManager::release()
 {
 }
 
-void CameraManager::update(int playerX, int playerY)
+void CameraManager::update(float playerX, float playerY)
 {
     CameraWork(playerX, playerY);
 }
 
-void CameraManager::CameraWork(int playerX, int playerY)
+void CameraManager::CameraWork(float playerX, float playerY)
 {
     _rc = RectMake(playerX - _posX, + playerY - _posY, WINSIZEX, WINSIZEY);
 

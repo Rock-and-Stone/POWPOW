@@ -54,6 +54,7 @@ public:
 	virtual void render(HDC hdc) override;
 	virtual void Input();
 	virtual void Trigger();
+	virtual void Speed();
 
 	virtual void setPlayer(player* player) override { _player = player; }
 };
@@ -75,6 +76,21 @@ public:
 };
 
 class Fall : public State
+{
+private:
+
+public:
+	virtual HRESULT init() override;
+	virtual void release() override;
+	virtual void update() override;
+	virtual void render(HDC hdc) override;
+	virtual void Input();
+	virtual void Trigger();
+
+	virtual void setPlayer(player* player) override { _player = player; }
+};
+
+class Attack : public State
 {
 private:
 

@@ -20,7 +20,7 @@ void Malcolm::release()
 
 void Malcolm::update()
 {
-	SwitchImage();
+	
 }
 
 void Malcolm::SwitchImage()

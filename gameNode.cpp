@@ -93,7 +93,7 @@ void gameNode::render()
 
 }
 
-int gameNode::getRenderPosY()
+float gameNode::getRenderPosY()
 {
 	return NULL;
 }
