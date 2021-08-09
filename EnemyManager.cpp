@@ -4,7 +4,7 @@
 
 HRESULT EnemyManager::init()
 {
-
+   
 	return S_OK;
 }
 
@@ -20,16 +20,8 @@ void EnemyManager::update()
         (*_viLuke)->update();
 
     }
-    //¸¶ÀÌÅ© º¤ÅÍ ¾÷µ«
-    for (_viMike = _vMike.begin(); _viMike != _vMike.end(); ++_viMike)
-    {
-        (*_viMike)->update();
-    }
-    //¸»ÄŞ º¤ÅÍ ¾÷µ«
-    for (_viMalcolm = _vMalcolm.begin(); _viMalcolm != _vMalcolm.end(); ++_viMalcolm)
-    {
-        (*_viMalcolm)->update();
-    }
+ 
+   
     Collision();
     KEYANIMANAGER->update();
     
@@ -43,16 +35,7 @@ void EnemyManager::render()
         (*_viLuke)->render();
        
     }
-    for (_viMike = _vMike.begin(); _viMike != _vMike.end(); ++_viMike)
-    {
-        RECT temp = (*_viMike)->GetRect();
-        (*_viMike)->render();
-    }
-    for (_viMalcolm = _vMalcolm.begin(); _viMalcolm != _vMalcolm.end(); ++_viMalcolm)
-    {
-        RECT temp = (*_viMalcolm)->GetRect();
-        (*_viMalcolm)->render();
-    }
+
 
 }
 

@@ -367,13 +367,20 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 
 #pragma endregion
 
+#pragma region EffectImages
+        
+      
+       
+
+#pragma endregion
+
 
 #pragma region Ramona Images
         IMAGEMANAGER->addFrameImage("Ramona_Idle", "Ramona/Idle.bmp", 2070, 960, 6, 2, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("Ramona_Jump", "Ramona/Jump_Loop.bmp", 345, 960, 1, 2, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("Ramona_Fall", "Ramona/Fall.bmp", 2070, 960, 6, 2, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("Ramona_Walk", "Ramona/Walk.bmp", 2070, 960, 6, 2, true, MAGENTA);
-        IMAGEMANAGER->addFrameImage("Ramona_Land", "Ramona/Walk.bmp", 345, 960, 1, 2, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("Ramona_Land", "Ramona/Land.bmp", 345, 960, 1, 2, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("Ramona_Run", "Ramona/Run.bmp", 2760, 960, 8, 2, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("Ramona_Attack_0", "Ramona/Attack_Combo_0.bmp", 1035, 960, 3, 2, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("Ramona_Attack_1", "Ramona/Attack_Combo_1.bmp", 1035, 960, 3, 2, true, MAGENTA);

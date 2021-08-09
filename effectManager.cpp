@@ -13,7 +13,10 @@ effectManager::~effectManager()
 
 HRESULT effectManager::init()
 {
-
+	IMAGEMANAGER->addImage("attackEffect", "source/effect/attackEffect.bmp", 350, 50, true, MAGENTA);
+	EFFECTMANAGER->addEffect("attackEffect1", "source/effect/attackEffect.bmp", 350, 50, 50, 50, 1, 0.08f, 1000);
+	IMAGEMANAGER->addImage("defenseEffect", "source/effect/defenseEffect.bmp", 350, 50, true, MAGENTA);
+	EFFECTMANAGER->addEffect("defenseEffect1", "source/effect/defenseEffect.bmp", 350, 50, 50, 50, 1, 0.08f, 1000);
 	return S_OK;
 }
 

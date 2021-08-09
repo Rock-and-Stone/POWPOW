@@ -77,8 +77,10 @@ protected:
 	EnemyUp* _up;
 	EnemyDaegi* _daegi;
 	
+	
 	int _direction;			//에너미의 방향
 	int _highlow;			//에너미 높낮이 (플레이어와의 비교)
+	int _randomChoice;		//막기, 맞기 랜덤값
 
 	bool _isJump;
 
@@ -114,8 +116,9 @@ public:
 	
 	void ChangeStatement();
 
-	void KeyTest();
+
 	void ChaseRun();
+	void ChaseWalk();
 
 	
 
@@ -145,15 +148,24 @@ public:
 	void SetEnemyPosX(float x) { _posX = x; }
 	void SetEnemyPosY(float y) { _posY = y; }
 
+	//에너미 그림 좌표 받아오기
+	float GetEnemyRendX() { return _rendX; }
+	float GetEnemyRendY() { return _rendY; }
+
+	//에너미 방향 받아오기
+	int GetEnemyDirection() { return _direction; }
+
 	virtual float getRenderPosY();
 
 	bool ChaseSession();
+	bool WalkSession();
 
 	bool AttackSession();
 
 	void SetPlayerLink(player* player) { _player = player; }
 
 	void HitDamage();
+
 
 };
 
