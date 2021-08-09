@@ -1,13 +1,12 @@
 #pragma once
 #include "gameNode.h"
-
-#define VOLUMEMAX 160
+#include "volumeProgressBar.h"
 
 class settingScene: public gameNode
 {
 private:
-	image* _backgroundVolume;
-	image* _SFXvolume;
+	volumeProgressBar* _BGMbar;
+	volumeProgressBar* _SFXbar;
 
 	//box rect
 	RECT _rc;

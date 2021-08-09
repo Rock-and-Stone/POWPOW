@@ -3,14 +3,21 @@
 
 HRESULT settingScene::init()
 {
-	_backgroundVolume = IMAGEMANAGER->findImage("volumnFrontBar");
-	_SFXvolume = IMAGEMANAGER->findImage("volumnFrontBar");
+
 
 	IMAGEMANAGER->addImage("settingSceneBox", "source/settingSceneBox.bmp", 250, 50, true, RGB(255, 0, 255));
 
-
 	_selectNum = 0;
 	_rc = RectMake(190, 163 + (_selectNum * 67), 250, 50);
+
+	_BGMbar = new volumeProgressBar;
+	_BGMbar->init(300, 400, 400, 100);
+	_BGMbar->setGauge(getBGMVolume(), 1.0f);
+
+	_SFXbar = new volumeProgressBar;
+	_SFXbar->init(300, 600, 400, 100);
+	_SFXbar->setGauge(getSFXVolume(), 1.0f);
+
 	return S_OK;
 }
 
@@ -20,7 +27,17 @@ void settingScene::release()
 
 void settingScene::update()
 {
-	if (KEYMANAGER->isOnceKeyDown(VK_RETURN)) SCENEMANAGER->changeScene("selectScene");
+	_BGMbar->setGauge(getBGMVolume(), 1.0f);
+	_BGMbar->update();
+
+	_SFXbar->setGauge(getSFXVolume(), 1.0f);
+	_SFXbar->update();
+
+	if (KEYMANAGER->isOnceKeyDown(VK_RETURN)) 
+	{ 
+		SCENEMANAGER->changeScene("selectScene");
+	}
+
 
 	//background music - volume update
 	SOUNDMANAGER->setVolume("menuBGM", getBGMVolume());
@@ -81,10 +98,10 @@ void settingScene::update()
 		}
 		else if (_selectNum == 1) 
 		{
-			setSFXVolume(getSFXVolume() + 1);
-			if (getSFXVolume() > 100)
+			setSFXVolume(getSFXVolume() + 0.1f);
+			if (getSFXVolume() > 1)
 			{
-				setSFXVolume(100);
+				setSFXVolume(1);
 			}
 		}
 	}
@@ -93,15 +110,11 @@ void settingScene::update()
 
 void settingScene::render()
 {
+	
 	IMAGEMANAGER->findImage("settingBackGround")->render(getMemDC());
 
-
 	IMAGEMANAGER->findImage("settingSceneBox")->render(getMemDC(),  _rc.left, _rc.top);
-	//volume »ö
-	_backgroundVolume->render(getMemDC(), 499, 164, 0, 0, (int)(160.0f * (getBGMVolume() / 100.0f)), 40);
-	_SFXvolume->render(getMemDC(), 499, 238, 0, 0, (int)(160.0f * (getBGMVolume() / 100.0f)), 40);
-	//volume Bar
-	IMAGEMANAGER->findImage("volumnBackBar")->render(getMemDC(), 489, 159);
-	IMAGEMANAGER->findImage("volumnBackBar")->render(getMemDC(), 489, 233);
 
+	_BGMbar->render();
+	_SFXbar->render();
 }

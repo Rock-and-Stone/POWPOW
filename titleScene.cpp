@@ -11,7 +11,7 @@ titleScene::~titleScene()
 
 HRESULT titleScene::init()
 {
-	_titleBG = IMAGEMANAGER->addImage("title", "source/titleImage.bmp", 1600, 900, false, RGB(255, 0, 255));
+	_titleBG = IMAGEMANAGER->addImage("title", "source/titleImage.bmp", WINSIZEX, WINSIZEY, false, RGB(255, 0, 255));
 
 	_opening = MCIWndCreate(_hWnd, NULL, WS_CHILD | WS_VISIBLE | MCIWNDF_NOPLAYBAR, "source/opening.avi");
 	MoveWindow(_opening, 0, 0, WINSIZEX, WINSIZEY, NULL);
