@@ -25,7 +25,7 @@ HRESULT loadingScene::init()
 
     SOUNDMANAGER->addSound("menuBGM", "source/music/메뉴.mp3", true, true);
 
-    SOUNDMANAGER->play("menuBGM", 0.0f);
+    SOUNDMANAGER->play("menuBGM", getBGMVolume());
 
 	CreateThread(
 		NULL,				//스레드 보안속성(자식윈도우 존재할때)
