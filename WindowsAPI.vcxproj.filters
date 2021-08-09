@@ -255,6 +255,9 @@
     <ClInclude Include="EnemyFall.h">
       <Filter>playGround\Enemy\EnemyState</Filter>
     </ClInclude>
+    <ClInclude Include="volumeProgressBar.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsAPI.cpp">
@@ -430,6 +433,9 @@
     </ClCompile>
     <ClCompile Include="EnemyFall.cpp">
       <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="volumeProgressBar.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

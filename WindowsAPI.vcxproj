@@ -209,6 +209,7 @@
     <ClInclude Include="txtData.h" />
     <ClInclude Include="UserInterface.h" />
     <ClInclude Include="utils.h" />
+    <ClInclude Include="volumeProgressBar.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="action.cpp" />
@@ -273,6 +274,7 @@
     <ClCompile Include="txtData.cpp" />
     <ClCompile Include="UserInterface.cpp" />
     <ClCompile Include="utils.cpp" />
+    <ClCompile Include="volumeProgressBar.cpp" />
     <ClCompile Include="WindowsAPI.cpp" />
   </ItemGroup>
   <ItemGroup>
