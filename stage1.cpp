@@ -23,6 +23,7 @@ HRESULT stage1::init()
 
 	_ui = new UserInterface;
 	_ui->init();
+	
 
 
 	return S_OK;
@@ -55,6 +56,7 @@ void stage1::update()
 	}
 
 	_ui->update();
+	EFFECTMANAGER->update();
 	RENDERMANAGER->update();
 }
 
@@ -70,6 +72,7 @@ void stage1::render()
 	_player->setRendY(_cm->getRenderPosY());
 
 	_em->render();
+	EFFECTMANAGER->render();
 	RENDERMANAGER->render(getMemDC());
 
 	//_player->render(_cm->getRenderPosX(), _cm->getRenderPosY());

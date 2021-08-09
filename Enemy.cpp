@@ -112,6 +112,7 @@ void Enemy::Draw()
     //Rectangle(getMemDC(), _rc);
     _rc = RectMakeCenter(_rendX, _rendY, _imageName->getFrameWidth(), _imageName->getFrameHeight());
 
+    _randomChoice = RND->getFromIntTo(0, 1);
 
     _imageName->aniRender(getMemDC(), _rc.left , _rc.top, _motionName);
     LineMake(getMemDC(), _rendX, _rendY, _player->getRendX(), _player->getRendY());
@@ -206,11 +207,6 @@ void Enemy::ChangeStatement()
 
 }
 
-void Enemy::KeyTest()
-{
-   
-}
-
 void Enemy::ChaseRun()
 {
     if (ChaseSession())
@@ -234,6 +230,29 @@ void Enemy::ChaseRun()
     }
 }
 
+void Enemy::ChaseWalk()
+{
+    if (WalkSession())
+    {
+        if (_player->getPosX() + 80 < _posX)
+        {
+            _posX -= 2;
+        }
+        if (_player->getPosX() - 80 > _posX)
+        {
+            _posX += 2;
+        }
+        if (_player->getPosY() > _posY)
+        {
+            _posY += 2;
+        }
+        if (_player->getPosY() < _posY)
+        {
+            _posY -= 2;
+        }
+    }
+}
+
 float Enemy::getRenderPosY()
 {
     return _posY;
@@ -249,6 +268,15 @@ bool Enemy::ChaseSession()
 
 }
 
+bool Enemy::WalkSession()
+{
+    if (_distance < WINSIZEX)
+    {
+        return true;
+    }
+    return false;
+}
+
 bool Enemy::AttackSession()
 {
     if (ChaseSession() && _distance <= 82)
@@ -260,12 +288,11 @@ bool Enemy::AttackSession()
 
 void Enemy::HitDamage()
 {
-    if (_enemyStatement != ENEMYSTATEMENT::DAMAGED)
-    {
-        _enemyStatement = ENEMYSTATEMENT::DAMAGED;
-        ChangeStatement();
-    }
+    _enemyStatement = ENEMYSTATEMENT::DAMAGED;
+    ChangeStatement();
 }
+
+
 
 
 

@@ -13,4 +13,9 @@ void EnemyAttack4::release()
 
 void EnemyAttack4::update()
 {
+	if (_enemy->GetMotionName()->GetNowPlayIdx() == 6)
+	{
+		_enemy->SetEnemyStatement(ENEMYSTATEMENT::DAEGI);
+		_enemy->ChangeStatement();
+	}
 }

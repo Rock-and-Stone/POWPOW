@@ -9,6 +9,10 @@ class EnemyDaegi :
 private:
 	Enemy* _enemy;
 
+	int _count;
+	int _countSelect;
+	
+
 public:
 
 	virtual HRESULT init() override;

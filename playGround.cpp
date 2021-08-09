@@ -39,6 +39,7 @@ void playGround::update()
 {
 	gameNode::update();
 	SCENEMANAGER->update();
+	EFFECTMANAGER->update();
 }
 
 //여기다 그려줘라!!!
@@ -50,6 +51,7 @@ void playGround::render()
 		//==============위에는 제발 건드리지 마라 ============
 
 		SCENEMANAGER->render();
+		EFFECTMANAGER->render();
 
 		//=============== 밑에도 건들지마라 ================
 		_backBuffer->render(getHDC(), 0, 0);

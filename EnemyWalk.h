@@ -7,6 +7,8 @@ class EnemyWalk :
 private:
 	Enemy* _enemy;
 
+	int _count;
+
 public:
 
 	virtual HRESULT init() override;
