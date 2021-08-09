@@ -252,6 +252,9 @@
     <ClInclude Include="loadingScene.h">
       <Filter>playGround</Filter>
     </ClInclude>
+    <ClInclude Include="EnemyFall.h">
+      <Filter>playGround\Enemy\EnemyState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsAPI.cpp">
@@ -424,6 +427,9 @@
     </ClCompile>
     <ClCompile Include="loadingScene.cpp">
       <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyFall.cpp">
+      <Filter>playGround\Enemy\EnemyState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

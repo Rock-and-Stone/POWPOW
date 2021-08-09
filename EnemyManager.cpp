@@ -35,8 +35,6 @@ void EnemyManager::render()
         (*_viLuke)->render();
        
     }
-
-
 }
 
 void EnemyManager::EnemyImageStorage()

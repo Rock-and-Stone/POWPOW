@@ -168,10 +168,14 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         KEYANIMANAGER->addArrayFrameAnimation("LUKEleftRun", "LUKE_RUN", LUKEleftRun, 16, 6, true);
         int LUKErightRun[] = { 24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKErightRun", "LUKE_RUN", LUKErightRun, 16, 6, true);
-        int LUKEleftJump[] = { 9,8,7,6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftJump", "LUKE_JUMP", LUKEleftJump, 10, 6, true);
-        int LUKErightJump[] = { 10,11,12,13,14,15,16,17,18,19 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightJump", "LUKE_JUMP", LUKErightJump, 10, 6, true);
+        int LUKEleftJump[] = { 4,3,2,1,0 };
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftJump", "LUKE_JUMP", LUKEleftJump, 5, 6, true);
+        int LUKErightJump[] = { 10,11,12,13,14 };
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightJump", "LUKE_JUMP", LUKErightJump, 5, 6, true);
+        int LUKEleftFall[] = { 9,8,7,6,5 };
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftFall", "LUKE_JUMP", LUKEleftFall, 5, 6, true);
+        int LUKErightFall[] = { 15,16,17,18,19 };
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightFall", "LUKE_JUMP", LUKErightFall, 5, 6, true);
         int LUKEleftAttack1[] = { 7,6,5,4 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKEleftAttack1", "LUKE_ATTACK1", LUKEleftAttack1, 4, 6, false);
         int LUKErightAttack1[] = { 8,9,10,11 };

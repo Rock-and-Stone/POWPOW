@@ -8,11 +8,11 @@ HRESULT EnemyDamaged::init()
 	//EFFECTMANAGER->addEffect("attackEffect1", "source/effect/attackEffect.bmp", 350, 50, 50, 50, 1, 0.08f, 1000);
 	if (_enemy->GetEnemyDirection() == 0)
 	{
-		EFFECTMANAGER->play("attackEffect1", _enemy->GetEnemyRendX() - 20, _enemy->GetEnemyRendY());
+		EFFECTMANAGER->play("attackEffect1", _enemy->GetEnemyRendX() - 40, _enemy->GetEnemyRendY());
 	}
 	if (_enemy->GetEnemyDirection() == 1)
 	{
-		EFFECTMANAGER->play("attackEffect1", _enemy->GetEnemyRendX() + 20, _enemy->GetEnemyRendY());
+		EFFECTMANAGER->play("attackEffect1", _enemy->GetEnemyRendX() + 40, _enemy->GetEnemyRendY());
 	}
 	
 	return S_OK;
