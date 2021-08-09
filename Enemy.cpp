@@ -104,7 +104,7 @@ void Enemy::Move()
 
 void Enemy::Draw()
 {
-    _distance = getDistance(_player->getRendX(), _player->getRendX(), _posX, _posY);
+    _distance = getDistance(_player->getPosX(), _player->getPosY(), _posX, _posY);
 
     _rendX = _posX  - _cm->getCamX();
     _rendY = _posY  - _cm->getCamY();
@@ -136,12 +136,12 @@ void Enemy::TracePlayer() // 플레이어 추적하여 좌우 변경
         SwitchImage();
     }
     //만약 플레이어가 에너미보다 위에 있으면
-    if (_player->getGroundY() - 20 < _posY)
+    if (_player->getPosY() - 50 < _posY)
     {
         _highlow = -1;
     }
     //만약 플레이어가 에너미보다 아래에 있으면
-    if (_player->getGroundY() + 20 > _posY)
+    if (_player->getPosY() + 50 > _posY)
     {
         _highlow = 1;
     }
@@ -212,13 +212,21 @@ void Enemy::ChaseRun()
 {
     if (ChaseSession())
     {
-        if (_player->getPosX() - 10 < _posX)
+        if (_player->getPosX() + 80 < _posX)
         {
             _posX -= ENEMYSPEED;
         }
-        if (_player->getPosX() + 10 > _posX)
+        if (_player->getPosX() - 80 > _posX)
         {
             _posX += ENEMYSPEED;
+        }
+        if (_player->getPosY() > _posY)
+        {
+            _posY += 3;
+        }
+        if (_player->getPosY() < _posY)
+        {
+            _posY -= 3;
         }
     }
 }
@@ -235,7 +243,7 @@ bool Enemy::ChaseSession()
 
 bool Enemy::AttackSession()
 {
-    if (ChaseSession() && _distance < 150)
+    if (ChaseSession() && _distance <= 82)
     {
         return true;
     }

@@ -133,7 +133,6 @@ void Mike::SwitchImage()
         if (_direction == 0)
         {
             _motionName = KEYANIMANAGER->findAnimation("MIKEleftUp");
-            _motionName = KEYANIMANAGER->findAnimation("MIKEleftUp");
         }
         else
         {
@@ -143,25 +142,5 @@ void Mike::SwitchImage()
 
     }
     _motionName->start();
-}
-
-//약공격 콤보어택 콜백함수
-void Mike::ComboAttack1(void* obj)
-{
-    Enemy* e = (Enemy*)obj;
-
-    e->SetEnemyStatement(ENEMYSTATEMENT::ATTACK1);
-    e->SetMotionName(KEYANIMANAGER->findAnimation("MikeleftAttack2"));
-    e->GetMotionName()->start();
-}
-
-//강공격 콤보어택 콜백함수
-void Mike::ComboAttack2(void* obj)
-{
-    Enemy* e = (Enemy*)obj;
-
-    e->SetEnemyStatement(ENEMYSTATEMENT::ATTACK1);
-    e->SetMotionName(KEYANIMANAGER->findAnimation("MikeleftAttack2"));
-    e->GetMotionName()->start();
 }
 
