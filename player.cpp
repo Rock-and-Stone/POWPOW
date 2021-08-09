@@ -21,30 +21,39 @@ HRESULT player::init()
 	_walk = new Walk;
 	_jump = new Jump;
 	_fall = new Fall;
+	_attack = new Attack;
 
 	_idle->setPlayer(this);
 	_walk->setPlayer(this);
 	_jump->setPlayer(this);
 	_fall->setPlayer(this);
+	_attack->setPlayer(this);
 
 	_state = _idle;
 
 #pragma region Variables
-	_posX = 200;
-	_groundY = 1000;
+	_posX = 1000;
+	_groundY = 500;
 	_posY = _groundY + _airY;
+
+	_maxSpeedX = MAXSPEEDX;
+	_maxSpeedY = MAXSPEEDY;
 
 	_gravity = 0;
 	_jumpPower = 0;
+	_speedRes = 0.50f;
 	_airY = 0;
+
 	_dirX = 0;
 	_dirY = 0;
-	_indexX = 0;
-	_keyCount = 0;
+
+	_indexX = _indexY = 0;
+
 	_animLoop = true;
 	_trigger = false;
 	_isAir = false;
 	_isAttack = false;
+	_isRun = false;
 
 	_statement = Statement::IDLE;
 
@@ -70,16 +79,20 @@ void player::render()
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
 		Rectangle(getMemDC(), _hitRC);
+		Rectangle(getMemDC(), _attackRC);
 		//LineMake(getMemDC(), _hitRC.left, _hitRC.bottom, _hitRC.right, _hitRC.bottom);
 	}
 
-	_img->frameRender(getMemDC(), _renderRC.left, _renderRC.top, _indexX, _dirX);
+	if (_dirX < 0) _indexY = 0;
+	else if(_dirX > 0)_indexY = 1;
+
+	_img->frameRender(getMemDC(), _renderRC.left, _renderRC.top, _indexX, _indexY);
 	_hitRC = RectMakeCenter(_rendX, _rendY, 80, 180);
 
 }
 
 
-int player::getRenderPosY()
+float player::getRenderPosY()
 {
 	return _groundY;
 }
@@ -88,8 +101,34 @@ int player::getRenderPosY()
 void player::Movement()
 {
 	_posY = _groundY + _airY;
-	if (_dirX == 0)_posX -= _speedX;
-	else _posX += _speedX;
+
+	if (_isRun)
+	{
+		_maxSpeedX = MAXSPEEDX * 2;
+		_maxSpeedY = MAXSPEEDY * 2;
+	}
+
+	else
+	{
+		_maxSpeedX = MAXSPEEDX;
+		_maxSpeedY = MAXSPEEDY;
+	}
+
+	if (!_isAir)
+	{
+		if (_speedX > 0.01) _speedX -= _speedRes;
+		else _speedX = 0;
+
+		if (_speedY > 0.01) _speedY -= _speedRes;
+		else _speedY = 0;
+	}
+
+	if (_speedX >= _maxSpeedX) _speedX = _maxSpeedX;
+
+	if (_speedY >= _maxSpeedY) _speedY = _maxSpeedY;
+
+	if (_indexY == 0) _posX -= _speedX;
+	else if(_indexY == 1) _posX += _speedX;
 
 	if (_dirY == -1)_groundY -= _speedY;
 	else if(_dirY == 1) _groundY += _speedY;
@@ -143,6 +182,10 @@ void player::Collision()
 
 }
 
+void player::hitDamage(int damage)
+{
+}
+
 void player::ChangeState(Statement statement)
 {
 	_indexX = 0;
@@ -156,6 +199,7 @@ void player::ChangeState(Statement statement)
 		_state = _idle;
 		break;
 	case Statement::RUN:
+		_state = _walk;
 		break;
 	case Statement::WALK:
 		_state = _walk;
@@ -169,8 +213,42 @@ void player::ChangeState(Statement statement)
 	case Statement::LAND:
 		break;
 
+	case Statement::ATTACK:
+		_state = _attack;
+		_isAttack = true;
+		break;
+
 	}
 
 	_state->init();
+}
+
+void player::AttackCollision()
+{
+	if (_isAttack && _indexX < 2)
+	{
+		switch (_atkCount)
+		{
+		case 0:
+		{
+				_attackRC = RectMakeCenter(_rendX, _rendY, 200, 50);
+			break;
+		}
+		case 1:
+		{
+				_attackRC = RectMakeCenter(_rendX, _rendY, 200, 50);
+			break;
+		}
+		case 2:
+		{
+				_attackRC = RectMakeCenter(_rendX, _rendY, 200, 60);
+			break;
+		}
+		}
+
+	}
+
+	else _attackRC = RectMakeCenter(_rendX, _rendY, 0, 0);
+
 }
 

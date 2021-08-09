@@ -124,16 +124,19 @@ void Enemy::Collision()
 
 void Enemy::TracePlayer() // 플레이어 추적하여 좌우 변경
 {
-    if (_player->getPosX() < _posX && _direction == 1)
+    if (_enemyStatement != ENEMYSTATEMENT::DAMAGED)
     {
-        _direction = 0;
-        SwitchImage();
+        if (_player->getPosX() < _posX && _direction == 1)
+        {
+            _direction = 0;
+            SwitchImage();
 
-    }
-    else if (_player->getPosX() >= _posX && _direction == 0)
-    {
-        _direction = 1;
-        SwitchImage();
+        }
+        else if (_player->getPosX() >= _posX && _direction == 0)
+        {
+            _direction = 1;
+            SwitchImage();
+        }
     }
     //만약 플레이어가 에너미보다 위에 있으면
     if (_player->getGroundY() - 20 < _posY)
@@ -223,6 +226,11 @@ void Enemy::ChaseRun()
     }
 }
 
+float Enemy::getRenderPosY()
+{
+    return _posY;
+}
+
 bool Enemy::ChaseSession()
 {
     if (_distance < 500)
@@ -240,6 +248,15 @@ bool Enemy::AttackSession()
         return true;
     }
     return false;
+}
+
+void Enemy::HitDamage()
+{
+    if (_enemyStatement != ENEMYSTATEMENT::DAMAGED)
+    {
+        _enemyStatement = ENEMYSTATEMENT::DAMAGED;
+        ChangeStatement();
+    }
 }
 
 

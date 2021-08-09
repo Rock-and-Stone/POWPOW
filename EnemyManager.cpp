@@ -18,6 +18,7 @@ void EnemyManager::update()
     for (_viLuke = _vLuke.begin(); _viLuke != _vLuke.end(); ++_viLuke)
     {
         (*_viLuke)->update();
+
     }
     //¸¶ÀÌÅ© º¤ÅÍ ¾÷µ«
     for (_viMike = _vMike.begin(); _viMike != _vMike.end(); ++_viMike)
@@ -29,7 +30,7 @@ void EnemyManager::update()
     {
         (*_viMalcolm)->update();
     }
-
+    Collision();
     KEYANIMANAGER->update();
     
 }
@@ -40,15 +41,6 @@ void EnemyManager::render()
     {
         RECT temp = (*_viLuke)->GetRect();
         (*_viLuke)->render();
-        if (_viLuke == _vLuke.begin())
-        {
-            char str[128];
-            sprintf_s(str, "Enemy X : %f", (*_viLuke)->GetEnemyPosX());
-            TextOut(getMemDC(), 100, 200, str, strlen(str));
-
-            sprintf_s(str, "Enemy Y : %f", (*_viLuke)->GetEnemyPosY());
-            TextOut(getMemDC(), 100, 230, str, strlen(str));
-        }
        
     }
     for (_viMike = _vMike.begin(); _viMike != _vMike.end(); ++_viMike)
@@ -79,6 +71,7 @@ void EnemyManager::SetLuke()
         luke->init("LUKE_IDLE", "LUKEleftIdle" , PointMake(800 * i + 800, 700));
         luke->SetPlayerLink(_player);
         _vLuke.push_back(luke);
+        RENDERMANAGER->addRender(luke);
     }
 }
 
@@ -92,6 +85,7 @@ void EnemyManager::SetMike()
         mike->init("MIKE_IDLE", "MIKEleftIdle", PointMake(800 * i + 1000, 500));
         mike->SetPlayerLink(_player);
         _vLuke.push_back(mike);
+        RENDERMANAGER->addRender(mike);
     }
 }
 
@@ -105,6 +99,22 @@ void EnemyManager::SetMalcolm()
         malcolm->init("MALCOLM_IDLE", "MALCOLMleftIdle", PointMake(800 * i + 1200, 900));
         malcolm->SetPlayerLink(_player);
         _vLuke.push_back(malcolm);
+        RENDERMANAGER->addRender(malcolm);
+    }
+}
+
+void EnemyManager::Collision()
+{
+    for (int i = 0; i < _vLuke.size(); i++)
+    {
+        RECT temp;
+        RECT playerRC = _player->getAttackRC();
+        RECT enemyRC = _vLuke[i]->GetRect();
+
+        if (IntersectRect(&temp, &playerRC, &enemyRC))
+        {
+            _vLuke[i]->HitDamage();
+        }
     }
 }
 

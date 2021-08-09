@@ -19,7 +19,6 @@ HRESULT keyManager::init()
 		this->getKeyUp().set(i, false);
 	}
 
-
 	return S_OK;
 }
 

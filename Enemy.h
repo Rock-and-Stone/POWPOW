@@ -141,10 +141,11 @@ public:
 	//에너미 x, y 좌표 설정자
 	float GetEnemyPosX() { return _posX; }
 	float GetEnemyPosY() { return _posY; }
+
 	void SetEnemyPosX(float x) { _posX = x; }
 	void SetEnemyPosY(float y) { _posY = y; }
 
-	
+	virtual float getRenderPosY();
 
 	//모션에 대한 접근자 설정자
 	animation* GetEnemyMotion() { return _motionName; }
@@ -156,7 +157,7 @@ public:
 
 	void SetPlayerLink(player* player) { _player = player; }
 
-
+	void HitDamage();
 
 };
 

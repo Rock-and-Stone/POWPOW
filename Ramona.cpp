@@ -12,7 +12,7 @@ Ramona::~Ramona()
 HRESULT Ramona::InitVariables()
 {
 	_img = IMAGEMANAGER->findImage("Ramona_Idle");
-	_renderRC = RectMakeCenter(_posX, _posY, _img->getFrameWidth(), _img->getFrameHeight());
+	_renderRC = RectMakeCenter(_rendX, _rendY, _img->getFrameWidth(), _img->getFrameHeight());
 	return S_OK;
 }
 
@@ -20,9 +20,10 @@ void Ramona::update()
 {
 	_state->update();
 	Movement();
-	CountFrame();
 	SwitchImage();
+	CountFrame();
 	Collision();
+	AttackCollision();
 }
 
 void Ramona::SwitchImage()
@@ -64,5 +65,23 @@ void Ramona::SwitchImage()
 		_img = IMAGEMANAGER->findImage("Ramona_Walk");
 		break;
 	}
+
+	case Statement::ATTACK:
+	{
+		switch (_atkCount)
+		{
+		case 0:
+			_img = IMAGEMANAGER->findImage("Ramona_Attack_0");
+			break;
+		case 1:
+			_img = IMAGEMANAGER->findImage("Ramona_Attack_1");
+			break;
+		case 2:
+			_img = IMAGEMANAGER->findImage("Ramona_Attack_2");
+			break;
+		}
+		break;
+	}
+
 	}
 }

@@ -14,6 +14,6 @@ void EnemyWalk::release()
 
 void EnemyWalk::update()
 {
-	
+
 }
 
