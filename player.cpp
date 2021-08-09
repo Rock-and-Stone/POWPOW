@@ -211,8 +211,8 @@ void player::ChangeState(Statement statement)
 		_state = _fall;
 		break;
 	case Statement::LAND:
+		_state = _idle;
 		break;
-
 	case Statement::ATTACK:
 		_state = _attack;
 		_isAttack = true;
@@ -229,21 +229,21 @@ void player::AttackCollision()
 	{
 		switch (_atkCount)
 		{
-		case 0:
-		{
-				_attackRC = RectMakeCenter(_rendX, _rendY, 200, 50);
-			break;
-		}
-		case 1:
-		{
-				_attackRC = RectMakeCenter(_rendX, _rendY, 200, 50);
-			break;
-		}
-		case 2:
-		{
-				_attackRC = RectMakeCenter(_rendX, _rendY, 200, 60);
-			break;
-		}
+			case 0:
+			{
+					_attackRC = RectMakeCenter(_rendX, _rendY, 200, 50);
+				break;
+			}
+			case 1:
+			{
+					_attackRC = RectMakeCenter(_rendX, _rendY, 200, 50);
+				break;
+			}
+			case 2:
+			{
+					_attackRC = RectMakeCenter(_rendX, _rendY, 200, 60);
+				break;
+			}
 		}
 
 	}

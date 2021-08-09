@@ -232,8 +232,8 @@ void Fall::update()
 
 	if (_player->getAirY() >= 0)
 	{
-		_player->ChangeState(Statement::IDLE);
-		_player->setAnimLoop(true);
+		_player->ChangeState(Statement::LAND);
+		_player->setAnimLoop(false);
 	}
 }
 
