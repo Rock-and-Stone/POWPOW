@@ -133,7 +133,7 @@ void Luke::SwitchImage()
         }
         break;
     case ENEMYSTATEMENT::ATTACK3:
-        _imageName = IMAGEMANAGER->findImage("LUKE_ATTACK3");
+        _imageName = IMAGEMANAGER->findImage("LUKE_ATTACK2");
         if (_direction == 0)
         {
             _motionName = KEYANIMANAGER->findAnimation("LUKEleftAttack3");
@@ -144,7 +144,7 @@ void Luke::SwitchImage()
         }
         break;
     case ENEMYSTATEMENT::ATTACK4:
-        _imageName = IMAGEMANAGER->findImage("LUKE_ATTACK4");
+        _imageName = IMAGEMANAGER->findImage("LUKE_ATTACK3");
         if (_direction == 0)
         {
             _motionName = KEYANIMANAGER->findAnimation("LUKEleftAttack4");

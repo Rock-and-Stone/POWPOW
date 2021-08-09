@@ -4,7 +4,7 @@
 
 HRESULT EnemyManager::init()
 {
-
+   
 	return S_OK;
 }
 
@@ -20,16 +20,8 @@ void EnemyManager::update()
         (*_viLuke)->update();
 
     }
-    //¸¶ÀÌÅ© º¤ÅÍ ¾÷µ«
-    for (_viMike = _vMike.begin(); _viMike != _vMike.end(); ++_viMike)
-    {
-        (*_viMike)->update();
-    }
-    //¸»ÄÞ º¤ÅÍ ¾÷µ«
-    for (_viMalcolm = _vMalcolm.begin(); _viMalcolm != _vMalcolm.end(); ++_viMalcolm)
-    {
-        (*_viMalcolm)->update();
-    }
+ 
+   
     Collision();
     KEYANIMANAGER->update();
     
@@ -43,16 +35,7 @@ void EnemyManager::render()
         (*_viLuke)->render();
        
     }
-    for (_viMike = _vMike.begin(); _viMike != _vMike.end(); ++_viMike)
-    {
-        RECT temp = (*_viLuke)->GetRect();
-        (*_viMike)->render();
-    }
-    for (_viMalcolm = _vMalcolm.begin(); _viMalcolm != _vMalcolm.end(); ++_viMalcolm)
-    {
-        RECT temp = (*_viMalcolm)->GetRect();
-        (*_viMalcolm)->render();
-    }
+
 
 }
 
@@ -96,7 +79,7 @@ void EnemyManager::SetMalcolm()
         Enemy* malcolm;
         malcolm = new Malcolm;
         malcolm->SetCamera(_cm);
-        malcolm->init("MALCOLM_IDLE", "MALCOLMleftIdle", PointMake(800 * i + 1200, 900));
+        malcolm->init("MALCOLM_IDLE", "MALCOLMleftIdle", PointMake(800 * i + 1200, 800));
         malcolm->SetPlayerLink(_player);
         _vLuke.push_back(malcolm);
         RENDERMANAGER->addRender(malcolm);

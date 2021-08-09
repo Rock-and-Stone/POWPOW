@@ -104,7 +104,7 @@ void Enemy::Move()
 
 void Enemy::Draw()
 {
-    _distance = getDistance(_player->getRendX(), _player->getRendX(), _posX, _posY);
+    _distance = getDistance(_player->getPosX(), _player->getPosY(), _posX, _posY);
 
     _rendX = _posX  - _cm->getCamX();
     _rendY = _posY  - _cm->getCamY();
@@ -112,6 +112,7 @@ void Enemy::Draw()
     //Rectangle(getMemDC(), _rc);
     _rc = RectMakeCenter(_rendX, _rendY, _imageName->getFrameWidth(), _imageName->getFrameHeight());
 
+    _randomChoice = RND->getFromIntTo(0, 1);
 
     _imageName->aniRender(getMemDC(), _rc.left , _rc.top, _motionName);
     LineMake(getMemDC(), _rendX, _rendY, _player->getRendX(), _player->getRendY());
@@ -139,12 +140,12 @@ void Enemy::TracePlayer() // 플레이어 추적하여 좌우 변경
         }
     }
     //만약 플레이어가 에너미보다 위에 있으면
-    if (_player->getGroundY() - 20 < _posY)
+    if (_player->getPosY() - 50 < _posY)
     {
         _highlow = -1;
     }
     //만약 플레이어가 에너미보다 아래에 있으면
-    if (_player->getGroundY() + 20 > _posY)
+    if (_player->getPosY() + 50 > _posY)
     {
         _highlow = 1;
     }
@@ -206,22 +207,48 @@ void Enemy::ChangeStatement()
 
 }
 
-void Enemy::KeyTest()
-{
-   
-}
-
 void Enemy::ChaseRun()
 {
     if (ChaseSession())
     {
-        if (_player->getPosX() - 10 < _posX)
+        if (_player->getPosX() + 80 < _posX)
         {
             _posX -= ENEMYSPEED;
         }
-        if (_player->getPosX() + 10 > _posX)
+        if (_player->getPosX() - 80 > _posX)
         {
             _posX += ENEMYSPEED;
+        }
+        if (_player->getPosY() > _posY)
+        {
+            _posY += 3;
+        }
+        if (_player->getPosY() < _posY)
+        {
+            _posY -= 3;
+        }
+    }
+}
+
+void Enemy::ChaseWalk()
+{
+    if (WalkSession())
+    {
+        if (_player->getPosX() + 80 < _posX)
+        {
+            _posX -= 2;
+        }
+        if (_player->getPosX() - 80 > _posX)
+        {
+            _posX += 2;
+        }
+        if (_player->getPosY() > _posY)
+        {
+            _posY += 2;
+        }
+        if (_player->getPosY() < _posY)
+        {
+            _posY -= 2;
         }
     }
 }
@@ -241,9 +268,18 @@ bool Enemy::ChaseSession()
 
 }
 
+bool Enemy::WalkSession()
+{
+    if (_distance < WINSIZEX)
+    {
+        return true;
+    }
+    return false;
+}
+
 bool Enemy::AttackSession()
 {
-    if (ChaseSession() && _distance < 150)
+    if (ChaseSession() && _distance <= 82)
     {
         return true;
     }
@@ -252,12 +288,11 @@ bool Enemy::AttackSession()
 
 void Enemy::HitDamage()
 {
-    if (_enemyStatement != ENEMYSTATEMENT::DAMAGED)
-    {
-        _enemyStatement = ENEMYSTATEMENT::DAMAGED;
-        ChangeStatement();
-    }
+    _enemyStatement = ENEMYSTATEMENT::DAMAGED;
+    ChangeStatement();
 }
+
+
 
 
 
