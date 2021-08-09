@@ -69,17 +69,17 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	while (loadingHelper->_currentCount != LOADINGMAX)
 	{
 #pragma region 이미지 추가
-    	IMAGEMANAGER->addImage("title", "source/titleImage.bmp", 1600, 900, false, RGB(255, 0, 255));
-		IMAGEMANAGER->addImage("sushiScene", "SHOP/SHOP_SUSHI.bmp", 1600, 900, true, RGB(255, 0, 255));
+    	IMAGEMANAGER->addImage("title", "source/titleImage.bmp", WINSIZEX, WINSIZEY, false, RGB(255, 0, 255));
+		IMAGEMANAGER->addImage("sushiScene", "SHOP/SHOP_SUSHI.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 		IMAGEMANAGER->addImage("background", "source/Level 1 - Frozen Suburbs.bmp", 31812, 1000, true, MAGENTA);
 		IMAGEMANAGER->addImage("배경", "source/backdu bisch ein archground.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 		IMAGEMANAGER->addImage("settingBackGround", "source/settingScene.bmp", WINSIZEX, WINSIZEY, true, MAGENTA);
 		IMAGEMANAGER->addImage("mainMenu", "source/mainMenu.bmp", WINSIZEX, WINSIZEY, false, MAGENTA);
 		IMAGEMANAGER->addImage("mainMenubox", "source/mainmenubox.bmp", 200, 50, true, MAGENTA);
-		IMAGEMANAGER->addImage("convenientScene", "SHOP/SHOP_CONVENIENTSTORE.bmp", 1600, 900, true, RGB(255, 0, 255));
-		IMAGEMANAGER->addImage("cafeScene", "SHOP/SHOP_CAFE.bmp", 1600, 900, true, RGB(255, 0, 255));
-        IMAGEMANAGER->addImage("volumnBackBar", "source/volumnBackBar.bmp", 180, 50, true, RGB(255, 0, 255));
-        IMAGEMANAGER->addImage("volumnFrontBar", "source/volumnFrontBar.bmp", 160, 40, true, RGB(255, 0, 255));
+		IMAGEMANAGER->addImage("convenientScene", "SHOP/SHOP_CONVENIENTSTORE.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
+		IMAGEMANAGER->addImage("cafeScene", "SHOP/SHOP_CAFE.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
+        IMAGEMANAGER->addImage("volumeBackBar", "source/volumnBackBar.bmp", 180, 50, true, RGB(255, 0, 255));
+        IMAGEMANAGER->addImage("volumeFrontBar", "source/volumnFrontBar.bmp", 180, 50, false, RGB(255, 0, 255));
 
 #pragma endregion
 

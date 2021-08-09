@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include "volumeProgressBar.h"
 
 class UserInterface : public gameNode
 {
@@ -18,8 +19,20 @@ private:
 	image* _coin1;
 
 	image* _option;
+	image* _ingameSettingImg;
+	image* _intgameSettingBox;
 
 	bool _isPause;
+	bool _ingameSetting;
+
+	RECT _selectRc;
+	int _selectNum;
+	int _volumeSelectNum;
+
+	volumeProgressBar* _BGMbar;
+	volumeProgressBar* _SFXbar;
+
+
 
 public:
 	virtual HRESULT init();
