@@ -2,7 +2,7 @@
 class gameData
 {
 private:
-	float _BGMVolume = 0.5f;
+	float _BGMVolume = 0.0f;
 	float _SFXVolume = 0.5f;
 public:
 	float getBGMVolume() { return _BGMVolume; }
