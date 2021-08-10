@@ -15,7 +15,6 @@
 #include "EnemyUp.h"
 #include "EnemyDaegi.h"
 #include "EnemyFall.h"
-#include "EnemyObjectChase.h"
 #include "player.h"
 #include "Object.h"
 
@@ -61,7 +60,6 @@ protected:
 	CameraManager* _cm;
 
 	player* _player;
-	Object* _object;
 	image* _imageName;
 	animation* _motionName;
 	RECT _rc;
@@ -84,7 +82,7 @@ protected:
 	EnemyUp* _up;
 	EnemyDaegi* _daegi;
 	EnemyFall* _fall;
-	EnemyObjectChase* _grab;
+
 	
 
 	
