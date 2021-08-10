@@ -192,13 +192,6 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         KEYANIMANAGER->addArrayFrameAnimation("LUKEleftAttack4", "LUKE_ATTACK3", LUKEleftAttack4, 7, 8, false);
         int LUKErightAttack4[] = { 7,8,9,10,11,12,13 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKErightAttack4", "LUKE_ATTACK3", LUKErightAttack4, 7, 8, false);
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftAttack3", "LUKE_ATTACK2", LUKEleftAttack3, 7, 4, false);
-        int LUKErightAttack3[] = { 7,8,9,10,11,12,13 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightAttack3", "LUKE_ATTACK2", LUKErightAttack3, 7, 4, false);
-        int LUKEleftAttack4[] = { 6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftAttack4", "LUKE_ATTACK3", LUKEleftAttack4, 7, 4, false);
-        int LUKErightAttack4[] = { 7,8,9,10,11,12,13 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightAttack4", "LUKE_ATTACK3", LUKErightAttack4, 7, 4, false);
         int LUKEleftDamaged[] = { 6,5,4,3,2,1,0 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKEleftDamaged", "LUKE_DAMAGED", LUKEleftDamaged, 7, 8, false);
         int LUKErightDamaged[] = { 7,8,9,10,11,12,13 };
