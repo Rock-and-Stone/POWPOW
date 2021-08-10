@@ -401,9 +401,66 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 #pragma endregion
 
 #pragma region Object Images
+       
+        IMAGEMANAGER->addFrameImage("bat_left_atk", "source/object/bat/bat_left_atk.bmp", 1875, 375, 5, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("bat_left_dash", "source/object/bat/bat_left_dash.bmp", 3000, 375, 8, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("bat_left_get", "source/object/bat/bat_left_get.bmp", 750, 375, 2, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("bat_left_idle", "source/object/bat/bat_left_atk.bmp", 1500, 375, 4, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("bat_left_jump", "source/object/bat/bat_left_jump.bmp", 3000, 750, 8, 2, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("bat_left_neutral", "source/object/bat/bat_left_neutral.bmp", 375, 375, 1, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("bat_left_neutral2", "source/object/bat/bat_left_neutral2.bmp", 750, 375, 2, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("bat_left_throw", "source/object/bat/bat_left_throw.bmp", 750, 375, 2, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("bat_left_walk", "source/object/bat/bat_left_walk.bmp", 2250, 375, 6, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("bat_right_atk", "source/object/bat/bat_right_atk.bmp", 1875, 375, 5, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("bat_right_dash", "source/object/bat/bat_right_dash.bmp", 3000, 375, 8, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("bat_right_get", "source/object/bat/bat_right_get.bmp", 750, 375, 2, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("bat_right_idle", "source/object/bat/bat_right_idle.bmp", 1500, 375, 4, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("bat_right_jump", "source/object/bat/bat_right_jump.bmp", 3000, 750, 8, 2, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("bat_right_neutral", "source/object/bat/bat_right_neutral.bmp", 375, 375, 1, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("bat_right_neutral2", "source/object/bat/bat_right_neutral2.bmp", 750, 375, 2, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("bat_right_throw", "source/object/bat/bat_right_throw.bmp", 750, 375, 2, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("bat_right_walk", "source/object/bat/bat_right_walk.bmp", 2250, 375, 6, 1, true, MAGENTA);
+
+        
+        int bat_left_atk[] = { 0,1,2,3,4 };
+        KEYANIMANAGER->addArrayFrameAnimation("bat_left_atk", "bat_left_atk", bat_left_atk, 5, 8, false);
+        int bat_left_dash[] = { 0,1,2,3,4,5,6,7 };
+        KEYANIMANAGER->addArrayFrameAnimation("bat_left_dash", "bat_left_dash", bat_left_dash, 5, 8, false);
+        int bat_left_get[] = { 0,1 };
+        KEYANIMANAGER->addArrayFrameAnimation("bat_left_get", "bat_left_get", bat_left_get, 2, 8, false);
+        int bat_left_idle[] = { 0,1,2,3 };
+        KEYANIMANAGER->addArrayFrameAnimation("bat_left_idle", "bat_left_idle", bat_left_idle, 4, 8, false);
+        int bat_left_jump[] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 };
+        KEYANIMANAGER->addArrayFrameAnimation("bat_left_jump", "bat_left_jump", bat_left_jump, 16, 8, false);
         int bat_left_neutral[] = { 0 };
-        KEYANIMANAGER->addArrayFrameAnimation("bat_left_neutral", "bat_left_neutral", bat_left_neutral, 1, 1, false);
+        KEYANIMANAGER->addArrayFrameAnimation("bat_left_neutral", "bat_left_neutral", bat_left_neutral, 1, 8, false);
+        int bat_left_neutral2[] = { 0,1 };
+        KEYANIMANAGER->addArrayFrameAnimation("bat_left_neutral2", "bat_left_neutral2", bat_left_neutral2, 2, 8, false);
+        int bat_left_throw[] = { 0,1 };
+        KEYANIMANAGER->addArrayFrameAnimation("bat_left_throw", "bat_left_throw", bat_left_throw, 2, 8, false);
+        int bat_left_walk[] = { 0,1,2,3,4,5 };
+        KEYANIMANAGER->addArrayFrameAnimation("bat_left_walk", "bat_left_walk", bat_left_walk, 6, 8, false);
+
+        int bat_right_atk[] = { 0,1,2,3,4 };
+        KEYANIMANAGER->addArrayFrameAnimation("bat_right_atk", "bat_right_atk", bat_right_atk, 5, 8, false);
+        int bat_right_dash[] = { 0,1,2,3,4,5,6,7 };
+        KEYANIMANAGER->addArrayFrameAnimation("bat_right_dash", "bat_right_dash", bat_right_dash, 5, 8, false);
+        int bat_right_get[] = { 0,1 };
+        KEYANIMANAGER->addArrayFrameAnimation("bat_right_get", "bat_right_get", bat_right_get, 2, 8, false);
+        int bat_right_idle[] = { 0,1,2,3 };
+        KEYANIMANAGER->addArrayFrameAnimation("bat_right_idle", "bat_right_idle", bat_right_idle, 4, 8, false);
+        int bat_right_jump[] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 };
+        KEYANIMANAGER->addArrayFrameAnimation("bat_right_jump", "bat_right_jump", bat_right_jump, 16, 8, false);
+        int bat_right_neutral[] = { 0 };
+        KEYANIMANAGER->addArrayFrameAnimation("bat_right_neutral", "bat_right_neutral", bat_right_neutral, 1, 8, false);
+        int bat_right_neutral2[] = { 0,1 };
+        KEYANIMANAGER->addArrayFrameAnimation("bat_right_neutral2", "bat_right_neutral2", bat_right_neutral2, 2, 8, false);
+        int bat_right_throw[] = { 0,1 };
+        KEYANIMANAGER->addArrayFrameAnimation("bat_right_throw", "bat_right_throw", bat_right_throw, 2, 8, false);
+        int bat_right_walk[] = { 0,1,2,3,4,5 };
+        KEYANIMANAGER->addArrayFrameAnimation("bat_right_walk", "bat_right_walk", bat_right_walk, 6, 8, false);
+
+        
        
 
 #pragma endregion
