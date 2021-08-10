@@ -150,6 +150,9 @@
     <ClInclude Include="action.h" />
     <ClInclude Include="animation.h" />
     <ClInclude Include="Bat.h" />
+    <ClInclude Include="boss.h" />
+    <ClInclude Include="bossScene.h" />
+    <ClInclude Include="bossState.h" />
     <ClInclude Include="button.h" />
     <ClInclude Include="cafeScene.h" />
     <ClInclude Include="CameraManager.h" />
@@ -203,6 +206,9 @@
     <ClCompile Include="action.cpp" />
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="Bat.cpp" />
+    <ClCompile Include="boss.cpp" />
+    <ClCompile Include="bossScene.cpp" />
+    <ClCompile Include="bossState.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="cafeScene.cpp" />
     <ClCompile Include="CameraManager.cpp" />
