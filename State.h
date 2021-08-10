@@ -43,7 +43,7 @@ public:
 	virtual void setPlayer(player* player) override { _player = player; }
 };
 
-class Walk : public State
+class Move : public State
 {
 private:
 
@@ -91,6 +91,51 @@ public:
 };
 
 class Attack : public State
+{
+private:
+
+public:
+	virtual HRESULT init() override;
+	virtual void release() override;
+	virtual void update() override;
+	virtual void render(HDC hdc) override;
+	virtual void Input();
+	virtual void Trigger();
+
+	virtual void setPlayer(player* player) override { _player = player; }
+};
+
+class Damaged : public State
+{
+private:
+
+public:
+	virtual HRESULT init() override;
+	virtual void release() override;
+	virtual void update() override;
+	virtual void render(HDC hdc) override;
+	virtual void Input();
+	virtual void Trigger();
+
+	virtual void setPlayer(player* player) override { _player = player; }
+};
+
+class Down : public State
+{
+private:
+	int _count;		//쓰러져있는 시간;
+public:
+	virtual HRESULT init() override;
+	virtual void release() override;
+	virtual void update() override;
+	virtual void render(HDC hdc) override;
+	virtual void Input();
+	virtual void Trigger();
+
+	virtual void setPlayer(player* player) override { _player = player; }
+};
+
+class GetUp : public State
 {
 private:
 

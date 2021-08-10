@@ -4,6 +4,7 @@
 
 HRESULT EnemyAttack2::init()
 {
+
 	return S_OK;
 }
 

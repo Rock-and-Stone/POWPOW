@@ -66,6 +66,25 @@ void Ramona::SwitchImage()
 		break;
 	}
 
+	case Statement::DAMAGED:
+	{
+		_img = IMAGEMANAGER->findImage("Ramona_Damaged");
+		break;
+	}
+
+	case Statement::DOWN:
+	{
+		_img = IMAGEMANAGER->findImage("Ramona_Down");
+		break;
+	}
+
+	case Statement::GETUP:
+	{
+		_img = IMAGEMANAGER->findImage("Ramona_GetUp");
+		break;
+	}
+
+
 	case Statement::ATTACK:
 	{
 		switch (_atkCount)

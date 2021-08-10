@@ -153,21 +153,21 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         //风农 局聪皋捞记 历厘家
 #pragma region LUKEANIMATIONS
         int LUKEleftInit[] = { 0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftInit", "LUKE_INIT", LUKEleftInit, 1, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftInit", "LUKE_INIT", LUKEleftInit, 1, 8, true);
         int LUKErightInit[] = { 1 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightInit", "LUKE_INIT", LUKErightInit, 1, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightInit", "LUKE_INIT", LUKErightInit, 1, 8, true);
         int LUKEleftIdle[] = { 11,10,9,8 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftIdle", "LUKE_IDLE", LUKEleftIdle, 4, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftIdle", "LUKE_IDLE", LUKEleftIdle, 4, 8, true);
         int LUKErightIdle[] = { 12,13,14,15 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightIdle", "LUKE_IDLE", LUKErightIdle, 4, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightIdle", "LUKE_IDLE", LUKErightIdle, 4, 8, true);
         int LUKEleftWalk[] = { 17,16,15,14,13,12 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftWalk", "LUKE_WALK", LUKEleftWalk, 6, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftWalk", "LUKE_WALK", LUKEleftWalk, 6, 8, true);
         int LUKErightWalk[] = { 18,19,20,21,22,23 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightWalk", "LUKE_WALK", LUKErightWalk, 6, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightWalk", "LUKE_WALK", LUKErightWalk, 6, 8, true);
         int LUKEleftRun[] = { 23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftRun", "LUKE_RUN", LUKEleftRun, 16, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftRun", "LUKE_RUN", LUKEleftRun, 16, 8, true);
         int LUKErightRun[] = { 24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightRun", "LUKE_RUN", LUKErightRun, 16, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightRun", "LUKE_RUN", LUKErightRun, 16, 8, true);
         int LUKEleftJump[] = { 4,3,2,1,0 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKEleftJump", "LUKE_JUMP", LUKEleftJump, 5, 6, true);
         int LUKErightJump[] = { 10,11,12,13,14 };
@@ -177,33 +177,33 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         int LUKErightFall[] = { 15,16,17,18,19 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKErightFall", "LUKE_JUMP", LUKErightFall, 5, 6, true);
         int LUKEleftAttack1[] = { 7,6,5,4 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftAttack1", "LUKE_ATTACK1", LUKEleftAttack1, 4, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftAttack1", "LUKE_ATTACK1", LUKEleftAttack1, 4, 8, false);
         int LUKErightAttack1[] = { 8,9,10,11 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightAttack1", "LUKE_ATTACK1", LUKErightAttack1, 4, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightAttack1", "LUKE_ATTACK1", LUKErightAttack1, 4, 8, false);
         int LUKEleftAttack2[] = { 3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftAttack2", "LUKE_ATTACK1", LUKEleftAttack2, 4, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftAttack2", "LUKE_ATTACK1", LUKEleftAttack2, 4, 8, false);
         int LUKErightAttack2[] = { 12,13,14,15 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightAttack2", "LUKE_ATTACK1", LUKErightAttack2, 4, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightAttack2", "LUKE_ATTACK1", LUKErightAttack2, 4, 8, false);
         int LUKEleftAttack3[] = { 6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftAttack3", "LUKE_ATTACK2", LUKEleftAttack3, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftAttack3", "LUKE_ATTACK2", LUKEleftAttack3, 7, 8, false);
         int LUKErightAttack3[] = { 7,8,9,10,11,12,13 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightAttack3", "LUKE_ATTACK2", LUKErightAttack3, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightAttack3", "LUKE_ATTACK2", LUKErightAttack3, 7, 8, false);
         int LUKEleftAttack4[] = { 6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftAttack4", "LUKE_ATTACK3", LUKEleftAttack4, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftAttack4", "LUKE_ATTACK3", LUKEleftAttack4, 7, 8, false);
         int LUKErightAttack4[] = { 7,8,9,10,11,12,13 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightAttack4", "LUKE_ATTACK3", LUKErightAttack4, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightAttack4", "LUKE_ATTACK3", LUKErightAttack4, 7, 8, false);
         int LUKEleftDamaged[] = { 6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftDamaged", "LUKE_DAMAGED", LUKEleftDamaged, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftDamaged", "LUKE_DAMAGED", LUKEleftDamaged, 7, 8, false);
         int LUKErightDamaged[] = { 7,8,9,10,11,12,13 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightDamaged", "LUKE_DAMAGED", LUKErightDamaged, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightDamaged", "LUKE_DAMAGED", LUKErightDamaged, 7, 8, false);
         int LUKEleftDown[] = { 13,12,11,10,9,8,7,6,5,4,3,2,1,0 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKEleftDown", "LUKE_DOWN", LUKEleftDown, 14, 6, false);
         int LUKErightDown[] = { 14,15,16,17,18,19,20,21,22,23,24,25,26,27 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKErightDown", "LUKE_DOWN", LUKErightDown, 14, 6, false);
         int LUKEleftDown_Damaged[] = { 3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftDown_Damaged", "LUKE_DOWN_DAMAGED", LUKEleftDown_Damaged, 4, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftDown_Damaged", "LUKE_DOWN_DAMAGED", LUKEleftDown_Damaged, 4, 10, false);
         int LUKErightDown_Damaged[] = { 4,5,6,7 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightDown_Damaged", "LUKE_DOWN_DAMAGED", LUKErightDown_Damaged, 4, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightDown_Damaged", "LUKE_DOWN_DAMAGED", LUKErightDown_Damaged, 4, 10, false);
         int LUKEleftUp[] = { 7,6,5,4,3,2,1,0 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKEleftUp", "LUKE_UP", LUKEleftUp, 8, 6, false);
         int LUKErightUp[] = { 8,9,10,11,12,13,14,15 };
@@ -380,15 +380,18 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 
 
 #pragma region Ramona Images
-        IMAGEMANAGER->addFrameImage("Ramona_Idle", "Ramona/Idle.bmp", 2070, 960, 6, 2, true, MAGENTA);
-        IMAGEMANAGER->addFrameImage("Ramona_Jump", "Ramona/Jump_Loop.bmp", 345, 960, 1, 2, true, MAGENTA);
-        IMAGEMANAGER->addFrameImage("Ramona_Fall", "Ramona/Fall.bmp", 2070, 960, 6, 2, true, MAGENTA);
-        IMAGEMANAGER->addFrameImage("Ramona_Walk", "Ramona/Walk.bmp", 2070, 960, 6, 2, true, MAGENTA);
-        IMAGEMANAGER->addFrameImage("Ramona_Land", "Ramona/Land.bmp", 345, 960, 1, 2, true, MAGENTA);
-        IMAGEMANAGER->addFrameImage("Ramona_Run", "Ramona/Run.bmp", 2760, 960, 8, 2, true, MAGENTA);
-        IMAGEMANAGER->addFrameImage("Ramona_Attack_0", "Ramona/Attack_Combo_0.bmp", 1035, 960, 3, 2, true, MAGENTA);
-        IMAGEMANAGER->addFrameImage("Ramona_Attack_1", "Ramona/Attack_Combo_1.bmp", 1035, 960, 3, 2, true, MAGENTA);
-        IMAGEMANAGER->addFrameImage("Ramona_Attack_2", "Ramona/Attack_Combo_2.bmp", 1035, 960, 3, 2, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("Ramona_Idle", "Ramona/Idle.bmp", 2064, 960, 6, 2, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("Ramona_Jump", "Ramona/Jump_Loop.bmp", 344, 960, 1, 2, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("Ramona_Fall", "Ramona/Fall.bmp", 2064, 960, 6, 2, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("Ramona_Walk", "Ramona/Walk.bmp", 2064, 960, 6, 2, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("Ramona_Land", "Ramona/Land.bmp", 344, 960, 1, 2, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("Ramona_Run", "Ramona/Run.bmp", 2752, 960, 8, 2, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("Ramona_Damaged", "Ramona/Damage_Front.bmp", 1376, 960, 4, 2, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("Ramona_Down", "Ramona/Knock_Down.bmp", 4472, 960, 13, 2, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("Ramona_GetUp", "Ramona/Get_Up.bmp", 3096, 960, 9, 2, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("Ramona_Attack_0", "Ramona/Attack_Combo_0.bmp", 1032, 960, 3, 2, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("Ramona_Attack_1", "Ramona/Attack_Combo_1.bmp", 1032, 960, 3, 2, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("Ramona_Attack_2", "Ramona/Attack_Combo_2.bmp", 1032, 960, 3, 2, true, MAGENTA);
         
 #pragma endregion
 

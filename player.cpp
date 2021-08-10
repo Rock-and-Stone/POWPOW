@@ -18,13 +18,14 @@ HRESULT player::init()
 {
 
 	_idle = new Idle;
-	_walk = new Walk;
+	_move = new Move;
 	_jump = new Jump;
 	_fall = new Fall;
+	_damaged = new Damaged;
 	_attack = new Attack;
 
 	_idle->setPlayer(this);
-	_walk->setPlayer(this);
+	_move->setPlayer(this);
 	_jump->setPlayer(this);
 	_fall->setPlayer(this);
 	_attack->setPlayer(this);
@@ -199,10 +200,10 @@ void player::ChangeState(Statement statement)
 		_state = _idle;
 		break;
 	case Statement::RUN:
-		_state = _walk;
+		_state = _move;
 		break;
 	case Statement::WALK:
-		_state = _walk;
+		_state = _move;
 		break;
 	case Statement::JUMP:
 		_state = _jump;
@@ -217,7 +218,15 @@ void player::ChangeState(Statement statement)
 		_state = _attack;
 		_isAttack = true;
 		break;
-
+	case Statement::DAMAGED:
+		_state = _damaged;
+		break;
+	case Statement::DOWN:
+		_state = _down;
+		break;
+	case Statement::GETUP:
+		_state = _getUp;
+		break;
 	}
 
 	_state->init();

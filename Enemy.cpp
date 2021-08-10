@@ -163,7 +163,6 @@ void Enemy::TracePlayer() // 플레이어 추적하여 좌우 변경
 
 void Enemy::ChangeStatement()
 {
-    
     switch (_enemyStatement)
     {
     case ENEMYSTATEMENT::IDLE:

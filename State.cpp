@@ -10,6 +10,8 @@ State::~State()
 {
 }
 
+#pragma region Idle
+
 HRESULT Idle::init()
 {
 	_player->setIsAir(false);
@@ -70,6 +72,7 @@ void Idle::Input()
 	if (KEYMANAGER->isOnceKeyDown('C'))
 	{
 		_player->ChangeState(Statement::JUMP);
+		_player->setAnimLoop(false);
 		_player->setJumpPower(12.0f);
 	}
 
@@ -87,28 +90,31 @@ void Idle::Trigger()
 	_player->setAnimLoop(true);
 }
 
-HRESULT Walk::init()
+HRESULT Move::init()
 {
 	_player->setAnimLoop(true);
 	return S_OK;
 }
 
-void Walk::release()
+#pragma endregion
+
+#pragma region WALK
+void Move::release()
 {
 }
 
-void Walk::update()
+void Move::update()
 {
 	Input();
 	Speed();
 }
 	
-void Walk::render(HDC hdc)
+void Move::render(HDC hdc)
 {
 
 }
 
-void Walk::Input()
+void Move::Input()
 {
 	int currentDirX = _player->getDirectionX();
 	int currentDirY = _player->getDirectionY();
@@ -166,23 +172,27 @@ void Walk::Input()
 	if (KEYMANAGER->isOnceKeyDown('C'))
 	{
 		_player->ChangeState(Statement::JUMP);
+		_player->setAnimLoop(false);
 		_player->setJumpPower(12.0f);
 	}
 
 	
 }
 
-void Walk::Trigger()
+void Move::Trigger()
 {
 
 }
 
-void Walk::Speed()
+void Move::Speed()
 {
 	if (_player->getDirectionX() != 0) _player->setSpeedX(_player->getSpeedX() + 2.0f);
 	if(_player->getDirectionY() != 0)  _player->setSpeedY(_player->getSpeedY() + 1.0f);
 }
 
+#pragma endregion
+
+#pragma region JUMP
 HRESULT Jump::init()
 {
 	_player->setIsAir(true);
@@ -216,6 +226,9 @@ void Jump::Trigger()
 
 }
 
+#pragma endregion
+
+#pragma region FALL
 HRESULT Fall::init()
 {
 
@@ -250,6 +263,9 @@ void Fall::Trigger()
 {
 }
 
+#pragma endregion
+
+#pragma region ATTACK
 HRESULT Attack::init()
 {
 	return S_OK;
@@ -282,4 +298,101 @@ void Attack::Input()
 void Attack::Trigger()
 {
 	_player->ChangeState(Statement::IDLE);
+}
+
+#pragma endregion
+
+HRESULT Damaged::init()
+{
+	return S_OK;
+}
+
+void Damaged::release()
+{
+
+}
+
+void Damaged::update()
+{
+	Input();
+	if (_player->getTrigger()) Trigger();
+}
+
+void Damaged::render(HDC hdc)
+{
+
+}
+
+void Damaged::Input()
+{
+
+}
+
+void Damaged::Trigger()
+{
+	_player->ChangeState(Statement::IDLE);
+	_player->setAnimLoop(true);
+}
+
+HRESULT Down::init()
+{
+	_count = 0;
+	return S_OK;
+}
+
+void Down::release()
+{
+
+}
+
+void Down::update()
+{
+	Input();
+	if (_player->getTrigger()) Trigger();
+}
+
+void Down::render(HDC hdc)
+{
+
+}
+
+void Down::Input()
+{
+
+}
+
+void Down::Trigger()
+{
+	_count++;
+
+	if (_count % 20 == 0)
+	{
+		_player->ChangeState(Statement::GETUP);
+		_player->setAnimLoop(false);
+	}
+}
+
+HRESULT GetUp::init()
+{
+	return S_OK;
+}
+
+void GetUp::release()
+{
+}
+
+void GetUp::update()
+{
+}
+
+void GetUp::render(HDC hdc)
+{
+}
+
+void GetUp::Input()
+{
+}
+
+void GetUp::Trigger()
+{
 }
