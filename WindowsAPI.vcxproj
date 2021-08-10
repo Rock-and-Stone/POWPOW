@@ -150,6 +150,9 @@
     <ClInclude Include="action.h" />
     <ClInclude Include="animation.h" />
     <ClInclude Include="Bat.h" />
+    <ClInclude Include="boss.h" />
+    <ClInclude Include="bossScene.h" />
+    <ClInclude Include="bossState.h" />
     <ClInclude Include="button.h" />
     <ClInclude Include="cafeScene.h" />
     <ClInclude Include="CameraManager.h" />
@@ -200,7 +203,6 @@
     <ClInclude Include="SelectScene.h" />
     <ClInclude Include="settingScene.h" />
     <ClInclude Include="singletonBase.h" />
-    <ClInclude Include="SoundPlayer.h" />
     <ClInclude Include="soundManager.h" />
     <ClInclude Include="stage1.h" />
     <ClInclude Include="State.h" />
@@ -218,6 +220,9 @@
     <ClCompile Include="action.cpp" />
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="Bat.cpp" />
+    <ClCompile Include="boss.cpp" />
+    <ClCompile Include="bossScene.cpp" />
+    <ClCompile Include="bossState.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="cafeScene.cpp" />
     <ClCompile Include="CameraManager.cpp" />
@@ -269,7 +274,6 @@
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="SelectScene.cpp" />
     <ClCompile Include="settingScene.cpp" />
-    <ClCompile Include="SoundPlayer.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stage1.cpp" />
     <ClCompile Include="State.cpp" />

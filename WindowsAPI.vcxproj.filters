@@ -70,6 +70,12 @@
     <Filter Include="playGround\Object">
       <UniqueIdentifier>{6e8ff884-637d-4526-870e-1c1166b60f86}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\boss">
+      <UniqueIdentifier>{2b812959-940b-4c33-b50a-a99786f65efc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\player">
+      <UniqueIdentifier>{92d9dace-c0d2-4a78-bb7b-807afa9a4e6c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -153,15 +159,6 @@
     <ClInclude Include="UserInterface.h">
       <Filter>playGround</Filter>
     </ClInclude>
-    <ClInclude Include="SoundPlayer.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Ramona.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
     <ClInclude Include="SettingScene.h">
       <Filter>playGround\Scene</Filter>
     </ClInclude>
@@ -243,9 +240,6 @@
     <ClInclude Include="EnemyWalk.h">
       <Filter>playGround\Enemy\EnemyState</Filter>
     </ClInclude>
-    <ClInclude Include="gameData.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyDaegi.h">
       <Filter>playGround\Enemy\EnemyState</Filter>
     </ClInclude>
@@ -254,9 +248,6 @@
     </ClInclude>
     <ClInclude Include="EnemyFall.h">
       <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClInclude>
-    <ClInclude Include="volumeProgressBar.h">
-      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="ObjectManager.h">
       <Filter>playGround\Object</Filter>
@@ -269,6 +260,27 @@
     </ClInclude>
     <ClInclude Include="Bat.h">
       <Filter>playGround\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="bossState.h">
+      <Filter>playGround\boss</Filter>
+    </ClInclude>
+    <ClInclude Include="boss.h">
+      <Filter>playGround\boss</Filter>
+    </ClInclude>
+    <ClInclude Include="volumeProgressBar.h">
+      <Filter>2DGameFramework\progressBar</Filter>
+    </ClInclude>
+    <ClInclude Include="bossScene.h">
+      <Filter>playGround\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="gameData.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Ramona.h">
+      <Filter>playGround\player</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>playGround\player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -339,15 +351,6 @@
       <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
     <ClCompile Include="UserInterface.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundPlayer.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Ramona.cpp">
       <Filter>playGround</Filter>
     </ClCompile>
     <ClCompile Include="SettingScene.cpp">
@@ -431,9 +434,6 @@
     <ClCompile Include="EnemyWalk.cpp">
       <Filter>playGround\Enemy\EnemyState</Filter>
     </ClCompile>
-    <ClCompile Include="gameData.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyDaegi.cpp">
       <Filter>playGround\Enemy\EnemyState</Filter>
     </ClCompile>
@@ -442,9 +442,6 @@
     </ClCompile>
     <ClCompile Include="EnemyFall.cpp">
       <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClCompile>
-    <ClCompile Include="volumeProgressBar.cpp">
-      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
       <Filter>playGround\Object</Filter>
@@ -457,6 +454,27 @@
     </ClCompile>
     <ClCompile Include="Bat.cpp">
       <Filter>playGround\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="bossState.cpp">
+      <Filter>playGround\boss</Filter>
+    </ClCompile>
+    <ClCompile Include="boss.cpp">
+      <Filter>playGround\boss</Filter>
+    </ClCompile>
+    <ClCompile Include="volumeProgressBar.cpp">
+      <Filter>2DGameFramework\progressBar</Filter>
+    </ClCompile>
+    <ClCompile Include="bossScene.cpp">
+      <Filter>playGround\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="gameData.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Ramona.cpp">
+      <Filter>playGround\player</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>playGround\player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
