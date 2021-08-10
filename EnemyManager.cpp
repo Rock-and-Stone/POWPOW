@@ -33,10 +33,7 @@ void EnemyManager::render()
     {
         RECT temp = (*_viLuke)->GetRect();
         (*_viLuke)->render();
-       
     }
-
-
 }
 
 void EnemyManager::EnemyImageStorage()

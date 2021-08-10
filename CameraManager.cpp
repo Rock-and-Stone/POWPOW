@@ -3,10 +3,12 @@
 
 CameraManager::CameraManager()
 {
+
 }
 
 CameraManager::~CameraManager()
 {
+
 }
 
 HRESULT CameraManager::init(int mapSizeX, float mapSizeY)
