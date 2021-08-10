@@ -383,16 +383,22 @@ void GetUp::release()
 
 void GetUp::update()
 {
+	Input();
+	if (_player->getTrigger()) Trigger();
 }
 
 void GetUp::render(HDC hdc)
 {
+
 }
 
 void GetUp::Input()
 {
+
 }
 
 void GetUp::Trigger()
 {
+	_player->ChangeState(Statement::IDLE);
+	_player->setAnimLoop(true);
 }
