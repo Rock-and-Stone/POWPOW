@@ -20,11 +20,8 @@ void EnemyManager::update()
         (*_viLuke)->update();
 
     }
- 
-   
+
     Collision();
-    KEYANIMANAGER->update();
-    
 }
 
 void EnemyManager::render()

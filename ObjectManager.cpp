@@ -18,9 +18,6 @@ void ObjectManager::update()
         (*_viObject)->update();
 
     }
-
-
-    KEYANIMANAGER->update();
 }
 
 void ObjectManager::render()

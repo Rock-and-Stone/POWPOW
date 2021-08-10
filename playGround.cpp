@@ -40,6 +40,7 @@ void playGround::update()
 	gameNode::update();
 	SCENEMANAGER->update();
 	EFFECTMANAGER->update();
+	KEYANIMANAGER->update();
 }
 
 //여기다 그려줘라!!!
