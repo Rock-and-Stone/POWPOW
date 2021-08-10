@@ -371,9 +371,10 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 
 #pragma endregion
 
-#pragma region EffectImages
-        
-      
+#pragma region Object Images
+        IMAGEMANAGER->addFrameImage("bat_left_neutral", "source/object/bat/bat_left_neutral.bmp", 375, 375, 1, 1, true, MAGENTA);
+        int bat_left_neutral[] = { 0 };
+        KEYANIMANAGER->addArrayFrameAnimation("bat_left_neutral", "bat_left_neutral", bat_left_neutral, 1, 1, false);
        
 
 #pragma endregion
