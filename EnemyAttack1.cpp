@@ -17,5 +17,6 @@ void EnemyAttack1::update()
 	{
 		_enemy->SetEnemyStatement(ENEMYSTATEMENT::ATTACK2);
 		_enemy->ChangeStatement();
+		_enemy->ComboSession();
 	}
 }

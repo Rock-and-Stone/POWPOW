@@ -14,7 +14,8 @@ enum class Statement
 	JUMP,
 	FALL,
 	LAND,
-	ATTACK
+	ATTACK,
+	GUARD
 };
 
 class player : public gameNode

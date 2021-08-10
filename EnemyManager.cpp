@@ -94,7 +94,16 @@ void EnemyManager::Collision()
 
         if (IntersectRect(&temp, &playerRC, &enemyRC))
         {
-            _vLuke[i]->HitDamage();
+            _vLuke[i]->HitDamage(10);
+        }
+
+        RECT temp2;
+        RECT playerHitRC = _player->getHitRC();
+        RECT enemyHitRC = _vLuke[i]->GetAttackRect();
+
+        if (IntersectRect(&temp2, &playerHitRC, &enemyHitRC))
+        {
+            _player->hitDamage(3);
         }
     }
 }

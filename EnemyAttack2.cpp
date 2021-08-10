@@ -4,6 +4,7 @@
 
 HRESULT EnemyAttack2::init()
 {
+	_enemy->ComboSession();
 	return S_OK;
 }
 

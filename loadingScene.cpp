@@ -185,13 +185,13 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         int LUKErightAttack2[] = { 12,13,14,15 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKErightAttack2", "LUKE_ATTACK1", LUKErightAttack2, 4, 6, false);
         int LUKEleftAttack3[] = { 6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftAttack3", "LUKE_ATTACK2", LUKEleftAttack3, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftAttack3", "LUKE_ATTACK2", LUKEleftAttack3, 7, 4, false);
         int LUKErightAttack3[] = { 7,8,9,10,11,12,13 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightAttack3", "LUKE_ATTACK2", LUKErightAttack3, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightAttack3", "LUKE_ATTACK2", LUKErightAttack3, 7, 4, false);
         int LUKEleftAttack4[] = { 6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftAttack4", "LUKE_ATTACK3", LUKEleftAttack4, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftAttack4", "LUKE_ATTACK3", LUKEleftAttack4, 7, 4, false);
         int LUKErightAttack4[] = { 7,8,9,10,11,12,13 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightAttack4", "LUKE_ATTACK3", LUKErightAttack4, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightAttack4", "LUKE_ATTACK3", LUKErightAttack4, 7, 4, false);
         int LUKEleftDamaged[] = { 6,5,4,3,2,1,0 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKEleftDamaged", "LUKE_DAMAGED", LUKEleftDamaged, 7, 6, false);
         int LUKErightDamaged[] = { 7,8,9,10,11,12,13 };
@@ -217,21 +217,21 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         int LUKErightObject_Hang[] = { 20,21,22,23 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKErightObject_Hang", "LUKE_IDLE", LUKErightObject_Hang, 4, 6, true);
         int LUKEleftObject_Attack[] = { 6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftObject_Attack", "LUKE_OBJECT_ATTACK", LUKEleftObject_Attack, 7, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftObject_Attack", "LUKE_OBJECT_ATTACK", LUKEleftObject_Attack, 7, 6, false);
         int LUKErightObject_Attack[] = { 17,18,19,20,21,22,23 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightObject_Attack", "LUKE_OBJECT_ATTACK", LUKErightObject_Attack, 7, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightObject_Attack", "LUKE_OBJECT_ATTACK", LUKErightObject_Attack, 7, 6, false);
         int LUKEleftObject_Throw[] = { 11,10,9,8,7 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftObject_Throw", "LUKE_OBJECT_ATTACK", LUKEleftObject_Throw, 5, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftObject_Throw", "LUKE_OBJECT_ATTACK", LUKEleftObject_Throw, 5, 6, false);
         int LUKErightObject_Throw[] = { 12,13,14,15,16 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightObject_Throw", "LUKE_OBJECT_ATTACK", LUKErightObject_Throw, 5, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightObject_Throw", "LUKE_OBJECT_ATTACK", LUKErightObject_Throw, 5, 6, false);
         int LUKEleft_Big_Object_Grab[] = { 4,3 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleft_Big_Object_Grab", "LUKE_OBJECT_GRAB", LUKEleft_Big_Object_Grab, 2, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleft_Big_Object_Grab", "LUKE_OBJECT_GRAB", LUKEleft_Big_Object_Grab, 2, 6, false);
         int LUKEright_Big_Object_Grab[] = { 5,6 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEright_Big_Object_Grab", "LUKE_OBJECT_GRAB", LUKEright_Big_Object_Grab, 2, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEright_Big_Object_Grab", "LUKE_OBJECT_GRAB", LUKEright_Big_Object_Grab, 2, 6, false);
         int LUKEleft_Small_Object_Grab[] = { 2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleft_Small_Object_Grab", "LUKE_OBJECT_GRAB", LUKEleft_Small_Object_Grab, 3, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleft_Small_Object_Grab", "LUKE_OBJECT_GRAB", LUKEleft_Small_Object_Grab, 3, 6, false);
         int LUKEright_Small_Object_Grab[] = { 7,8,9 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEright_Small_Object_Grab", "LUKE_OBJECT_GRAB", LUKEright_Small_Object_Grab, 3, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEright_Small_Object_Grab", "LUKE_OBJECT_GRAB", LUKEright_Small_Object_Grab, 3, 6, false);
 #pragma endregion
 
         //마이크 애니메이션 저장소
@@ -297,13 +297,13 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         int MIKErightObject_Hang[] = { 20,21,22,23 };
         KEYANIMANAGER->addArrayFrameAnimation("MIKErightObject_Hang", "MIKE_IDLE", MIKErightObject_Hang, 4, 6, true);
         int MIKEleftObject_Attack[] = { 6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftObject_Attack", "MIKE_OBJECT_ATTACK", MIKEleftObject_Attack, 7, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftObject_Attack", "MIKE_OBJECT_ATTACK", MIKEleftObject_Attack, 7, 6, false);
         int MIKErightObject_Attack[] = { 17,18,19,20,21,22,23 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKErightObject_Attack", "MIKE_OBJECT_ATTACK", MIKErightObject_Attack, 7, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKErightObject_Attack", "MIKE_OBJECT_ATTACK", MIKErightObject_Attack, 7, 6, false);
         int MIKEleftObject_Throw[] = { 11,10,9,8,7 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftObject_Throw", "MIKE_OBJECT_ATTACK", MIKEleftObject_Throw, 5, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftObject_Throw", "MIKE_OBJECT_ATTACK", MIKEleftObject_Throw, 5, 6, false);
         int MIKErightObject_Throw[] = { 12,13,14,15,16 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKErightObject_Throw", "MIKE_OBJECT_ATTACK", MIKErightObject_Throw, 5, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKErightObject_Throw", "MIKE_OBJECT_ATTACK", MIKErightObject_Throw, 5, 6, false);
         int MIKEleft_Big_Object_Grab[] = { 4,3 };
         KEYANIMANAGER->addArrayFrameAnimation("MIKEleft_Big_Object_Grab", "MIKE_OBJECT_GRAB", MIKEleft_Big_Object_Grab, 2, 6, true);
         int MIKEright_Big_Object_Grab[] = { 5,6 };

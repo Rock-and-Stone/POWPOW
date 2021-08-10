@@ -62,6 +62,8 @@ protected:
 	image* _imageName;
 	animation* _motionName;
 	RECT _rc;
+	RECT _attackRect;
+	RECT _attackComboRect;
 
 	//상태패턴
 	EnemyState* _state;
@@ -80,6 +82,7 @@ protected:
 	EnemyDaegi* _daegi;
 	EnemyFall* _fall;
 	
+
 	
 	int _direction;			//에너미의 방향
 	int _highlow;			//에너미 높낮이 (플레이어와의 비교)
@@ -125,11 +128,12 @@ public:
 	void ChaseRun();
 	void ChaseWalk();
 
-	
+	void MakeAttackRect();
 
 
 	//에너미 렉트 접근자
 	inline RECT GetRect() { return _rc; }
+	inline RECT GetAttackRect() { return _attackRect; }
 
 	//에너미 상태 설정자, 접근자
 	void SetEnemyStatement(ENEMYSTATEMENT enemyStatement) { _enemyStatement = enemyStatement; }
@@ -160,6 +164,10 @@ public:
 	//에너미 방향 받아오기
 	int GetEnemyDirection() { return _direction; }
 
+	//에너미 체력 받아오기
+	int GetEnemyHP() { return _hp; }
+	void SetEnemyHP(int hp) { _hp = hp; }
+
 	//점프 상태 받아오기
 	void SetJumpPower(float jumpPower) { _jumpPower = jumpPower; }
 	void SetIsAir(bool air) { _isAir = air; }
@@ -168,13 +176,16 @@ public:
 	virtual float getRenderPosY();
 
 	bool ChaseSession();
+
 	bool WalkSession();
 
 	bool AttackSession();
 
+	bool ComboSession();
+
 	void SetPlayerLink(player* player) { _player = player; }
 
-	void HitDamage();
+	void HitDamage(int Damage);
 
 
 };
