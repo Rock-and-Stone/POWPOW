@@ -21,6 +21,7 @@ HRESULT playGround::init()
 	SCENEMANAGER->addScene("selectScene", new SelectScene);
 	SCENEMANAGER->addScene("loadingScene", new loadingScene);
 	SCENEMANAGER->addScene("settingScene", new settingScene);
+	SCENEMANAGER->addScene("bossScene", new bossScene);
 
 	SCENEMANAGER->changeScene("titleScene");
 

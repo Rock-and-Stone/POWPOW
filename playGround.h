@@ -8,6 +8,7 @@
 #include "selectScene.h"
 #include "loadingScene.h"
 #include "settingScene.h"
+#include "bossScene.h"
 
 
 
