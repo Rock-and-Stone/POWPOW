@@ -37,7 +37,7 @@ void ObjectManager::SetBat()
         Object* bat;
         bat = new Bat;
         bat->SetCamera(_cm);
-        bat->init("bat_left_neutral", "bat_left_neutral", PointMake(800 * i + 800, 700));
+        bat->init("bat_left_neutral", "bat_left_neutral", PointMake(1000 * i + 900, 500));
         bat->SetPlayerLink(_player);
         _vObject.push_back(bat);
         RENDERMANAGER->addRender(bat);

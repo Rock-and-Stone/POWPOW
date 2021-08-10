@@ -35,6 +35,7 @@ void Object::release()
 
 void Object::update()
 {
+   
 }
 
 void Object::render()
@@ -48,6 +49,7 @@ void Object::Draw()
     _rendY = _posY - _cm->getCamY();
 
     _rc = RectMakeCenter(_rendX, _rendY, _imageName->getFrameWidth(), _imageName->getFrameHeight());
+    _collideRect = RectMakeCenter(_rendX, _rendY, 20, 20);
 
     _imageName->aniRender(getMemDC(), _rc.left, _rc.top, _motionName);
 }
