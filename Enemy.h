@@ -1,20 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "CameraManager.h"
-#include "EnemyIdle.h"
-#include "EnemyWalk.h"
-#include "EnemyRun.h"
-#include "EnemyJump.h"
-#include "EnemyAttack1.h"
-#include "EnemyAttack2.h"
-#include "EnemyAttack3.h"
-#include "EnemyAttack4.h"
-#include "EnemyDamaged.h"
-#include "EnemyGuard.h"
-#include "EnemyDown.h"
-#include "EnemyUp.h"
-#include "EnemyDaegi.h"
-#include "EnemyFall.h"
+#include "EnemyState.h"
 #include "player.h"
 #include "Object.h"
 
@@ -36,20 +23,16 @@ enum class ENEMYSTATEMENT
 	RUN,						//뛰기
 	JUMP,						//점프
 	FALL,						//떨어짐
-	ATTACK1,					//약공격1
-	ATTACK2,					//약공격2(콤보)
-	ATTACK3,					//강공격1
-	ATTACK4,					//강공격2(콤보)
+	ATTACK,					    //약공격1
 	DAMAGED,					//피격
 	DOWN,						//피격시 다운(죽음)
 	DOWN_DAMAGED,				//누운상태에서의 피격
 	DOWN_ATTACK,				//누운상태에서 공격
-	UP,							//누운상태에서 일어나기
+	GETUP,							//누운상태에서 일어나기
 	GUARD,						//가드
 	OBJECT_ATTACK,				//오브젝트 들고 공격
 	OBJECT_THROW,				//오브젝트 던지기
-	OBJECT_GRAB,				//오브젝트 들기
-	DAEGI						//말그대로 대기상태
+	OBJECT_GRAB				//오브젝트 들기
 };
 
 class Enemy : public gameNode
@@ -72,37 +55,31 @@ protected:
 	EnemyWalk* _walk;
 	EnemyRun* _run;
 	EnemyJump* _jump;
-	EnemyAttack1* _attack1;
-	EnemyAttack2* _attack2;
-	EnemyAttack3* _attack3;
-	EnemyAttack4* _attack4;
+	EnemyAttack* _attack;
 	EnemyDamaged* _damaged;
 	EnemyDown* _down;
 	EnemyGuard* _guard;
-	EnemyUp* _up;
-	EnemyDaegi* _daegi;
+	EnemyGetUp* _getUp;
 	EnemyFall* _fall;
 
 	
-
-	
-	int _direction;			//에너미의 방향
-	int _highlow;			//에너미 높낮이 (플레이어와의 비교)
-	int _randomChoice;		//막기, 맞기 랜덤값
+	int _direction;					//에너미의 방향
+	int _highlow;					//에너미 높낮이 (플레이어와의 비교)
+	int _randomChoice;				//막기, 맞기 랜덤값
 
 	bool _isAir;
 
-	float _posX, _posY;				//에너미 x, y 좌표
-	float _rendX, _rendY;
+	float _posX, _posY;				//실제 x, y 좌표
+	float _rendX, _rendY;			//렌더 x, y 좌표
 	float _probeX, _probeY;			//픽셀 충돌 시
 	float _jumpPower, _gravity;		//점프, 중력
-	float _distance; //플레이어와의 거리 계산
-	float _objectDistance; //오브젝트와의 거리 계산
-	float _attackRange;
-	float _searchRange;
-	float _airY;
+	float _distance;				//플레이어와의 거리 계산
+	float _objectDistance;			//오브젝트와의 거리 계산
+	float _attackRange;				//공격 가능한 거리
+	float _searchRange;				//플레이어 감지 거리
+	float _airY;					//공중 Y 좌표
 
-	int _hp;	//플레이어 체력
+	int _maxHP, _currentHP;			//최대 체력, 현재 체력
 	int _rndSelection;
 	
 
@@ -169,13 +146,15 @@ public:
 	int GetEnemyDirection() { return _direction; }
 
 	//에너미 체력 받아오기
-	int GetEnemyHP() { return _hp; }
-	void SetEnemyHP(int hp) { _hp = hp; }
+	int GetEnemyHP() { return _currentHP; }
+	void SetEnemyHP(int hp) { _currentHP = hp; }
 
 	//점프 상태 받아오기
+	float GetJumpPower() { return _jumpPower; }
 	void SetJumpPower(float jumpPower) { _jumpPower = jumpPower; }
+	
+	bool GetIsAir() { return _isAir; }
 	void SetIsAir(bool air) { _isAir = air; }
-	float GetJumpPower() { return _airY; }
 
 	virtual float getRenderPosY();
 

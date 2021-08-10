@@ -22,15 +22,11 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
     _walk = new EnemyWalk;
     _run = new EnemyRun;
     _jump = new EnemyJump;
-    _attack1 = new EnemyAttack1;
-    _attack2 = new EnemyAttack2;
-    _attack3 = new EnemyAttack3;
-    _attack4 = new EnemyAttack4;
+    _attack = new EnemyAttack;
     _damaged = new EnemyDamaged;
     _down = new EnemyDown;
-    _up = new EnemyUp;
+    _getUp = new EnemyGetUp;
     _guard = new EnemyGuard;
-    _daegi = new EnemyDaegi;
     _fall = new EnemyFall;
 
 
@@ -38,15 +34,11 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
     _walk->SetEnemy(this);
     _run->SetEnemy(this);
     _jump->SetEnemy(this);
-    _attack1->SetEnemy(this);
-    _attack2->SetEnemy(this);
-    _attack3->SetEnemy(this);
-    _attack4->SetEnemy(this);
+    _attack->SetEnemy(this);
     _damaged->SetEnemy(this);
     _down->SetEnemy(this);
-    _up->SetEnemy(this);
+    _getUp->SetEnemy(this);
     _guard->SetEnemy(this);
-    _daegi->SetEnemy(this);
     _fall->SetEnemy(this);
 
     _state = _idle;
@@ -63,7 +55,7 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
     _posY = position.y;
     _airY = 0;
 
-    _hp = 100;
+    
 
     _gravity = _jumpPower = 0;
 
@@ -199,23 +191,11 @@ void Enemy::ChangeStatement()
     case ENEMYSTATEMENT::DAMAGED:
         _state = _damaged;
         break;
-    case ENEMYSTATEMENT::ATTACK1:
-        _state = _attack1;
+    case ENEMYSTATEMENT::ATTACK:
+        _state = _attack;
         break;
-    case ENEMYSTATEMENT::ATTACK2:
-        _state = _attack2;
-        break;
-    case ENEMYSTATEMENT::ATTACK3:
-        _state = _attack3;
-        break;
-    case ENEMYSTATEMENT::ATTACK4:
-        _state = _attack4;
-        break;
-    case ENEMYSTATEMENT::UP:
-        _state = _up;
-        break;
-    case ENEMYSTATEMENT::DAEGI:
-        _state = _daegi;
+    case ENEMYSTATEMENT::GETUP:
+        _state = _getUp;
         break;
 
     }
@@ -343,7 +323,7 @@ bool Enemy::WalkSession()
 
 bool Enemy::AttackSession()
 {
-    if (ChaseSession() && _distance <= 82 && _enemyStatement != ENEMYSTATEMENT::DAEGI && _enemyStatement != ENEMYSTATEMENT::ATTACK2 && _enemyStatement != ENEMYSTATEMENT::ATTACK4)
+    if (ChaseSession() && _distance <= 82)
     {
         return true;
     }
@@ -352,7 +332,7 @@ bool Enemy::AttackSession()
 
 bool Enemy::ComboSession()
 {
-    if (_enemyStatement == ENEMYSTATEMENT::ATTACK2 || _enemyStatement == ENEMYSTATEMENT::ATTACK4)
+    if (_enemyStatement == ENEMYSTATEMENT::ATTACK)
     {
         return true;
     }
