@@ -164,6 +164,7 @@
     <ClInclude Include="EnemyDaegi.h" />
     <ClInclude Include="EnemyDamaged.h" />
     <ClInclude Include="EnemyDown.h" />
+    <ClInclude Include="EnemyFall.h" />
     <ClInclude Include="EnemyGuard.h" />
     <ClInclude Include="EnemyIdle.h" />
     <ClInclude Include="EnemyJump.h" />
@@ -208,6 +209,7 @@
     <ClInclude Include="txtData.h" />
     <ClInclude Include="UserInterface.h" />
     <ClInclude Include="utils.h" />
+    <ClInclude Include="volumeProgressBar.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="action.cpp" />
@@ -226,6 +228,7 @@
     <ClCompile Include="EnemyDaegi.cpp" />
     <ClCompile Include="EnemyDamaged.cpp" />
     <ClCompile Include="EnemyDown.cpp" />
+    <ClCompile Include="EnemyFall.cpp" />
     <ClCompile Include="EnemyGuard.cpp" />
     <ClCompile Include="EnemyIdle.cpp" />
     <ClCompile Include="EnemyJump.cpp" />
@@ -271,6 +274,7 @@
     <ClCompile Include="txtData.cpp" />
     <ClCompile Include="UserInterface.cpp" />
     <ClCompile Include="utils.cpp" />
+    <ClCompile Include="volumeProgressBar.cpp" />
     <ClCompile Include="WindowsAPI.cpp" />
   </ItemGroup>
   <ItemGroup>

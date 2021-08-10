@@ -31,6 +31,7 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
     _up = new EnemyUp;
     _guard = new EnemyGuard;
     _daegi = new EnemyDaegi;
+    _fall = new EnemyFall;
 
     _idle->SetEnemy(this);
     _walk->SetEnemy(this);
@@ -45,6 +46,7 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
     _up->SetEnemy(this);
     _guard->SetEnemy(this);
     _daegi->SetEnemy(this);
+    _fall->SetEnemy(this);
 
     _state = _idle;
     _direction = 0;
@@ -58,9 +60,11 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
 
     _posX = position.x;
     _posY = position.y;
+    _airY = 0;
 
     _gravity = _jumpPower = 0;
 
+    _isAir = false;
 
     _motionName->start();
 
@@ -86,10 +90,10 @@ void Enemy::render()
 
 void Enemy::Move()
 {
-    if (_isJump)
+    if (_isAir)
     {
         _gravity = 0.18f;
-        _posY -= _jumpPower;
+        _airY -= _jumpPower;
         _jumpPower -= _gravity;
     }
     else
@@ -173,6 +177,9 @@ void Enemy::ChangeStatement()
         break;
     case ENEMYSTATEMENT::JUMP:
         _state = _jump;
+        break;
+    case ENEMYSTATEMENT::FALL:
+        _state = _fall;
         break;
     case ENEMYSTATEMENT::GUARD:
         _state = _guard;
@@ -288,9 +295,26 @@ bool Enemy::AttackSession()
 
 void Enemy::HitDamage()
 {
-    _enemyStatement = ENEMYSTATEMENT::DAMAGED;
-    ChangeStatement();
+    _rndSelection = RND->getInt(2);
+
+    if (_enemyStatement != ENEMYSTATEMENT::DAMAGED && _enemyStatement != ENEMYSTATEMENT::GUARD)
+    {
+        if (_rndSelection == 0)
+        {
+            _enemyStatement = ENEMYSTATEMENT::DAMAGED;
+            ChangeStatement();
+        }
+        if (_rndSelection == 1)
+        {
+            _enemyStatement = ENEMYSTATEMENT::GUARD;
+            ChangeStatement();
+        }
+    }
+   
+   
+  
 }
+
 
 
 

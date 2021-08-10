@@ -19,12 +19,6 @@ private:
 	vEnemy	_vLuke;
 	viEnemy _viLuke;
 
-	vEnemy _vMike;
-	viEnemy _viMike;
-
-	vEnemy _vMalcolm;
-	viEnemy _viMalcolm;
-
 	CameraManager* _cm;
 	player* _player;
 	
@@ -46,12 +40,6 @@ public:
 
 	vector<Enemy*> GetVLuke() { return _vLuke; }
 	vector<Enemy*>::iterator GetVILuke() { return _viLuke; }
-
-	vector<Enemy*> GetVMike() { return _vMike; }
-	vector<Enemy*>::iterator GetVIMike() { return _viMike; }
-
-	vector<Enemy*> GetVMalcolm() { return _vMalcolm; }
-	vector<Enemy*>::iterator GetVIMalcolm() { return _viMalcolm; }
 
 	void SetCamera(CameraManager* cm) { _cm = cm; }
 	void SetPlayerLink(player* player) { _player = player; }

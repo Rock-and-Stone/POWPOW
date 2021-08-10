@@ -14,6 +14,7 @@
 #include "EnemyDown.h"
 #include "EnemyUp.h"
 #include "EnemyDaegi.h"
+#include "EnemyFall.h"
 #include "player.h"
 
 #define ENEMYSPEED 5
@@ -33,6 +34,7 @@ enum class ENEMYSTATEMENT
 	WALK,						//걷기
 	RUN,						//뛰기
 	JUMP,						//점프
+	FALL,						//떨어짐
 	ATTACK1,					//약공격1
 	ATTACK2,					//약공격2(콤보)
 	ATTACK3,					//강공격1
@@ -76,13 +78,14 @@ protected:
 	EnemyGuard* _guard;
 	EnemyUp* _up;
 	EnemyDaegi* _daegi;
+	EnemyFall* _fall;
 	
 	
 	int _direction;			//에너미의 방향
 	int _highlow;			//에너미 높낮이 (플레이어와의 비교)
 	int _randomChoice;		//막기, 맞기 랜덤값
 
-	bool _isJump;
+	bool _isAir;
 
 	float _posX, _posY;				//에너미 x, y 좌표
 	float _rendX, _rendY;
@@ -91,8 +94,10 @@ protected:
 	float _distance; //플레이어와의 거리 계산
 	float _attackRange;
 	float _searchRange;
+	float _airY;
 
 	int _hp;	//플레이어 체력
+	int _rndSelection;
 	
 
 public:
@@ -154,6 +159,11 @@ public:
 
 	//에너미 방향 받아오기
 	int GetEnemyDirection() { return _direction; }
+
+	//점프 상태 받아오기
+	void SetJumpPower(float jumpPower) { _jumpPower = jumpPower; }
+	void SetIsAir(bool air) { _isAir = air; }
+	float GetJumpPower() { return _airY; }
 
 	virtual float getRenderPosY();
 

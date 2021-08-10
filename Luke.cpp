@@ -13,7 +13,7 @@ HRESULT Luke::init()
 {
 	_searchRange = 800;
 	_attackRange = 100;
-	_hp = 300;
+	_hp = 100;
 
 	return S_OK;
 }
@@ -75,6 +75,17 @@ void Luke::SwitchImage()
         else
         {
             _motionName = KEYANIMANAGER->findAnimation("LUKErightJump");
+        }
+        break;
+    case ENEMYSTATEMENT::FALL:
+        _imageName = IMAGEMANAGER->findImage("LUKE_JUMP");
+        if (_direction == 0)
+        {
+            _motionName = KEYANIMANAGER->findAnimation("LUKEleftFall");
+        }
+        else
+        {
+            _motionName = KEYANIMANAGER->findAnimation("LUKErightFall");
         }
         break;
     case ENEMYSTATEMENT::GUARD:
