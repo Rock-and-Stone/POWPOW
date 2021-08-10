@@ -17,6 +17,7 @@ HRESULT Idle::init()
 	_player->setIsAir(false);
 	_player->setAirY(0);
 	_player->setIsRun(false);
+	_player->setIsVulnuerable(true);
 	_player->setAtkCount(0);
 	return S_OK;
 }
@@ -304,6 +305,8 @@ void Attack::Trigger()
 
 HRESULT Damaged::init()
 {
+	_player->setIsVulnuerable(false);
+	_player->setAnimLoop(false);
 	return S_OK;
 }
 
@@ -336,6 +339,8 @@ void Damaged::Trigger()
 
 HRESULT Down::init()
 {
+	_player->setIsVulnuerable(false);
+	_player->setAnimLoop(false);
 	_count = 0;
 	return S_OK;
 }

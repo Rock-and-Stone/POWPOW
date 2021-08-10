@@ -46,8 +46,8 @@ protected:
 	int				_count;			//프레임 카운트
 	int				_atkCount;		// 공격 카운트 
 	int				_jumpCount;		// 현재 점프 횟수
-
-	int				_maxHp, _currentHP; // 최대 체력, 현재 체력
+	int				_hitCount;
+	int				_maxHP, _currentHP; // 최대 체력, 현재 체력
 
 	bool			_animLoop;		// 애니메이션이 루프인지 여부
 	bool			_trigger;		// 애니메이션이 끝났을때 작동하는 트리거
@@ -92,6 +92,9 @@ public:
 	void AttackCollision();
 
 #pragma region GETSET
+
+	bool getIsVulnerable() { return _isVulnerable; }
+	void setIsVulnuerable(bool isvul) { _isVulnerable = isvul; }
 
 	bool getTrigger() { return _trigger; } //애니메이션 프레임이 끝났을때 작동하는 트리거 접근자
 

@@ -22,12 +22,17 @@ HRESULT player::init()
 	_jump = new Jump;
 	_fall = new Fall;
 	_damaged = new Damaged;
+	_down = new Down;
+	_getUp = new GetUp;
 	_attack = new Attack;
 
 	_idle->setPlayer(this);
 	_move->setPlayer(this);
 	_jump->setPlayer(this);
 	_fall->setPlayer(this);
+	_damaged->setPlayer(this);
+	_down->setPlayer(this);
+	_getUp->setPlayer(this);
 	_attack->setPlayer(this);
 
 	_state = _idle;
@@ -55,6 +60,8 @@ HRESULT player::init()
 	_isAir = false;
 	_isAttack = false;
 	_isRun = false;
+	_isVulnerable = true;
+	_currentHP = _maxHP = 100;
 
 	_statement = Statement::IDLE;
 
@@ -185,7 +192,13 @@ void player::Collision()
 
 void player::hitDamage(int damage)
 {
-	
+	if (_isVulnerable)
+	{
+		_hitCount++;
+		if (_hitCount > 2)	ChangeState(Statement::DOWN);
+		else	ChangeState(Statement::DAMAGED);
+		_currentHP -= damage;
+	}
 }
 
 void player::ChangeState(Statement statement)
@@ -227,6 +240,7 @@ void player::ChangeState(Statement statement)
 		break;
 	case Statement::GETUP:
 		_state = _getUp;
+		_hitCount = 0;
 		break;
 	}
 

@@ -99,7 +99,7 @@ void EnemyManager::Collision()
 
         if (IntersectRect(&temp2, &playerHitRC, &enemyHitRC))
         {
-            _player->hitDamage(3);
+            _player->hitDamage(5);
         }
     }
 }
