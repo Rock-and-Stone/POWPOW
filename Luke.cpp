@@ -13,7 +13,7 @@ HRESULT Luke::init()
 {
 	_searchRange = 800;
 	_attackRange = 100;
-	_hp = 100;
+	_maxHP = _currentHP = 100;
 
 	return S_OK;
 }
@@ -111,6 +111,7 @@ void Luke::SwitchImage()
             _motionName = KEYANIMANAGER->findAnimation("LUKErightDown");
         }
         break;
+
     case ENEMYSTATEMENT::DAMAGED:
         _imageName = IMAGEMANAGER->findImage("LUKE_DAMAGED");
         if (_direction == 0)
@@ -122,7 +123,8 @@ void Luke::SwitchImage()
             _motionName = KEYANIMANAGER->findAnimation("LUKErightDamaged");
         }
         break;
-    case ENEMYSTATEMENT::ATTACK1:
+
+    case ENEMYSTATEMENT::ATTACK:
         _imageName = IMAGEMANAGER->findImage("LUKE_ATTACK1");
         if (_direction == 0)
         {
@@ -133,40 +135,8 @@ void Luke::SwitchImage()
             _motionName = KEYANIMANAGER->findAnimation("LUKErightAttack1");
         }
         break;
-    case ENEMYSTATEMENT::ATTACK2:
-        _imageName = IMAGEMANAGER->findImage("LUKE_ATTACK1");
-        if (_direction == 0)
-        {
-            _motionName = KEYANIMANAGER->findAnimation("LUKEleftAttack2");
-        }
-        else
-        {
-            _motionName = KEYANIMANAGER->findAnimation("LUKErightAttack2");
-        }
-        break;
-    case ENEMYSTATEMENT::ATTACK3:
-        _imageName = IMAGEMANAGER->findImage("LUKE_ATTACK2");
-        if (_direction == 0)
-        {
-            _motionName = KEYANIMANAGER->findAnimation("LUKEleftAttack3");
-        }
-        else
-        {
-            _motionName = KEYANIMANAGER->findAnimation("LUKErightAttack3");
-        }
-        break;
-    case ENEMYSTATEMENT::ATTACK4:
-        _imageName = IMAGEMANAGER->findImage("LUKE_ATTACK3");
-        if (_direction == 0)
-        {
-            _motionName = KEYANIMANAGER->findAnimation("LUKEleftAttack4");
-        }
-        else
-        {
-            _motionName = KEYANIMANAGER->findAnimation("LUKErightAttack4");
-        }
-        break;
-    case ENEMYSTATEMENT::UP:
+
+    case ENEMYSTATEMENT::GETUP:
         _imageName = IMAGEMANAGER->findImage("LUKE_UP");
         if (_direction == 0)
         {
@@ -175,18 +145,6 @@ void Luke::SwitchImage()
         else
         {
             _motionName = KEYANIMANAGER->findAnimation("LUKErightUp");
-        }
-        break;
-
-    case ENEMYSTATEMENT::DAEGI:
-        _imageName = IMAGEMANAGER->findImage("LUKE_IDLE");
-        if (_direction == 0)
-        {
-            _motionName = KEYANIMANAGER->findAnimation("LUKEleftIdle");
-        }
-        else
-        {
-            _motionName = KEYANIMANAGER->findAnimation("LUKErightIdle");
         }
         break;
 
