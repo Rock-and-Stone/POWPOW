@@ -23,6 +23,22 @@ HRESULT loadingScene::init()
 	_loadingBar->init(0, WINSIZEY - 50, WINSIZEX, 50);
 	_loadingBar->setGauge(0, 0);
 
+
+    IMAGEMANAGER->addFrameImage("loading1", "source/로딩1.bmp", 120, 34, 4, 1, true, MAGENTA);
+    IMAGEMANAGER->addFrameImage("loading2", "source/로딩2.bmp", 120, 34, 4, 1, true, MAGENTA);
+
+    _loadingImg = IMAGEMANAGER->findImage("loading1");
+
+    _loadingBar = new progressBar;
+    _loadingBar->init(0, WINSIZEY - 50, WINSIZEX, 50);
+    _loadingBar->setGauge(0, 0);
+
+
+    _loadingImageNum = RND->getInt(2);
+
+    frameX = 0;
+    _count = 0;
+
     SOUNDMANAGER->addSound("menuBGM", "source/music/메뉴.mp3", true, true);
 
     SOUNDMANAGER->play("menuBGM", getBGMVolume());
@@ -53,12 +69,25 @@ void loadingScene::update()
 	{
 		SCENEMANAGER->changeScene("selectScene");
 	}
+
+    _count++;
+
+    if (_count % 10 == 0)
+    {
+        frameX++;
+    }
+
+    if (frameX >= 4) frameX = 0;
+
+
+
 }
 
 void loadingScene::render()
 {
 	_loadingBG->render(getMemDC());
 	_loadingBar->render();
+    _loadingImg->frameRender(getMemDC(), WINSIZEX - 50, WINSIZEY - 100, frameX, 0);
 }
 
 DWORD CALLBACK threadFunction(LPVOID lpParameter)
@@ -396,17 +425,34 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         
 #pragma endregion
 
- //#pragma region Ramona Images
-        //	IMAGEMANAGER->addFrameImage("Ramona_Idle", "Ramona/Idle.bmp", 2070, 960, 6, 2, true, MAGENTA);
-        //	IMAGEMANAGER->addFrameImage("Ramona_Jump", "Ramona/Jump_Loop.bmp", 345, 960, 1, 2, true, MAGENTA);
-        //	IMAGEMANAGER->addFrameImage("Ramona_Fall", "Ramona/Fall.bmp", 2070, 960, 6, 2, true, MAGENTA);
-        //	IMAGEMANAGER->addFrameImage("Ramona_Walk", "Ramona/Walk.bmp", 2070, 960, 6, 2, true, MAGENTA);
-        //	IMAGEMANAGER->addFrameImage("Ramona_Land", "Ramona/Walk.bmp", 345, 960, 1, 2, true, MAGENTA);
-        //	IMAGEMANAGER->addFrameImage("Ramona_Run", "Ramona/Run.bmp", 2760, 960, 8, 2, true, MAGENTA);
-        //#pragma endregion
+#pragma region bossImage & animation
+        IMAGEMANAGER->addFrameImage("BOSS IDLE", "source/BOSS/BOSS IDLE.bmp", 2277, 600, 6, 2, true, MAGENTA);
+
+        int bossLeftIdleArr[] = { 0,1,2,3,4,5 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossLeftIdle", "BOSS IDLE", bossLeftIdleArr, 6, 6, true);
+        int bossRightIdleArr[] = { 6, 7, 8, 9, 10, 11 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossRightIdle", "BOSS IDLE", bossRightIdleArr, 6, 6, true);
+
+        IMAGEMANAGER->addFrameImage("BOSS ATTACK1", "source/BOSS/BOSS ATTACK1.bmp", 2277, 600, 6, 2, true, MAGENTA);
+
+        int bossLeftAttack1Arr[] = { 0,1,2,3,4,5 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossLeftAttack1", "BOSS ATTACK1", bossLeftAttack1Arr, 6, 6, false);
+        int bossRightAttack1Arr[] = { 6,7,8,9,10,11 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossRightAttack1", "BOSS ATTACK1", bossRightAttack1Arr, 6, 6, false);
+
+        IMAGEMANAGER->addFrameImage("BOSS ATTACK2", "source/BOSS/BOSS ATTACK2.bmp", 2277, 600, 6, 2, true, MAGENTA);
+
+        int bossLeftAttack2Arr[] = { 0,1,2,3,4,5 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossLeftAttack2", "BOSS ATTACK2", bossLeftAttack1Arr, 6, 6, false);
+        int bossRightAttack2Arr[] = { 6,7,8,9,10,11 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossRightAttack2", "BOSS ATTACK2", bossRightAttack1Arr, 6, 6, false);
 
 
-		//Sleep(1);
+#pragma endregion
+
+#pragma region devilImage & animation
+
+#pragma endregion
 
 		loadingHelper->_currentCount++;
 	}
