@@ -15,7 +15,9 @@
 #include "EnemyUp.h"
 #include "EnemyDaegi.h"
 #include "EnemyFall.h"
+#include "EnemyObjectChase.h"
 #include "player.h"
+#include "Object.h"
 
 #define ENEMYSPEED 5
 
@@ -59,6 +61,7 @@ protected:
 	CameraManager* _cm;
 
 	player* _player;
+	Object* _object;
 	image* _imageName;
 	animation* _motionName;
 	RECT _rc;
@@ -81,6 +84,7 @@ protected:
 	EnemyUp* _up;
 	EnemyDaegi* _daegi;
 	EnemyFall* _fall;
+	EnemyObjectChase* _grab;
 	
 
 	
@@ -95,6 +99,7 @@ protected:
 	float _probeX, _probeY;			//픽셀 충돌 시
 	float _jumpPower, _gravity;		//점프, 중력
 	float _distance; //플레이어와의 거리 계산
+	float _objectDistance; //오브젝트와의 거리 계산
 	float _attackRange;
 	float _searchRange;
 	float _airY;
@@ -127,6 +132,7 @@ public:
 
 	void ChaseRun();
 	void ChaseWalk();
+	void ChaseObject();
 
 	void MakeAttackRect();
 
@@ -182,6 +188,8 @@ public:
 	bool AttackSession();
 
 	bool ComboSession();
+
+	bool ObjectSession();
 
 	void SetPlayerLink(player* player) { _player = player; }
 

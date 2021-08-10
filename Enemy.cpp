@@ -32,6 +32,7 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
     _guard = new EnemyGuard;
     _daegi = new EnemyDaegi;
     _fall = new EnemyFall;
+    _grab = new EnemyObjectChase;
 
     _idle->SetEnemy(this);
     _walk->SetEnemy(this);
@@ -47,6 +48,7 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
     _guard->SetEnemy(this);
     _daegi->SetEnemy(this);
     _fall->SetEnemy(this);
+    _grab->SetEnemy(this);
 
     _state = _idle;
     _direction = 0;
@@ -111,6 +113,7 @@ void Enemy::Move()
 void Enemy::Draw()
 {
     _distance = getDistance(_player->getPosX(), _player->getPosY(), _posX, _posY);
+    _objectDistance = getDistance(_object->GetObjectPosX(), _object->GetObjectPosY(), _posX, _posY);
 
     _rendX = _posX  - _cm->getCamX();
     _rendY = _posY  - _cm->getCamY();
@@ -215,6 +218,9 @@ void Enemy::ChangeStatement()
     case ENEMYSTATEMENT::DAEGI:
         _state = _daegi;
         break;
+    case ENEMYSTATEMENT::OBJECT_GRAB:
+        _state = _grab;
+        break;
     }
     SwitchImage();
     _state->init();
@@ -261,6 +267,29 @@ void Enemy::ChaseWalk()
             _posY += 2;
         }
         if (_player->getPosY() < _posY)
+        {
+            _posY -= 2;
+        }
+    }
+}
+
+void Enemy::ChaseObject()
+{
+    if (WalkSession())
+    {
+        if (_object->GetObjectPosX() < _posX)
+        {
+            _posX -= 2;
+        }
+        if (_object->GetObjectPosX() > _posX)
+        {
+            _posX += 2;
+        }
+        if (_object->GetObjectPosY() > _posY)
+        {
+            _posY += 2;
+        }
+        if (_object->GetObjectPosY() < _posY)
         {
             _posY -= 2;
         }
@@ -327,6 +356,15 @@ bool Enemy::AttackSession()
 bool Enemy::ComboSession()
 {
     if (_enemyStatement == ENEMYSTATEMENT::ATTACK2 || _enemyStatement == ENEMYSTATEMENT::ATTACK4)
+    {
+        return true;
+    }
+    return false;
+}
+
+bool Enemy::ObjectSession()
+{
+    if (_objectDistance < 500)
     {
         return true;
     }
