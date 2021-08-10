@@ -17,7 +17,9 @@ enum class Statement
 	ATTACK,
 	DAMAGED,
 	DOWN,
-	GETUP
+	GETUP,
+	GUARD
+
 };
 
 class player : public gameNode
