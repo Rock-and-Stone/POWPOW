@@ -62,6 +62,8 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
     _posY = position.y;
     _airY = 0;
 
+    _hp = 100;
+
     _gravity = _jumpPower = 0;
 
     _isAir = false;
@@ -120,6 +122,12 @@ void Enemy::Draw()
 
     _imageName->aniRender(getMemDC(), _rc.left , _rc.top, _motionName);
     LineMake(getMemDC(), _rendX, _rendY, _player->getRendX(), _player->getRendY());
+    if (KEYMANAGER->isToggleKey(VK_TAB))
+    {
+        Rectangle(getMemDC(), _attackRect);
+        Rectangle(getMemDC(), _attackComboRect);
+    }
+   
 
 }
 
@@ -259,6 +267,30 @@ void Enemy::ChaseWalk()
     }
 }
 
+void Enemy::MakeAttackRect()
+{
+    if (AttackSession())
+    {
+        if (_direction == 0)
+        {
+            _attackRect = RectMakeCenter(_rendX-60, _rendY, 50, 50);
+        }
+        else  _attackRect = RectMakeCenter(_rendX + 60, _rendY, 50, 50);
+       
+    }
+    else _attackRect = RectMakeCenter(0, 0, 0, 0);
+
+    if (ComboSession())
+    {
+        if (_direction == 0)
+        {
+            _attackComboRect = RectMakeCenter(_rendX - 60, _rendY, 50, 50);
+        }
+        else _attackComboRect = RectMakeCenter(_rendX + 60, _rendY, 50, 50);
+    }
+    else _attackComboRect = RectMakeCenter(0, 0, 0, 0);
+}
+
 float Enemy::getRenderPosY()
 {
     return _posY;
@@ -285,14 +317,23 @@ bool Enemy::WalkSession()
 
 bool Enemy::AttackSession()
 {
-    if (ChaseSession() && _distance <= 82)
+    if (ChaseSession() && _distance <= 82 && _enemyStatement != ENEMYSTATEMENT::DAEGI && _enemyStatement != ENEMYSTATEMENT::ATTACK2 && _enemyStatement != ENEMYSTATEMENT::ATTACK4)
     {
         return true;
     }
     return false;
 }
 
-void Enemy::HitDamage()
+bool Enemy::ComboSession()
+{
+    if (_enemyStatement == ENEMYSTATEMENT::ATTACK2 || _enemyStatement == ENEMYSTATEMENT::ATTACK4)
+    {
+        return true;
+    }
+    return false;
+}
+
+void Enemy::HitDamage(int Damage)
 {
     _rndSelection = RND->getInt(2);
 
@@ -309,9 +350,6 @@ void Enemy::HitDamage()
             ChangeStatement();
         }
     }
-   
-   
-  
 }
 
 

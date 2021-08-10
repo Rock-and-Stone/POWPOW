@@ -67,6 +67,9 @@
     <Filter Include="playGround\Enemy\EnemyState">
       <UniqueIdentifier>{a05efe7d-e032-494e-b7ec-49e985494037}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\Object">
+      <UniqueIdentifier>{6e8ff884-637d-4526-870e-1c1166b60f86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -228,9 +231,6 @@
     <ClInclude Include="EnemyJump.h">
       <Filter>playGround\Enemy\EnemyState</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyManager.h">
-      <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyRun.h">
       <Filter>playGround\Enemy\EnemyState</Filter>
     </ClInclude>
@@ -257,6 +257,18 @@
     </ClInclude>
     <ClInclude Include="volumeProgressBar.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>playGround\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>playGround\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>playGround\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Bat.h">
+      <Filter>playGround\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -407,9 +419,6 @@
     <ClCompile Include="EnemyJump.cpp">
       <Filter>playGround\Enemy\EnemyState</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyManager.cpp">
-      <Filter>playGround\Enemy\EnemyState</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyRun.cpp">
       <Filter>playGround\Enemy\EnemyState</Filter>
     </ClCompile>
@@ -436,6 +445,18 @@
     </ClCompile>
     <ClCompile Include="volumeProgressBar.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>playGround\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>playGround\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>playGround\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Bat.cpp">
+      <Filter>playGround\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

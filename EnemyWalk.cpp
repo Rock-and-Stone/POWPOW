@@ -5,7 +5,7 @@
 HRESULT EnemyWalk::init()
 {
 	//카운트 랜덤으로 주기
-	_count = RND->getInt(3);
+	_count = RND->getInt(2);
 	return S_OK;
 }
 
@@ -33,12 +33,6 @@ void EnemyWalk::update()
 			_enemy->ChangeStatement();
 			_enemy->SetEnemyStatement(ENEMYSTATEMENT::ATTACK3);
 		}
-		if (_count == 2)
-		{
-			_enemy->ChangeStatement();
-			_enemy->SetEnemyStatement(ENEMYSTATEMENT::JUMP);
-		}
-		
 	}
 }
 

@@ -27,6 +27,7 @@ void Luke::update()
 	_state->update();
 	Move();
     TracePlayer();
+    MakeAttackRect();
 }
 
 void Luke::SwitchImage()

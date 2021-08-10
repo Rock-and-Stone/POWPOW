@@ -8,6 +8,7 @@
 #include "UserInterface.h"
 #include "Enemy.h"
 #include "EnemyManager.h"
+#include "ObjectManager.h"
 
 #define ARRSIZE 10
 
@@ -19,6 +20,7 @@ private:
 	UserInterface* _ui;
 	EnemyManager* _em;
 	Enemy* _enemy;
+	ObjectManager* _om;
 
 	int _posX;
 	int _posY;

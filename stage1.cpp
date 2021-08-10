@@ -21,6 +21,12 @@ HRESULT stage1::init()
 	_em->SetMike();
 	_em->SetMalcolm();
 
+	_om = new ObjectManager;
+	_om->init();
+	_om->SetPlayerLink(_player);
+	_om->SetCamera(_cm);
+	_om->SetBat();
+
 	_ui = new UserInterface;
 	_ui->init();
 	
@@ -38,6 +44,8 @@ void stage1::update()
 		_cm->update(_player->getPosX(), _player->getPosY());
 
 		_em->update();
+
+		_om->update();
 #pragma region 언덕카메라무브
 
 		if (_player->getPosX() >= 24765)
@@ -72,6 +80,7 @@ void stage1::render()
 	_player->setRendY(_cm->getRenderPosY());
 
 	_em->render();
+	_om->render();
 	EFFECTMANAGER->render();
 	RENDERMANAGER->render(getMemDC());
 

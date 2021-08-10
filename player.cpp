@@ -185,6 +185,12 @@ void player::Collision()
 
 void player::hitDamage(int damage)
 {
+
+	if (_statement != Statement::GUARD)
+	{
+		
+	}
+	
 }
 
 void player::ChangeState(Statement statement)

@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="action.h" />
     <ClInclude Include="animation.h" />
+    <ClInclude Include="Bat.h" />
     <ClInclude Include="button.h" />
     <ClInclude Include="cafeScene.h" />
     <ClInclude Include="CameraManager.h" />
@@ -184,6 +185,8 @@
     <ClInclude Include="Luke.h" />
     <ClInclude Include="Malcolm.h" />
     <ClInclude Include="Mike.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="playGround.h" />
@@ -214,6 +217,7 @@
   <ItemGroup>
     <ClCompile Include="action.cpp" />
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="Bat.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="cafeScene.cpp" />
     <ClCompile Include="CameraManager.cpp" />
@@ -248,6 +252,8 @@
     <ClCompile Include="Luke.cpp" />
     <ClCompile Include="Malcolm.cpp" />
     <ClCompile Include="Mike.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
