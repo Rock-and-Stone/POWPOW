@@ -18,7 +18,7 @@ HRESULT RenderManager::init()
 
 void RenderManager::release()
 {
-
+	_vRender.clear();
 }
 
 void RenderManager::update()
@@ -31,7 +31,9 @@ void RenderManager::render(HDC hdc)
 {
 	char str[128];
 	int i = 0;
-	/*SetTextColor(hdc, RGB(255, 255, 255));
+
+	/*
+	SetTextColor(hdc, RGB(255, 255, 255));
 	char str[128];
 	for (int i = 0; i < ARRSIZE; i++)
 	{
