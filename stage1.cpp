@@ -65,6 +65,9 @@ void stage1::update()
 	}
 
 	_ui->update();
+
+	pixelCollision();
+
 	EFFECTMANAGER->update();
 	RENDERMANAGER->update();
 }
@@ -78,8 +81,7 @@ void stage1::render()
 	IMAGEMANAGER->findImage("background")->render(getMemDC(), 0, 0, _cm->getCamX(), _cm->getCamY(), WINSIZEX, WINSIZEY);
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
-		IMAGEMANAGER->findImage("¹è°æÇÈ¼¿")->render(getMemDC(), 0, 0, _cm->getCamX(), _cm->getCamY(), WINSIZEX, WINSIZEY);
-
+		IMAGEMANAGER->findImage("col")->render(getMemDC(), 0, 0, _cm->getCamX(), _cm->getCamY(), WINSIZEX, WINSIZEY);
 	}
 	
 
@@ -88,6 +90,8 @@ void stage1::render()
 
 	_em->render();
 	_om->render();
+
+
 
 	EFFECTMANAGER->render();
 	RENDERMANAGER->render(getMemDC());
@@ -114,9 +118,58 @@ void stage1::render()
 	sprintf_s(str, "render Y : %d", _cm->getRenderPosY());
 	TextOut(getMemDC(), 100, 150, str, strlen(str));
 
+
+
+	
 	//RENDERMANAGER->render(getMemDC());
 	TIMEMANAGER->render(getMemDC());
 
 #pragma endregion
 
+}
+
+void stage1::pixelCollision()
+{
+	//ÇÈ¼¿ ÄÝ¸®Àü
+	_probePlayerX = _player->getPosX();
+	_probePlayerY = _player->getPosY() + 91;
+
+	for (int i = _probePlayerY; i < _probePlayerY + 1; ++i)
+	{
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), _player->getPosX(), i);
+
+		_r = GetRValue(color);
+		_g = GetGValue(color);
+		_b = GetBValue(color);
+
+		if ((_r == 255 && _g == 0 && _b == 0))
+		{
+			SCENEMANAGER->changeScene("cafeScene");
+		}
+
+		if ((_r == 0 && _g == 255 && _b == 0))
+		{
+			SCENEMANAGER->changeScene("restaurantScene");
+		}
+
+		if ((_r == 0 && _g == 0 && _b == 255))
+		{
+			SCENEMANAGER->changeScene("convenientScene");
+		}
+
+		if ((_r == 0 && _g == 255 && _b == 255))
+		{
+			SCENEMANAGER->changeScene("sushiScene");
+		}
+
+		if ((_r == 0 && _g == 0 && _b == 0))
+		{
+			SCENEMANAGER->changeScene("bossScene");
+		}
+
+		if ((_r == 255 && _g == 0 && _b == 255))
+		{
+			_player->setSpeedY(0);
+		}
+	}
 }

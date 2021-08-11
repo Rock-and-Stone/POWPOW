@@ -25,6 +25,9 @@ private:
 	int _posX;
 	int _posY;
 
+	int _probePlayerX, _probePlayerY;
+	int _probeEnemyX, _probeEnemyY;
+
 	char* _str;
 
 	int _power;
@@ -33,11 +36,15 @@ private:
 
 	int _arr[ARRSIZE] = { 2 , 5 ,1 , 4 , 7 , 8 , 9, 3, 11, 10 };
 
+	int _r, _g, _b;
+
 
 public : 
 	virtual HRESULT init();
 	virtual void update();
 	virtual void release();
 	virtual void render();
+
+	void pixelCollision();
 };
 

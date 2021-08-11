@@ -38,7 +38,7 @@ HRESULT player::init()
 	_state = _idle;
 
 #pragma region Variables
-	_posX = 1000;
+	_posX = 10000;
 	_groundY = 500;
 	_posY = _groundY + _airY;
 
