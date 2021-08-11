@@ -23,7 +23,6 @@ HRESULT volumeProgressBar::init(int x, int y, int width, int height)
 
 	_width = _progressBarTop->getWidth();
 
-
 	return S_OK;
 }
 
