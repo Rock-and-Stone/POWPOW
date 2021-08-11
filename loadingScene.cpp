@@ -560,6 +560,16 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 
 #pragma endregion
 
+#pragma region Shop
+        IMAGEMANAGER->addImage("SHOP_CAFE", "SHOP/SHOP_CAFE.bmp", 1600, 900, true, MAGENTA);
+        IMAGEMANAGER->addImage("SHOP_CONVENIENT", "SHOP/SHOP_CONVENIENTSTORE.bmp", 1600, 900, true, MAGENTA);
+        IMAGEMANAGER->addImage("SHOP_RESTAURANT", "SHOP/SHOP_RESTAURANT.bmp", 1600, 900, true, MAGENTA);
+        IMAGEMANAGER->addImage("SHOP_SUSHI", "SHOP/SHOP_SUSHI.bmp", 1600, 900, true, MAGENTA);
+        IMAGEMANAGER->addImage("shopsceneBox", "SHOP/shopsceneBox.bmp", 400, 200, true, MAGENTA);
+
+
+#pragma endregion
+
 #pragma region devilImage & animation
 
 #pragma endregion

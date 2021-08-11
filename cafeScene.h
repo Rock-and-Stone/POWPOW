@@ -4,7 +4,9 @@ class cafeScene :
     public gameNode
 {
 private:
-	image* _background;
+	image* _select;
+	RECT _rc;
+	float _x, _y;
 
 public:
 	cafeScene();
@@ -14,5 +16,7 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	void Interaction();
 };
 

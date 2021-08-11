@@ -9,6 +9,10 @@
 #include "loadingScene.h"
 #include "settingScene.h"
 #include "bossScene.h"
+#include "cafeScene.h"
+#include "convenientScene.h"
+#include "sushiScene.h"
+#include "restaurantScene.h"
 
 
 

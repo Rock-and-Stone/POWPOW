@@ -11,7 +11,11 @@ convenientScene::~convenientScene()
 
 HRESULT convenientScene::init()
 {
-	_background = IMAGEMANAGER->addImage("convenientScene", "SHOP/SHOP_CONVENIENTSTORE.bmp", 1600, 900, true, RGB(255, 0, 255));
+	_x = 1200;
+	_y = 0;
+
+	_select = IMAGEMANAGER->findImage("shopsceneBox");
+	_rc = RectMake(_x, _y, _select->getWidth(), _select->getHeight());
 
 	return S_OK;
 }
@@ -22,8 +26,35 @@ void convenientScene::release()
 
 void convenientScene::update()
 {
+	if (KEYMANAGER->isOnceKeyDown(VK_DOWN) && _y < 200)
+	{
+		_y += 200;
+	}
+	if (KEYMANAGER->isOnceKeyDown(VK_UP) && _y > 0)
+	{
+		_y -= 200;
+	}
+	Interaction();
 }
 
 void convenientScene::render()
 {
+	IMAGEMANAGER->findImage("SHOP_CONVENIENT")->render(getMemDC(), 0, 0);
+	_select->render(getMemDC(), _x, _y);
+}
+
+void convenientScene::Interaction()
+{
+	//풍선껌: 플레이어 STR&&DEF 10 증가 , COIN == 200원
+	if (KEYMANAGER->isOnceKeyDown(VK_RETURN) && _y == 0)
+	{
+		//coin - 200원
+		//_player->setSTR || setDEF() +10;
+	}
+	//카페라떼: 플레이어 SPD&GP 10 증가, COIN == 200원
+	if (KEYMANAGER->isOnceKeyDown(VK_RETURN) && _y == 200)
+	{
+		//coin -200원
+		//_player->setSPD || setDEF() +10;
+	}
 }

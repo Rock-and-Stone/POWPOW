@@ -26,6 +26,7 @@ HRESULT stage1::init()
 	_om->SetPlayerLink(_player);
 	_om->SetCamera(_cm);
 	_om->SetBat();
+	_om->SetTrash();
 
 	_ui = new UserInterface;
 	_ui->init();
