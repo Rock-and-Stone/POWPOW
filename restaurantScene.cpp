@@ -21,9 +21,9 @@ HRESULT restaurantScene::init()
 	_ui->init();
 
 
-	SOUNDMANAGER->addSound("상점", "상점.mp3", true, true);
+	
 
-	SOUNDMANAGER->play("상점", getBGMVolume());
+	SOUNDMANAGER->play("상점", getBGMVolume()/10);
 
 	return S_OK;
 }
@@ -34,19 +34,24 @@ void restaurantScene::release()
 
 void restaurantScene::update()
 {
-	if (KEYMANAGER->isOnceKeyDown(VK_DOWN) && _y < 600)
+	if (!_ui->GetIsPause())
 	{
-		_y += 200;
+		if (KEYMANAGER->isOnceKeyDown(VK_DOWN) && _y < 600)
+		{
+			_y += 200;
+		}
+		if (KEYMANAGER->isOnceKeyDown(VK_UP) && _y > 0)
+		{
+			_y -= 200;
+		}
+		if (KEYMANAGER->isOnceKeyDown('Q'))
+		{
+			SOUNDMANAGER->stop("상점");
+			SCENEMANAGER->changeScene("stage1");
+		}
+		Interaction();
 	}
-	if (KEYMANAGER->isOnceKeyDown(VK_UP) && _y > 0)
-	{
-		_y -= 200;
-	}
-	if (KEYMANAGER->isOnceKeyDown('Q'))
-	{
-		SCENEMANAGER->changeScene("stage1");
-	}
-	Interaction();
+	
 
 	_ui->update();
 }

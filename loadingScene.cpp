@@ -119,7 +119,21 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 
 
 #pragma region 사운드 추가
-
+        SOUNDMANAGER->addSound("상점", "source/music/상점.mp3", true, true);
+        SOUNDMANAGER->addSound("인게임", "source/music/인게임.mp3", true, true);
+        SOUNDMANAGER->addSound("보스방", "source/music/보스방.mp3", true, true);
+        SOUNDMANAGER->addSound("강펀치", "source/music/효과음/강펀치.mp3", true, true);
+        SOUNDMANAGER->addSound("고고", "source/music/효과음/고고.mp3", true, true);
+        SOUNDMANAGER->addSound("동전먹기", "source/music/효과음/동전먹기.mp3", true, true);
+        SOUNDMANAGER->addSound("막기", "source/music/효과음/막기.mp3", true, true);
+        SOUNDMANAGER->addSound("문열기", "source/music/효과음/문열기.mp3", true, true);
+        SOUNDMANAGER->addSound("보스에네르기파", "source/music/효과음/보스에네르기파.mp3", true, true);
+        SOUNDMANAGER->addSound("악마누나쏘고사라지는소리", "source/music/효과음/악마누나쏘고사라지는소리.mp3", true, true);
+        SOUNDMANAGER->addSound("악마패턴1", "source/music/효과음/악마패턴1.mp3", true, true);
+        SOUNDMANAGER->addSound("펀치", "source/music/효과음/펀치.mp3", true, true);
+        SOUNDMANAGER->addSound("허공펀치", "source/music/효과음/허공펀치.mp3", true, true);
+        SOUNDMANAGER->addSound("휘리릭킥", "source/music/효과음/휘리릭킥.mp3", true, true);
+ 
 
 #pragma endregion
         //루크 이미지 저장소

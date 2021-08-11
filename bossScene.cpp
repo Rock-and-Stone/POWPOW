@@ -14,6 +14,7 @@ HRESULT bossScene::init()
 
 #pragma endregion
 
+	SOUNDMANAGER->play("º¸½º¹æ", getBGMVolume() / 10);
 	_boss = new boss;
 	_boss->init();
 
@@ -43,7 +44,7 @@ void bossScene::update()
 		MCIWndDestroy(_bossIntro);
 		SCENEMANAGER->SetVideoPlay(false);
 	}
-	if (KEYMANAGER->isOnceKeyDown(VK_RETURN))
+	if (KEYMANAGER->isOnceKeyDown('Q'))
 	{
 
 		if (SCENEMANAGER->GetVideoPlay())
