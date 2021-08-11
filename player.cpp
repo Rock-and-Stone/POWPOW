@@ -14,7 +14,7 @@ HRESULT player::InitVariables()
 	return S_OK;
 }
 
-HRESULT player::init()
+HRESULT player::init(float posX, float posY)
 {
 
 	_idle = new Idle;
@@ -38,8 +38,8 @@ HRESULT player::init()
 	_state = _idle;
 
 #pragma region Variables
-	_posX = 1000;
-	_groundY = 500;
+	_posX = posX;
+	_groundY = posY;
 	_posY = _groundY + _airY;
 
 	_maxSpeedX = MAXSPEEDX;
@@ -79,7 +79,6 @@ void player::release()
 
 void player::update()
 {
-
 }
 
 void player::render()
@@ -243,7 +242,6 @@ void player::ChangeState(Statement statement)
 		_hitCount = 0;
 		break;
 	}
-
 	_state->init();
 }
 

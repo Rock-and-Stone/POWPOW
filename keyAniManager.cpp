@@ -50,8 +50,6 @@ void keyAniManager::addDefaultFrameAnimation(string animationKeyName, const char
 	ani->setFPS(fps);
 
 	_mTotalAnimation.insert(pair<string, animation*>(animationKeyName, ani));
-
-
 }
 
 void keyAniManager::addDefaultFrameAnimation(string animationKeyName, const char * imageKeyName, int fps, bool reverse, bool loop, void * cbFunction)
