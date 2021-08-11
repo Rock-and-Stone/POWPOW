@@ -3,7 +3,7 @@
 
 HRESULT stage1::init()
 {
-
+	RENDERMANAGER->release();
 	_player = new Ramona;
 	_player->init();
 	_player->InitVariables();
@@ -128,48 +128,103 @@ void stage1::render()
 
 }
 
+//========================
+//원래는 SETPOSY로 밀어주는게 제일 좋은데 잘 안됨
+//픽셀 검출은 잘 되는데 왜이러는지 미스테리
+
 void stage1::pixelCollision()
 {
 	//픽셀 콜리전
-	_probePlayerX = _player->getPosX();
-	_probePlayerY = _player->getPosY() + 91;
-
-	for (int i = _probePlayerY; i < _probePlayerY + 1; ++i)
+	_probePlayerX = _player->getPosX();				//플레이어 중앙 부분
+	_probePlayerY = _player->getPosY();
+	_probePlayerRX = _player->getPosX() + 40;		//플레이어 오른쪽부분
+	_probePlayerLX = _player->getPosX() - 40;		//플레이어 왼쪽부분
+	_probePlayerBY = _player->getPosY() + 90;		//플레이어 발 부분
+	
+	
+	//플레이어 렉트 아랫부분에 충돌했을 때 (마젠타가 플레이어 발보다 위에 있을 때 )
+	for (int i = _probePlayerBY - 1; i < _probePlayerBY; ++i)
 	{
 		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), _player->getPosX(), i);
 
-		_r = GetRValue(color);
-		_g = GetGValue(color);
-		_b = GetBValue(color);
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
 
-		if ((_r == 255 && _g == 0 && _b == 0))
+		if ((r == 255 && g == 0 && b == 0))
 		{
 			SCENEMANAGER->changeScene("cafeScene");
 		}
 
-		if ((_r == 0 && _g == 255 && _b == 0))
+		if ((r == 0 && g == 255 && b == 0))
 		{
 			SCENEMANAGER->changeScene("restaurantScene");
 		}
 
-		if ((_r == 0 && _g == 0 && _b == 255))
+		if ((r == 0 && g == 0 && b == 255))
 		{
 			SCENEMANAGER->changeScene("convenientScene");
 		}
 
-		if ((_r == 0 && _g == 255 && _b == 255))
+		if ((r == 0 && g == 255 && b == 255))
 		{
 			SCENEMANAGER->changeScene("sushiScene");
 		}
 
-		if ((_r == 0 && _g == 0 && _b == 0))
+		if ((r == 0 && g == 0 && b == 0))
 		{
 			SCENEMANAGER->changeScene("bossScene");
 		}
 
-		if ((_r == 255 && _g == 0 && _b == 255))
+		//마젠타가 위에 있을 때
+		if ((r == 255 && g == 0 && b == 255))
 		{
-			_player->setSpeedY(0);
+			_player->setSpeedY(-2);
 		}
 	}
+
+	//픽셀 우 충돌 
+	for (int i = _probePlayerRX; i < _probePlayerRX + 1; ++i)
+	{
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), i, _player->getPosY());
+
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+
+		if ((r == 255 && g == 0 && b == 255))
+		{
+			_player->setSpeedX(-2);
+		}
+	}
+	//픽셀 좌 충돌
+	for (int i = _probePlayerLX - 1; i < _probePlayerLX; ++i)
+	{
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), i, _player->getPosY());
+
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+
+		if ((r == 255 && g == 0 && b == 255))
+		{
+			_player->setSpeedX(-2);
+		}
+	}
+
+	//픽셀 하 충돌
+	for (int i = _probePlayerBY; i < _probePlayerBY + 1; ++i)
+	{
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), _player->getPosX(), i);
+
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+
+		if ((r == 255 && g == 0 && b == 255))
+		{
+			_player->setSpeedY(-2);
+		}
+	}
+
 }

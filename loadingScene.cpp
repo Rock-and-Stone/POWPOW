@@ -101,7 +101,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
     	IMAGEMANAGER->addImage("title", "source/titleImage.bmp", WINSIZEX, WINSIZEY, false, RGB(255, 0, 255));
 		IMAGEMANAGER->addImage("sushiScene", "SHOP/SHOP_SUSHI.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 		IMAGEMANAGER->addImage("background", "source/Level 1 - Frozen Suburbs.bmp", 31812, 1000, true, RGB(255,0,255));
-		IMAGEMANAGER->addImage("배경", "source/backdu bisch ein archground.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
+		//IMAGEMANAGER->addImage("배경", "source/backdu bisch ein archground.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 		IMAGEMANAGER->addImage("settingBackGround", "source/settingScene.bmp", WINSIZEX, WINSIZEY, true, MAGENTA);
 		IMAGEMANAGER->addImage("mainMenu", "source/mainMenu.bmp", WINSIZEX, WINSIZEY, false, MAGENTA);
 		IMAGEMANAGER->addImage("mainMenubox", "source/mainmenubox.bmp", 200, 50, true, MAGENTA);
