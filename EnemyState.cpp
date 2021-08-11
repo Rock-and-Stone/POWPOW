@@ -12,7 +12,10 @@ EnemyState::~EnemyState()
 
 HRESULT EnemyIdle::init()
 {
-
+	_enemy->setIsChange(false);
+	_enemy->SetIsAir(false);
+	_enemy->setSpeedX(0);
+	_enemy->setSpeedY(0);
 	return S_OK;
 }
 
@@ -22,70 +25,85 @@ void EnemyIdle::release()
 
 void EnemyIdle::update()
 {
-	if (_enemy->ChaseSession())
+	if(_enemy->getIsChange())
 	{
-		_enemy->SetEnemyStatement(ENEMYSTATEMENT::RUN);
-		_enemy->ChangeStatement();
+		if (_enemy->AttackSession()) _enemy->ChangeStatement(ENEMYSTATEMENT::ATTACK);
+
+		else if (_enemy->ChaseSession())
+		{
+			_enemy->ChangeStatement(ENEMYSTATEMENT::WALK);
+		}
+
+		else _enemy->ChangeStatement(ENEMYSTATEMENT::WANDER);
 	}
 }
 
 
-HRESULT EnemyWalk::init()
+HRESULT EnemyMove::init()
 {
-	//카운트 랜덤으로 주기
-	_count = RND->getInt(2);
+	//rndX = RND->getFromIntTo(-1, 2);
+	//rndY = RND->getFromIntTo(-1, 2);
+
+	while (rndX == 0 && rndY == 0)
+	{
+		rndX = RND->getFromIntTo(-1, 2);
+		rndY = RND->getFromIntTo(-1, 2);
+	}
+
+	_enemy->setWanderDirX(rndX);
+	_enemy->setWanderDirY(rndY);
+
+	_enemy->setIsChange(false);
 	return S_OK;
 }
 
-void EnemyWalk::release()
+void EnemyMove::release()
 {
 }
 
-void EnemyWalk::update()
+void EnemyMove::update()
 {
-	if (_enemy->WalkSession())
-	{
-		_enemy->ChaseWalk();
-	}
+	_enemy->setSpeedX(_enemy->getSpeedX() + 2.0f);
+	_enemy->setSpeedY(_enemy->getSpeedY() + 1.0f);
 
-	//지금이 어택이 가능한상태인가?
-	if (_enemy->AttackSession())
+	if (_enemy->GetEnemyStatement() == ENEMYSTATEMENT::WANDER)
 	{
-		if (_count == 0)
+		if (_enemy->getIsChange())
 		{
-			_enemy->ChangeStatement();
-			_enemy->SetEnemyStatement(ENEMYSTATEMENT::ATTACK);
+			if (_enemy->AttackSession())	_enemy->ChangeStatement(ENEMYSTATEMENT::ATTACK);
+
+			else if (_enemy->ChaseSession())
+			{
+				_enemy->ChangeStatement(ENEMYSTATEMENT::WALK);
+			}
+
+			else _enemy->ChangeStatement(ENEMYSTATEMENT::IDLE);
 		}
 	}
-}
 
-
-HRESULT EnemyRun::init()
-{
-	return S_OK;
-}
-
-void EnemyRun::release()
-{
-}
-
-void EnemyRun::update()
-{
-	if (_enemy->ChaseSession())
+	else
 	{
-		_enemy->ChaseRun();
+		if (_enemy->AttackSession())	_enemy->ChangeStatement(ENEMYSTATEMENT::ATTACK);
+
+		if (_enemy->getIsChange())
+		{
+			
+			if (!_enemy->ChaseSession())
+			{
+				int rnd = RND->getInt(2);
+
+				if(rnd == 0)_enemy->ChangeStatement(ENEMYSTATEMENT::WANDER);
+				else _enemy->ChangeStatement(ENEMYSTATEMENT::IDLE);
+			}
+		}
 	}
 
-	//지금이 어택이 가능한상태인가?
-	if (_enemy->AttackSession())
-	{
-		_enemy->ChangeStatement();
-		_enemy->SetEnemyStatement(ENEMYSTATEMENT::ATTACK);
-	}
 }
+
 
 HRESULT EnemyJump::init()
 {
+	_enemy->setIsChange(false);
 	_enemy->SetJumpPower(8.0f);
 	_enemy->SetIsAir(true);
 	return S_OK;
@@ -100,13 +118,13 @@ void EnemyJump::update()
 
 	if (_enemy->GetMotionName()->GetNowPlayIdx() == 4)
 	{
-		_enemy->SetEnemyStatement(ENEMYSTATEMENT::FALL);
-		_enemy->ChangeStatement();
+		_enemy->ChangeStatement(ENEMYSTATEMENT::FALL);
 	}
 }
 
 HRESULT EnemyFall::init()
 {
+	_enemy->setIsChange(false);
 	return S_OK;
 }
 
@@ -121,6 +139,9 @@ void EnemyFall::update()
 
 HRESULT EnemyAttack::init()
 {
+	_enemy->setIsChange(false);
+	_enemy->setIsAttack(true);
+	_enemy->setIsTrace(false);
 	return S_OK;
 }
 
@@ -130,11 +151,9 @@ void EnemyAttack::release()
 
 void EnemyAttack::update()
 {
-	if (_enemy->GetMotionName()->GetNowPlayIdx() == 3)
+	if (!_enemy->GetMotionName()->isPlay())
 	{
-		_enemy->SetEnemyStatement(ENEMYSTATEMENT::ATTACK);
-		_enemy->ChangeStatement();
-		_enemy->ComboSession();
+		_enemy->ChangeStatement(ENEMYSTATEMENT::IDLE);
 	}
 }
 
@@ -144,7 +163,7 @@ HRESULT EnemyDamaged::init()
 	//IMAGEMANAGER->addImage("attackEffect", "source/effect/attackEffect.bmp", 350, 50, true, MAGENTA);
 	//EFFECTMANAGER->addEffect("attackEffect1", "source/effect/attackEffect.bmp", 350, 50, 50, 50, 1, 0.08f, 1000);
 	_enemy->SetEnemyHP(_enemy->GetEnemyHP() - 10);
-
+	_enemy->setIsTrace(false);
 	if (_enemy->GetEnemyDirection() == 0)
 	{
 		EFFECTMANAGER->play("attackEffect1", _enemy->GetEnemyRendX() - 40, _enemy->GetEnemyRendY());
@@ -166,19 +185,18 @@ void EnemyDamaged::update()
 {
 	if (_enemy->GetEnemyHP() == 0)
 	{
-		_enemy->SetEnemyStatement(ENEMYSTATEMENT::DOWN);
-		_enemy->ChangeStatement();
+		_enemy->ChangeStatement(ENEMYSTATEMENT::DOWN);
 	}
 	if (_enemy->GetMotionName()->GetNowPlayIdx() == 4)
 	{
-		_enemy->SetEnemyStatement(ENEMYSTATEMENT::IDLE);
-		_enemy->ChangeStatement();
+		_enemy->ChangeStatement(ENEMYSTATEMENT::IDLE);
 	}
 }
 
 
 HRESULT EnemyDown::init()
 {
+	_enemy->setIsTrace(false);
 	return S_OK;
 }
 
@@ -195,6 +213,7 @@ void EnemyDown::update()
 
 HRESULT EnemyGuard::init()
 {
+	_enemy->setIsTrace(false);
 
 	if (_enemy->GetEnemyDirection() == 0)
 	{
@@ -214,15 +233,15 @@ void EnemyGuard::release()
 
 void EnemyGuard::update()
 {
-	if (_enemy->GetMotionName()->GetNowPlayIdx() == 2)
+	if (!_enemy->GetMotionName()->isPlay())
 	{
-		_enemy->SetEnemyStatement(ENEMYSTATEMENT::IDLE);
-		_enemy->ChangeStatement();
+		_enemy->ChangeStatement(ENEMYSTATEMENT::IDLE);
 	}
 }
 
 HRESULT EnemyGetUp::init()
 {
+	_enemy->setIsTrace(false);
 	return S_OK;
 }
 
