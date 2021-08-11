@@ -76,12 +76,19 @@ void stage1::release()
 void stage1::render()
 {
 	IMAGEMANAGER->findImage("background")->render(getMemDC(), 0, 0, _cm->getCamX(), _cm->getCamY(), WINSIZEX, WINSIZEY);
+	if (KEYMANAGER->isToggleKey(VK_TAB))
+	{
+		IMAGEMANAGER->findImage("¹è°æÇÈ¼¿")->render(getMemDC(), 0, 0, _cm->getCamX(), _cm->getCamY(), WINSIZEX, WINSIZEY);
+
+	}
 	
+
 	_player->setRendX(_cm->getRenderPosX());
 	_player->setRendY(_cm->getRenderPosY());
 
 	_em->render();
 	_om->render();
+
 	EFFECTMANAGER->render();
 	RENDERMANAGER->render(getMemDC());
 

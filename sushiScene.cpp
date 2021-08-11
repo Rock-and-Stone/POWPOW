@@ -21,6 +21,10 @@ HRESULT sushiScene::init()
 
 	SOUNDMANAGER->play("»óÁ¡", getBGMVolume());
 
+	_ui = new UserInterface;
+	_ui->init();
+
+
 	return S_OK;
 
 }
@@ -40,12 +44,16 @@ void sushiScene::update()
 		_y -= 200;
 	}
 	Interaction();
+
+	_ui->update();
 }
 
 void sushiScene::render()
 {
 	IMAGEMANAGER->findImage("SHOP_SUSHI")->render(getMemDC(), 0, 0);
 	_select->render(getMemDC(), _x, _y);
+
+	_ui->render();
 }
 
 void sushiScene::Interaction()

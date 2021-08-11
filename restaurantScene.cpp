@@ -17,6 +17,10 @@ HRESULT restaurantScene::init()
 	_select = IMAGEMANAGER->findImage("shopsceneBox");
 	_rc = RectMake(_x, _y, _select->getWidth(), _select->getHeight());
 
+	_ui = new UserInterface;
+	_ui->init();
+
+
 	SOUNDMANAGER->addSound("상점", "상점.mp3", true, true);
 
 	SOUNDMANAGER->play("상점", getBGMVolume());
@@ -39,12 +43,16 @@ void restaurantScene::update()
 		_y -= 200;
 	}
 	Interaction();
+
+	_ui->update();
 }
 
 void restaurantScene::render()
 {
 	IMAGEMANAGER->findImage("SHOP_RESTAURANT")->render(getMemDC(), 0, 0);
 	_select->render(getMemDC(), _x, _y);
+
+	_ui->render();
 }
 
 void restaurantScene::Interaction()

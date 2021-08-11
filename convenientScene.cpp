@@ -17,6 +17,9 @@ HRESULT convenientScene::init()
 	_select = IMAGEMANAGER->findImage("shopsceneBox");
 	_rc = RectMake(_x, _y, _select->getWidth(), _select->getHeight());
 
+	_ui = new UserInterface;
+	_ui->init();
+
 	return S_OK;
 }
 
@@ -35,12 +38,16 @@ void convenientScene::update()
 		_y -= 200;
 	}
 	Interaction();
+
+	_ui->update();
 }
 
 void convenientScene::render()
 {
 	IMAGEMANAGER->findImage("SHOP_CONVENIENT")->render(getMemDC(), 0, 0);
 	_select->render(getMemDC(), _x, _y);
+
+	_ui->render();
 }
 
 void convenientScene::Interaction()
