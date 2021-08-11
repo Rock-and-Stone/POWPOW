@@ -11,6 +11,9 @@ private:
 	//box rect
 	RECT _rc;
 	int _selectNum;
+	float _currentBGMVolume;
+	float _currentSFXVolume;
+
 
 public:
 	virtual HRESULT init();

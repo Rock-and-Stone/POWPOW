@@ -3,20 +3,21 @@
 
 HRESULT settingScene::init()
 {
-
-
 	IMAGEMANAGER->addImage("settingSceneBox", "source/settingSceneBox.bmp", 250, 50, true, RGB(255, 0, 255));
 
 	_selectNum = 0;
-	_rc = RectMake(190, 163 + (_selectNum * 67), 250, 50);
 
+	_rc = RectMake(190, 163 + (_selectNum * 67), 250, 50);
 	_BGMbar = new volumeProgressBar;
 	_BGMbar->init(300, 400, 400, 100);
-	_BGMbar->setGauge(getBGMVolume(), 1.0f);
+	_BGMbar->setGauge(_currentBGMVolume, 1.0f);
 
 	_SFXbar = new volumeProgressBar;
 	_SFXbar->init(300, 600, 400, 100);
-	_SFXbar->setGauge(getSFXVolume(), 1.0f);
+	_SFXbar->setGauge(_currentSFXVolume, 1.0f);
+
+	_currentBGMVolume = getBGMVolume() / 10;
+	_currentSFXVolume = getSFXVolume() / 10;
 
 	return S_OK;
 }
@@ -27,21 +28,26 @@ void settingScene::release()
 
 void settingScene::update()
 {
-	_BGMbar->setGauge(getBGMVolume(), 1.0f);
+	
+
+	//background music - volume update
+	SOUNDMANAGER->setVolume("menuBGM", _currentBGMVolume);
+
+	_BGMbar->setGauge(_currentBGMVolume, 1.0f);
 	_BGMbar->update();
 
-	_SFXbar->setGauge(getSFXVolume(), 1.0f);
+	_SFXbar->setGauge(_currentSFXVolume, 1.0f);
 	_SFXbar->update();
 
 	if (KEYMANAGER->isOnceKeyDown(VK_RETURN)) 
 	{ 
 		SCENEMANAGER->changeScene("selectScene");
+
+		setBGMVolume(_currentBGMVolume * 10);
+		setSFXVolume(_currentSFXVolume * 10);
 	}
 
 
-	//background music - volume update
-	SOUNDMANAGER->setVolume("menuBGM", getBGMVolume());
-	
 
 	if (KEYMANAGER->isOnceKeyDown(VK_UP)) 
 	{
@@ -65,24 +71,23 @@ void settingScene::update()
 	{
 		if (_selectNum == 0) 
 		{
-			setBGMVolutme(getBGMVolume()-0.1f);
+			_currentBGMVolume-=0.1f;
 
-	
 
-			if (getBGMVolume() <= 0) 
+			if (_currentBGMVolume <= 0)
 			{
-				setBGMVolutme(0);
+				_currentBGMVolume = 0;
 			}
 
 
 		}
 		else if (_selectNum == 1) 
 		{
-			setSFXVolume(getSFXVolume() - 0.1f);
+			_currentSFXVolume -= 0.1f;
 
-			if (getSFXVolume() <= 0)
+			if (_currentSFXVolume <= 0)
 			{
-				setSFXVolume(0);
+				_currentSFXVolume = 0;
 			}
 		}
 	}
@@ -90,18 +95,18 @@ void settingScene::update()
 	{
 		if (_selectNum == 0) 
 		{
-			setBGMVolutme(getBGMVolume() + 0.1f);
-			if (getBGMVolume() >= 1)
+			_currentBGMVolume += 0.1f;
+			if (_currentBGMVolume >= 1)
 			{
-				setBGMVolutme(1);
+				_currentBGMVolume = 1;
 			}
 		}
 		else if (_selectNum == 1) 
 		{
-			setSFXVolume(getSFXVolume() + 0.1f);
-			if (getSFXVolume() > 1)
+			_currentSFXVolume += 0.1f;
+			if (_currentSFXVolume > 1)
 			{
-				setSFXVolume(1);
+				_currentSFXVolume = 1;
 			}
 		}
 	}
@@ -110,9 +115,7 @@ void settingScene::update()
 
 void settingScene::render()
 {
-	
 	IMAGEMANAGER->findImage("settingBackGround")->render(getMemDC());
-
 	IMAGEMANAGER->findImage("settingSceneBox")->render(getMemDC(),  _rc.left, _rc.top);
 
 	_BGMbar->render();

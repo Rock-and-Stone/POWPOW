@@ -38,11 +38,14 @@ HRESULT UserInterface::init()
 
 	_BGMbar = new volumeProgressBar;
 	_BGMbar->init(300, 400, 400, 100);
-	_BGMbar->setGauge(getBGMVolume(), 1.0f);
+	_BGMbar->setGauge(getBGMVolume()/10, 1.0f);
 
 	_SFXbar = new volumeProgressBar;
 	_SFXbar->init(300, 600, 400, 100);
-	_SFXbar->setGauge(getSFXVolume(), 1.0f);
+	_SFXbar->setGauge(getSFXVolume()/10, 1.0f);
+
+	_currentBGMVolume = getBGMVolume() / 10;
+	_currentSFXVolume = getSFXVolume() / 10;
 
 	return S_OK;
 }
@@ -54,15 +57,11 @@ void UserInterface::release()
 void UserInterface::update()
 {
 
-	_BGMbar->setGauge(getBGMVolume(), 1.0f);
+	_BGMbar->setGauge(_currentBGMVolume, 1.0f);
 	_BGMbar->update();
 
-	_SFXbar->setGauge(getSFXVolume(), 1.0f);
+	_SFXbar->setGauge(_currentSFXVolume, 1.0f);
 	_SFXbar->update();
-
-
-	SOUNDMANAGER->setVolume("menuBGM", getBGMVolume());
-
 
 	if(_isPause&& !_ingameSetting) _selectRc = RectMake(WINSIZEX / 2, WINSIZEY / 2 + (_selectNum * 90) + 50, 200, 50);
 
@@ -96,6 +95,8 @@ void UserInterface::update()
 
 		else if (_ingameSetting)
 		{
+			setBGMVolume(_currentBGMVolume * 10);
+			setSFXVolume(_currentSFXVolume * 10);
 			_ingameSetting = false;
 		}
 	}
@@ -132,28 +133,30 @@ void UserInterface::update()
 
 	if (_ingameSetting )
 	{
+
+		SOUNDMANAGER->setVolume("menuBGM", _currentBGMVolume);
+
 		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 		{
+
 			if (_volumeSelectNum == 0)
 			{
-				setBGMVolutme(getBGMVolume() - 0.1f);
+				_currentBGMVolume-= 0.1f;
 
-
-
-				if (getBGMVolume() <= 0)
+				if (_currentBGMVolume <= 0)
 				{
-					setBGMVolutme(0);
+					_currentBGMVolume=0;
 				}
 
 
 			}
 			else if (_volumeSelectNum == 1)
 			{
-				setSFXVolume(getSFXVolume() - 0.1f);
+				_currentSFXVolume -= 0.1f;
 
-				if (getSFXVolume() <= 0)
+				if (_currentSFXVolume <= 0)
 				{
-					setSFXVolume(0);
+					_currentSFXVolume = 0;
 				}
 			}
 
@@ -165,21 +168,23 @@ void UserInterface::update()
 
 			if (_volumeSelectNum == 0)
 			{
-				setBGMVolutme(getBGMVolume() + 0.1f);
-				if (getBGMVolume() >= 1)
+				_currentBGMVolume+= 0.1f;
+				if (_currentBGMVolume >= 1)
 				{
-					setBGMVolutme(1);
+					_currentBGMVolume = 1;
 				}
 			}
 			else if (_volumeSelectNum == 1)
 			{
-				setSFXVolume(getSFXVolume() + 0.1f);
-				if (getSFXVolume() > 1)
+				_currentSFXVolume += 0.1f;
+				if (_currentSFXVolume > 1)
 				{
-					setSFXVolume(1);
+					_currentSFXVolume = 1;
 				}
 			}
 		}
+
+
 	}
 
 }
@@ -199,6 +204,10 @@ void UserInterface::render()
 	_coin100->frameRender(getMemDC(), 95, 104, getCoin() / 100, 0);
 	_coin10->frameRender(getMemDC(), 110, 104, getCoin() % 100 / 10, 0);
 	_coin1->frameRender(getMemDC(), 125, 104, getCoin() % 10, 0);
+
+	char str[50];
+	sprintf_s(str, "hp: %d", getPlayerHP());
+	TextOut(getMemDC(), 0, 100, str, strlen(str));
 
 	if (_isPause && !_ingameSetting)
 	{

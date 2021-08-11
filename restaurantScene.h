@@ -1,8 +1,8 @@
 #pragma once
 #include "gameNode.h"
 #include "UserInterface.h"
-class restaurantScene :
-    public gameNode
+
+class restaurantScene :public gameNode
 {
 private:
 	image* _select;

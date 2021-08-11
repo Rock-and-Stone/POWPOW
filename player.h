@@ -74,7 +74,8 @@ public:
 	~player();
 
 	virtual HRESULT InitVariables();
-	virtual HRESULT init();
+	virtual HRESULT init(float posX, float posY);
+
 	virtual void release();
 	virtual void update();
 	virtual void render();

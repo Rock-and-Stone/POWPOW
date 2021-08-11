@@ -102,6 +102,8 @@ void EnemyManager::Collision()
             _player->hitDamage(5);
         }
     }
+
+
 }
 
 

@@ -41,7 +41,7 @@ HRESULT loadingScene::init()
 
     SOUNDMANAGER->addSound("menuBGM", "source/music/메뉴.mp3", true, true);
 
-    SOUNDMANAGER->play("menuBGM", getBGMVolume());
+    SOUNDMANAGER->play("menuBGM", getBGMVolume()/10);
 
 	CreateThread(
 		NULL,				//스레드 보안속성(자식윈도우 존재할때)
@@ -109,6 +109,11 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		IMAGEMANAGER->addImage("cafeScene", "SHOP/SHOP_CAFE.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
         IMAGEMANAGER->addImage("volumeBackBar", "source/volumnBackBar.bmp", 180, 50, true, RGB(255, 0, 255));
         IMAGEMANAGER->addImage("volumeFrontBar", "source/volumnFrontBar.bmp", 180, 50, false, RGB(255, 0, 255));
+<<<<<<< HEAD
+        IMAGEMANAGER->addImage("bossBackground", "source/Level 1 - Boss Room.bmp", WINSIZEX, WINSIZEY, true, MAGENTA);
+        IMAGEMANAGER->addImage("배경픽셀", "source/col.bmp", 31812, 1000, false, RGB(255,0,255));
+=======
+>>>>>>> fb8fc07c68e78ed6d4a78ec61ad43617b651a177
         IMAGEMANAGER->addImage("col", "source/col.bmp", 31812, 1000, false, RGB(255, 0, 255));
 
 
@@ -538,28 +543,94 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 #pragma endregion
 
 #pragma region bossImage & animation
+
         IMAGEMANAGER->addFrameImage("BOSS IDLE", "source/BOSS/BOSS IDLE.bmp", 2277, 600, 6, 2, true, MAGENTA);
 
-        int bossLeftIdleArr[] = { 0,1,2,3,4,5 };
-        KEYANIMANAGER->addArrayFrameAnimation("bossLeftIdle", "BOSS IDLE", bossLeftIdleArr, 6, 6, true);
+        int bossLeftIdleArr[] = { 0, 1, 2, 3, 4, 5};
+        KEYANIMANAGER->addArrayFrameAnimation("bossRightIdle", "BOSS IDLE", bossLeftIdleArr, 6, 6, true);
         int bossRightIdleArr[] = { 6, 7, 8, 9, 10, 11 };
-        KEYANIMANAGER->addArrayFrameAnimation("bossRightIdle", "BOSS IDLE", bossRightIdleArr, 6, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("bossLeftIdle", "BOSS IDLE", bossRightIdleArr, 6, 6, true);
+
 
         IMAGEMANAGER->addFrameImage("BOSS ATTACK1", "source/BOSS/BOSS ATTACK1.bmp", 2277, 600, 6, 2, true, MAGENTA);
 
         int bossLeftAttack1Arr[] = { 0,1,2,3,4,5 };
-        KEYANIMANAGER->addArrayFrameAnimation("bossLeftAttack1", "BOSS ATTACK1", bossLeftAttack1Arr, 6, 6, false);
-        int bossRightAttack1Arr[] = { 6,7,8,9,10,11 };
-        KEYANIMANAGER->addArrayFrameAnimation("bossRightAttack1", "BOSS ATTACK1", bossRightAttack1Arr, 6, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("bossRightAttack1", "BOSS ATTACK1", bossLeftAttack1Arr, 6, 6, false);
+        int bossRightAttack1Arr[] = { 11,10,9,8,7,6 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossLeftAttack1", "BOSS ATTACK1", bossRightAttack1Arr, 6, 6, false);
+
 
         IMAGEMANAGER->addFrameImage("BOSS ATTACK2", "source/BOSS/BOSS ATTACK2.bmp", 2277, 600, 6, 2, true, MAGENTA);
 
         int bossLeftAttack2Arr[] = { 0,1,2,3,4,5 };
-        KEYANIMANAGER->addArrayFrameAnimation("bossLeftAttack2", "BOSS ATTACK2", bossLeftAttack1Arr, 6, 6, false);
-        int bossRightAttack2Arr[] = { 6,7,8,9,10,11 };
-        KEYANIMANAGER->addArrayFrameAnimation("bossRightAttack2", "BOSS ATTACK2", bossRightAttack1Arr, 6, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("bossRightAttack2", "BOSS ATTACK2", bossLeftAttack2Arr, 6, 6, false);
+        int bossRightAttack2Arr[] = { 11,10,9,8,7,6 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossLeftAttack2", "BOSS ATTACK2", bossRightAttack2Arr, 6, 6, false);
+
+        IMAGEMANAGER->addFrameImage("BOSS ATTACK3", "source/BOSS/BOSS ATTACK3.bmp", 2277, 600, 6, 2, true, MAGENTA);
+
+        int bossRightAttack3Arr[] = { 0,1,2,3,4,5};
+        KEYANIMANAGER->addArrayFrameAnimation("bossRightAttack3", "BOSS ATTACK3", bossRightAttack3Arr, 6, 6, false);
+        int bossLeftAttack3Arr[] = { 11,10,9,8,7,6 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossLeftAttack3", "BOSS ATTACK3", bossLeftAttack3Arr, 6, 6, false);
+
+        IMAGEMANAGER->addFrameImage("BOSS SPECIAL ATTACK", "source/BOSS/BOSS SPECIAL ATTACK.bmp", 10500, 780, 14, 2, true, MAGENTA);
+
+        int bossRightSpecialAttackArr[] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossRightSpecialAttack", "BOSS SPECIAL ATTACK", bossRightSpecialAttackArr, 14, 10, false);
+        int bossLeftSpecialAttackArr[] = { 27,26,25,24,23,22,21,20,19,18,17,16,15,14 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossLeftSpecialAttack", "BOSS SPECIAL ATTACK", bossLeftSpecialAttackArr, 14, 10, false);
+
+        IMAGEMANAGER->addFrameImage("BOSS SECOND PHASE", "source/BOSS/BOSS 2STATE.bmp", 5692, 675, 15, 1, true, MAGENTA);
+
+        int bossSecondPhaseArr[] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossSecondPhase", "BOSS SECOND PHASE", bossSecondPhaseArr, 15, 10, false);
+
+        IMAGEMANAGER->addFrameImage("BOSS HITTED", "source/BOSS/BOSS DAMAGE.bmp", 1897, 600, 5, 2, true, MAGENTA);
+
+        int bossRightHittedArr[] = { 4,3,2,1,0};
+        KEYANIMANAGER->addArrayFrameAnimation("bossRightHitted", "BOSS HITTED", bossRightHittedArr, 5, 10, false);
+        int bossLeftHittedArr[] = { 5,6,7,8,9 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossLeftHitted", "BOSS HITTED", bossLeftHittedArr, 5, 10, false);
+
+        IMAGEMANAGER->addFrameImage("BOSS DEATH", "source/BOSS/BOSS DEATH.bmp", 4933, 300, 13, 1, true, MAGENTA);
+
+        int bossDeathArr[] = { 0,1,2,3,4,5,6,7,8,9,10,11,12 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossDeath", "BOSS DEATH", bossDeathArr, 13, 8, false);
+
+        IMAGEMANAGER->addFrameImage("BOSS RUN","source/BOSS/BOSS RUN.bmp",3036,600,8,2,true,MAGENTA);
+
+        int bossRightRunArr[] = { 0,1,2,3,4,5,6,7 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossRightRun","BOSS RUN",bossRightRunArr,8,8,true);
+
+        int bossLeftRunArr[] = { 15,14,13,12,11,10,9,8 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossLeftRun", "BOSS RUN", bossLeftRunArr, 8, 8, true);
+
+        IMAGEMANAGER->addFrameImage("BOSS DOWN","source/BOSS/BOSS DOWN.bmp",5313,600,14,2,true,MAGENTA);
+
+        int bossRightDownArr[] = { 27,26,25,24,23,22,21,20,19,18,17,16,15,14 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossRightDown", "BOSS DOWN", bossRightDownArr, 14, 8, false);
+        int bossLeftDownArr[] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossLeftDown", "BOSS DOWN", bossLeftDownArr, 14, 8, false);
+
+        IMAGEMANAGER->addFrameImage("BOSS UP","source/BOSS/BOSS UP.bmp",4174,600,11,2,true,MAGENTA);
+
+        int bossRightUpArr[] = { 0,1,2,3,4,5,6,7,8,9,10 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossRightUp", "BOSS UP", bossRightUpArr, 11, 8, false);
+        int bossLeftUpArr[] = { 21,20,19,18,17,16,15,14,13,12,11 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossLeftUp", "BOSS UP", bossLeftUpArr, 11, 8, false);
+
+        IMAGEMANAGER->addFrameImage("BOSS DOWN KICK", "source/BOSS/BOSS DOWNKICK.bmp", 1518, 600, 4, 2, true, MAGENTA);
+
+        int bossRightDownKick[] = { 0,1,2,3 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossRightDownKick", "BOSS DOWN KICK", bossRightDownKick, 4, 8, false);
+        int bossLeftDownKick[] = { 7,6,5,4 };
+        KEYANIMANAGER->addArrayFrameAnimation("bossLeftDownKick", "BOSS DOWN KICK", bossLeftDownKick, 4, 8, false);
 
 
+
+
+     
 #pragma endregion
 
 #pragma region Shop

@@ -158,6 +158,7 @@
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="convenientScene.h" />
+    <ClInclude Include="devil.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="effectManager.h" />
     <ClInclude Include="Enemy.h" />
@@ -214,6 +215,7 @@
     <ClCompile Include="cafeScene.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="convenientScene.cpp" />
+    <ClCompile Include="devil.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
     <ClCompile Include="Enemy.cpp" />

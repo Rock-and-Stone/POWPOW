@@ -3,14 +3,30 @@
 
 HRESULT bossScene::init()
 {
-	_bossBackground = IMAGEMANAGER->addImage("bossBackground","source/Level 1 - Boss Room.bmp", WINSIZEX, WINSIZEY,true, MAGENTA);
-
+	_bossBackground = IMAGEMANAGER->findImage("bossBackground");
+	
 #pragma region 인트로 동영상 이닛
 	_bossIntro = MCIWndCreate(_hWnd, NULL, WS_CHILD | WS_VISIBLE | MCIWNDF_NOPLAYBAR, "source/Bossintro.wmv");
 	MoveWindow(_bossIntro, 0, 0, WINSIZEX, WINSIZEY, NULL);
 	MCIWndPlay(_bossIntro);
 	SCENEMANAGER->SetVideoPlay(true);
 #pragma endregion
+
+	_boss = new boss;
+	_boss->init();
+
+	_player = new Ramona;
+	_player->init(300,WINSIZEY /2);
+	_player->InitVariables();
+
+	_ui = new UserInterface;
+	_ui->init();
+
+
+	RENDERMANAGER->release();
+
+	RENDERMANAGER->addRender(_player);
+	RENDERMANAGER->addRender(_boss);
 
 
 	return S_OK;
@@ -36,6 +52,17 @@ void bossScene::update()
 	}
 #pragma endregion
 
+	if (!_ui->GetIsPause())
+	{
+		_boss->update();
+		_player->setRendX(_player->getPosX());
+		_player->setRendY(_player->getPosY());
+		_player->update();
+	}
+
+	RENDERMANAGER->update();
+
+	_ui->update();
 }
 
 void bossScene::release()
@@ -45,4 +72,8 @@ void bossScene::release()
 void bossScene::render()
 {
 	_bossBackground->render(getMemDC());
+
+	RENDERMANAGER->render(getMemDC());
+
+	_ui->render();
 }

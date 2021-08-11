@@ -5,7 +5,7 @@ HRESULT stage1::init()
 {
 	RENDERMANAGER->release();
 	_player = new Ramona;
-	_player->init();
+	_player->init(600,600);
 	_player->InitVariables();
 
 	_maxY = 1000;
@@ -14,6 +14,7 @@ HRESULT stage1::init()
 	_cm->init(31812, _maxY);
 
 	_em = new EnemyManager;
+
 	_em->init();
 	_em->SetPlayerLink(_player);
 	_em->SetCamera(_cm);
@@ -30,8 +31,6 @@ HRESULT stage1::init()
 
 	_ui = new UserInterface;
 	_ui->init();
-	
-
 
 	return S_OK;
 }
@@ -48,7 +47,6 @@ void stage1::update()
 
 		_om->update();
 #pragma region 언덕카메라무브
-
 		if (_player->getPosX() >= 24765)
 		{
 			if (_maxY <= 1000) _maxY = 1000 + 0.6 * (_player->getPosX() - 24765);
@@ -58,18 +56,29 @@ void stage1::update()
 		{
 			_maxY = 1000;
 		}
-
 		_cm->init(31812, _maxY);	
 #pragma endregion
+
+
+		if (KEYMANAGER->isOnceKeyDown(VK_F1)) SCENEMANAGER->changeScene("bossScene");
+
+
+		EFFECTMANAGER->update();
+
+		RENDERMANAGER->update();
 
 	}
 
 	_ui->update();
 
+<<<<<<< HEAD
+
+=======
 	pixelCollision();
 
 	EFFECTMANAGER->update();
 	RENDERMANAGER->update();
+>>>>>>> fb8fc07c68e78ed6d4a78ec61ad43617b651a177
 }
 
 void stage1::release()

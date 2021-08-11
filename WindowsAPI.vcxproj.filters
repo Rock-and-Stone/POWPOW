@@ -70,6 +70,9 @@
     <Filter Include="playGround\Player">
       <UniqueIdentifier>{106093c8-2d2d-4bdb-aa34-a08cfe838aba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\boss">
+      <UniqueIdentifier>{96ed3555-50d9-4e6b-a86e-9a5c94e2b8eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -195,15 +198,6 @@
     <ClInclude Include="Mike.h">
       <Filter>playGround\Enemy\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="gameData.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="loadingScene.h">
-      <Filter>playGround</Filter>
-    </ClInclude>
-    <ClInclude Include="volumeProgressBar.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>playGround\Object</Filter>
     </ClInclude>
@@ -225,6 +219,28 @@
     <ClInclude Include="Ramona.h">
       <Filter>playGround\Player</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="volumeProgressBar.h">
+      <Filter>2DGameFramework\progressBar</Filter>
+    </ClInclude>
+    <ClInclude Include="gameData.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="bossScene.h">
+      <Filter>playGround\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="bossState.h">
+      <Filter>playGround\boss</Filter>
+    </ClInclude>
+    <ClInclude Include="boss.h">
+      <Filter>playGround\boss</Filter>
+    </ClInclude>
+    <ClInclude Include="loadingScene.h">
+      <Filter>playGround\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="devil.h">
+      <Filter>playGround\boss</Filter>
+=======
     <ClInclude Include="boss.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -236,6 +252,7 @@
     </ClInclude>
     <ClInclude Include="Trash.h">
       <Filter>playGround\Object</Filter>
+>>>>>>> ecc9fba866c8c7f2bba2040680b546225ed33e1a
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -350,15 +367,6 @@
     <ClCompile Include="Luke.cpp">
       <Filter>playGround\Enemy\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="gameData.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="loadingScene.cpp">
-      <Filter>playGround</Filter>
-    </ClCompile>
-    <ClCompile Include="volumeProgressBar.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Object.cpp">
       <Filter>playGround\Object</Filter>
     </ClCompile>
@@ -380,6 +388,28 @@
     <ClCompile Include="Ramona.cpp">
       <Filter>playGround\Player</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="volumeProgressBar.cpp">
+      <Filter>2DGameFramework\progressBar</Filter>
+    </ClCompile>
+    <ClCompile Include="gameData.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="bossScene.cpp">
+      <Filter>playGround\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="bossState.cpp">
+      <Filter>playGround\boss</Filter>
+    </ClCompile>
+    <ClCompile Include="boss.cpp">
+      <Filter>playGround\boss</Filter>
+    </ClCompile>
+    <ClCompile Include="loadingScene.cpp">
+      <Filter>playGround\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="devil.cpp">
+      <Filter>playGround\boss</Filter>
+=======
     <ClCompile Include="boss.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -391,6 +421,7 @@
     </ClCompile>
     <ClCompile Include="Trash.cpp">
       <Filter>playGround\Object</Filter>
+>>>>>>> ecc9fba866c8c7f2bba2040680b546225ed33e1a
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

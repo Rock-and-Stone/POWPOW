@@ -1,23 +1,30 @@
 #pragma once
-#define PLAYERHPMAX 150
-#define PLAYERGPMAX 150
 
 class gameData
 {
 private:
-	float _BGMVolume = 0.0f;
-	float _SFXVolume = 0.5f;
+	int _BGMVolume;
+	int _SFXVolume;
 
-	int _playerHP = PLAYERHPMAX;
-	int _playerGP = PLAYERGPMAX;
-	int _coin = 0;
+	int _playerHP = getPlayerSaveHP();
+	int _playerGP = getPlayerSaveGP();
+	int _coin = getSaveCoin();
 
 public:
-	float getBGMVolume() { return _BGMVolume; }
-	void setBGMVolutme(float volume) { _BGMVolume = volume; }
+	float getBGMVolume();
+	void setBGMVolume(float volume);
 
-	float getSFXVolume() { return _SFXVolume; }
-	void setSFXVolume(float volume) { _SFXVolume = volume; }
+	float getSFXVolume();
+	void setSFXVolume(float volume);
+
+	int getPlayerSaveHP();
+	void SavePlayerHP(int hp);
+
+	int getPlayerSaveGP();
+	void SavePlayerGP(int gp);
+
+	int getSaveCoin();
+	void SaveCoin(int coin);
 
 	int getPlayerHP() { return _playerHP; }
 	void setPlayerHP(int hp) { _playerHP = hp; }
@@ -27,5 +34,7 @@ public:
 
 	int getCoin() { return _coin; }
 	void setCoin(int coin) { _coin = coin; }
+
+	void SaveData() { SavePlayerGP(_playerGP); SavePlayerHP(_playerHP); SaveCoin(_coin); }
 };
 

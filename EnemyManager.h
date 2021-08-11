@@ -43,6 +43,5 @@ public:
 
 	void SetCamera(CameraManager* cm) { _cm = cm; }
 	void SetPlayerLink(player* player) { _player = player; }
-	
 };
 

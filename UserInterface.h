@@ -32,6 +32,9 @@ private:
 	volumeProgressBar* _BGMbar;
 	volumeProgressBar* _SFXbar;
 
+	float _currentBGMVolume;
+	float _currentSFXVolume;
+
 public:
 	virtual HRESULT init();
 	virtual void release();
