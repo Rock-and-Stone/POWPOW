@@ -3,6 +3,7 @@
 #include <vector>
 #include "CameraManager.h"
 #include "Bat.h"
+#include "Trash.h"
 
 class ObjectManager : public gameNode
 {
@@ -20,6 +21,7 @@ private:
 
 
 	Bat* _bat;
+	Trash* _trash;
 
 
 public:
@@ -29,6 +31,7 @@ public:
 	void render();
 
 	void SetBat();
+	void SetTrash();
 
 	vector<Object*> GetVObject() { return _vObject; }
 	vector<Object*>::iterator GetVIObject() { return _viObject; }

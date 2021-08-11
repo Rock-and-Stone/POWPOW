@@ -43,3 +43,17 @@ void ObjectManager::SetBat()
         RENDERMANAGER->addRender(bat);
     }
 }
+
+void ObjectManager::SetTrash()
+{
+    for (int i = 0; i < 10; i++)
+    {
+        Object* trash;
+        trash = new Trash;
+        trash->SetCamera(_cm);
+        trash->init("trash_left_neutral", "trash_left_neutral", PointMake(1000 * i + 850, 600));
+        trash->SetPlayerLink(_player);
+        _vObject.push_back(trash);
+        RENDERMANAGER->addRender(trash);
+    }
+}

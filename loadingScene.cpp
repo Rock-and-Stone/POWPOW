@@ -402,7 +402,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 #pragma endregion
 
 #pragma region Object Images
-       
+       //BAT 오브젝트 
         IMAGEMANAGER->addFrameImage("bat_left_atk", "source/object/bat/bat_left_atk.bmp", 1875, 375, 5, 1, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("bat_left_dash", "source/object/bat/bat_left_dash.bmp", 3000, 375, 8, 1, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("bat_left_get", "source/object/bat/bat_left_get.bmp", 750, 375, 2, 1, true, MAGENTA);
@@ -461,7 +461,60 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         int bat_right_walk[] = { 0,1,2,3,4,5 };
         KEYANIMANAGER->addArrayFrameAnimation("bat_right_walk", "bat_right_walk", bat_right_walk, 6, 8, false);
 
-        
+
+        //TRASH 오브젝트
+        IMAGEMANAGER->addFrameImage("trash_left_atk", "source/object/trash/trash_left_atk.bmp", 2250, 375, 6, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("trash_left_dash", "source/object/trash/trash_left_dash.bmp", 3000, 375, 8, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("trash_left_get", "source/object/trash/trash_left_get.bmp", 750, 375, 2, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("trash_left_idle", "source/object/trash/trash_left_idle.bmp", 1500, 375, 4, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("trash_left_jump", "source/object/trash/trash_left_jump.bmp", 3375, 750, 9, 2, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("trash_left_neutral", "source/object/trash/trash_left_neutral.bmp", 750, 375, 2, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("trash_left_throw", "source/object/trash/trash_left_throw.bmp", 1125, 375, 3, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("trash_left_walk", "source/object/trash/trash_left_walk.bmp", 2250, 375, 6, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("trash_right_atk", "source/object/trash/trash_right_atk.bmp", 2250, 375, 6, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("trash_right_dash", "source/object/trash/trash_right_dash.bmp", 3000, 375, 8, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("trash_right_get", "source/object/trash/trash_right_get.bmp", 750, 375, 2, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("trash_right_idle", "source/object/trash/trash_right_idle.bmp", 1500, 375, 4, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("trash_right_jump", "source/object/trash/trash_right_jump.bmp", 3375, 750, 9, 2, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("trash_right_neutral", "source/object/trash/trash_right_neutral.bmp", 750, 375, 2, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("trash_right_throw", "source/object/trash/trash_right_throw.bmp", 1125, 375, 3, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("trash_right_walk", "source/object/trash/trash_right_walk.bmp", 2250, 375, 6, 1, true, MAGENTA);
+
+        int trash_left_atk[] = { 0,1,2,3,4,5 };
+        KEYANIMANAGER->addArrayFrameAnimation("trash_left_atk", "trash_left_atk", trash_left_atk, 6, 8, false);
+        int trash_left_dash[] = { 0,1,2,3,4,5,6,7 };
+        KEYANIMANAGER->addArrayFrameAnimation("trash_left_dash", "trash_left_dash", trash_left_dash, 8, 8, false);
+        int trash_left_get[] = { 0,1 };
+        KEYANIMANAGER->addArrayFrameAnimation("trash_left_get", "trash_left_get", trash_left_get, 2, 8, false);
+        int trash_left_idle[] = { 0,1,2,3 };
+        KEYANIMANAGER->addArrayFrameAnimation("trash_left_idle", "trash_left_idle", trash_left_idle, 4, 8, false);
+        int trash_left_jump[] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17 };
+        KEYANIMANAGER->addArrayFrameAnimation("trash_left_jump", "trash_left_jump", trash_left_jump, 9, 8, false);
+        int trash_left_neutral[] = { 0,1 };
+        KEYANIMANAGER->addArrayFrameAnimation("trash_left_neutral", "trash_left_neutral", trash_left_neutral, 2, 8, false);
+        int trash_left_throw[] = { 0,1,2 };
+        KEYANIMANAGER->addArrayFrameAnimation("trash_left_throw", "trash_left_throw", trash_left_throw, 3, 8, false);
+        int trash_left_walk[] = { 0,1,2,3,4,5 };
+        KEYANIMANAGER->addArrayFrameAnimation("trash_left_walk", "trash_left_walk", trash_left_walk, 6, 8, false);
+
+        int trash_right_atk[] = { 0,1,2,3,4,5 };
+        KEYANIMANAGER->addArrayFrameAnimation("trash_right_atk", "trash_right_atk", trash_right_atk, 6, 8, false);
+        int trash_right_dash[] = { 0,1,2,3,4,5,6,7 };
+        KEYANIMANAGER->addArrayFrameAnimation("trash_right_dash", "trash_right_dash", trash_right_dash, 8, 8, false);
+        int trash_right_get[] = { 0,1 };
+        KEYANIMANAGER->addArrayFrameAnimation("trash_right_get", "trash_right_get", trash_right_get, 2, 8, false);
+        int trash_right_idle[] = { 0,1,2,3 };
+        KEYANIMANAGER->addArrayFrameAnimation("trash_right_idle", "trash_right_idle", trash_right_idle, 4, 8, false);
+        int trash_right_jump[] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17 };
+        KEYANIMANAGER->addArrayFrameAnimation("trash_right_jump", "trash_right_jump", trash_right_jump, 9, 8, false);
+        int trash_right_neutral[] = { 0,1 };
+        KEYANIMANAGER->addArrayFrameAnimation("trash_right_neutral", "trash_right_neutral", trash_right_neutral, 2, 8, false);
+        int trash_right_throw[] = { 0,1,2 };
+        KEYANIMANAGER->addArrayFrameAnimation("trash_right_throw", "trash_right_throw", trash_right_throw, 3, 8, false);
+        int trash_right_walk[] = { 0,1,2,3,4,5 };
+        KEYANIMANAGER->addArrayFrameAnimation("trash_right_walk", "trash_right_walk", trash_right_walk, 6, 8, false);
+
+
        
 
 #pragma endregion
@@ -504,6 +557,16 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         KEYANIMANAGER->addArrayFrameAnimation("bossLeftAttack2", "BOSS ATTACK2", bossLeftAttack1Arr, 6, 6, false);
         int bossRightAttack2Arr[] = { 6,7,8,9,10,11 };
         KEYANIMANAGER->addArrayFrameAnimation("bossRightAttack2", "BOSS ATTACK2", bossRightAttack1Arr, 6, 6, false);
+
+
+#pragma endregion
+
+#pragma region Shop
+        IMAGEMANAGER->addImage("SHOP_CAFE", "SHOP/SHOP_CAFE.bmp", 1600, 900, true, MAGENTA);
+        IMAGEMANAGER->addImage("SHOP_CONVENIENT", "SHOP/SHOP_CONVENIENTSTORE.bmp", 1600, 900, true, MAGENTA);
+        IMAGEMANAGER->addImage("SHOP_RESTAURANT", "SHOP/SHOP_RESTAURANT.bmp", 1600, 900, true, MAGENTA);
+        IMAGEMANAGER->addImage("SHOP_SUSHI", "SHOP/SHOP_SUSHI.bmp", 1600, 900, true, MAGENTA);
+        IMAGEMANAGER->addImage("shopsceneBox", "SHOP/shopsceneBox.bmp", 400, 200, true, MAGENTA);
 
 
 #pragma endregion
