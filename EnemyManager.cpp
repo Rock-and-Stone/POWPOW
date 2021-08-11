@@ -40,7 +40,7 @@ void EnemyManager::EnemyImageStorage()
 
 void EnemyManager::SetLuke()
 {
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 0; i++)
     {
         Enemy* luke;
         luke = new Luke;

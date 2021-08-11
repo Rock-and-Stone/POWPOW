@@ -109,8 +109,11 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 		IMAGEMANAGER->addImage("cafeScene", "SHOP/SHOP_CAFE.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
         IMAGEMANAGER->addImage("volumeBackBar", "source/volumnBackBar.bmp", 180, 50, true, RGB(255, 0, 255));
         IMAGEMANAGER->addImage("volumeFrontBar", "source/volumnFrontBar.bmp", 180, 50, false, RGB(255, 0, 255));
+<<<<<<< HEAD
         IMAGEMANAGER->addImage("bossBackground", "source/Level 1 - Boss Room.bmp", WINSIZEX, WINSIZEY, true, MAGENTA);
         IMAGEMANAGER->addImage("¹è°æÇÈ¼¿", "source/col.bmp", 31812, 1000, false, RGB(255,0,255));
+=======
+>>>>>>> fb8fc07c68e78ed6d4a78ec61ad43617b651a177
         IMAGEMANAGER->addImage("col", "source/col.bmp", 31812, 1000, false, RGB(255, 0, 255));
 
 

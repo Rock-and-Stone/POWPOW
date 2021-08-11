@@ -37,6 +37,10 @@ void convenientScene::update()
 	{
 		_y -= 200;
 	}
+	if (KEYMANAGER->isOnceKeyDown('Q'))
+	{
+		SCENEMANAGER->changeScene("stage1");
+	}
 	Interaction();
 
 	_ui->update();
