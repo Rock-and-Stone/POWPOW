@@ -28,10 +28,11 @@ public:
 	virtual void SetEnemy(Enemy* enemy) override { _enemy = enemy; }
 };
 
-class EnemyWalk : public EnemyState
+class EnemyMove : public EnemyState
 {
 private:
-	int _count;
+	int rndX;
+	int rndY;
 public:
 	virtual HRESULT init() override;
 	virtual void release() override;

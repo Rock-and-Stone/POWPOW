@@ -90,16 +90,15 @@ void Idle::Trigger()
 	_player->ChangeState(Statement::IDLE);
 	_player->setAnimLoop(true);
 }
+#pragma endregion
 
+#pragma region MOVE
 HRESULT Move::init()
 {
 	_player->setAnimLoop(true);
 	return S_OK;
 }
 
-#pragma endregion
-
-#pragma region WALK
 void Move::release()
 {
 }
@@ -177,6 +176,7 @@ void Move::Input()
 		_player->setJumpPower(12.0f);
 	}
 
+	
 	
 }
 
