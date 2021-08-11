@@ -71,14 +71,11 @@ void stage1::update()
 
 	_ui->update();
 
-<<<<<<< HEAD
 
-=======
 	pixelCollision();
 
 	EFFECTMANAGER->update();
 	RENDERMANAGER->update();
->>>>>>> fb8fc07c68e78ed6d4a78ec61ad43617b651a177
 }
 
 void stage1::release()

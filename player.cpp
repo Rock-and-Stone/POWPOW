@@ -38,13 +38,9 @@ HRESULT player::init(float posX, float posY)
 	_state = _idle;
 
 #pragma region Variables
-<<<<<<< HEAD
 	_posX = posX;
 	_groundY = posY;
-=======
-	_posX = 10000;
-	_groundY = 500;
->>>>>>> fb8fc07c68e78ed6d4a78ec61ad43617b651a177
+
 	_posY = _groundY + _airY;
 
 	_maxSpeedX = MAXSPEEDX;

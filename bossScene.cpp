@@ -6,17 +6,19 @@ HRESULT bossScene::init()
 	_bossBackground = IMAGEMANAGER->findImage("bossBackground");
 	
 #pragma region 인트로 동영상 이닛
+
 	_bossIntro = MCIWndCreate(_hWnd, NULL, WS_CHILD | WS_VISIBLE | MCIWNDF_NOPLAYBAR, "source/Bossintro.wmv");
 	MoveWindow(_bossIntro, 0, 0, WINSIZEX, WINSIZEY, NULL);
 	MCIWndPlay(_bossIntro);
 	SCENEMANAGER->SetVideoPlay(true);
+
 #pragma endregion
 
 	_boss = new boss;
 	_boss->init();
 
 	_player = new Ramona;
-	_player->init(300,WINSIZEY /2);
+	_player->init(WINSIZEX/2,WINSIZEY /2);
 	_player->InitVariables();
 
 	_ui = new UserInterface;
