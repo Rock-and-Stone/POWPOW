@@ -4,9 +4,22 @@
 #include "player.h"
 #include "Enemy.h"
 
+enum class OBJECTSTATEMENT
+{
+	LEFT_ATK, RIGHT_ATK,
+	LEFT_DASH, RIGHT_DASH,
+	LEFT_GET, RIGHT_GET,
+	LEFT_IDLE, RIGHT_IDLE,
+	LEFT_JUMP, RIGHT_JUMP,
+	LEFT_NEUTRAL, RIGHT_NEUTRAL,
+	LEFT_THROW, RIGHT_THROW,
+	LEFT_WALK, RIGHT_WALK
+	
+};
+
 class Object : public gameNode
 {
-private:
+protected:
 	RECT _rc;
 	RECT _collideRect;
 	CameraManager* _cm;
@@ -15,9 +28,12 @@ private:
 	Enemy* _enemy;
 	image* _imageName;
 	animation* _motionName;
+	OBJECTSTATEMENT _objectStatement;
 
 	float _posX, _posY;
 	float _rendX, _rendY;
+
+	int _direction;
 
 public:
 	Object();
@@ -28,6 +44,7 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
+	virtual void SwitchImage() = 0;
 
 	void Draw();
 
