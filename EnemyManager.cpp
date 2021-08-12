@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "EnemyManager.h"
 #include "Enemy.h"
+#include "ObjectManager.h"
 
 HRESULT EnemyManager::init()
 {
@@ -55,7 +56,7 @@ void EnemyManager::SetLuke()
 
 void EnemyManager::SetMike()
 {
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 0; i++)
     {
         Enemy* mike;
         mike = new Mike;
@@ -70,7 +71,7 @@ void EnemyManager::SetMike()
 
 void EnemyManager::SetMalcolm()
 {
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 0; i++)
     {
         Enemy* malcolm;
         malcolm = new Malcolm;
@@ -107,8 +108,12 @@ void EnemyManager::Collision()
             _player->hitDamage(5);
         }
 
-        if(_vLuke[i]->getReleased())
+        if (_vLuke[i]->getReleased())
+        {
+            _om->SetsCoin();
             _vLuke.erase(_vLuke.begin() + i);
+        }
+            
     }
 
 

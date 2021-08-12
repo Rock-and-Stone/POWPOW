@@ -66,6 +66,8 @@ public:
 
 	void SetPlayerLink(player* player) { _player = player; }
 
+	void SetEnemyLink(Enemy* enemy) { _enemy = enemy; }
+
 	
 };
 

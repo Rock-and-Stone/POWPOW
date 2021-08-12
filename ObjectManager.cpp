@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "ObjectManager.h"
+#include "EnemyManager.h"
 
 HRESULT ObjectManager::init()
 {
@@ -18,6 +19,12 @@ void ObjectManager::update()
         (*_viObject)->update();
 
     }
+
+    for (_viCoin = _vCoin.begin(); _viCoin != _vCoin.end(); ++_viCoin)
+    {
+        (*_viCoin)->update();
+
+    }
 }
 
 void ObjectManager::render()
@@ -27,6 +34,11 @@ void ObjectManager::render()
         RECT temp = (*_viObject)->GetRect();
         (*_viObject)->render();
 
+    }
+    for (_viCoin = _vCoin.begin(); _viCoin != _vCoin.end(); ++_viCoin)
+    {
+        RECT temp = (*_viCoin)->GetRect();
+        (*_viCoin)->render();
     }
 }
 
@@ -55,5 +67,22 @@ void ObjectManager::SetTrash()
         trash->SetPlayerLink(_player);
         _vObject.push_back(trash);
         RENDERMANAGER->addRender(trash);
+    }
+}
+
+void ObjectManager::SetsCoin()
+{
+    for (int j = 0; j < _em->GetVLuke().size(); ++j)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Object* scoin;
+            scoin = new sCoin;
+            scoin->SetCamera(_cm);
+            scoin->init("smallCoin", "smallCoin", PointMake(_em->GetVLuke()[j]->GetEnemyPosX() - 10 + i*5, _em->GetVLuke()[j]->GetEnemyPosY()));
+            scoin->SetPlayerLink(_player);
+            _vCoin.push_back(scoin);
+            RENDERMANAGER->addRender(scoin);
+        }
     }
 }
