@@ -94,6 +94,7 @@ protected:
 
 	int _maxHP, _currentHP;			//최대 체력, 현재 체력
 	int _rndSelection;
+	int _probeEnemyX, _probeEnemyRX, _probeEnemyLX, _probeEnemyY, _probeEnemyBY;
 	
 
 public:
@@ -115,6 +116,8 @@ public:
 	void Draw();
 
 	void Collision();
+
+	void pixelCollision();
 
 	void TracePlayer();
 	

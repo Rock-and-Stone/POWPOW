@@ -8,6 +8,8 @@ HRESULT stage1::init()
 	_player = new Ramona;
 	_player->init(getPlayerPosX(),getPlayerPosY());
 	_player->InitVariables();
+	
+	_luke = new Luke;
 
 	_maxY = 1000;
 
@@ -160,6 +162,10 @@ void stage1::pixelCollision()
 	_probePlayerRX = _player->getPosX() + 40;		//플레이어 오른쪽부분
 	_probePlayerLX = _player->getPosX() - 40;		//플레이어 왼쪽부분
 	_probePlayerBY = _player->getPosY() + 90;		//플레이어 발 부분
+
+	
+
+
 	
 	
 	//상점 이동 및 보스방 이동
@@ -215,6 +221,7 @@ void stage1::pixelCollision()
 	}
 
 	//픽셀 윗 충돌
+	//플레이어
 	for (int i = _probePlayerBY - 5; i < _probePlayerBY  ; ++i)
 	{
 		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), _player->getPosX(), i);
@@ -229,7 +236,11 @@ void stage1::pixelCollision()
 			_player->setPosY(i - 85);
 		}
 	}
+	
+
+
 	//픽셀 아랫 충돌
+	//플레이어
 	for (int i = _probePlayerBY + 5; i > _probePlayerBY; --i)
 	{
 		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), _player->getPosX(), i);
@@ -244,8 +255,10 @@ void stage1::pixelCollision()
 			_player->setPosY(i - 95);
 		}
 	}
+	
 
 	//픽셀 오른쪽 충돌
+	//플레이어
 	for (int i = _probePlayerRX + 5; i > _probePlayerRX; --i)
 	{
 		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), i, _probePlayerBY);
@@ -261,7 +274,10 @@ void stage1::pixelCollision()
 		}
 	}
 
+	
+
 	//픽셀 왼쪽 충돌
+	//플레이어
 	for (int i = _probePlayerLX - 5; i < _probePlayerLX; ++i)
 	{
 		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), i, _probePlayerBY);
@@ -276,5 +292,5 @@ void stage1::pixelCollision()
 			_player->setPosX(i + 45);
 		}
 	}
-
+	
 }
