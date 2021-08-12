@@ -98,6 +98,11 @@ float gameNode::getRenderPosY()
 	return NULL;
 }
 
+bool gameNode::getReleased()
+{
+	return false;
+}
+
 LRESULT gameNode::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 {
 	PAINTSTRUCT ps;

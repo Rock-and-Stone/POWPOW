@@ -319,7 +319,7 @@ void image::render(HDC hdc, int destX, int destY, int sourX, int sourY, int sour
 			sourWidth,				//복사될 크기 (가로크기)
 			sourHeight,				//복사될 크기 (세로크기)
 			_imageInfo->hMemDC,		//복사해올 DC
-			sourX, sourY,					//복사해올 시작좌표(left, top)
+			sourX, sourY,			//복사해올 시작좌표(left, top)
 			sourWidth,				//복사해올 크기(가로)
 			sourHeight,				// 			(세로)
 			_transColor);			//복사할때 제외할 픽셀값
@@ -519,8 +519,53 @@ void image::alphaRender(HDC hdc, int destX, int destY, BYTE alpha)
 	}
 }
 
+void image::alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha)
+{
+	//0 ~ 255
+	_blendFunc.SourceConstantAlpha = alpha;
+
+	if (_trans)
+	{
+		BitBlt(
+			_blendImage->hMemDC,//복사될 DC
+			sourX,				//복사될 좌표 (left)
+			sourY,				//복사될 좌표 (top)
+			sourWidth,			//복사될 크기
+			sourHeight,
+			hdc,//복사해올 DC
+			destX,
+			destY,				//복사시작될 좌표(left, top)
+			SRCCOPY);			//변형없이 복사한다
+
+		GdiTransparentBlt(
+			_blendImage->hMemDC,					//복사될 영역의 DC
+			sourX,					//복사될 좌표(left)
+			sourY,					//복사될 좌표(top)
+			sourWidth,				//복사될 크기 (가로크기)
+			sourHeight,				//복사될 크기 (세로크기)
+			_imageInfo->hMemDC,		//복사해올 DC
+			sourX,
+			sourY,					//복사해올 시작좌표(left, top)
+			sourWidth,				//복사될 크기 (가로크기)
+			sourHeight,				// 			(세로)
+			_transColor);			//복사할때 제외할 픽셀값
+
+		AlphaBlend(hdc, destX, destY, sourWidth, sourHeight,
+			_blendImage->hMemDC, sourX, sourY, sourWidth, sourHeight, _blendFunc);
+	}
+	else
+	{
+		AlphaBlend(hdc, destX, destY, sourWidth, sourHeight,
+			_blendImage->hMemDC, sourX, sourY, sourWidth, sourHeight, _blendFunc);
+	}
+}
+
 void image::aniRender(HDC hdc, int destX, int destY, animation* ani)
 {
 	render(hdc, destX, destY, ani->getFramePos().x, ani->getFramePos().y, ani->getFrameWidth(), ani->getFrameHeight());
 }
 
+void image::aniRender(HDC hdc, int destX, int destY, animation* ani, BYTE alpha)
+{
+	alphaRender(hdc, destX, destY, ani->getFramePos().x, ani->getFramePos().y, ani->getFrameWidth(), ani->getFrameHeight(), alpha);
+}

@@ -24,6 +24,10 @@ void RenderManager::release()
 void RenderManager::update()
 {
 	selectionSort();
+	for (int i = 0; i < _vRender.size(); i++)
+	{
+		if (_vRender[i]->getReleased()) removeRender(i);
+	}
 	//bubbleSort();
 }
 
@@ -92,6 +96,11 @@ void RenderManager::addRender(gameNode* obj)
 
 	_vRender.push_back(obj);
 
+}
+
+void RenderManager::removeRender(int arrNum)
+{
+	_vRender.erase(_vRender.begin() + arrNum);
 }
 
 void RenderManager::swap(int* a, int* b)

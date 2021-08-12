@@ -73,12 +73,15 @@ protected:
 	int	_hitCount;					//피격 게이지 감소 카운트(해당 카운트가 지나면 점점 줄어듦)'
 	int _wanderDirX, _wanderDirY;
 	int _attackCount;
+	int _releaseCount;
 
 	bool _isAir;
 	bool _isChange;
 	bool _isAttack;
 	bool _isTrace;
 	bool _isRun;
+	bool _isVulnerable;
+	bool _isDead;
 
 	float _posX, _posY;				//실제 x, y 좌표
 	float _rendX, _rendY;			//렌더 x, y 좌표
@@ -91,6 +94,8 @@ protected:
 	float _attackRange;				//공격 가능한 거리
 	float _searchRange;				//플레이어 감지 거리
 	float _airY;					//공중 Y 좌표
+	int _alpha;
+	int _temp;
 
 	int _maxHP, _currentHP;			//최대 체력, 현재 체력
 	int _rndSelection;
@@ -135,8 +140,13 @@ public:
 
 	void setWanderDirY(int dir) { _wanderDirY = dir; }
 
+	void setIsDead(bool isdead) { _isDead = isdead; }
+
 	int getAtkCount() { return _attackCount; }
 	void setAtkCount(int count) { _attackCount = count; }
+
+	bool getIsVulnerable() { return _isVulnerable; }
+	void setIsVulnerable(bool isVul) { _isVulnerable = isVul; }
 
 	int getHitGauge() { return _hitGauge; }
 
@@ -201,8 +211,11 @@ public:
 	float getSpeedY() { return _speedY; }
 	void setSpeedY(float speed) { _speedY = speed; }
 #pragma endregion
+
 	virtual float getRenderPosY();
 
+	virtual bool getReleased();
+	
 	bool ChaseSession();
 
 	bool AttackSession();
