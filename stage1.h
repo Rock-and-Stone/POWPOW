@@ -9,6 +9,7 @@
 #include "Enemy.h"
 #include "EnemyManager.h"
 #include "ObjectManager.h"
+#include "Luke.h"
 
 #define ARRSIZE 10
 
@@ -21,12 +22,13 @@ private:
 	EnemyManager* _em;
 	Enemy* _enemy;
 	ObjectManager* _om;
+	Luke* _luke;
 
 	int _posX;
 	int _posY;
 
 	int _probePlayerX, _probePlayerRX, _probePlayerLX, _probePlayerY, _probePlayerBY;
-	int _probeEnemyX, _probeEnemyY;
+	int _probeEnemyX, _probeEnemyRX, _probeEnemyLX, _probeEnemyY, _probeEnemyBY;
 
 	char* _str;
 

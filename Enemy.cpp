@@ -96,6 +96,7 @@ void Enemy::EnemyUpdate()
     DownGauge();
     if (_player->getIsVulnerable()) StateCount();
     SwitchImage();
+    pixelCollision();
 }
 
 void Enemy::Move()
@@ -185,6 +186,96 @@ void Enemy::Draw()
 void Enemy::Collision()
 {
 }
+
+void Enemy::pixelCollision()
+{
+    //픽셀 콜리전
+
+
+    _probeEnemyX = _posX;
+    _probeEnemyY = _posY;
+    _probeEnemyRX = _posX + 40;
+    _probeEnemyLX = _posX - 40;
+    _probeEnemyBY = _posY + 90;
+
+
+
+    //픽셀 윗 충돌
+   
+    //에너미
+    for (int i = _probeEnemyBY - 5; i < _probeEnemyBY	; ++i)
+    {
+        COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), _posX, i);
+
+        int r = GetRValue(color);
+        int g = GetGValue(color);
+        int b = GetBValue(color);
+
+        if ((r == 255 && g == 255 && b == 0))
+        {
+            _speedY = 0;
+            _posY = (i - 85);
+        }
+    }
+   
+
+    //픽셀 아랫 충돌
+    
+    //에너미
+    for (int i = _probeEnemyBY + 5; i > _probeEnemyBY; --i)
+    {
+        COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), _posX, i);
+
+        int r = GetRValue(color);
+        int g = GetGValue(color);
+        int b = GetBValue(color);
+
+        if ((r == 255 && g == 255 && b == 0))
+        {
+            _speedY = 0;
+            _posY = (i - 95);
+        }
+    }
+
+    //픽셀 오른쪽 충돌
+   
+
+    //에너미
+    for (int i = _probeEnemyRX + 5; i > _probeEnemyRX; --i)
+    {
+        COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(),i, _probeEnemyBY);
+
+        int r = GetRValue(color);
+        int g = GetGValue(color);
+        int b = GetBValue(color);
+
+        if ((r == 255 && g == 255 && b == 0))
+        {
+            _speedX = 0;
+            _posX = (i - 45);
+        }
+    }
+
+    //픽셀 왼쪽 충돌
+  
+    //에너미
+    for (int i = _probeEnemyLX - 5; i < _probeEnemyLX; ++i)
+    {
+        COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), i, _probeEnemyBY);
+
+        int r = GetRValue(color);
+        int g = GetGValue(color);
+        int b = GetBValue(color);
+
+        if ((r == 255 && g == 255 && b == 0))
+        {
+            _speedX = 0;
+            _posX = i + 45;
+        }
+    }
+}
+
+
 
 void Enemy::TracePlayer() // 플레이어 추적하여 좌우 변경
 {
