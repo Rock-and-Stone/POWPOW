@@ -62,7 +62,6 @@ void stage1::update()
 
 		if (KEYMANAGER->isOnceKeyDown(VK_F1)) SCENEMANAGER->changeScene("bossScene");
 
-
 		EFFECTMANAGER->update();
 
 		RENDERMANAGER->update();
@@ -71,11 +70,7 @@ void stage1::update()
 
 	_ui->update();
 
-
 	pixelCollision();
-
-	EFFECTMANAGER->update();
-	RENDERMANAGER->update();
 }
 
 void stage1::release()
