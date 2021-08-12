@@ -242,6 +242,7 @@ void Fall::Trigger()
 #pragma region ATTACK
 HRESULT Attack::init()
 {
+	_keyPressed = false;
 	return S_OK;
 }
 

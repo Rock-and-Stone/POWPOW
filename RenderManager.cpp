@@ -44,11 +44,6 @@ void RenderManager::render(HDC hdc)
 	for (_viRender = _vRender.begin(); _viRender != _vRender.end(); _viRender++)
 	{
 		(*_viRender)->render();
-
-		sprintf_s(str, "%d", (*_viRender)->getRenderPosY()); //렌더의 Y값을 가져와서 보여줌.
-		TextOut(hdc, 300, 90 + i* 30, str, strlen(str));
-
-		i++;
 	}
 }
 

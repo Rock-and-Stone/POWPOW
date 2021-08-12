@@ -152,6 +152,7 @@ void stage1::render()
 //원래는 SETPOSY로 밀어주는게 제일 좋은데 잘 안됨
 //픽셀 검출은 잘 되는데 왜이러는지 미스테리
 #pragma endregion
+
 void stage1::pixelCollision()
 {
 	//픽셀 콜리전

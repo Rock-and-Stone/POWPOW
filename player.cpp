@@ -49,7 +49,7 @@ HRESULT player::init(float posX, float posY)
 	_speedRes = 0.50f;
 	_airY = 0;
 
-	_dirX = 0;
+	_dirX = 1;
 	_dirY = 0;
 
 	_indexX = _indexY = 0;
@@ -253,17 +253,17 @@ void player::AttackCollision()
 		{
 			case 0:
 			{
-					_attackRC = RectMakeCenter(_rendX, _rendY, 200, 50);
+					_attackRC = RectMakeCenter(_rendX - 60 + _indexY * 120, _rendY, 50, 30);
 				break;
 			}
 			case 1:
 			{
-					_attackRC = RectMakeCenter(_rendX, _rendY, 200, 50);
+					_attackRC = RectMakeCenter(_rendX - 60 + _indexY * 120, _rendY , 50, 30);
 				break;
 			}
 			case 2:
 			{
-					_attackRC = RectMakeCenter(_rendX, _rendY, 200, 60);
+					_attackRC = RectMakeCenter(_rendX - 60 + _indexY * 120, _rendY, 50, 30);
 				break;
 			}
 		}

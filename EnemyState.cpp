@@ -13,6 +13,7 @@ EnemyState::~EnemyState()
 HRESULT EnemyIdle::init()
 {
 	_enemy->setIsChange(false);
+	_enemy->setIsAttack(false);
 	_enemy->SetIsAir(false);
 	_enemy->setSpeedX(0);
 	_enemy->setSpeedY(0);
@@ -179,7 +180,7 @@ HRESULT EnemyDamaged::init()
 	//EFFECTMANAGER->addEffect("attackEffect1", "source/effect/attackEffect.bmp", 350, 50, 50, 50, 1, 0.08f, 1000);
 	_enemy->SetEnemyHP(_enemy->GetEnemyHP() - 10);
 	_enemy->setIsTrace(false);
-	if (_enemy->GetEnemyDirection() == 0)
+	if (_enemy->GetEnemyDirection() == -1)
 	{
 		EFFECTMANAGER->play("attackEffect1", _enemy->GetEnemyRendX() - 40, _enemy->GetEnemyRendY());
 	}
@@ -230,7 +231,7 @@ HRESULT EnemyGuard::init()
 {
 	_enemy->setIsTrace(false);
 
-	if (_enemy->GetEnemyDirection() == 0)
+	if (_enemy->GetEnemyDirection() == -1)
 	{
 		EFFECTMANAGER->play("defenseEffect1", _enemy->GetEnemyRendX() - 20, _enemy->GetEnemyRendY());
 	}
