@@ -40,7 +40,7 @@ void EnemyManager::EnemyImageStorage()
 
 void EnemyManager::SetLuke()
 {
-    for (int i = 0; i < 0; i++)
+    for (int i = 0; i < 5; i++)
     {
         Enemy* luke;
         luke = new Luke;
@@ -90,6 +90,7 @@ void EnemyManager::Collision()
 
         if (IntersectRect(&temp, &playerRC, &enemyRC))
         {
+            if (_player->getPosY() + 20 > _vLuke[i]->GetEnemyPosY() && _player->getPosY() -20 < _vLuke[i]->GetEnemyPosY())
             _vLuke[i]->HitDamage(10);
         }
 
@@ -99,6 +100,7 @@ void EnemyManager::Collision()
 
         if (IntersectRect(&temp2, &playerHitRC, &enemyHitRC))
         {
+            if (_player->getPosY() > _vLuke[i]->GetEnemyPosY() - 20 && _player->getPosY() < _vLuke[i]->GetEnemyPosY() + 20)
             _player->hitDamage(5);
         }
     }

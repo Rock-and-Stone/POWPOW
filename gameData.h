@@ -10,6 +10,9 @@ private:
 	int _playerGP = getPlayerSaveGP();
 	int _coin = getSaveCoin();
 
+	float _playerPosX = 4000;
+	float _playerPosY = 800;
+
 public:
 	float getBGMVolume();
 	void setBGMVolume(float volume);
@@ -34,6 +37,11 @@ public:
 
 	int getCoin() { return _coin; }
 	void setCoin(int coin) { _coin = coin; }
+
+	float getPlayerPosX() { return _playerPosX; }
+	void setPlayerPosX(float x) { _playerPosX = x; }
+	float getPlayerPosY() { return _playerPosY; }
+	void setPlayerPosY(float y) { _playerPosY = y; }
 
 	void SaveData() { SavePlayerGP(_playerGP); SavePlayerHP(_playerHP); SaveCoin(_coin); }
 };

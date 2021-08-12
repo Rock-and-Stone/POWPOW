@@ -125,49 +125,19 @@ void Move::Input()
 		_player->setIsRun(true);
 	}
 
-	if (LEFTKEYDOWN)
-	{
-		_player->setDirectionX(-1);
-	}
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT)) _player->setDirectionX(-1);
 
-	if (LEFTKEYUP && currentDirX == -1)
-	{
-		if(currentDirY == 0)_player->ChangeState(Statement::IDLE);
-		_player->setDirectionX(0);
-	}
+	else if (KEYMANAGER->isStayKeyDown(VK_RIGHT))_player->setDirectionX(1);
 
-	if (RIGHTKEYDOWN)
-	{
-		_player->setDirectionX(1);
-	}
+	if (KEYMANAGER->isStayKeyDown(VK_UP))	_player->setDirectionY(-1);
 
-	if (RIGHTKEYUP && currentDirX == 1)
-	{
-		if (currentDirY == 0)_player->ChangeState(Statement::IDLE);
-		_player->setDirectionX(0);
-	}
+	else if (KEYMANAGER->isStayKeyDown(VK_DOWN)) _player->setDirectionY(1);
 
-	if (UPKEYDOWN)
-	{
-		_player->setDirectionY(-1);
-	}
+	if (!KEYMANAGER->isStayKeyDown(VK_LEFT) &&
+		!KEYMANAGER->isStayKeyDown(VK_RIGHT)) _player->setDirectionX(0);
 
-	if (UPKEYUP && currentDirY == -1)
-	{
-		if (currentDirX == 0)_player->ChangeState(Statement::IDLE);
-		_player->setDirectionY(0);
-	}
-
-	if (DOWNKEYDOWN)
-	{
-		_player->setDirectionY(1);
-	}
-
-	if (DOWNKEYUP && currentDirY == 1)
-	{
-		if (currentDirX == 0)_player->ChangeState(Statement::IDLE);
-		_player->setDirectionY(0);
-	}
+	if (!KEYMANAGER->isStayKeyDown(VK_UP) &&
+		!KEYMANAGER->isStayKeyDown(VK_DOWN)) _player->setDirectionY(0);
 
 	if (KEYMANAGER->isOnceKeyDown('C'))
 	{
@@ -176,7 +146,10 @@ void Move::Input()
 		_player->setJumpPower(12.0f);
 	}
 
-	
+	if (!KEYMANAGER->isStayKeyDown(VK_LEFT) &&
+		!KEYMANAGER->isStayKeyDown(VK_RIGHT) &&
+		!KEYMANAGER->isStayKeyDown(VK_UP) &&
+		!KEYMANAGER->isStayKeyDown(VK_DOWN))	_player->ChangeState(Statement::IDLE);
 	
 }
 
@@ -269,6 +242,7 @@ void Fall::Trigger()
 #pragma region ATTACK
 HRESULT Attack::init()
 {
+	_keyPressed = false;
 	return S_OK;
 }
 
@@ -284,10 +258,12 @@ void Attack::update()
 
 void Attack::render(HDC hdc)
 {
+
 }
 
 void Attack::Input()
 {
+	_player->setIsAttack(false);
 	if (KEYMANAGER->isOnceKeyDown('X') && _player->getAtkCount() < 2 && _player->getIndexX() > 0)
 	{
 		_player->setAtkCount(_player->getAtkCount() + 1);

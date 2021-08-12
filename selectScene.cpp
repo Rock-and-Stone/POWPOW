@@ -38,6 +38,7 @@ void SelectScene::update()
 			{
 			case 0:
 				SCENEMANAGER->changeScene("stage1");
+				SOUNDMANAGER->stop("menuBGM");
 				break;
 
 

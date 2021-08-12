@@ -29,7 +29,9 @@ protected:
 	RECT			_renderRC;		//이미지 렌더를 위한 렉트
 	RECT			_hitRC;			//히트박스 렉트
 	RECT			_attackRC;		//공격 렉트
+	RECT			_shadowRC;
 	image*			_img;			//현재 이미지
+	image*			_shadow;
 
 	State*			_state;			//현재 상태 (이하 자식 상태들)
 	Idle*			_idle;
@@ -59,10 +61,11 @@ protected:
 
 	float			_posX, _posY;	// 실제 좌표
 	float			_probeX, _probeY;	//픽셀 콜라이더 검색값
-	float			_groundY, _airY;	// 바닥에서의 Y값, 땅에서 공중까지의 Y값
+	float			_airY;				//땅에서 공중까지의 Y값
 	float			_jumpPower, _gravity; // 점프력, 중력값
 
 	float			_rendX, _rendY;		//렌더를 위한 X, Y 값
+	float			_shadowY;
 	float			_speedX, _speedY;	//속도 X, Y
 	float			_maxSpeedX, _maxSpeedY; //최대속도 X, Y
 	float			_speedRes;			// 속도 마찰값
@@ -109,6 +112,8 @@ public:
 	RECT getAttackRC() { return _attackRC; }
 	RECT getHitRC() { return _hitRC; }
 
+	bool getIsAttack() { return _isAttack; }
+	void setIsAttack(bool isAtk) { _isAttack = isAtk; }
 	int  getIndexX() { return _indexX; }
 	void setIndexX(int indexX) { _indexX = indexX; }
 
@@ -124,7 +129,7 @@ public:
 	float getPosY() { return _posY; }
 	void setPosY(float posY) { _posY = posY; }
 
-	float getGroundY() { return _groundY; }
+	void setShadowY(float shadowY) { _shadowY = shadowY; }
 
 	bool getIsAir() { return _isAir; }
 	void setIsAir(bool isAir) { _isAir = isAir; }

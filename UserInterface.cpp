@@ -135,6 +135,9 @@ void UserInterface::update()
 	{
 
 		SOUNDMANAGER->setVolume("menuBGM", _currentBGMVolume);
+		SOUNDMANAGER->setVolume("상점", _currentBGMVolume);
+		SOUNDMANAGER->setVolume("인게임", _currentBGMVolume);
+		SOUNDMANAGER->setVolume("보스방", _currentBGMVolume);
 
 		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 		{

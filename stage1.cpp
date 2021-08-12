@@ -4,9 +4,12 @@
 HRESULT stage1::init()
 {
 	RENDERMANAGER->release();
+	SOUNDMANAGER->play("인게임", getBGMVolume() / 10);
 	_player = new Ramona;
-	_player->init(600,600);
+	_player->init(getPlayerPosX(),getPlayerPosY());
 	_player->InitVariables();
+	
+	_luke = new Luke;
 
 	_maxY = 1000;
 
@@ -88,6 +91,7 @@ void stage1::render()
 
 	_player->setRendX(_cm->getRenderPosX());
 	_player->setRendY(_cm->getRenderPosY());
+	_player->setShadowY(_cm->getRenderPosY());
 
 	_em->render();
 	_om->render();
@@ -129,9 +133,22 @@ void stage1::render()
 
 }
 
+#pragma region 설명서
+//픽셀콜리전 설명서
+// 왼쪽 부딪혔을 때 RGB (50,50,50) -> 회색
+// 위에 부딪혔을 때 RGB(255, 255, 0)->노랭이
+// 오른쪽에 부딪혔을 때 RGB(139, 0, 255)->보랭이
+// 아래 부딪혔을 때 RGB(80, 188, 223)->하늘색
+// Cafe->RGB(255, 0, 0)->빨갱이
+// Restaurant->RGB(0, 255, 0)->초록이
+// Convenient->RGB(0, 0, 255)->파랭이
+// Sushi->RGB(0, 255, 255)->애매한색
+// bossRoom->RGB(0, 170, 255)
+// 지옥의 불구덩이->RGB(1, 1, 1)->검정이 + 1
 //========================
 //원래는 SETPOSY로 밀어주는게 제일 좋은데 잘 안됨
 //픽셀 검출은 잘 되는데 왜이러는지 미스테리
+#pragma endregion
 
 void stage1::pixelCollision()
 {
@@ -141,9 +158,13 @@ void stage1::pixelCollision()
 	_probePlayerRX = _player->getPosX() + 40;		//플레이어 오른쪽부분
 	_probePlayerLX = _player->getPosX() - 40;		//플레이어 왼쪽부분
 	_probePlayerBY = _player->getPosY() + 90;		//플레이어 발 부분
+
+	
+
+
 	
 	
-	//플레이어 렉트 아랫부분에 충돌했을 때 (마젠타가 플레이어 발보다 위에 있을 때 )
+	//상점 이동 및 보스방 이동
 	for (int i = _probePlayerBY - 1; i < _probePlayerBY; ++i)
 	{
 		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), _player->getPosX(), i);
@@ -154,67 +175,50 @@ void stage1::pixelCollision()
 
 		if ((r == 255 && g == 0 && b == 0))
 		{
+			SaveData();
+			setPlayerPosX(_player->getPosX());
+			setPlayerPosY(_player->getPosY() + 50 );
+			SOUNDMANAGER->stop("인게임");
 			SCENEMANAGER->changeScene("cafeScene");
 		}
 
 		if ((r == 0 && g == 255 && b == 0))
 		{
+			SaveData();
+			setPlayerPosX(_player->getPosX());
+			setPlayerPosY(_player->getPosY() + 50);
+			SOUNDMANAGER->stop("인게임");
 			SCENEMANAGER->changeScene("restaurantScene");
 		}
 
 		if ((r == 0 && g == 0 && b == 255))
 		{
+			SaveData();
+			setPlayerPosX(_player->getPosX());
+			setPlayerPosY(_player->getPosY() + 50);
+			SOUNDMANAGER->stop("인게임");
 			SCENEMANAGER->changeScene("convenientScene");
 		}
 
 		if ((r == 0 && g == 255 && b == 255))
 		{
+			SaveData();
+			setPlayerPosX(_player->getPosX());
+			setPlayerPosY(_player->getPosY() + 50);
+			SOUNDMANAGER->stop("인게임");
 			SCENEMANAGER->changeScene("sushiScene");
 		}
 
-		if ((r == 0 && g == 0 && b == 0))
+		if ((r == 0 && g == 170 && b == 255))
 		{
+			SOUNDMANAGER->stop("인게임");
 			SCENEMANAGER->changeScene("bossScene");
 		}
-
-		//마젠타가 위에 있을 때
-		if ((r == 255 && g == 0 && b == 255))
-		{
-			_player->setSpeedY(-2);
-		}
 	}
 
-	//픽셀 우 충돌 
-	for (int i = _probePlayerRX; i < _probePlayerRX + 1; ++i)
-	{
-		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), i, _player->getPosY());
-
-		int r = GetRValue(color);
-		int g = GetGValue(color);
-		int b = GetBValue(color);
-
-		if ((r == 255 && g == 0 && b == 255))
-		{
-			_player->setSpeedX(-2);
-		}
-	}
-	//픽셀 좌 충돌
-	for (int i = _probePlayerLX - 1; i < _probePlayerLX; ++i)
-	{
-		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), i, _player->getPosY());
-
-		int r = GetRValue(color);
-		int g = GetGValue(color);
-		int b = GetBValue(color);
-
-		if ((r == 255 && g == 0 && b == 255))
-		{
-			_player->setSpeedX(-2);
-		}
-	}
-
-	//픽셀 하 충돌
-	for (int i = _probePlayerBY; i < _probePlayerBY + 1; ++i)
+	//픽셀 윗 충돌
+	//플레이어
+	for (int i = _probePlayerBY - 5; i < _probePlayerBY  ; ++i)
 	{
 		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), _player->getPosX(), i);
 
@@ -222,10 +226,67 @@ void stage1::pixelCollision()
 		int g = GetGValue(color);
 		int b = GetBValue(color);
 
-		if ((r == 255 && g == 0 && b == 255))
+		if ((r == 255 && g == 255 && b == 0))
 		{
-			_player->setSpeedY(-2);
+			_player->setSpeedY(0);
+			_player->setPosY(i - 85);
+		}
+	}
+	
+
+
+	//픽셀 아랫 충돌
+	//플레이어
+	for (int i = _probePlayerBY + 5; i > _probePlayerBY; --i)
+	{
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), _player->getPosX(), i);
+
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+
+		if ((r == 255 && g == 255 && b == 0))
+		{
+			_player->setSpeedY(0);
+			_player->setPosY(i - 95);
+		}
+	}
+	
+
+	//픽셀 오른쪽 충돌
+	//플레이어
+	for (int i = _probePlayerRX + 5; i > _probePlayerRX; --i)
+	{
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), i, _probePlayerBY);
+
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+
+		if ((r == 255 && g == 255 && b == 0))
+		{
+			_player->setSpeedX(0);
+			_player->setPosX(i - 45);
 		}
 	}
 
+	
+
+	//픽셀 왼쪽 충돌
+	//플레이어
+	for (int i = _probePlayerLX - 5; i < _probePlayerLX; ++i)
+	{
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), i, _probePlayerBY);
+
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+
+		if ((r == 255 && g == 255 && b == 0))
+		{
+			_player->setSpeedX(0);
+			_player->setPosX(i + 45);
+		}
+	}
+	
 }

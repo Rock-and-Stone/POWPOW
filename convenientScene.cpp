@@ -19,7 +19,7 @@ HRESULT convenientScene::init()
 
 	_ui = new UserInterface;
 	_ui->init();
-
+	SOUNDMANAGER->play("상점", getBGMVolume()/10);
 	return S_OK;
 }
 
@@ -29,19 +29,24 @@ void convenientScene::release()
 
 void convenientScene::update()
 {
-	if (KEYMANAGER->isOnceKeyDown(VK_DOWN) && _y < 200)
+	if (!_ui->GetIsPause())
 	{
-		_y += 200;
+		if (KEYMANAGER->isOnceKeyDown(VK_DOWN) && _y < 200)
+		{
+			_y += 200;
+		}
+		if (KEYMANAGER->isOnceKeyDown(VK_UP) && _y > 0)
+		{
+			_y -= 200;
+		}
+		if (KEYMANAGER->isOnceKeyDown('Q'))
+		{
+			SOUNDMANAGER->stop("상점");
+			SCENEMANAGER->changeScene("stage1");
+		}
+		Interaction();
 	}
-	if (KEYMANAGER->isOnceKeyDown(VK_UP) && _y > 0)
-	{
-		_y -= 200;
-	}
-	if (KEYMANAGER->isOnceKeyDown('Q'))
-	{
-		SCENEMANAGER->changeScene("stage1");
-	}
-	Interaction();
+	
 
 	_ui->update();
 }

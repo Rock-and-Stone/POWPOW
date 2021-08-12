@@ -47,22 +47,7 @@ void playGround::update()
 	EFFECTMANAGER->update();
 	KEYANIMANAGER->update();
 
-	if (KEYMANAGER->isOnceKeyDown(VK_F1))
-	{
-		SCENEMANAGER->changeScene("cafeScene");
-	}
-	if (KEYMANAGER->isOnceKeyDown(VK_F2))
-	{
-		SCENEMANAGER->changeScene("convenientScene");
-	}
-	if (KEYMANAGER->isOnceKeyDown(VK_F3))
-	{
-		SCENEMANAGER->changeScene("restaurantScene");
-	}
-	if (KEYMANAGER->isOnceKeyDown(VK_F4))
-	{
-		SCENEMANAGER->changeScene("sushiScene");
-	}
+	
 }
 
 //여기다 그려줘라!!!

@@ -56,7 +56,7 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
     _airY = 0;
 
     _hitGauge = _hitCount = 0;
-
+    _attackCount = 0;
     _gravity = _jumpPower = 0;
 
     _isAir = false;
@@ -94,8 +94,9 @@ void Enemy::EnemyUpdate()
     TracePlayer();
     MakeAttackRect();
     DownGauge();
-    StateCount();
+    if (_player->getIsVulnerable()) StateCount();
     SwitchImage();
+    pixelCollision();
 }
 
 void Enemy::Move()
@@ -186,23 +187,117 @@ void Enemy::Collision()
 {
 }
 
-void Enemy::TracePlayer() // 플레이어 추적하여 좌우 변경
+void Enemy::pixelCollision()
 {
-    if (_player->getPosX() + 5 > _posX && _player->getPosX() - 5 < _posX)
+    //픽셀 콜리전
+
+
+    _probeEnemyX = _posX;
+    _probeEnemyY = _posY;
+    _probeEnemyRX = _posX + 40;
+    _probeEnemyLX = _posX - 40;
+    _probeEnemyBY = _posY + 90;
+
+
+
+    //픽셀 윗 충돌
+   
+    //에너미
+    for (int i = _probeEnemyBY - 5; i < _probeEnemyBY	; ++i)
     {
-        _isTrace = false;
+        COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), _posX, i);
+
+        int r = GetRValue(color);
+        int g = GetGValue(color);
+        int b = GetBValue(color);
+
+        if ((r == 255 && g == 255 && b == 0))
+        {
+            _speedY = 0;
+            _posY = (i - 85);
+        }
+    }
+   
+
+    //픽셀 아랫 충돌
+    
+    //에너미
+    for (int i = _probeEnemyBY + 5; i > _probeEnemyBY; --i)
+    {
+        COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), _posX, i);
+
+        int r = GetRValue(color);
+        int g = GetGValue(color);
+        int b = GetBValue(color);
+
+        if ((r == 255 && g == 255 && b == 0))
+        {
+            _speedY = 0;
+            _posY = (i - 95);
+        }
     }
 
-    else if (_player->getPosX() + 5 < _posX)
+    //픽셀 오른쪽 충돌
+   
+
+    //에너미
+    for (int i = _probeEnemyRX + 5; i > _probeEnemyRX; --i)
     {
-        _direction = -1;
-        _isTrace = true;
+        COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(),i, _probeEnemyBY);
+
+        int r = GetRValue(color);
+        int g = GetGValue(color);
+        int b = GetBValue(color);
+
+        if ((r == 255 && g == 255 && b == 0))
+        {
+            _speedX = 0;
+            _posX = (i - 45);
+        }
     }
-    else if (_player->getPosX() - 5 >= _posX)
+
+    //픽셀 왼쪽 충돌
+  
+    //에너미
+    for (int i = _probeEnemyLX - 5; i < _probeEnemyLX; ++i)
     {
-        _direction = 1;
-        _isTrace = true;
+        COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), i, _probeEnemyBY);
+
+        int r = GetRValue(color);
+        int g = GetGValue(color);
+        int b = GetBValue(color);
+
+        if ((r == 255 && g == 255 && b == 0))
+        {
+            _speedX = 0;
+            _posX = i + 45;
+        }
     }
+}
+
+
+
+void Enemy::TracePlayer() // 플레이어 추적하여 좌우 변경
+{
+    if (_enemyStatement != ENEMYSTATEMENT::DOWN && _enemyStatement != ENEMYSTATEMENT::GETUP)
+    {
+        if (_player->getPosX() + 5 > _posX && _player->getPosX() - 5 < _posX)
+        {
+            _isTrace = false;
+        }
+
+        else if (_player->getPosX() + 5 < _posX)
+        {
+            _direction = -1;
+            _isTrace = true;
+        }
+        else if (_player->getPosX() - 5 >= _posX)
+        {
+            _direction = 1;
+            _isTrace = true;
+        }
+    }
+    
 
     //만약 플레이어가 에너미보다 위에 있으면
     if (_player->getPosY() + 30 < _posY)
@@ -262,6 +357,7 @@ void Enemy::ChangeStatement(ENEMYSTATEMENT enemyStatement)
         _state = _move;
         break;
     }
+    _motionName->stop();
     SwitchImage();
     _stateCount = 0;
     _isTrace = true;
@@ -274,23 +370,12 @@ void Enemy::MakeAttackRect()
     {
         if (_direction == -1)
         {
-            _attackRect = RectMakeCenter(_rendX-60, _rendY, 50, 50);
+            _attackRect = RectMakeCenter(_rendX - 60, _rendY, 50, 50);
         }
-        else if(_direction == 1)  _attackRect = RectMakeCenter(_rendX + 60, _rendY, 50, 50);
-       
+        else if (_direction == 1)  _attackRect = RectMakeCenter(_rendX + 60, _rendY, 50, 50);
+
     }
     else _attackRect = RectMakeCenter(0, 0, 0, 0);
-
-    if (ComboSession())
-    {
-        if (_direction == -1)
-        {
-            _attackComboRect = RectMakeCenter(_rendX - 60, _rendY, 50, 50);
-        }
-        else _attackComboRect = RectMakeCenter(_rendX + 60, _rendY, 50, 50);
-    }
-    else _attackComboRect = RectMakeCenter(0, 0, 0, 0);
-
 }
 
 void Enemy::DownGauge()
@@ -299,7 +384,7 @@ void Enemy::DownGauge()
     {
         _hitCount++;
 
-        if (_hitCount % 10 == 0)
+        if (_hitCount % 40 == 0)
         {
             _hitGauge--;
             _hitCount = 0;
@@ -310,7 +395,7 @@ void Enemy::DownGauge()
 void Enemy::StateCount()
 {
     _stateCount++;
-    if (_stateCount % 50 == 0)
+    if (_stateCount % 80 == 0)
     {
         _isChange = true;
     }
@@ -331,27 +416,9 @@ bool Enemy::ChaseSession()
     else return false;
 }
 
-bool Enemy::WalkSession()
-{
-    if (_distance < WINSIZEX)
-    {
-        return true;
-    }
-    return false;
-}
-
 bool Enemy::AttackSession()
 {
     if (_highlow == 0 &&_distance <= 82)
-    {
-        return true;
-    }
-    return false;
-}
-
-bool Enemy::ComboSession()
-{
-    if (_enemyStatement == ENEMYSTATEMENT::ATTACK)
     {
         return true;
     }
@@ -370,11 +437,13 @@ bool Enemy::ObjectSession()
 void Enemy::HitDamage(int Damage)
 {
     _rndSelection = RND->getInt(2);
-
-    if (_enemyStatement != ENEMYSTATEMENT::DAMAGED && _enemyStatement != ENEMYSTATEMENT::GUARD)
+    _randomHit = RND->getInt(2);
+    if (_enemyStatement != ENEMYSTATEMENT::DOWN)
     {
         if (_rndSelection == 0)
         {
+            _hitGauge++;
+            _currentHP -= Damage;
             ChangeStatement(ENEMYSTATEMENT::DAMAGED);
         }
         if (_rndSelection == 1)
