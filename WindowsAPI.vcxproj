@@ -187,6 +187,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="restaurantScene.h" />
     <ClInclude Include="sceneManager.h" />
+    <ClInclude Include="sCoin.h" />
     <ClInclude Include="SelectScene.h" />
     <ClInclude Include="settingScene.h" />
     <ClInclude Include="singletonBase.h" />
@@ -247,6 +248,7 @@
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="restaurantScene.cpp" />
     <ClCompile Include="sceneManager.cpp" />
+    <ClCompile Include="sCoin.cpp" />
     <ClCompile Include="SelectScene.cpp" />
     <ClCompile Include="settingScene.cpp" />
     <ClCompile Include="soundManager.cpp" />

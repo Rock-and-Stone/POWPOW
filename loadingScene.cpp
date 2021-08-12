@@ -438,6 +438,19 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 #pragma endregion
 
 #pragma region Object Images
+       //COIN 오브젝트
+        IMAGEMANAGER->addFrameImage("smallCoin", "source/object/coin/smallCoin.bmp", 300, 50, 6, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("mediumCoin", "source/object/coin/mediumCoin.bmp", 360, 60, 6, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("largeCoin", "source/object/coin/largeCoin.bmp", 384, 64, 6, 1, true, MAGENTA);
+
+        int smallCoin[] = { 0, 1, 2, 3, 4, 5 };
+        KEYANIMANAGER->addArrayFrameAnimation("smallCoin", "smallCoin", smallCoin, 6, 8, true);
+        int mediumCoin[] = { 0, 1, 2, 3, 4, 5 };
+        KEYANIMANAGER->addArrayFrameAnimation("mediumCoin", "mediumCoin", mediumCoin, 6, 8, true);
+        int largeCoin[] = { 0, 1, 2, 3, 4, 5 };
+        KEYANIMANAGER->addArrayFrameAnimation("largeCoin", "largeCoin", largeCoin, 6, 8, true);
+
+
        //BAT 오브젝트 
         IMAGEMANAGER->addFrameImage("bat_left_atk", "source/object/bat/bat_left_atk.bmp", 1875, 375, 5, 1, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("bat_left_dash", "source/object/bat/bat_left_dash.bmp", 3000, 375, 8, 1, true, MAGENTA);
