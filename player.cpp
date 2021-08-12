@@ -39,9 +39,7 @@ HRESULT player::init(float posX, float posY)
 
 #pragma region Variables
 	_posX = posX;
-	_groundY = posY;
-
-	_posY = _groundY + _airY;
+	_posY = posY;
 
 	_maxSpeedX = MAXSPEEDX;
 	_maxSpeedY = MAXSPEEDY;
@@ -65,6 +63,7 @@ HRESULT player::init(float posX, float posY)
 	_currentHP = _maxHP = 100;
 
 	_statement = Statement::IDLE;
+	_shadow = IMAGEMANAGER->findImage("shadow");
 
 	RENDERMANAGER->addRender(this);
 
@@ -88,28 +87,28 @@ void player::render()
 	{
 		Rectangle(getMemDC(), _hitRC);
 		Rectangle(getMemDC(), _attackRC);
-		//LineMake(getMemDC(), _hitRC.left, _hitRC.bottom, _hitRC.right, _hitRC.bottom);
 	}
+	_shadowRC = RectMakeCenter(_rendX, _rendY + (_hitRC.bottom - _hitRC.top) / 2, _shadow->getWidth(), _shadow->getHeight());
+	
 
 	if (_dirX < 0) _indexY = 0;
 	else if(_dirX > 0)_indexY = 1;
-
-	_img->frameRender(getMemDC(), _renderRC.left, _renderRC.top, _indexX, _indexY);
-	_hitRC = RectMakeCenter(_rendX, _rendY, 80, 180);
+	_shadow->render(getMemDC(), _shadowRC.left, _shadowRC.top);
+	_img->frameRender(getMemDC(), _renderRC.left, _renderRC.top + _airY, _indexX, _indexY);
+	
+	_hitRC = RectMakeCenter(_rendX, _rendY + _airY, 80, 180);
 
 }
 
 
 float player::getRenderPosY()
 {
-	return _groundY;
+	return _posY;
 }
 
 
 void player::Movement()
 {
-	_posY = _groundY + _airY;
-
 	if (_isRun)
 	{
 		_maxSpeedX = MAXSPEEDX * 2;
@@ -138,8 +137,8 @@ void player::Movement()
 	if (_indexY == 0) _posX -= _speedX;
 	else if(_indexY == 1) _posX += _speedX;
 
-	if (_dirY == -1)_groundY -= _speedY;
-	else if(_dirY == 1) _groundY += _speedY;
+	if (_dirY == -1)_posY -= _speedY;
+	else if(_dirY == 1) _posY += _speedY;
 
 	if (_isAir)
 	{

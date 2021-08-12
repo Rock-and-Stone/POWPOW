@@ -111,6 +111,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         IMAGEMANAGER->addImage("volumeFrontBar", "source/volumnFrontBar.bmp", 180, 50, false, RGB(255, 0, 255));
         IMAGEMANAGER->addImage("bossBackground", "source/Level 1 - Boss Room.bmp", WINSIZEX, WINSIZEY, true, MAGENTA);
         IMAGEMANAGER->addImage("¹è°æÇÈ¼¿", "source/col.bmp", 31812, 1000, false, RGB(255,0,255));
+        IMAGEMANAGER->addImage("shadow", "source/Shadow.bmp", 126, 36, true, RGB(255,0,255));
 
         IMAGEMANAGER->addImage("col", "source/col.bmp", 31812, 1000, false, RGB(255, 0, 255));
 
@@ -144,9 +145,9 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         IMAGEMANAGER->addFrameImage("LUKE_WALK", "LUKE/LUKE_WALK.bmp", 4320, 480, 18, 2, true, RGB(255, 0, 255));
         IMAGEMANAGER->addFrameImage("LUKE_RUN", "LUKE/LUKE_RUN.bmp", 5760, 480, 24, 2, true, RGB(255, 0, 255));
         IMAGEMANAGER->addFrameImage("LUKE_JUMP", "LUKE/LUKE_JUMP.bmp", 2400, 480, 10, 2, true, RGB(255, 0, 255));
-        IMAGEMANAGER->addFrameImage("LUKE_ATTACK1", "LUKE/LUKE_ATTACK1.bmp", 1920, 480, 8, 2, true, RGB(255, 0, 255));
-        IMAGEMANAGER->addFrameImage("LUKE_ATTACK2", "LUKE/LUKE_ATTACK2.bmp", 1680, 480, 7, 2, true, RGB(255, 0, 255));
-        IMAGEMANAGER->addFrameImage("LUKE_ATTACK3", "LUKE/LUKE_ATTACK3.bmp", 1680, 480, 7, 2, true, RGB(255, 0, 255));
+        IMAGEMANAGER->addFrameImage("LUKE_PUNCH", "LUKE/LUKE_PUNCH.bmp", 1920, 480, 8, 2, true, RGB(255, 0, 255));
+        IMAGEMANAGER->addFrameImage("LUKE_KICK", "LUKE/LUKE_KICK.bmp", 1680, 480, 7, 2, true, RGB(255, 0, 255));
+        IMAGEMANAGER->addFrameImage("LUKE_FINISHKICK", "LUKE/LUKE_FINISHKICK.bmp", 1680, 480, 7, 2, true, RGB(255, 0, 255));
         IMAGEMANAGER->addFrameImage("LUKE_DAMAGED", "LUKE/LUKE_DAMAGED.bmp", 1680, 480, 7, 2, true, RGB(255, 0, 255));
         IMAGEMANAGER->addFrameImage("LUKE_DOWN", "LUKE/LUKE_DOWN.bmp", 3360, 480, 14, 2, true, RGB(255, 0, 255));
         IMAGEMANAGER->addFrameImage("LUKE_DOWN_DAMAGED", "LUKE/LUKE_DOWN_DAMAGED.bmp", 960, 480, 4, 2, true, RGB(255, 0, 255));
@@ -204,18 +205,22 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         KEYANIMANAGER->addArrayFrameAnimation("LUKEleftInit", "LUKE_INIT", LUKEleftInit, 1, 8, true);
         int LUKErightInit[] = { 1 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKErightInit", "LUKE_INIT", LUKErightInit, 1, 8, true);
+
         int LUKEleftIdle[] = { 11,10,9,8 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKEleftIdle", "LUKE_IDLE", LUKEleftIdle, 4, 8, true);
         int LUKErightIdle[] = { 12,13,14,15 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKErightIdle", "LUKE_IDLE", LUKErightIdle, 4, 8, true);
+
         int LUKEleftWalk[] = { 17,16,15,14,13,12 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKEleftWalk", "LUKE_WALK", LUKEleftWalk, 6, 8, true);
         int LUKErightWalk[] = { 18,19,20,21,22,23 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKErightWalk", "LUKE_WALK", LUKErightWalk, 6, 8, true);
+
         int LUKEleftRun[] = { 23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKEleftRun", "LUKE_RUN", LUKEleftRun, 16, 8, true);
         int LUKErightRun[] = { 24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKErightRun", "LUKE_RUN", LUKErightRun, 16, 8, true);
+
         int LUKEleftJump[] = { 4,3,2,1,0 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKEleftJump", "LUKE_JUMP", LUKEleftJump, 5, 6, true);
         int LUKErightJump[] = { 10,11,12,13,14 };
@@ -224,26 +229,39 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         KEYANIMANAGER->addArrayFrameAnimation("LUKEleftFall", "LUKE_JUMP", LUKEleftFall, 5, 6, true);
         int LUKErightFall[] = { 15,16,17,18,19 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKErightFall", "LUKE_JUMP", LUKErightFall, 5, 6, true);
+
         int LUKEleftAttack1[] = { 7,6,5,4 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftAttack1", "LUKE_ATTACK1", LUKEleftAttack1, 4, 8, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKE_LEFT_PUNCH_1", "LUKE_PUNCH", LUKEleftAttack1, 4, 8, false);
         int LUKErightAttack1[] = { 8,9,10,11 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightAttack1", "LUKE_ATTACK1", LUKErightAttack1, 4, 8, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKE_RIGHT_PUNCH_1", "LUKE_PUNCH", LUKErightAttack1, 4, 8, false);
         int LUKEleftAttack2[] = { 3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftAttack2", "LUKE_ATTACK1", LUKEleftAttack2, 4, 8, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKE_LEFT_PUNCH_2", "LUKE_PUNCH", LUKEleftAttack2, 4, 8, false);
         int LUKErightAttack2[] = { 12,13,14,15 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightAttack2", "LUKE_ATTACK1", LUKErightAttack2, 4, 8, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKE_RIGHT_PUNCH_2", "LUKE_PUNCH", LUKErightAttack2, 4, 8, false);
         int LUKEleftAttack3[] = { 6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftAttack3", "LUKE_ATTACK2", LUKEleftAttack3, 7, 8, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKE_LEFT_KICK", "LUKE_KICK", LUKEleftAttack3, 7, 8, false);
         int LUKErightAttack3[] = { 7,8,9,10,11,12,13 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightAttack3", "LUKE_ATTACK2", LUKErightAttack3, 7, 8, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKE_RIGHT_KICK", "LUKE_KICK", LUKErightAttack3, 7, 8, false);
         int LUKEleftAttack4[] = { 6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftAttack4", "LUKE_ATTACK3", LUKEleftAttack4, 7, 8, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKE_LEFT_FINISHKICK", "LUKE_FINISHKICK", LUKEleftAttack4, 7, 8, false);
         int LUKErightAttack4[] = { 7,8,9,10,11,12,13 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightAttack4", "LUKE_ATTACK3", LUKErightAttack4, 7, 8, false);
-        int LUKEleftDamaged[] = { 6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftDamaged", "LUKE_DAMAGED", LUKEleftDamaged, 7, 8, false);
-        int LUKErightDamaged[] = { 7,8,9,10,11,12,13 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightDamaged", "LUKE_DAMAGED", LUKErightDamaged, 7, 8, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKE_RIGHT_FINISHKICK", "LUKE_FINISHKICK", LUKErightAttack4, 7, 8, false);
+
+        int LUKEleftDamaged_1[] = { 6,5,4 };
+        KEYANIMANAGER->addArrayFrameAnimation("LUKE_LEFT_DAMAGED_1", "LUKE_DAMAGED", LUKEleftDamaged_1, 3, 8, false);
+        int LUKEleftDamaged_2[] = { 3,2,1 };
+        KEYANIMANAGER->addArrayFrameAnimation("LUKE_LEFT_DAMAGED_2", "LUKE_DAMAGED", LUKEleftDamaged_2, 3, 8, false);
+        int LUKE_Left_Stun[] = { 0 };
+        KEYANIMANAGER->addArrayFrameAnimation("LUKE_LEFT_STUN", "LUKE_DAMAGED", LUKE_Left_Stun, 1, 8, false);
+
+        int LUKErightDamaged_1[] = { 7,8,9 };
+        KEYANIMANAGER->addArrayFrameAnimation("LUKE_RIGHT_DAMAGED_1", "LUKE_DAMAGED", LUKErightDamaged_1, 3, 8, false);
+        int LUKErightDamaged_2[] = { 10,11,12 };
+        KEYANIMANAGER->addArrayFrameAnimation("LUKE_RIGHT_DAMAGED_2", "LUKE_DAMAGED", LUKErightDamaged_2, 3, 8, false);
+        int LUKE_Right_Stun[] = { 13 };
+        KEYANIMANAGER->addArrayFrameAnimation("LUKE_Right_STUN", "LUKE_DAMAGED", LUKE_Right_Stun, 1, 8, false);
+
+
         int LUKEleftDown[] = { 13,12,11,10,9,8,7,6,5,4,3,2,1,0 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKEleftDown", "LUKE_DOWN", LUKEleftDown, 14, 6, false);
         int LUKErightDown[] = { 14,15,16,17,18,19,20,21,22,23,24,25,26,27 };

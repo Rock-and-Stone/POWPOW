@@ -67,11 +67,12 @@ protected:
 	int _direction;					//에너미의 방향
 	int _highlow;					//에너미 높낮이 (플레이어와의 비교)
 	int _randomChoice;				//막기, 맞기 랜덤값
+	int _randomHit;					//맞는 이미지 랜덤변경
 	int _stateCount;				//다음 상태 변경까지 카운트
 	int _hitGauge;					//피격 게이지 (일정 이상 맞으면 녹다운) //
 	int	_hitCount;					//피격 게이지 감소 카운트(해당 카운트가 지나면 점점 줄어듦)'
 	int _wanderDirX, _wanderDirY;
-
+	int _attackCount;
 
 	bool _isAir;
 	bool _isChange;
@@ -130,6 +131,9 @@ public:
 	void setWanderDirX(int dir) { _wanderDirX = dir; }
 
 	void setWanderDirY(int dir) { _wanderDirY = dir; }
+
+	int getAtkCount() { return _attackCount; }
+	void setAtkCount(int count) { _attackCount = count; }
 
 	int getHitGauge() { return _hitGauge; }
 
@@ -198,11 +202,7 @@ public:
 
 	bool ChaseSession();
 
-	bool WalkSession();
-
 	bool AttackSession();
-
-	bool ComboSession();
 
 	bool ObjectSession();
 

@@ -94,6 +94,7 @@ void stage1::render()
 
 	_player->setRendX(_cm->getRenderPosX());
 	_player->setRendY(_cm->getRenderPosY());
+	_player->setShadowY(_cm->getRenderPosY());
 
 	_em->render();
 	_om->render();
@@ -214,7 +215,7 @@ void stage1::pixelCollision()
 	}
 
 	//ÇÈ¼¿ À­ Ãæµ¹
-	for (int i = _probePlayerBY; i < _probePlayerBY +1 ; ++i)
+	for (int i = _probePlayerBY - 5; i < _probePlayerBY  ; ++i)
 	{
 		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), _player->getPosX(), i);
 
@@ -224,11 +225,12 @@ void stage1::pixelCollision()
 
 		if ((r == 255 && g == 255 && b == 0))
 		{
-			_player->setSpeedY(-2);
+			_player->setSpeedY(0);
+			_player->setPosY(i - 85);
 		}
 	}
 	//ÇÈ¼¿ ¾Æ·§ Ãæµ¹
-	for (int i = _probePlayerBY; i < _probePlayerBY + 1; ++i)
+	for (int i = _probePlayerBY + 5; i > _probePlayerBY; --i)
 	{
 		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), _player->getPosX(), i);
 
@@ -236,39 +238,42 @@ void stage1::pixelCollision()
 		int g = GetGValue(color);
 		int b = GetBValue(color);
 
-		if ((r == 80 && g == 188 && b == 223))
+		if ((r == 255 && g == 255 && b == 0))
 		{
-			_player->setSpeedY(-2);
+			_player->setSpeedY(0);
+			_player->setPosY(i - 95);
 		}
 	}
 
 	//ÇÈ¼¿ ¿À¸¥ÂÊ Ãæµ¹
-	for (int i = _probePlayerRX; i < _probePlayerRX + 1; ++i)
+	for (int i = _probePlayerRX + 5; i > _probePlayerRX; --i)
 	{
-		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), i, _player->getPosY());
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), i, _probePlayerBY);
 
 		int r = GetRValue(color);
 		int g = GetGValue(color);
 		int b = GetBValue(color);
 
-		if ((r == 139 && g == 0 && b == 255))
+		if ((r == 255 && g == 255 && b == 0))
 		{
 			_player->setSpeedX(0);
+			_player->setPosX(i - 45);
 		}
 	}
 
-	//ÇÈ¼¿ ¿À¸¥ÂÊ Ãæµ¹
-	for (int i = _probePlayerLX - 1; i < _probePlayerLX; ++i)
+	//ÇÈ¼¿ ¿ÞÂÊ Ãæµ¹
+	for (int i = _probePlayerLX - 5; i < _probePlayerLX; ++i)
 	{
-		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), i, _player->getPosY());
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), i, _probePlayerBY);
 
 		int r = GetRValue(color);
 		int g = GetGValue(color);
 		int b = GetBValue(color);
 
-		if ((r == 50 && g == 50 && b == 50))
+		if ((r == 255 && g == 255 && b == 0))
 		{
 			_player->setSpeedX(0);
+			_player->setPosX(i + 45);
 		}
 	}
 

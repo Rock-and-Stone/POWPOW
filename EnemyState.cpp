@@ -16,6 +16,7 @@ HRESULT EnemyIdle::init()
 	_enemy->SetIsAir(false);
 	_enemy->setSpeedX(0);
 	_enemy->setSpeedY(0);
+	_enemy->setAtkCount(0);
 	return S_OK;
 }
 
@@ -142,6 +143,7 @@ HRESULT EnemyAttack::init()
 	_enemy->setIsChange(false);
 	_enemy->setIsAttack(true);
 	_enemy->setIsTrace(false);
+
 	return S_OK;
 }
 
@@ -151,10 +153,23 @@ void EnemyAttack::release()
 
 void EnemyAttack::update()
 {
+	_enemy->setIsAttack(false);
 	if (!_enemy->GetMotionName()->isPlay())
 	{
-		_enemy->ChangeStatement(ENEMYSTATEMENT::IDLE);
+		_enemy->setAtkCount(_enemy->getAtkCount() + 1);
+
+		if (_enemy->getAtkCount() >= 3) 
+		{
+			_enemy->ChangeStatement(ENEMYSTATEMENT::IDLE);
+			return;
+		}
+
+		if(_enemy->getAtkCount() == 2) _enemy->setAtkCount(RND->getFromIntTo(2,4));
+
+		if (_enemy->getAtkCount() < 4) _enemy->ChangeStatement(ENEMYSTATEMENT::ATTACK);
+
 	}
+
 }
 
 
@@ -183,11 +198,11 @@ void EnemyDamaged::release()
 
 void EnemyDamaged::update()
 {
-	if (_enemy->GetEnemyHP() == 0)
+	if (_enemy->getHitGauge() > 2)
 	{
 		_enemy->ChangeStatement(ENEMYSTATEMENT::DOWN);
 	}
-	if (_enemy->GetMotionName()->GetNowPlayIdx() == 4)
+	if (!_enemy->GetMotionName()->isPlay())
 	{
 		_enemy->ChangeStatement(ENEMYSTATEMENT::IDLE);
 	}

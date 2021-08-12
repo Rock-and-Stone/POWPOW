@@ -126,23 +126,48 @@ void Luke::SwitchImage()
         _imageName = IMAGEMANAGER->findImage("LUKE_DAMAGED");
         if (_direction == -1)
         {
-            _motionName = KEYANIMANAGER->findAnimation("LUKEleftDamaged");
+            if(_randomHit == 0 ) _motionName = KEYANIMANAGER->findAnimation("LUKE_LEFT_DAMAGED_1");
+            else _motionName = KEYANIMANAGER->findAnimation("LUKE_LEFT_DAMAGED_2");
         }
         else
         {
-            _motionName = KEYANIMANAGER->findAnimation("LUKErightDamaged");
+            if (_randomHit == 0) _motionName = KEYANIMANAGER->findAnimation("LUKE_RIGHT_DAMAGED_1");
+            else _motionName = KEYANIMANAGER->findAnimation("LUKE_RIGHT_DAMAGED_2");
         }
         break;
 
     case ENEMYSTATEMENT::ATTACK:
-        _imageName = IMAGEMANAGER->findImage("LUKE_ATTACK1");
+        if(_attackCount < 2)_imageName = IMAGEMANAGER->findImage("LUKE_PUNCH");
+        else if (_attackCount == 2)_imageName = IMAGEMANAGER->findImage("LUKE_KICK");
+        else _imageName = IMAGEMANAGER->findImage("LUKE_FINISHKICK");
+
         if (_direction == -1)
         {
-            _motionName = KEYANIMANAGER->findAnimation("LUKEleftAttack1");
+            switch (_attackCount)
+            {
+                case 0: _motionName = KEYANIMANAGER->findAnimation("LUKE_LEFT_PUNCH_1");
+                    break;
+                case 1: _motionName = KEYANIMANAGER->findAnimation("LUKE_LEFT_PUNCH_2");
+                    break;
+                case 2: _motionName = KEYANIMANAGER->findAnimation("LUKE_LEFT_KICK");
+                    break;
+                case 3: _motionName = KEYANIMANAGER->findAnimation("LUKE_LEFT_FINISHKICK");
+                    break;
+            }
         }
         else
         {
-            _motionName = KEYANIMANAGER->findAnimation("LUKErightAttack1");
+            switch (_attackCount)
+            {
+            case 0: _motionName = KEYANIMANAGER->findAnimation("LUKE_RIGHT_PUNCH_1");
+                break;
+            case 1: _motionName = KEYANIMANAGER->findAnimation("LUKE_RIGHT_PUNCH_2");
+                break;
+            case 2: _motionName = KEYANIMANAGER->findAnimation("LUKE_RIGHT_KICK");
+                break;
+            case 3: _motionName = KEYANIMANAGER->findAnimation("LUKE_RIGHT_FINISHKICK");
+                break;
+            }
         }
         break;
 
