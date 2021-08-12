@@ -58,15 +58,19 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
     _hitGauge = _hitCount = 0;
     _attackCount = 0;
     _gravity = _jumpPower = 0;
+    _alpha = 100;
 
+    _isDead = false;
     _isAir = false;
     _isAttack = false;
     _isTrace = true;
     _isChange = false;
+    _isVulnerable = true;
 
     _speedX = _speedY = 0;
-    _speedRes = 0.52f;
+    _speedRes = 0.49f;
     _stateCount = 0;
+    _releaseCount = 0;
     _wanderDirX = 1;
 
     _motionName->start();
@@ -95,7 +99,7 @@ void Enemy::EnemyUpdate()
     MakeAttackRect();
     DownGauge();
     if (_player->getIsVulnerable()) StateCount();
-    SwitchImage();
+    //SwitchImage();
     pixelCollision();
 }
 
@@ -111,6 +115,7 @@ void Enemy::Move()
     {
         _gravity = 0;
         _jumpPower = 0;
+        _airY = 0;
     }
 
 
@@ -128,7 +133,8 @@ void Enemy::Move()
 
     if (!_isAir)
     {
-        if (_speedX > 0.01) _speedX -= _speedRes;
+        if (_speedX > 0.1) _speedX -= _speedRes;
+        else if(_speedX < -0.1) _speedX += _speedRes;
         else _speedX = 0;
 
         if (_speedY > 0.01) _speedY -= _speedRes;
@@ -136,6 +142,7 @@ void Enemy::Move()
     }
 
     if (_speedX >= _maxSpeedX) _speedX = _maxSpeedX;
+    else if (_speedX <= -_maxSpeedX) _speedX = -_maxSpeedX;
 
     if (_speedY >= _maxSpeedY) _speedY = _maxSpeedY;
 
@@ -170,11 +177,12 @@ void Enemy::Draw()
     _rendY = _posY  - _cm->getCamY();
 
     //Rectangle(getMemDC(), _rc);
-    _rc = RectMakeCenter(_rendX, _rendY, _imageName->getFrameWidth(), _imageName->getFrameHeight());
+    _rc = RectMakeCenter(_rendX, _rendY + _airY, _imageName->getFrameWidth(), _imageName->getFrameHeight());
 
     _randomChoice = RND->getFromIntTo(0, 1);
 
-    _imageName->aniRender(getMemDC(), _rc.left , _rc.top, _motionName);
+    _imageName->aniRender(getMemDC(), _rc.left, _rc.top, _motionName);
+
     LineMake(getMemDC(), _rendX, _rendY, _player->getRendX(), _player->getRendY());
     if (KEYMANAGER->isToggleKey(VK_TAB))
     {
@@ -213,7 +221,7 @@ void Enemy::pixelCollision()
 
         if ((r == 255 && g == 255 && b == 0))
         {
-            _speedY = 0;
+            //_speedY = 0;
             _posY = (i - 85);
         }
     }
@@ -279,33 +287,35 @@ void Enemy::pixelCollision()
 
 void Enemy::TracePlayer() // 플레이어 추적하여 좌우 변경
 {
-    if (_enemyStatement != ENEMYSTATEMENT::DOWN && _enemyStatement != ENEMYSTATEMENT::GETUP)
+    if (_isVulnerable)
     {
-        if (_player->getPosX() + 5 > _posX && _player->getPosX() - 5 < _posX)
+        if (_player->getPosX() + 10 > _posX && _player->getPosX() - 10 < _posX)
         {
             _isTrace = false;
         }
 
-        else if (_player->getPosX() + 5 < _posX)
+        else if (_player->getPosX() + 10 < _posX)
         {
             _direction = -1;
             _isTrace = true;
+            SwitchImage();
         }
-        else if (_player->getPosX() - 5 >= _posX)
+        else if (_player->getPosX() - 10 >= _posX)
         {
             _direction = 1;
             _isTrace = true;
+            SwitchImage();
         }
     }
     
 
     //만약 플레이어가 에너미보다 위에 있으면
-    if (_player->getPosY() + 30 < _posY)
+    if (_player->getPosY() + 10 < _posY)
     {
         _highlow = -1;
     }
     //만약 플레이어가 에너미보다 아래에 있으면
-    else if (_player->getPosY() - 30 > _posY)
+    else if (_player->getPosY() - 10 > _posY)
     {
         _highlow = 1;
     }
@@ -407,6 +417,16 @@ float Enemy::getRenderPosY()
     return _posY;
 }
 
+bool Enemy::getReleased()
+{
+    if (_isDead)
+    {
+        _releaseCount++;
+        if (_releaseCount % 50 == 0) return true;
+    }
+    return false;
+}
+
 bool Enemy::ChaseSession()
 {
     if (_distance < 500)
@@ -418,12 +438,13 @@ bool Enemy::ChaseSession()
 
 bool Enemy::AttackSession()
 {
-    if (_highlow == 0 &&_distance <= 82)
+    if (_highlow == 0 &&_distance <= 80)
     {
         return true;
     }
     return false;
 }
+
 
 bool Enemy::ObjectSession()
 {
@@ -438,7 +459,7 @@ void Enemy::HitDamage(int Damage)
 {
     _rndSelection = RND->getInt(2);
     _randomHit = RND->getInt(2);
-    if (_enemyStatement != ENEMYSTATEMENT::DOWN)
+    if (_isVulnerable)
     {
         if (_rndSelection == 0)
         {

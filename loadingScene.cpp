@@ -263,109 +263,117 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 
 
         int LUKEleftDown[] = { 13,12,11,10,9,8,7,6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftDown", "LUKE_DOWN", LUKEleftDown, 14, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftDown", "LUKE_DOWN", LUKEleftDown, 14, 8, false);
         int LUKErightDown[] = { 14,15,16,17,18,19,20,21,22,23,24,25,26,27 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightDown", "LUKE_DOWN", LUKErightDown, 14, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightDown", "LUKE_DOWN", LUKErightDown, 14, 8, false);
         int LUKEleftDown_Damaged[] = { 3,2,1,0 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKEleftDown_Damaged", "LUKE_DOWN_DAMAGED", LUKEleftDown_Damaged, 4, 10, false);
         int LUKErightDown_Damaged[] = { 4,5,6,7 };
         KEYANIMANAGER->addArrayFrameAnimation("LUKErightDown_Damaged", "LUKE_DOWN_DAMAGED", LUKErightDown_Damaged, 4, 10, false);
         int LUKEleftUp[] = { 7,6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftUp", "LUKE_UP", LUKEleftUp, 8, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftUp", "LUKE_UP", LUKEleftUp, 8, 8, false);
         int LUKErightUp[] = { 8,9,10,11,12,13,14,15 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightUp", "LUKE_UP", LUKErightUp, 8, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightUp", "LUKE_UP", LUKErightUp, 8, 8, false);
         int LUKEleftGuard[] = { 2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftGuard", "LUKE_GUARD", LUKEleftGuard, 3, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftGuard", "LUKE_GUARD", LUKEleftGuard, 3, 8, false);
         int LUKErightGuard[] = { 3,4,5 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightGuard", "LUKE_GUARD", LUKErightGuard, 3, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightGuard", "LUKE_GUARD", LUKErightGuard, 3, 8, false);
         int LUKEleftObject_Hang[] = { 3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftObject_Hang", "LUKE_IDLE", LUKEleftObject_Hang, 4, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftObject_Hang", "LUKE_IDLE", LUKEleftObject_Hang, 4, 8, true);
         int LUKErightObject_Hang[] = { 20,21,22,23 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightObject_Hang", "LUKE_IDLE", LUKErightObject_Hang, 4, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightObject_Hang", "LUKE_IDLE", LUKErightObject_Hang, 4, 8, true);
         int LUKEleftObject_Attack[] = { 6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftObject_Attack", "LUKE_OBJECT_ATTACK", LUKEleftObject_Attack, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftObject_Attack", "LUKE_OBJECT_ATTACK", LUKEleftObject_Attack, 7, 8, false);
         int LUKErightObject_Attack[] = { 17,18,19,20,21,22,23 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightObject_Attack", "LUKE_OBJECT_ATTACK", LUKErightObject_Attack, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightObject_Attack", "LUKE_OBJECT_ATTACK", LUKErightObject_Attack, 7, 8, false);
         int LUKEleftObject_Throw[] = { 11,10,9,8,7 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftObject_Throw", "LUKE_OBJECT_ATTACK", LUKEleftObject_Throw, 5, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleftObject_Throw", "LUKE_OBJECT_ATTACK", LUKEleftObject_Throw, 5, 8, false);
         int LUKErightObject_Throw[] = { 12,13,14,15,16 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKErightObject_Throw", "LUKE_OBJECT_ATTACK", LUKErightObject_Throw, 5, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKErightObject_Throw", "LUKE_OBJECT_ATTACK", LUKErightObject_Throw, 5, 8, false);
         int LUKEleft_Big_Object_Grab[] = { 4,3 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleft_Big_Object_Grab", "LUKE_OBJECT_GRAB", LUKEleft_Big_Object_Grab, 2, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleft_Big_Object_Grab", "LUKE_OBJECT_GRAB", LUKEleft_Big_Object_Grab, 2, 8, false);
         int LUKEright_Big_Object_Grab[] = { 5,6 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEright_Big_Object_Grab", "LUKE_OBJECT_GRAB", LUKEright_Big_Object_Grab, 2, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEright_Big_Object_Grab", "LUKE_OBJECT_GRAB", LUKEright_Big_Object_Grab, 2, 8, false);
         int LUKEleft_Small_Object_Grab[] = { 2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEleft_Small_Object_Grab", "LUKE_OBJECT_GRAB", LUKEleft_Small_Object_Grab, 3, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEleft_Small_Object_Grab", "LUKE_OBJECT_GRAB", LUKEleft_Small_Object_Grab, 3, 8, false);
         int LUKEright_Small_Object_Grab[] = { 7,8,9 };
-        KEYANIMANAGER->addArrayFrameAnimation("LUKEright_Small_Object_Grab", "LUKE_OBJECT_GRAB", LUKEright_Small_Object_Grab, 3, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("LUKEright_Small_Object_Grab", "LUKE_OBJECT_GRAB", LUKEright_Small_Object_Grab, 3, 8, false);
 #pragma endregion
 
         //付捞农 局聪皋捞记 历厘家
 #pragma region MIKEANIMATIONS
         int MIKEleftInit[] = { 0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftInit", "MIKE_INIT", MIKEleftInit, 1, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftInit", "MIKE_INIT", MIKEleftInit, 1, 8, true);
         int MIKErightInit[] = { 1 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKErightInit", "MIKE_INIT", MIKErightInit, 1, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKErightInit", "MIKE_INIT", MIKErightInit, 1, 8, true);
+
         int MIKEleftIdle[] = { 11,10,9,8 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftIdle", "MIKE_IDLE", MIKEleftIdle, 4, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftIdle", "MIKE_IDLE", MIKEleftIdle, 4, 8, true);
         int MIKErightIdle[] = { 12,13,14,15 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKErightIdle", "MIKE_IDLE", MIKErightIdle, 4, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKErightIdle", "MIKE_IDLE", MIKErightIdle, 4, 8, true);
+
         int MIKEleftWalk[] = { 17,16,15,14,13,12 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftWalk", "MIKE_WALK", MIKEleftWalk, 6, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftWalk", "MIKE_WALK", MIKEleftWalk, 6, 8, true);
         int MIKErightWalk[] = { 18,19,20,21,22,23 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKErightWalk", "MIKE_WALK", MIKErightWalk, 6, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKErightWalk", "MIKE_WALK", MIKErightWalk, 6, 8, true);
+
         int MIKEleftRun[] = { 23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftRun", "MIKE_RUN", MIKEleftRun, 16, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftRun", "MIKE_RUN", MIKEleftRun, 16, 8, true);
         int MIKErightRun[] = { 24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKErightRun", "MIKE_RUN", MIKErightRun, 16, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKErightRun", "MIKE_RUN", MIKErightRun, 16, 8, true);
+
         int MIKEleftJump[] = { 8,7,6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftJump", "MIKE_JUMP", MIKEleftJump, 9, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftJump", "MIKE_JUMP", MIKEleftJump, 9, 8, true);
         int MIKErightJump[] = { 9,10,11,12,13,14,15,16,17 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKErightJump", "MIKE_JUMP", MIKErightJump, 9, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKErightJump", "MIKE_JUMP", MIKErightJump, 9, 8, true);
+
         int MIKEleftAttack1[] = { 7,6,5,4 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftAttack1", "MIKE_ATTACK1", MIKEleftAttack1, 4, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftAttack1", "MIKE_ATTACK1", MIKEleftAttack1, 4, 8, false);
         int MIKErightAttack1[] = { 8,9,10,11 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKErightAttack1", "MIKE_ATTACK1", MIKErightAttack1, 4, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKErightAttack1", "MIKE_ATTACK1", MIKErightAttack1, 4, 8, false);
         int MIKEleftAttack2[] = { 3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftAttack2", "MIKE_ATTACK1", MIKEleftAttack2, 4, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftAttack2", "MIKE_ATTACK1", MIKEleftAttack2, 4, 8, false);
         int MIKErightAttack2[] = { 12,13,14,15 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKErightAttack2", "MIKE_ATTACK1", MIKErightAttack2, 4, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKErightAttack2", "MIKE_ATTACK1", MIKErightAttack2, 4, 8, false);
         int MIKEleftAttack3[] = { 6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftAttack3", "MIKE_ATTACK2", MIKEleftAttack3, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftAttack3", "MIKE_ATTACK2", MIKEleftAttack3, 7, 8, false);
         int MIKErightAttack3[] = { 7,8,9,10,11,12,13 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKErightAttack3", "MIKE_ATTACK2", MIKErightAttack3, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKErightAttack3", "MIKE_ATTACK2", MIKErightAttack3, 7, 8, false);
         int MIKEleftAttack4[] = { 6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftAttack4", "MIKE_ATTACK3", MIKEleftAttack4, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftAttack4", "MIKE_ATTACK3", MIKEleftAttack4, 7, 8, false);
         int MIKErightAttack4[] = { 7,8,9,10,11,12,13 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKErightAttack4", "MIKE_ATTACK3", MIKErightAttack4, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKErightAttack4", "MIKE_ATTACK3", MIKErightAttack4, 7, 8, false);
+
         int MIKEleftDamaged[] = { 6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftDamaged", "MIKE_DAMAGED", MIKEleftDamaged, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftDamaged", "MIKE_DAMAGED", MIKEleftDamaged, 7, 8, false);
         int MIKErightDamaged[] = { 7,8,9,10,11,12,13 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKErightDamaged", "MIKE_DAMAGED", MIKErightDamaged, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKErightDamaged", "MIKE_DAMAGED", MIKErightDamaged, 7, 8, false);
+
         int MIKEleftDown[] = { 13,12,11,10,9,8,7,6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftDown", "MIKE_DOWN", MIKEleftDown, 14, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftDown", "MIKE_DOWN", MIKEleftDown, 14, 8, false);
         int MIKErightDown[] = { 14,15,16,17,18,19,20,21,22,23,24,25,26,27 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKErightDown", "MIKE_DOWN", MIKErightDown, 14, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKErightDown", "MIKE_DOWN", MIKErightDown, 14, 8, false);
+
         int MIKEleftDown_Damaged[] = { 3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftDown_Damaged", "MIKE_DOWN_DAMAGED", MIKEleftDown_Damaged, 4, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftDown_Damaged", "MIKE_DOWN_DAMAGED", MIKEleftDown_Damaged, 4, 8, false);
         int MIKErightDown_Damaged[] = { 4,5,6,7 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKErightDown_Damaged", "MIKE_DOWN_DAMAGED", MIKErightDown_Damaged, 4, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKErightDown_Damaged", "MIKE_DOWN_DAMAGED", MIKErightDown_Damaged, 4, 8, false);
         int MIKEleftUp[] = { 7,6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftUp", "MIKE_UP", MIKEleftUp, 8, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftUp", "MIKE_UP", MIKEleftUp, 8, 8, false);
         int MIKErightUp[] = { 8,9,10,11,12,13,14,15 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKErightUp", "MIKE_UP", MIKErightUp, 8, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKErightUp", "MIKE_UP", MIKErightUp, 8, 8, false);
         int MIKEleftGuard[] = { 2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftGuard", "MIKE_GUARD", MIKEleftGuard, 3, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftGuard", "MIKE_GUARD", MIKEleftGuard, 3, 8, false);
         int MIKErightGuard[] = { 3,4,5 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKErightGuard", "MIKE_GUARD", MIKErightGuard, 3, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKErightGuard", "MIKE_GUARD", MIKErightGuard, 3, 8, false);
         int MIKEleftObject_Hang[] = { 3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftObject_Hang", "MIKE_IDLE", MIKEleftObject_Hang, 4, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftObject_Hang", "MIKE_IDLE", MIKEleftObject_Hang, 4, 8, true);
         int MIKErightObject_Hang[] = { 20,21,22,23 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKErightObject_Hang", "MIKE_IDLE", MIKErightObject_Hang, 4, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKErightObject_Hang", "MIKE_IDLE", MIKErightObject_Hang, 4, 8, true);
         int MIKEleftObject_Attack[] = { 6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftObject_Attack", "MIKE_OBJECT_ATTACK", MIKEleftObject_Attack, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKEleftObject_Attack", "MIKE_OBJECT_ATTACK", MIKEleftObject_Attack, 7, 8, false);
         int MIKErightObject_Attack[] = { 17,18,19,20,21,22,23 };
-        KEYANIMANAGER->addArrayFrameAnimation("MIKErightObject_Attack", "MIKE_OBJECT_ATTACK", MIKErightObject_Attack, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MIKErightObject_Attack", "MIKE_OBJECT_ATTACK", MIKErightObject_Attack, 7, 8, false);
         int MIKEleftObject_Throw[] = { 11,10,9,8,7 };
         KEYANIMANAGER->addArrayFrameAnimation("MIKEleftObject_Throw", "MIKE_OBJECT_ATTACK", MIKEleftObject_Throw, 5, 6, false);
         int MIKErightObject_Throw[] = { 12,13,14,15,16 };
@@ -383,57 +391,69 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         //富霓 局聪皋捞记 历厘家
 #pragma region MALCOLMANIMATIONS
         int MALCOLMleftIdle[] = { 3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftIdle", "MALCOLM_IDLE", MALCOLMleftIdle, 4, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftIdle", "MALCOLM_IDLE", MALCOLMleftIdle, 4, 8, true);
         int MALCOLMrightIdle[] = { 4,5,6,7 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightIdle", "MALCOLM_IDLE", MALCOLMrightIdle, 4, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightIdle", "MALCOLM_IDLE", MALCOLMrightIdle, 4, 8, true);
+
         int MALCOLMleftWalk[] = { 7,6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftWalk", "MALCOLM_WALK", MALCOLMleftWalk, 8, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftWalk", "MALCOLM_WALK", MALCOLMleftWalk, 8, 8, true);
         int MALCOLMrightWalk[] = { 8,9,10,11,12,13,14,15 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightWalk", "MALCOLM_WALK", MALCOLMrightWalk, 8, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightWalk", "MALCOLM_WALK", MALCOLMrightWalk, 8, 8, true);
+
         int MALCOLMleftRun[] = { 7,6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftRun", "MALCOLM_RUN", MALCOLMleftRun, 8, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftRun", "MALCOLM_RUN", MALCOLMleftRun, 8, 8, true);
         int MALCOLMrightRun[] = { 8,9,10,11,12,13,14,15 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightRun", "MALCOLM_RUN", MALCOLMrightRun, 8, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightRun", "MALCOLM_RUN", MALCOLMrightRun, 8, 8, true);
+
         int MALCOLMleftJump[] = { 12,11,10,9,8,7,6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftJump", "MALCOLM_JUMP", MALCOLMleftJump, 13, 6, true);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftJump", "MALCOLM_JUMP", MALCOLMleftJump, 13, 8, true);
         int MALCOLMrightJump[] = { 13,14,15,16,17,18,19,20,21,22,23,24,25 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightJump", "MALCOLM_JUMP", MALCOLMrightJump, 13, 6, true);
+
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightJump", "MALCOLM_JUMP", MALCOLMrightJump, 13, 8, true);
         int MALCOLMleftAttack1[] = { 8,7,6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftAttack1", "MALCOLM_ATTACK1", MALCOLMleftAttack1, 9, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftAttack1", "MALCOLM_ATTACK1", MALCOLMleftAttack1, 9, 8, false);
         int MALCOLMrightAttack1[] = { 9,10,11,12,13,14,15,16,17 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightAttack1", "MALCOLM_ATTACK1", MALCOLMrightAttack1, 9, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightAttack1", "MALCOLM_ATTACK1", MALCOLMrightAttack1, 9, 8, false);
+
         int MALCOLMleftAttack2[] = { 3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftAttack2", "MALCOLM_ATTACK2", MALCOLMleftAttack2, 4, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftAttack2", "MALCOLM_ATTACK2", MALCOLMleftAttack2, 4, 8, false);
         int MALCOLMrightAttack2[] = { 4,5,6,7 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightAttack2", "MALCOLM_ATTACK2", MALCOLMrightAttack2, 4, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightAttack2", "MALCOLM_ATTACK2", MALCOLMrightAttack2, 4, 8, false);
+
         int MALCOLMleftAttack3[] = { 4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftAttack3", "MALCOLM_ATTACK3", MALCOLMleftAttack3, 5, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftAttack3", "MALCOLM_ATTACK3", MALCOLMleftAttack3, 5, 8, false);
         int MALCOLMrightAttack3[] = { 5,6,7,8,9 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightAttack3", "MALCOLM_ATTACK3", MALCOLMrightAttack3, 5, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightAttack3", "MALCOLM_ATTACK3", MALCOLMrightAttack3, 5, 8, false);
+
         int MALCOLMleftAttack4[] = { 7,6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftAttack4", "MALCOLM_ATTACK4", MALCOLMleftAttack4, 8, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftAttack4", "MALCOLM_ATTACK4", MALCOLMleftAttack4, 8, 8, false);
         int MALCOLMrightAttack4[] = { 8,9,10,11,12,13,14,15 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightAttack4", "MALCOLM_ATTACK4", MALCOLMrightAttack4, 8, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightAttack4", "MALCOLM_ATTACK4", MALCOLMrightAttack4, 8, 8, false);
+
         int MALCOLMleftDamaged[] = { 6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftDamaged", "MALCOLM_DAMAGED", MALCOLMleftDamaged, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftDamaged", "MALCOLM_DAMAGED", MALCOLMleftDamaged, 7, 8, false);
         int MALCOLMrightDamaged[] = { 7,8,9,10,11,12,13 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightDamaged", "MALCOLM_DAMAGED", MALCOLMrightDamaged, 7, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightDamaged", "MALCOLM_DAMAGED", MALCOLMrightDamaged, 7, 8, false);
+
         int MALCOLMleftDown[] = { 13,12,11,10,9,8,7,6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftDown", "MALCOLM_DOWN", MALCOLMleftDown, 14, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftDown", "MALCOLM_DOWN", MALCOLMleftDown, 14, 8, false);
         int MALCOLMrightDown[] = { 14,15,16,17,18,19,20,21,22,23,24,25,26,27 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightDown", "MALCOLM_DOWN", MALCOLMrightDown, 14, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightDown", "MALCOLM_DOWN", MALCOLMrightDown, 14, 8, false);
+
         int MALCOLMleftDown_Damaged[] = { 4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftDown_Damaged", "MALCOLM_DOWN_DAMAGED", MALCOLMleftDown_Damaged, 5, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftDown_Damaged", "MALCOLM_DOWN_DAMAGED", MALCOLMleftDown_Damaged, 5, 8, false);
         int MALCOLMrightDown_Damaged[] = { 5,6,7,8,9 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightDown_Damaged", "MALCOLM_DOWN_DAMAGED", MALCOLMrightDown_Damaged, 5, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightDown_Damaged", "MALCOLM_DOWN_DAMAGED", MALCOLMrightDown_Damaged, 5, 8, false);
+
         int MALCOLMleftUp[] = { 8,7,6,5,4,3,2,1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftUp", "MALCOLM_UP", MALCOLMleftUp, 9, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftUp", "MALCOLM_UP", MALCOLMleftUp, 9, 8, false);
         int MALCOLMrightUp[] = { 9,10,11,12,13,14,15,16,17 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightUp", "MALCOLM_UP", MALCOLMrightUp, 9, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightUp", "MALCOLM_UP", MALCOLMrightUp, 9, 8, false);
+
         int MALCOLMleftGuard[] = { 1,0 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftGuard", "MALCOLM_GUARD", MALCOLMleftGuard, 2, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMleftGuard", "MALCOLM_GUARD", MALCOLMleftGuard, 2, 8, false);
         int MALCOLMrightGuard[] = { 2,3 };
-        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightGuard", "MALCOLM_GUARD", MALCOLMrightGuard, 2, 6, false);
+        KEYANIMANAGER->addArrayFrameAnimation("MALCOLMrightGuard", "MALCOLM_GUARD", MALCOLMrightGuard, 2, 8, false);
 
 #pragma endregion
 

@@ -90,9 +90,11 @@ public:
 
 	void alphaRender(HDC hdc, BYTE alpha);
 	void alphaRender(HDC hdc, int destX, int destY, BYTE alpha);
+	void alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha);
 	
 
 	void aniRender(HDC hdc, int destX, int destY, animation* ani);
+	void aniRender(HDC hdc, int destX, int destY, animation* ani, BYTE alpha);
 
 
 	//이미 이미지 등록을 마쳤는데 제거해야할 픽셀값을 바꿔야한다면
