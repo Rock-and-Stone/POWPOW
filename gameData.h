@@ -10,7 +10,7 @@ private:
 	int _playerGP = getPlayerSaveGP();
 	int _coin = getSaveCoin();
 
-	float _playerPosX = 4000;
+	float _playerPosX = 200;
 	float _playerPosY = 800;
 
 public:

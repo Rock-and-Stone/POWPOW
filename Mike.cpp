@@ -29,8 +29,22 @@ void Mike::update()
 
 void Mike::SwitchImage()
 {
+
+
     switch (_enemyStatement)
     {
+    case ENEMYSTATEMENT::INIT:
+        _imageName = IMAGEMANAGER->findImage("MIKE_INIT");
+        if (_direction == -1)
+        {
+            _motionName = KEYANIMANAGER->findAnimation("MIKEleftInit");
+        }
+        else if (_direction == 1)
+        {
+            _motionName = KEYANIMANAGER->findAnimation("MIKErightInit");
+        }
+        break;
+
     case ENEMYSTATEMENT::IDLE:
         _imageName = IMAGEMANAGER->findImage("MIKE_IDLE");
         if (_direction == -1)

@@ -37,6 +37,7 @@ private:
 	float _maxY;
 	bool _isBattle;
 
+	int _stage;
 
 public : 
 	virtual HRESULT init();
@@ -45,7 +46,8 @@ public :
 	virtual void render();
 
 	bool getIsBattle() { return _isBattle; }
-	
+	int getStage() { return _stage; }
+
 	void pixelCollision();
 	void CameraLock();
 };

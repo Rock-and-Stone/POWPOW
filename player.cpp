@@ -135,6 +135,11 @@ void player::Movement()
 
 	if (_speedY >= _maxSpeedY) _speedY = _maxSpeedY;
 
+
+	if (_rendX > WINSIZEX) _posX -= _speedX;
+	else if (_rendX < 0) _posX += _speedX;
+
+
 	if (_indexY == 0) _posX -= _speedX;
 	else if(_indexY == 1) _posX += _speedX;
 

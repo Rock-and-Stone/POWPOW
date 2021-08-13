@@ -31,7 +31,8 @@ void EnemyInit::release()
 
 void EnemyInit::update()
 {
-
+	_enemy->StateCount();
+	if (_enemy->getIsChange()) _enemy->ChangeStatement(ENEMYSTATEMENT::WANDER);
 }
 #pragma endregion 
 
@@ -97,11 +98,16 @@ void EnemyWander::update()
 {
 	_enemy->StateCount();
 
+	if (_enemy->GetEnemyRendX() < 50) _enemy->setWanderDirX(1);
+	else if (_enemy->GetEnemyRendX() > WINSIZEX - 50) _enemy->setWanderDirX(-1);
 	_enemy->setSpeedX(_enemy->getSpeedX() + 2.0f);
 	_enemy->setSpeedY(_enemy->getSpeedY() + 1.0f);
 
+
+
 	if (_enemy->getIsChange())
 	{
+		_enemy->ChasePlayer();
 		if (_enemy->AttackSession())_enemy->ChangeStatement(ENEMYSTATEMENT::ATTACK);
 		else _enemy->ChangeStatement(ENEMYSTATEMENT::IDLE);
 	}

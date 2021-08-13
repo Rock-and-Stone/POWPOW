@@ -31,10 +31,12 @@ public:
 	void render();
 
 
-	void SetLuke();
-	void SetMike();
-	void SetMalcolm();
+	void SetLuke(POINT pos);
+	void SetMike(POINT pos);
+	void SetMalcolm(POINT pos);
 	
+	void SpawnEnemy(int lukeNum, int mikeNum, int malcolmNum, int currentstage);
+
 	void Collision();
 
 	vector<Enemy*> GetVEnemy() { return _vEnemy; }
