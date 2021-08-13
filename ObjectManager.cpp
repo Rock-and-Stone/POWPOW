@@ -90,6 +90,7 @@ void ObjectManager::CoinCollision()
         {
             _player->coinGet(_vCoin[i]->GetCoin());
             SOUNDMANAGER->play("µ¿Àü¸Ô±â", getBGMVolume() / 10);
+            EFFECTMANAGER->play("coinEffect", _vCoin[i]->GetObjectPosX(), _vCoin[i]->GetObjectPosY());
             _vCoin[i]->SetReleased(true);
             removeCoin(i);
         }

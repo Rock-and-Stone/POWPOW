@@ -69,6 +69,7 @@ void cafeScene::Interaction()
 		if (KEYMANAGER->isOnceKeyDown(VK_RETURN) && _y == 0)
 		{
 			_player->setCoin(_player->getCoin() - 100);
+			_player->setPlayerHP(100);
 			//coin - 100¿ø
 			//_player->setHP() -> 100;
 		}
@@ -76,6 +77,7 @@ void cafeScene::Interaction()
 		if (KEYMANAGER->isOnceKeyDown(VK_RETURN) && _y == 200)
 		{
 			_player->setCoin(_player->getCoin() - 100);
+			_player->setPlayerGP(100);
 			//coin -100¿ø
 			//_player->getHP() -> 100;
 		}
