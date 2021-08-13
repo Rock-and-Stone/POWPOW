@@ -35,7 +35,7 @@ public:
 	int getPlayerGP() { return _playerGP; }
 	void setPlayerGP(int gp) { _playerGP = gp; }
 
-	int getCoin() { return _coin; }
+	int GetCoin() { return _coin; }
 	void setCoin(int coin) { _coin = coin; }
 
 	float getPlayerPosX() { return _playerPosX; }
@@ -43,6 +43,6 @@ public:
 	float getPlayerPosY() { return _playerPosY; }
 	void setPlayerPosY(float y) { _playerPosY = y; }
 
-	void SaveData() { SavePlayerGP(_playerGP); SavePlayerHP(_playerHP); SaveCoin(_coin); }
+	void SaveData(int hp, int gp, int coin) { SavePlayerGP(hp); SavePlayerHP(gp); SaveCoin(coin); }
 };
 

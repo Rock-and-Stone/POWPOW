@@ -25,6 +25,7 @@ HRESULT bossScene::init()
 	_ui = new UserInterface;
 	_ui->init();
 
+	_ui->setPlayerMemoryAddress(_player);
 
 	RENDERMANAGER->release();
 

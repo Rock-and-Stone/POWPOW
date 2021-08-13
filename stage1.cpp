@@ -163,7 +163,8 @@ void stage1::pixelCollision()
 
 		if ((r == 255 && g == 0 && b == 0))
 		{
-			SaveData();
+
+			SaveData(_player->getCurrentHp(), 100, _player->getCoin());
 			setPlayerPosX(_player->getPosX());
 			setPlayerPosY(_player->getPosY() + 50 );
 			SOUNDMANAGER->stop("인게임");
@@ -172,7 +173,7 @@ void stage1::pixelCollision()
 
 		if ((r == 0 && g == 255 && b == 0))
 		{
-			SaveData();
+			SaveData(_player->getCurrentHp(), 100, _player->getCoin());
 			setPlayerPosX(_player->getPosX());
 			setPlayerPosY(_player->getPosY() + 50);
 			SOUNDMANAGER->stop("인게임");
@@ -181,7 +182,7 @@ void stage1::pixelCollision()
 
 		if ((r == 0 && g == 0 && b == 255))
 		{
-			SaveData();
+			SaveData(_player->getCurrentHp(), 100, _player->getCoin());
 			setPlayerPosX(_player->getPosX());
 			setPlayerPosY(_player->getPosY() + 50);
 			SOUNDMANAGER->stop("인게임");
@@ -190,7 +191,7 @@ void stage1::pixelCollision()
 
 		if ((r == 0 && g == 255 && b == 255))
 		{
-			SaveData();
+			SaveData(_player->getCurrentHp(), 100, _player->getCoin());
 			setPlayerPosX(_player->getPosX());
 			setPlayerPosY(_player->getPosY() + 50);
 			SOUNDMANAGER->stop("인게임");
@@ -199,6 +200,7 @@ void stage1::pixelCollision()
 
 		if ((r == 0 && g == 170 && b == 255))
 		{
+			SaveData(_player->getCurrentHp(), 100, _player->getCoin());
 			SOUNDMANAGER->stop("인게임");
 			SCENEMANAGER->changeScene("bossScene");
 		}

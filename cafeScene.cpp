@@ -17,9 +17,13 @@ HRESULT cafeScene::init()
 	_select = IMAGEMANAGER->findImage("shopsceneBox");
 	_rc = RectMake(_x, _y, _select->getWidth(), _select->getHeight());
 
+	_player = new player;
+	_player->init(-1000, -1000);
+
 	_ui = new UserInterface;
 	_ui->init();
 
+	_ui->setPlayerMemoryAddress(_player);
 	SOUNDMANAGER->play("상점", getBGMVolume() / 10);
 	return S_OK;
 }
@@ -43,6 +47,7 @@ void cafeScene::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('Q'))
 		{
+			SaveData(_player->getCurrentHp(), 100, _player->getCoin());
 			SOUNDMANAGER->stop("상점");
 			SCENEMANAGER->changeScene("stage1");
 		}

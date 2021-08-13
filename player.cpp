@@ -48,7 +48,7 @@ HRESULT player::init(float posX, float posY)
 	_jumpPower = 0;
 	_speedRes = 0.50f;
 	_airY = 0;
-	_coin = 0;
+	_coin = getSaveCoin();
 
 	_dirX = 1;
 	_dirY = 0;
@@ -61,7 +61,7 @@ HRESULT player::init(float posX, float posY)
 	_isAttack = false;
 	_isRun = false;
 	_isVulnerable = true;
-	_currentHP = _maxHP = 100;
+	_currentHP = _maxHP = getPlayerSaveHP();
 
 	_statement = Statement::IDLE;
 	_shadow = IMAGEMANAGER->findImage("shadow");

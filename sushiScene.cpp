@@ -20,6 +20,7 @@ HRESULT sushiScene::init()
 
 
 	_player = new player;
+	_player->init(-1000, -1000);
 
 	_ui = new UserInterface;
 	_ui->init();
@@ -50,8 +51,11 @@ void sushiScene::update()
 		}
 		if (KEYMANAGER->isOnceKeyDown('Q'))
 		{
+			SaveData(_player->getCurrentHp(), 100, _player->getCoin());
+
 			SOUNDMANAGER->stop("»óÁ¡");
 			SCENEMANAGER->changeScene("stage1");
+
 		}
 		Interaction();
 	}
