@@ -171,9 +171,11 @@
     <ClInclude Include="iniDataManager.h" />
     <ClInclude Include="keyAniManager.h" />
     <ClInclude Include="keyManager.h" />
+    <ClInclude Include="lCoin.h" />
     <ClInclude Include="loadingScene.h" />
     <ClInclude Include="Luke.h" />
     <ClInclude Include="Malcolm.h" />
+    <ClInclude Include="mCoin.h" />
     <ClInclude Include="Mike.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectManager.h" />
@@ -229,9 +231,11 @@
     <ClCompile Include="iniDataManager.cpp" />
     <ClCompile Include="keyAniManager.cpp" />
     <ClCompile Include="keyManager.cpp" />
+    <ClCompile Include="lCoin.cpp" />
     <ClCompile Include="loadingScene.cpp" />
     <ClCompile Include="Luke.cpp" />
     <ClCompile Include="Malcolm.cpp" />
+    <ClCompile Include="mCoin.cpp" />
     <ClCompile Include="Mike.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />

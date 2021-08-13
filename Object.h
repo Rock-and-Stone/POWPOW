@@ -39,8 +39,12 @@ protected:
 
 	float _posX, _posY;
 	float _rendX, _rendY;
-
+	float _speedX, _speedY;
 	int _direction;
+
+	int _value;
+
+	bool _isDelete;
 
 public:
 	Object();
@@ -60,6 +64,10 @@ public:
 
 	float GetObjectPosX() { return _posX; }
 	float GetObjectPosY() { return _posY; }
+	virtual bool getReleased();
+	void SetReleased(bool b) { _isDelete = b; }
+
+	int GetCoin() { return _value; }
 
 	//카메라 설정
 	void SetCamera(CameraManager* cm) { _cm = cm; }

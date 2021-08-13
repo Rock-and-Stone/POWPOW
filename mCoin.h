@@ -1,6 +1,7 @@
 #pragma once
 #include "Object.h"
-class sCoin : public Object
+class mCoin :
+    public Object
 {
 private:
 	
@@ -13,5 +14,6 @@ public:
 
 	virtual void SwitchImage() override;
 
+	
 };
 

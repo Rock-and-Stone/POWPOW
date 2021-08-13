@@ -5,6 +5,8 @@
 #include "Bat.h"
 #include "Trash.h"
 #include "sCoin.h"
+#include "mCoin.h"
+#include "lCoin.h"
 
 class EnemyManager;
 
@@ -30,6 +32,9 @@ private:
 	Bat* _bat;
 	Trash* _trash;
 	sCoin* _sCoin;
+	mCoin* _mCoin;
+	lCoin* _lCoin;
+
 
 
 public:
@@ -41,6 +46,11 @@ public:
 	void SetBat();
 	void SetTrash();
 	void SetsCoin();
+
+	void CoinCollision();
+
+	void addCoin(float x, float y);
+	void removeCoin(int arrNum);
 
 	vector<Object*> GetVObject() { return _vObject; }
 	vector<Object*>::iterator GetVIObject() { return _viObject; }

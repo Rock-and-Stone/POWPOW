@@ -1,11 +1,12 @@
 #pragma once
 #include "Object.h"
-class sCoin : public Object
+class lCoin :
+    public Object
 {
 private:
-	
 
 public:
+
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();

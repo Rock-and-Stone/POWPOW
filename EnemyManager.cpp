@@ -110,7 +110,7 @@ void EnemyManager::Collision()
 
         if (_vLuke[i]->getReleased())
         {
-            _om->SetsCoin();
+            _om->addCoin(_vLuke[i]->GetEnemyPosX(), _vLuke[i]->GetEnemyPosY());
             _vLuke.erase(_vLuke.begin() + i);
         }
             

@@ -125,7 +125,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         SOUNDMANAGER->addSound("보스방", "source/music/보스방.mp3", true, true);
         SOUNDMANAGER->addSound("강펀치", "source/music/효과음/강펀치.mp3", true, true);
         SOUNDMANAGER->addSound("고고", "source/music/효과음/고고.mp3", true, true);
-        SOUNDMANAGER->addSound("동전먹기", "source/music/효과음/동전먹기.mp3", true, true);
+        SOUNDMANAGER->addSound("동전먹기", "source/music/효과음/동전먹기.mp3", true, false);
         SOUNDMANAGER->addSound("막기", "source/music/효과음/막기.mp3", true, true);
         SOUNDMANAGER->addSound("문열기", "source/music/효과음/문열기.mp3", true, true);
         SOUNDMANAGER->addSound("보스에네르기파", "source/music/효과음/보스에네르기파.mp3", true, true);

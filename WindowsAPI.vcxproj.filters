@@ -54,6 +54,8 @@
     <ClCompile Include="volumeProgressBar.cpp" />
     <ClCompile Include="WindowsAPI.cpp" />
     <ClCompile Include="sCoin.cpp" />
+    <ClCompile Include="mCoin.cpp" />
+    <ClCompile Include="lCoin.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="action.h" />
@@ -113,6 +115,8 @@
     <ClInclude Include="utils.h" />
     <ClInclude Include="volumeProgressBar.h" />
     <ClInclude Include="sCoin.h" />
+    <ClInclude Include="mCoin.h" />
+    <ClInclude Include="lCoin.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsAPI.rc" />
