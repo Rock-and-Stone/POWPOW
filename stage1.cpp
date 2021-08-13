@@ -43,6 +43,12 @@ HRESULT stage1::init()
 
 void stage1::update()
 {
+	if (_em->GetEnemyCount() == 0)
+	{
+		_isBattle = false;
+		CameraLock();
+	}
+
 	if (_player->getPosX() > _stage * 3000 + 1000 && !_isBattle)
 	{
 		_isBattle = true;

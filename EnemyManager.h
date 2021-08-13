@@ -23,6 +23,7 @@ private:
 	CameraManager* _cm;
 	player* _player;
 	
+	int _enemyCount;
 
 public:
 	HRESULT init();
@@ -41,6 +42,8 @@ public:
 
 	vector<Enemy*> GetVEnemy() { return _vEnemy; }
 	vector<Enemy*>::iterator GetVIEnemy() { return _viEnemy; }
+
+	int GetEnemyCount() { return _enemyCount; }
 
 	void SetCamera(CameraManager* cm) { _cm = cm; }
 	void SetPlayerLink(player* player) { _player = player; }

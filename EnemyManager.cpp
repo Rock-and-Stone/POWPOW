@@ -5,7 +5,7 @@
 
 HRESULT EnemyManager::init()
 {
-   
+    _enemyCount = 0;
 	return S_OK;
 }
 
@@ -27,11 +27,17 @@ void EnemyManager::update()
 
 void EnemyManager::render()
 {
+    int i = 0;
+    char str[256];
+
     for (_viEnemy = _vEnemy.begin(); _viEnemy != _vEnemy.end(); ++_viEnemy)
     {
-        RECT temp = (*_viEnemy)->GetRect();
+        i++;
         (*_viEnemy)->render();
     }
+    _enemyCount = i;
+    sprintf_s(str, "Enemy Count : %d", i);
+    TextOut(getMemDC(), 150, 190, str, strlen(str));
 }
 
 
@@ -73,22 +79,28 @@ void EnemyManager::SetMalcolm(POINT pos)
 
 void EnemyManager::SpawnEnemy(int lukeNum, int mikeNum, int malcolmNum, int currentstage)
 {
+    int rnd;
     POINT position;
-    position.x = currentstage * 3000 + 900;
     position.y = RND->getFromIntTo(500, 700);
 
     for (int i = 0; i < lukeNum; i++)
     {
+        rnd = RND->getInt(2);
+        position.x = currentstage * 3000 + 100 + rnd * 1800;
         SetLuke(position);
     }
 
     for (int j = 0; j < mikeNum; j++)
     {
+        rnd = RND->getInt(2);
+        position.x = currentstage * 3000 + 100 + rnd * 1800;
         SetMike(position);
     }
 
     for (int k = 0; k < malcolmNum; k++)
     {
+        rnd = RND->getInt(2);
+        position.x = currentstage * 3000 + 100 + rnd * 1800;
         SetMalcolm(position);
     }
 }
