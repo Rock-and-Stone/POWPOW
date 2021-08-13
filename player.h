@@ -165,13 +165,13 @@ public:
 	int getAtkCount() { return _atkCount; }
 	void setAtkCount(int atkCount) { _atkCount = atkCount; }
 
-<<<<<<< HEAD
+
 	int getCoin() { return _coin; }
 	void setCoin(int coin) { _coin = coin; }
 
-=======
+
 	int getCurrentHp() { return _currentHP; }
->>>>>>> ea457b58f8e001bfe8f5fc1d8892b1ee142cd48e
+
 #pragma endregion
 };
 
