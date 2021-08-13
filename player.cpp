@@ -189,6 +189,11 @@ void player::Collision()
 
 }
 
+void player::coinGet(int coin)
+{
+	_coin += coin;
+}
+
 void player::hitDamage(int damage)
 {
 	if (_isVulnerable)

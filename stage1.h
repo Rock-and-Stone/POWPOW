@@ -21,9 +21,7 @@ private:
 	player* _player;
 	UserInterface* _ui;
 	EnemyManager* _em;
-	Enemy* _enemy;
 	ObjectManager* _om;
-	Luke* _luke;
 
 	int _posX;
 	int _posY;
@@ -38,10 +36,6 @@ private:
 	float _mapX;
 	float _maxY;
 	bool _isBattle;
-
-	int _arr[ARRSIZE] = { 2 , 5 ,1 , 4 , 7 , 8 , 9, 3, 11, 10 };
-
-	
 
 
 public : 

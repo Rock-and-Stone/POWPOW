@@ -6,34 +6,21 @@ HRESULT stage1::init()
 	RENDERMANAGER->release();
 	SOUNDMANAGER->play("인게임", getBGMVolume() / 10);
 	_player = new Ramona;
-	_luke = new Luke;
 	_cm = new CameraManager;
 	_em = new EnemyManager;
 	_om = new ObjectManager;
 	_ui = new UserInterface;
 	_player->init(getPlayerPosX(),getPlayerPosY());
 	_player->InitVariables();
-	
-<<<<<<< HEAD
-	_luke = new Luke;
+
 	_isBattle = false;
-=======
-	//_luke = new Luke;
->>>>>>> bb2e186e224f105b38617ca0fa2a3c5295070805
 
 	_minMapX = 0;
 	_mapX = MAPSIZEX;
 	_maxY = MAPSIZEY;
 
-<<<<<<< HEAD
 	_cm = new CameraManager;
 	_cm->init(_minMapX, _mapX, _maxY);
-=======
-	//_cm = new CameraManager;
-	_cm->init(31812, _maxY);
->>>>>>> bb2e186e224f105b38617ca0fa2a3c5295070805
-
-	//_em = new EnemyManager;
 
 	_em->init();
 	_em->SetPlayerLink(_player);
@@ -43,7 +30,7 @@ HRESULT stage1::init()
 	_em->SetMike();
 	_em->SetMalcolm();
 
-	//_om = new ObjectManager;
+
 	_om->init();
 	_om->SetPlayerLink(_player);
 	_om->SetEMLink(_em);
@@ -51,7 +38,6 @@ HRESULT stage1::init()
 	_om->SetBat();
 	_om->SetTrash();
 
-	//_ui = new UserInterface;
 	_ui->init();
 
 	_ui->setPlayerMemoryAddress(_player);
@@ -70,7 +56,7 @@ void stage1::update()
 		_em->update();
 
 		_om->update();
-<<<<<<< HEAD
+
 #pragma region 언덕카메라무브
 		if (_player->getPosX() >= 24765)
 		{
@@ -83,9 +69,6 @@ void stage1::update()
 		}
 		_cm->init(_minMapX,_mapX, _maxY);
 #pragma endregion
-
-=======
->>>>>>> bb2e186e224f105b38617ca0fa2a3c5295070805
 
 		if (KEYMANAGER->isOnceKeyDown(VK_F1)) SCENEMANAGER->changeScene("bossScene");
 
