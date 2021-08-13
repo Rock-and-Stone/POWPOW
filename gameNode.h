@@ -22,6 +22,7 @@ public:
 	virtual void render();	//그리기 함수
 	
 	virtual float getRenderPosY(); // 렌더 포지션을 위한 함수
+	virtual bool getReleased();
 
 	//백버퍼의 DC영역에 대한 접근자
 	HDC getMemDC() { return _backBuffer->getMemDC(); }

@@ -6,33 +6,40 @@ HRESULT stage1::init()
 	RENDERMANAGER->release();
 	SOUNDMANAGER->play("ÀÎ°ÔÀÓ", getBGMVolume() / 10);
 	_player = new Ramona;
+	_luke = new Luke;
+	_cm = new CameraManager;
+	_em = new EnemyManager;
+	_om = new ObjectManager;
+	_ui = new UserInterface;
 	_player->init(getPlayerPosX(),getPlayerPosY());
 	_player->InitVariables();
 	
-	_luke = new Luke;
+	//_luke = new Luke;
 
 	_maxY = 1000;
 
-	_cm = new CameraManager;
+	//_cm = new CameraManager;
 	_cm->init(31812, _maxY);
 
-	_em = new EnemyManager;
+	//_em = new EnemyManager;
 
 	_em->init();
 	_em->SetPlayerLink(_player);
 	_em->SetCamera(_cm);
+	_em->SetOMLink(_om);
 	_em->SetLuke();
 	_em->SetMike();
 	_em->SetMalcolm();
 
-	_om = new ObjectManager;
+	//_om = new ObjectManager;
 	_om->init();
 	_om->SetPlayerLink(_player);
+	_om->SetEMLink(_em);
 	_om->SetCamera(_cm);
 	_om->SetBat();
 	_om->SetTrash();
 
-	_ui = new UserInterface;
+	//_ui = new UserInterface;
 	_ui->init();
 
 	_ui->setPlayerMemoryAddress(_player);

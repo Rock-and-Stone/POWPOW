@@ -6,7 +6,7 @@
 #include "Malcolm.h"
 #include "CameraManager.h"
 
-
+class ObjectManager;
 
 
 class EnemyManager : public gameNode
@@ -19,6 +19,7 @@ private:
 	vEnemy	_vLuke;
 	viEnemy _viLuke;
 
+	ObjectManager* _om;
 	CameraManager* _cm;
 	player* _player;
 	
@@ -43,5 +44,6 @@ public:
 
 	void SetCamera(CameraManager* cm) { _cm = cm; }
 	void SetPlayerLink(player* player) { _player = player; }
+	void SetOMLink(ObjectManager* om) { _om = om; }
 };
 

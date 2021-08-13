@@ -4,6 +4,9 @@
 #include "CameraManager.h"
 #include "Bat.h"
 #include "Trash.h"
+#include "sCoin.h"
+
+class EnemyManager;
 
 class ObjectManager : public gameNode
 {
@@ -15,13 +18,18 @@ private:
 	vObject		_vObject;
 	viObject	_viObject;
 
+	vObject _vCoin;
+	viObject _viCoin;
+
 	CameraManager* _cm;
 	player* _player;
 	Enemy* _enemy;
-
+	POINT _pos;
+	EnemyManager* _em;
 
 	Bat* _bat;
 	Trash* _trash;
+	sCoin* _sCoin;
 
 
 public:
@@ -32,12 +40,17 @@ public:
 
 	void SetBat();
 	void SetTrash();
+	void SetsCoin();
 
 	vector<Object*> GetVObject() { return _vObject; }
 	vector<Object*>::iterator GetVIObject() { return _viObject; }
 
+	vector<Object*> GetVCoin() { return _vCoin; }
+	vector<Object*>::iterator GetVICoin() { return _viCoin; }
+
 	void SetCamera(CameraManager* cm) { _cm = cm; }
 	void SetPlayerLink(player* player) { _player = player; }
 	void SetEnemyLink(Enemy* enemy) { _enemy = enemy; }
+	void SetEMLink(EnemyManager* em) { _em = em; }
 };
 

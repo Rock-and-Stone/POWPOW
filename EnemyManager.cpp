@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "EnemyManager.h"
 #include "Enemy.h"
+#include "ObjectManager.h"
 
 HRESULT EnemyManager::init()
 {
@@ -10,6 +11,7 @@ HRESULT EnemyManager::init()
 
 void EnemyManager::release()
 {
+
 }
 
 void EnemyManager::update()
@@ -18,7 +20,6 @@ void EnemyManager::update()
     for (_viLuke = _vLuke.begin(); _viLuke != _vLuke.end(); ++_viLuke)
     {
         (*_viLuke)->update();
-
     }
 
     Collision();
@@ -46,6 +47,7 @@ void EnemyManager::SetLuke()
         luke = new Luke;
         luke->SetCamera(_cm);
         luke->init("LUKE_IDLE", "LUKEleftIdle" , PointMake(800 * i + 800, 700));
+        luke->init();
         luke->SetPlayerLink(_player);
         _vLuke.push_back(luke);
         RENDERMANAGER->addRender(luke);
@@ -54,12 +56,13 @@ void EnemyManager::SetLuke()
 
 void EnemyManager::SetMike()
 {
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 0; i++)
     {
         Enemy* mike;
         mike = new Mike;
         mike->SetCamera(_cm);
         mike->init("MIKE_IDLE", "MIKEleftIdle", PointMake(800 * i + 1000, 500));
+        mike->init();
         mike->SetPlayerLink(_player);
         _vLuke.push_back(mike);
         RENDERMANAGER->addRender(mike);
@@ -68,12 +71,13 @@ void EnemyManager::SetMike()
 
 void EnemyManager::SetMalcolm()
 {
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 0; i++)
     {
         Enemy* malcolm;
         malcolm = new Malcolm;
         malcolm->SetCamera(_cm);
         malcolm->init("MALCOLM_IDLE", "MALCOLMleftIdle", PointMake(800 * i + 1200, 800));
+        malcolm->init();
         malcolm->SetPlayerLink(_player);
         _vLuke.push_back(malcolm);
         RENDERMANAGER->addRender(malcolm);
@@ -103,6 +107,13 @@ void EnemyManager::Collision()
             if (_player->getPosY() > _vLuke[i]->GetEnemyPosY() - 20 && _player->getPosY() < _vLuke[i]->GetEnemyPosY() + 20)
             _player->hitDamage(5);
         }
+
+        if (_vLuke[i]->getReleased())
+        {
+            _om->SetsCoin();
+            _vLuke.erase(_vLuke.begin() + i);
+        }
+            
     }
 
 

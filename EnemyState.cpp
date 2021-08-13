@@ -14,9 +14,8 @@ HRESULT EnemyIdle::init()
 {
 	_enemy->setIsChange(false);
 	_enemy->setIsAttack(false);
+	_enemy->setIsVulnerable(true);
 	_enemy->SetIsAir(false);
-	_enemy->setSpeedX(0);
-	_enemy->setSpeedY(0);
 	_enemy->setAtkCount(0);
 	return S_OK;
 }
@@ -178,8 +177,8 @@ HRESULT EnemyDamaged::init()
 {
 	//IMAGEMANAGER->addImage("attackEffect", "source/effect/attackEffect.bmp", 350, 50, true, MAGENTA);
 	//EFFECTMANAGER->addEffect("attackEffect1", "source/effect/attackEffect.bmp", 350, 50, 50, 50, 1, 0.08f, 1000);
+	_enemy->setSpeedX(-4.0f);
 	_enemy->SetEnemyHP(_enemy->GetEnemyHP() - 10);
-	_enemy->setIsTrace(false);
 	if (_enemy->GetEnemyDirection() == -1)
 	{
 		EFFECTMANAGER->play("attackEffect1", _enemy->GetEnemyRendX() - 40, _enemy->GetEnemyRendY());
@@ -199,10 +198,12 @@ void EnemyDamaged::release()
 
 void EnemyDamaged::update()
 {
-	if (_enemy->getHitGauge() > 2)
+	if (_enemy->getHitGauge() > 2 || _enemy->GetEnemyHP() <= 0)
 	{
 		_enemy->ChangeStatement(ENEMYSTATEMENT::DOWN);
+		return;
 	}
+
 	if (!_enemy->GetMotionName()->isPlay())
 	{
 		_enemy->ChangeStatement(ENEMYSTATEMENT::IDLE);
@@ -212,7 +213,9 @@ void EnemyDamaged::update()
 
 HRESULT EnemyDown::init()
 {
-	_enemy->setIsTrace(false);
+	_enemy->SetIsAir(true);
+	_enemy->SetJumpPower(6.0f);
+	_enemy->setIsVulnerable(false);
 	return S_OK;
 }
 
@@ -222,8 +225,18 @@ void EnemyDown::release()
 
 void EnemyDown::update()
 {
-	//만약 아직 HP가 0이 아니면 -> UP
-	//만약 뒤지면 -> 알파블렌드로 처리한다음에-> DEAD // findIMAGE-> 마젠타
+	if (_enemy->GetMotionName()->GetNowPlayIdx() < 6)
+	{
+		_enemy->setSpeedX(-4.0f);
+	}
+	else _enemy->SetIsAir(false);
+
+
+	if (!_enemy->GetMotionName()->isPlay())
+	{
+		if (_enemy->GetEnemyHP() > 0)_enemy->ChangeStatement(ENEMYSTATEMENT::GETUP);
+		else _enemy->setIsDead(true);
+	}
 }
 
 
@@ -257,14 +270,20 @@ void EnemyGuard::update()
 
 HRESULT EnemyGetUp::init()
 {
+	_enemy->setIsVulnerable(false);
 	_enemy->setIsTrace(false);
 	return S_OK;
 }
 
 void EnemyGetUp::release()
 {
+
 }
 
 void EnemyGetUp::update()
 {
+	if (!_enemy->GetMotionName()->isPlay())
+	{
+		_enemy->ChangeStatement(ENEMYSTATEMENT::IDLE);
+	}
 }

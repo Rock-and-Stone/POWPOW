@@ -36,6 +36,7 @@ public:
 	void selectionSort();
 	void bubbleSort();
 	void addRender(gameNode * obj); // 다른 객체에서 자신을 렌더매니저에 등록시킬때 사용됨.
+	void removeRender(int arrNum);
 
 };
 
