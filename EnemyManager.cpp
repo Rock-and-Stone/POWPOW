@@ -84,21 +84,21 @@ void EnemyManager::SpawnEnemy(int lukeNum, int mikeNum, int malcolmNum, int curr
     for (int i = 0; i < lukeNum; i++)
     {
         rnd = RND->getInt(2);
-        position.x = currentstage * 3000 + 100 + rnd * 1800;
+        position.x = currentstage * SPAWNRATE + 100 + rnd * 1800;
         SetLuke(position);
     }
 
     for (int j = 0; j < mikeNum; j++)
     {
         rnd = RND->getInt(2);
-        position.x = currentstage * 3000 + 100 + rnd * 1800;
+        position.x = currentstage * SPAWNRATE + 100 + rnd * 1800;
         SetMike(position);
     }
 
     for (int k = 0; k < malcolmNum; k++)
     {
         rnd = RND->getInt(2);
-        position.x = currentstage * 3000 + 100 + rnd * 1800;
+        position.x = currentstage * SPAWNRATE + 100 + rnd * 1800;
         SetMalcolm(position);
     }
 }

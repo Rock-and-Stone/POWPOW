@@ -49,10 +49,10 @@ void stage1::update()
 		CameraLock();
 	}
 
-	if (_player->getPosX() > _stage * 3000 + 1000 && !_isBattle)
+	if (_player->getPosX() > _stage * SPAWNRATE + 1000 && !_isBattle)
 	{
 		_isBattle = true;
-		_em->SpawnEnemy(2, 3, 1, _stage);
+		_em->SpawnEnemy(1, 1, 1, _stage);
 		_stage++;
 		CameraLock();
 	}

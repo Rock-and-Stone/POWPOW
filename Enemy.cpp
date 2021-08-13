@@ -103,6 +103,8 @@ void Enemy::EnemyUpdate()
     DownGauge();
     //SwitchImage();
     pixelCollision();
+
+    if (KEYMANAGER->isOnceKeyDown('Q')) HitDamage(500);
 }
 
 void Enemy::Move()
