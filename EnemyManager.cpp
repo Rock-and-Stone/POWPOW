@@ -36,8 +36,6 @@ void EnemyManager::render()
         (*_viEnemy)->render();
     }
     _enemyCount = i;
-    sprintf_s(str, "Enemy Count : %d", i);
-    TextOut(getMemDC(), 150, 190, str, strlen(str));
 }
 
 
