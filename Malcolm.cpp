@@ -33,6 +33,18 @@ void Malcolm::SwitchImage()
 {
     switch (_enemyStatement)
     {
+    case ENEMYSTATEMENT::INIT:
+        _imageName = IMAGEMANAGER->findImage("MALCOLM_IDLE");
+        if (_direction == -1)
+        {
+            _motionName = KEYANIMANAGER->findAnimation("MALCOLMleftIdle");
+        }
+        else if (_direction == 1)
+        {
+            _motionName = KEYANIMANAGER->findAnimation("MALCOLMrightIdle");
+        }
+        break;
+
     case ENEMYSTATEMENT::IDLE:
         _imageName = IMAGEMANAGER->findImage("MALCOLM_IDLE");
         if (_direction == -1)
