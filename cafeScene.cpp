@@ -17,8 +17,11 @@ HRESULT cafeScene::init()
 	_select = IMAGEMANAGER->findImage("shopsceneBox");
 	_rc = RectMake(_x, _y, _select->getWidth(), _select->getHeight());
 
+	_player = new player;
+
 	_ui = new UserInterface;
 	_ui->init();
+	_ui->setPlayerMemoryAddress(_player);
 
 	SOUNDMANAGER->play("ªÛ¡°", getBGMVolume() / 10);
 	return S_OK;
