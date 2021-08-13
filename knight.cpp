@@ -1,11 +1,9 @@
 #include "pch.h"
 #include "knight.h"
 
-
 knight::knight()
 {
 }
-
 
 knight::~knight()
 {
@@ -165,7 +163,6 @@ void knight::render()
 {
 	_image->aniRender(getMemDC(), _rc.left, _rc.top, _knightMotion);
 }
-
 //콜백함수 오른쪽 공격함수가 호출되면
 void knight::rightFire(void* obj)
 {

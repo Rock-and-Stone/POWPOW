@@ -3,17 +3,18 @@
 
 HRESULT settingScene::init()
 {
-	IMAGEMANAGER->addImage("settingSceneBox", "source/settingSceneBox.bmp", 250, 50, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("settingSceneBox", "source/settingSceneBox.bmp", 500, 50, true, RGB(255, 0, 255));
 
 	_selectNum = 0;
 
-	_rc = RectMake(190, 163 + (_selectNum * 67), 250, 50);
+	_rc = RectMake(380, 350 + (_selectNum * 140), 250, 50);
+
 	_BGMbar = new volumeProgressBar;
-	_BGMbar->init(300, 400, 400, 100);
+	_BGMbar->init(985, 290, 350, 80);
 	_BGMbar->setGauge(_currentBGMVolume, 1.0f);
 
 	_SFXbar = new volumeProgressBar;
-	_SFXbar->init(300, 600, 400, 100);
+	_SFXbar->init(985, 440, 350, 80);
 	_SFXbar->setGauge(_currentSFXVolume, 1.0f);
 
 	_currentBGMVolume = getBGMVolume() / 10;
@@ -114,7 +115,7 @@ void settingScene::update()
 			}
 		}
 	}
-	_rc = RectMake(190, 163 + (_selectNum * 67), 250, 50);
+	_rc = RectMake(380, 350 + (_selectNum * 140), 250, 50);
 }
 
 void settingScene::render()

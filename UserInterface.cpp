@@ -4,7 +4,6 @@
 
 HRESULT UserInterface::init()
 {
-
 	
 	IMAGEMANAGER->addFrameImage("hpNum", "source/hp_number.bmp", 140, 15, 10, 1, true, MAGENTA);
 	IMAGEMANAGER->addFrameImage("gpNum", "source/gp_number.bmp", 140, 15, 10, 1, true, MAGENTA);
@@ -12,7 +11,7 @@ HRESULT UserInterface::init()
 	IMAGEMANAGER->addImage("player1UI", "source/player1.bmp", 150, 130, true, MAGENTA);
 	IMAGEMANAGER->addImage("player2UI", "source/player2.bmp", 150, 130, true, MAGENTA);
 	IMAGEMANAGER->addImage("ingameSetting", "source/ingamesetting.bmp", 400, 225, true, MAGENTA);
-	IMAGEMANAGER->addImage("ingameSettingBox","source/ingamesettingSceneBox.bmp", 125, 25, true, MAGENTA);
+	IMAGEMANAGER->addImage("ingameSettingBox","source/ingamesettingSceneBox.bmp", 160, 25, true, MAGENTA);
 
 	_hp100 = IMAGEMANAGER->findImage("hpNum");
 	_hp10 = IMAGEMANAGER->findImage("hpNum");
@@ -38,11 +37,11 @@ HRESULT UserInterface::init()
 	_selectRc = RectMake(WINSIZEX / 2, WINSIZEY / 2 + (_selectNum * 90) + 50, 200, 50);
 
 	_BGMbar = new volumeProgressBar;
-	_BGMbar->init(300, 400, 400, 100);
+	_BGMbar->init(846,400, 86, 30);
 	_BGMbar->setGauge(getBGMVolume()/10, 1.0f);
 
 	_SFXbar = new volumeProgressBar;
-	_SFXbar->init(300, 600, 400, 100);
+	_SFXbar->init(846,440, 86, 30);
 	_SFXbar->setGauge(getSFXVolume()/10, 1.0f);
 
 	_currentBGMVolume = getBGMVolume() / 10;
@@ -64,9 +63,15 @@ void UserInterface::update()
 	_SFXbar->setGauge(_currentSFXVolume, 1.0f);
 	_SFXbar->update();
 
-	if(_isPause&& !_ingameSetting) _selectRc = RectMake(WINSIZEX / 2, WINSIZEY / 2 + (_selectNum * 90) + 50, 200, 50);
+	if (_isPause && !_ingameSetting)
+	{
+		_selectRc = RectMake(720, WINSIZEY / 2 + (_selectNum * 42) - 28, 200, 50);
+	}
 
-	else if(_ingameSetting) _selectRc = RectMake(WINSIZEX / 2, WINSIZEY / 2 + (_volumeSelectNum * 90) + 50, 200, 50);
+	else if (_ingameSetting)
+	{
+		_selectRc = RectMake(WINSIZEX / 2 - 130, WINSIZEY / 2 + (_volumeSelectNum * 35) - 32, 200, 50);
+	}
 
 	if (KEYMANAGER->isOnceKeyDown('O') && !_ingameSetting)
 	{

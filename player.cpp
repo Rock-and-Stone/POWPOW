@@ -48,6 +48,9 @@ HRESULT player::init(float posX, float posY)
 	_jumpPower = 0;
 	_speedRes = 0.50f;
 	_airY = 0;
+ 
+	_coin = getSaveCoin();
+
 	_coin = getSaveCoin();
 
 	_dirX = 1;

@@ -2,7 +2,7 @@
 #include "gameNode.h"
 #include "bossState.h"
 
-enum class BOSSDIRECTION
+enum BOSSDIRECTION
 {
 	leftIdle,
 	rightIdle,

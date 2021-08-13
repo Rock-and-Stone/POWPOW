@@ -180,7 +180,7 @@ void stage1::pixelCollision()
 		{
 
 			SaveData(_player->getCurrentHp(), 100, _player->getCoin());
-			setPlayerPosX(_player->getPosX());
+			setPlayerPosX(_player->getPosX()); 
 			setPlayerPosY(_player->getPosY() + 50 );
 			SOUNDMANAGER->stop("ÀÎ°ÔÀÓ");
 			SCENEMANAGER->changeScene("cafeScene");
