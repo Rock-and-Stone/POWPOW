@@ -29,6 +29,7 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
     _getUp = new EnemyGetUp;
     _guard = new EnemyGuard;
     _fall = new EnemyFall;
+    _chase = new EnemyChase;
 
     _init->SetEnemy(this);
     _idle->SetEnemy(this);
@@ -40,6 +41,8 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
     _getUp->SetEnemy(this);
     _guard->SetEnemy(this);
     _fall->SetEnemy(this);
+    _chase->SetEnemy(this);
+
 
     _enemyStatement = ENEMYSTATEMENT::INIT;
     _state = _init;
@@ -197,19 +200,17 @@ void Enemy::pixelCollision()
 {
     //ÇÈ¼¿ ÄÝ¸®Àü
 
-
     _probeEnemyX = _posX;
     _probeEnemyY = _posY;
     _probeEnemyRX = _posX + 40;
     _probeEnemyLX = _posX - 40;
     _probeEnemyBY = _posY + 90;
 
-
-
     //ÇÈ¼¿ À­ Ãæµ¹
    
+
     //¿¡³Ê¹Ì
-    for (int i = _probeEnemyBY - 5; i < _probeEnemyBY	; ++i)
+    for (int i = _probeEnemyBY - 5; i < _probeEnemyBY; ++i)
     {
         COLORREF color = GetPixel(IMAGEMANAGER->findImage("col")->getMemDC(), _posX, i);
 
@@ -365,6 +366,7 @@ void Enemy::ChangeStatement(ENEMYSTATEMENT enemyStatement)
         _state = _wander;
         break;
     }
+
     _motionName->stop();
     SwitchImage();
     _stateCount = 0;

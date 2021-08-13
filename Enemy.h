@@ -148,6 +148,8 @@ public:
 
 	void setIsDead(bool isdead) { _isDead = isdead; }
 
+	void setIsRun(bool isRun) { _isRun = isRun; }
+
 	int getAtkCount() { return _attackCount; }
 	void setAtkCount(int count) { _attackCount = count; }
 
