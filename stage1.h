@@ -11,7 +11,8 @@
 #include "ObjectManager.h"
 #include "Luke.h"
 
-#define ARRSIZE 10
+#define MAPSIZEX 31812
+#define MAPSIZEY 1000
 
 class stage1 :public gameNode
 {
@@ -33,8 +34,10 @@ private:
 	char* _str;
 
 	int _power;
-
+	float _minMapX;
+	float _mapX;
 	float _maxY;
+	bool _isBattle;
 
 	int _arr[ARRSIZE] = { 2 , 5 ,1 , 4 , 7 , 8 , 9, 3, 11, 10 };
 
@@ -47,6 +50,9 @@ public :
 	virtual void release();
 	virtual void render();
 
+	bool getIsBattle() { return _isBattle; }
+	
 	void pixelCollision();
+	void CameraLock();
 };
 

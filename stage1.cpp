@@ -10,11 +10,14 @@ HRESULT stage1::init()
 	_player->InitVariables();
 	
 	_luke = new Luke;
+	_isBattle = false;
 
-	_maxY = 1000;
+	_minMapX = 0;
+	_mapX = MAPSIZEX;
+	_maxY = MAPSIZEY;
 
 	_cm = new CameraManager;
-	_cm->init(31812, _maxY);
+	_cm->init(_minMapX, _mapX, _maxY);
 
 	_em = new EnemyManager;
 
@@ -59,7 +62,7 @@ void stage1::update()
 		{
 			_maxY = 1000;
 		}
-		_cm->init(31812, _maxY);	
+		_cm->init(_minMapX,_mapX, _maxY);
 #pragma endregion
 
 
@@ -87,12 +90,16 @@ void stage1::release()
 
 void stage1::render()
 {
+
+	
 	IMAGEMANAGER->findImage("background")->render(getMemDC(), 0, 0, _cm->getCamX(), _cm->getCamY(), WINSIZEX, WINSIZEY);
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
 		IMAGEMANAGER->findImage("col")->render(getMemDC(), 0, 0, _cm->getCamX(), _cm->getCamY(), WINSIZEX, WINSIZEY);
 	}
 	
+	
+
 
 	_player->setRendX(_cm->getRenderPosX());
 	_player->setRendY(_cm->getRenderPosY());
@@ -165,10 +172,6 @@ void stage1::pixelCollision()
 	_probePlayerBY = _player->getPosY() + 90;		//플레이어 발 부분
 
 	
-
-
-	
-	
 	//상점 이동 및 보스방 이동
 	for (int i = _probePlayerBY - 1; i < _probePlayerBY; ++i)
 	{
@@ -234,7 +237,7 @@ void stage1::pixelCollision()
 		if ((r == 255 && g == 255 && b == 0))
 		{
 			_player->setSpeedY(0);
-			_player->setPosY(i - 85);
+			_player->setPosY(i - 84);
 		}
 	}
 	
@@ -294,4 +297,18 @@ void stage1::pixelCollision()
 		}
 	}
 	
+}
+
+void stage1::CameraLock()
+{
+	if (!_isBattle)
+	{
+		_minMapX = 0;
+		_mapX = MAPSIZEX;
+	}
+	else
+	{
+		_minMapX = _cm->getCamX();
+		_mapX = _cm->getCamX() + WINSIZEX;
+	}
 }
