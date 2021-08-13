@@ -15,6 +15,12 @@ EnemyState::~EnemyState()
 HRESULT EnemyInit::init()
 {
 
+	_enemy->setIsChange(false);
+	_enemy->setIsAttack(false);
+	_enemy->setIsVulnerable(false);
+	_enemy->SetIsAir(false);
+	_enemy->setAtkCount(0);
+
 	return S_OK;
 }
 
@@ -30,7 +36,6 @@ void EnemyInit::update()
 #pragma endregion 
 
 #pragma region IDLE
-
 HRESULT EnemyIdle::init()
 {
 	_enemy->setIsChange(false);
@@ -53,15 +58,14 @@ void EnemyIdle::update()
 	{
 		if (_enemy->AttackSession()) _enemy->ChangeStatement(ENEMYSTATEMENT::ATTACK);
 
-		else if (_enemy->ChaseSession())
+		else 
 		{
-			_enemy->ChangeStatement(ENEMYSTATEMENT::CHASE);
+			int rnd = RND->getInt(2);
+			if (rnd == 0) _enemy->ChangeStatement(ENEMYSTATEMENT::CHASE);
+			else _enemy->ChangeStatement(ENEMYSTATEMENT::WANDER);
 		}
-
-		else _enemy->ChangeStatement(ENEMYSTATEMENT::WANDER);
 	}
 }
-
 #pragma endregion
 
 #pragma region MOVE
@@ -80,6 +84,8 @@ HRESULT EnemyWander::init()
 	_enemy->setWanderDirY(rndY);
 
 	_enemy->setIsChange(false);
+	_enemy->setIsVulnerable(true);
+	_enemy->setIsRun(false);
 	return S_OK;
 }
 
@@ -96,24 +102,8 @@ void EnemyWander::update()
 
 	if (_enemy->getIsChange())
 	{
-		_enemy->ChangeStatement(ENEMYSTATEMENT::IDLE);
-	}
-
-	else
-	{
-		if (_enemy->AttackSession())	_enemy->ChangeStatement(ENEMYSTATEMENT::ATTACK);
-
-		if (_enemy->getIsChange())
-		{
-			
-			if (!_enemy->ChaseSession())
-			{
-				int rnd = RND->getInt(2);
-
-				if(rnd == 0)_enemy->ChangeStatement(ENEMYSTATEMENT::WANDER);
-				else _enemy->ChangeStatement(ENEMYSTATEMENT::IDLE);
-			}
-		}
+		if (_enemy->AttackSession())_enemy->ChangeStatement(ENEMYSTATEMENT::ATTACK);
+		else _enemy->ChangeStatement(ENEMYSTATEMENT::IDLE);
 	}
 
 }
@@ -125,6 +115,7 @@ HRESULT EnemyChase::init()
 {
 	_enemy->setIsChange(false);
 	_enemy->setIsVulnerable(true);
+	_enemy->setIsRun(true);
 	return S_OK;
 }
 
@@ -135,9 +126,17 @@ void EnemyChase::release()
 
 void EnemyChase::update()
 {
+	_enemy->StateCount();
 	_enemy->ChasePlayer();
 	_enemy->setSpeedX(_enemy->getSpeedX() + 4.0f);
 	_enemy->setSpeedY(_enemy->getSpeedY() + 2.0f);
+
+	if (_enemy->AttackSession()) _enemy->ChangeStatement(ENEMYSTATEMENT::ATTACK);
+
+	else if (_enemy->getIsChange())
+	{
+		_enemy->ChangeStatement(ENEMYSTATEMENT::WANDER);
+	}
 
 }
 
