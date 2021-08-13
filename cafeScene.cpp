@@ -18,10 +18,9 @@ HRESULT cafeScene::init()
 	_rc = RectMake(_x, _y, _select->getWidth(), _select->getHeight());
 
 	_player = new player;
-<<<<<<< HEAD
-=======
+
 	_player->init(-1000, -1000);
->>>>>>> c60780ee6029baecfb4e9351258f028a552a7b46
+
 
 	_ui = new UserInterface;
 	_ui->init();
