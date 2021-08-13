@@ -120,6 +120,27 @@ void EnemyWander::update()
 
 #pragma endregion
 
+
+HRESULT EnemyChase::init()
+{
+	_enemy->setIsChange(false);
+	_enemy->setIsVulnerable(true);
+	return S_OK;
+}
+
+void EnemyChase::release()
+{
+
+}
+
+void EnemyChase::update()
+{
+	_enemy->ChasePlayer();
+	_enemy->setSpeedX(_enemy->getSpeedX() + 4.0f);
+	_enemy->setSpeedY(_enemy->getSpeedY() + 2.0f);
+
+}
+
 #pragma region JUMP
 
 HRESULT EnemyJump::init()
@@ -256,7 +277,7 @@ void EnemyDown::release()
 
 void EnemyDown::update()
 {
-	if (_enemy->GetMotionName()->GetNowPlayIdx() < 6)
+	if (!_enemy->getReleased() && _enemy->GetMotionName()->GetNowPlayIdx() < 6  )
 	{
 		_enemy->setSpeedX(-4.0f);
 	}
@@ -323,15 +344,3 @@ void EnemyGetUp::update()
 }
 #pragma endregion 
 
-HRESULT EnemyChase::init()
-{
-	return S_OK;
-}
-
-void EnemyChase::release()
-{
-}
-
-void EnemyChase::update()
-{
-}
