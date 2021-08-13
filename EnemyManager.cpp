@@ -35,48 +35,61 @@ void EnemyManager::render()
 }
 
 
-void EnemyManager::SetLuke()
+void EnemyManager::SetLuke(POINT pos)
 {
-    for (int i = 0; i < 5; i++)
-    {
         Enemy* luke;
         luke = new Luke;
         luke->SetCamera(_cm);
-        luke->init("LUKE_IDLE", "LUKEleftIdle" , PointMake(800 * i + 800, 700));
+        luke->init("LUKE_IDLE", "LUKEleftIdle" , pos);
         luke->init();
         luke->SetPlayerLink(_player);
         _vEnemy.push_back(luke);
         RENDERMANAGER->addRender(luke);
-    }
 }
 
-void EnemyManager::SetMike()
+void EnemyManager::SetMike(POINT pos)
 {
-    for (int i = 0; i < 10; i++)
-    {
         Enemy* mike;
         mike = new Mike;
         mike->SetCamera(_cm);
-        mike->init("MIKE_IDLE", "MIKEleftIdle", PointMake(800 * i + 1000, 500));
+        mike->init("MIKE_IDLE", "MIKEleftIdle", pos);
         mike->init();
         mike->SetPlayerLink(_player);
         _vEnemy.push_back(mike);
         RENDERMANAGER->addRender(mike);
-    }
 }
 
-void EnemyManager::SetMalcolm()
+void EnemyManager::SetMalcolm(POINT pos)
 {
-    for (int i = 0; i < 10; i++)
-    {
         Enemy* malcolm;
         malcolm = new Malcolm;
         malcolm->SetCamera(_cm);
-        malcolm->init("MALCOLM_IDLE", "MALCOLMleftIdle", PointMake(800 * i + 1200, 800));
+        malcolm->init("MALCOLM_IDLE", "MALCOLMleftIdle", pos);
         malcolm->init();
         malcolm->SetPlayerLink(_player);
         _vEnemy.push_back(malcolm);
         RENDERMANAGER->addRender(malcolm);
+}
+
+void EnemyManager::SpawnEnemy(int lukeNum, int mikeNum, int malcolmNum, int currentstage)
+{
+    POINT position;
+    position.x = currentstage * 3000 + 900;
+    position.y = RND->getFromIntTo(500, 700);
+
+    for (int i = 0; i < lukeNum; i++)
+    {
+        SetLuke(position);
+    }
+
+    for (int j = 0; j < mikeNum; j++)
+    {
+        SetMike(position);
+    }
+
+    for (int k = 0; k < malcolmNum; k++)
+    {
+        SetMalcolm(position);
     }
 }
 

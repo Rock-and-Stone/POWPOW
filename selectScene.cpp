@@ -5,14 +5,14 @@ HRESULT SelectScene::init()
 {
 	_selectNum = 0;
 
-	_selectRc = RectMake(WINSIZEX / 2, WINSIZEY / 2 + (_selectNum * 90) + 50, 200, 50);
+	_selectRc = RectMake(WINSIZEX / 2, WINSIZEY / 2 + (_selectNum * 90) + 30, 200, 50);
 
 	return S_OK;
 }
 
 void SelectScene::update()
 {
-	_selectRc = RectMake(WINSIZEX / 2, WINSIZEY / 2 + (_selectNum * 90) + 50, 200, 50);
+	_selectRc = RectMake(WINSIZEX / 2, WINSIZEY / 2 + (_selectNum * 90) + 30, 200, 50);
 
 	if (KEYMANAGER->isOnceKeyDown(VK_UP))
 	{

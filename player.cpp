@@ -48,6 +48,9 @@ HRESULT player::init(float posX, float posY)
 	_jumpPower = 0;
 	_speedRes = 0.50f;
 	_airY = 0;
+ 
+	_coin = getSaveCoin();
+
 	_coin = getSaveCoin();
 
 	_dirX = 1;
@@ -134,6 +137,11 @@ void player::Movement()
 	if (_speedX >= _maxSpeedX) _speedX = _maxSpeedX;
 
 	if (_speedY >= _maxSpeedY) _speedY = _maxSpeedY;
+
+
+	if (_rendX > WINSIZEX) _posX -= _speedX;
+	else if (_rendX < 0) _posX += _speedX;
+
 
 	if (_indexY == 0) _posX -= _speedX;
 	else if(_indexY == 1) _posX += _speedX;

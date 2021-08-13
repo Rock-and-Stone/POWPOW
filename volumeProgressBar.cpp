@@ -18,8 +18,9 @@ HRESULT volumeProgressBar::init(int x, int y, int width, int height)
 
 	_rcProgress = RectMake(x, y, width, height);
 
-	_progressBarTop = IMAGEMANAGER->findImage("volumeBackBar");
-	_progressBarBottom = IMAGEMANAGER->findImage("volumeFrontBar");
+	_progressBarTop = IMAGEMANAGER->addImage("volumeBackBar", "source/volumnBackBar.bmp", width, height, true, RGB(255, 0, 255));
+	_progressBarBottom = IMAGEMANAGER->addImage("volumeFrontBar", "source/volumnFrontBar.bmp", width, height, false, RGB(255, 0, 255));
+
 
 	_width = _progressBarTop->getWidth();
 
@@ -32,8 +33,7 @@ void volumeProgressBar::release()
 
 void volumeProgressBar::update()
 {
-	_rcProgress = RectMakeCenter(_x, _y, _progressBarTop->getWidth(),
-		_progressBarTop->getHeight());
+	_rcProgress = RectMakeCenter(_x, _y, _progressBarTop->getWidth(),_progressBarTop->getHeight());
 }
 
 void volumeProgressBar::render()

@@ -26,10 +26,6 @@ HRESULT stage1::init()
 	_em->SetPlayerLink(_player);
 	_em->SetCamera(_cm);
 	_em->SetOMLink(_om);
-	_em->SetLuke();
-	_em->SetMike();
-	_em->SetMalcolm();
-
 
 	_om->init();
 	_om->SetPlayerLink(_player);
@@ -47,6 +43,14 @@ HRESULT stage1::init()
 
 void stage1::update()
 {
+	if (_player->getPosX() > _stage * 3000 + 1000 && !_isBattle)
+	{
+		_isBattle = true;
+		_em->SpawnEnemy(2, 3, 1, _stage);
+		_stage++;
+		CameraLock();
+	}
+
 	if (!_ui->GetIsPause())
 	{
 		_player->update();
@@ -176,7 +180,7 @@ void stage1::pixelCollision()
 		{
 
 			SaveData(_player->getCurrentHp(), 100, _player->getCoin());
-			setPlayerPosX(_player->getPosX());
+			setPlayerPosX(_player->getPosX()); 
 			setPlayerPosY(_player->getPosY() + 50 );
 			SOUNDMANAGER->stop("ÀÎ°ÔÀÓ");
 			SCENEMANAGER->changeScene("cafeScene");

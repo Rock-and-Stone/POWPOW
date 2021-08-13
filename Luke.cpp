@@ -32,6 +32,18 @@ void Luke::SwitchImage()
 {
    switch (_enemyStatement)
     {
+   case ENEMYSTATEMENT::INIT:
+       _imageName = IMAGEMANAGER->findImage("LUKE_INIT");
+       if (_direction == -1)
+       {
+           _motionName = KEYANIMANAGER->findAnimation("LUKEleftInit");
+       }
+       else if (_direction == 1)
+       {
+           _motionName = KEYANIMANAGER->findAnimation("LUKErightInit");
+       }
+       break;
+
     case ENEMYSTATEMENT::IDLE:
         _imageName = IMAGEMANAGER->findImage("LUKE_IDLE");
         if (_direction == -1)
