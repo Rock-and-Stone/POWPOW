@@ -99,23 +99,15 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	{
 #pragma region 이미지 추가
     	IMAGEMANAGER->addImage("title", "source/titleImage.bmp", WINSIZEX, WINSIZEY, false, RGB(255, 0, 255));
-		IMAGEMANAGER->addImage("sushiScene", "SHOP/SHOP_SUSHI.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 		IMAGEMANAGER->addImage("background", "source/Level 1 - Frozen Suburbs.bmp", 31812, 1000, true, RGB(255,0,255));
-		//IMAGEMANAGER->addImage("배경", "source/backdu bisch ein archground.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 		IMAGEMANAGER->addImage("settingBackGround", "source/settingScene.bmp", WINSIZEX, WINSIZEY, true, MAGENTA);
 		IMAGEMANAGER->addImage("mainMenu", "source/mainMenu.bmp", WINSIZEX, WINSIZEY, false, MAGENTA);
 		IMAGEMANAGER->addImage("mainMenubox", "source/mainmenubox.bmp", 200, 50, true, MAGENTA);
-		IMAGEMANAGER->addImage("convenientScene", "SHOP/SHOP_CONVENIENTSTORE.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
-		IMAGEMANAGER->addImage("cafeScene", "SHOP/SHOP_CAFE.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
         IMAGEMANAGER->addImage("volumeBackBar", "source/volumnBackBar.bmp", 180, 50, true, RGB(255, 0, 255));
         IMAGEMANAGER->addImage("volumeFrontBar", "source/volumnFrontBar.bmp", 180, 50, false, RGB(255, 0, 255));
         IMAGEMANAGER->addImage("bossBackground", "source/Level 1 - Boss Room.bmp", WINSIZEX, WINSIZEY, true, MAGENTA);
-        IMAGEMANAGER->addImage("배경픽셀", "source/col.bmp", 31812, 1000, false, RGB(255,0,255));
         IMAGEMANAGER->addImage("shadow", "source/Shadow.bmp", 126, 36, true, RGB(255,0,255));
-
         IMAGEMANAGER->addImage("col", "source/col.bmp", 31812, 1000, false, RGB(255, 0, 255));
-
-
 #pragma endregion
 
 
@@ -125,7 +117,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         SOUNDMANAGER->addSound("보스방", "source/music/보스방.mp3", true, true);
         SOUNDMANAGER->addSound("강펀치", "source/music/효과음/강펀치.mp3", true, true);
         SOUNDMANAGER->addSound("고고", "source/music/효과음/고고.mp3", true, true);
-        SOUNDMANAGER->addSound("동전먹기", "source/music/효과음/동전먹기.mp3", true, true);
+        SOUNDMANAGER->addSound("동전먹기", "source/music/효과음/동전먹기.mp3", true, false);
         SOUNDMANAGER->addSound("막기", "source/music/효과음/막기.mp3", true, true);
         SOUNDMANAGER->addSound("문열기", "source/music/효과음/문열기.mp3", true, true);
         SOUNDMANAGER->addSound("보스에네르기파", "source/music/효과음/보스에네르기파.mp3", true, true);
@@ -134,8 +126,6 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         SOUNDMANAGER->addSound("펀치", "source/music/효과음/펀치.mp3", true, true);
         SOUNDMANAGER->addSound("허공펀치", "source/music/효과음/허공펀치.mp3", true, true);
         SOUNDMANAGER->addSound("휘리릭킥", "source/music/효과음/휘리릭킥.mp3", true, true);
- 
-
 #pragma endregion
         //루크 이미지 저장소
 #pragma region LUKEIMAGES
@@ -458,6 +448,19 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 #pragma endregion
 
 #pragma region Object Images
+       //COIN 오브젝트
+        IMAGEMANAGER->addFrameImage("smallCoin", "source/object/coin/smallCoin.bmp", 300, 50, 6, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("mediumCoin", "source/object/coin/mediumCoin.bmp", 360, 60, 6, 1, true, MAGENTA);
+        IMAGEMANAGER->addFrameImage("largeCoin", "source/object/coin/largeCoin.bmp", 384, 64, 6, 1, true, MAGENTA);
+
+        int smallCoin[] = { 0, 1, 2, 3, 4, 5 };
+        KEYANIMANAGER->addArrayFrameAnimation("smallCoin", "smallCoin", smallCoin, 6, 8, true);
+        int mediumCoin[] = { 0, 1, 2, 3, 4, 5 };
+        KEYANIMANAGER->addArrayFrameAnimation("mediumCoin", "mediumCoin", mediumCoin, 6, 8, true);
+        int largeCoin[] = { 0, 1, 2, 3, 4, 5 };
+        KEYANIMANAGER->addArrayFrameAnimation("largeCoin", "largeCoin", largeCoin, 6, 8, true);
+
+
        //BAT 오브젝트 
         IMAGEMANAGER->addFrameImage("bat_left_atk", "source/object/bat/bat_left_atk.bmp", 1875, 375, 5, 1, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("bat_left_dash", "source/object/bat/bat_left_dash.bmp", 3000, 375, 8, 1, true, MAGENTA);
@@ -678,9 +681,6 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         KEYANIMANAGER->addArrayFrameAnimation("bossLeftDownKick", "BOSS DOWN KICK", bossLeftDownKick, 4, 8, false);
 
 
-
-
-     
 #pragma endregion
 
 #pragma region Shop
