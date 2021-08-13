@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "UserInterface.h"
+#include "player.h"
 
 HRESULT UserInterface::init()
 {
@@ -196,9 +197,9 @@ void UserInterface::render()
 {
 	IMAGEMANAGER->findImage("player1UI")->render(getMemDC(), 20, 20);
 
-	_hp100->frameRender(getMemDC(), 95, 63, getPlayerHP() / 100 , 0);
-	_hp10->frameRender(getMemDC(), 110, 63, getPlayerHP() % 100 /10,0);
-	_hp1->frameRender(getMemDC(), 125, 63, getPlayerHP() % 10,0);
+	_hp100->frameRender(getMemDC(), 95, 63, _player->getCurrentHp() / 100 , 0);
+	_hp10->frameRender(getMemDC(), 110, 63, _player->getCurrentHp() % 100 /10,0);
+	_hp1->frameRender(getMemDC(), 125, 63, _player->getCurrentHp() % 10,0);
 
 	_gp100->frameRender(getMemDC(), 95, 84, getPlayerGP() / 100, 0);
 	_gp10->frameRender(getMemDC(), 110, 84, getPlayerGP() % 100 / 10, 0);

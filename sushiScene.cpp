@@ -19,10 +19,13 @@ HRESULT sushiScene::init()
 
 
 
-	
+	_player = new player;
 
 	_ui = new UserInterface;
 	_ui->init();
+
+	_ui->setPlayerMemoryAddress(_player);
+
 	SOUNDMANAGER->play("ªÛ¡°", getBGMVolume()/10);
 
 	return S_OK;

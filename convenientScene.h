@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "UserInterface.h"
+#include "player.h"
 class convenientScene :
     public gameNode
 {
@@ -9,6 +10,7 @@ private:
 	RECT _rc;
 	float _x, _y;
 
+	player* _player;
 	UserInterface* _ui;
 
 public:
