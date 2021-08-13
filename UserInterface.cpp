@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "UserInterface.h"
+#include "player.h"
 
 HRESULT UserInterface::init()
 {
@@ -196,17 +197,17 @@ void UserInterface::render()
 {
 	IMAGEMANAGER->findImage("player1UI")->render(getMemDC(), 20, 20);
 
-	_hp100->frameRender(getMemDC(), 95, 63, getPlayerHP() / 100 , 0);
-	_hp10->frameRender(getMemDC(), 110, 63, getPlayerHP() % 100 /10,0);
-	_hp1->frameRender(getMemDC(), 125, 63, getPlayerHP() % 10,0);
+	_hp100->frameRender(getMemDC(), 95, 63, _player->getCurrentHp() / 100 , 0);
+	_hp10->frameRender(getMemDC(), 110, 63, _player->getCurrentHp() % 100 /10,0);
+	_hp1->frameRender(getMemDC(), 125, 63, _player->getCurrentHp() % 10,0);
 
 	_gp100->frameRender(getMemDC(), 95, 84, getPlayerGP() / 100, 0);
 	_gp10->frameRender(getMemDC(), 110, 84, getPlayerGP() % 100 / 10, 0);
 	_gp1->frameRender(getMemDC(), 125, 84, getPlayerGP() % 10, 0);
 
-	_coin100->frameRender(getMemDC(), 95, 104, getCoin() / 100, 0);
-	_coin10->frameRender(getMemDC(), 110, 104, getCoin() % 100 / 10, 0);
-	_coin1->frameRender(getMemDC(), 125, 104, getCoin() % 10, 0);
+	_coin100->frameRender(getMemDC(), 95, 104, _player->getCoin() / 100, 0);
+	_coin10->frameRender(getMemDC(), 110, 104, _player->getCoin() % 100 / 10, 0);
+	_coin1->frameRender(getMemDC(), 125, 104, _player->getCoin() % 10, 0);
 
 	char str[50];
 	sprintf_s(str, "hp: %d", getPlayerHP());

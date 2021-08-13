@@ -17,6 +17,8 @@ HRESULT effectManager::init()
 	EFFECTMANAGER->addEffect("attackEffect1", "source/effect/attackEffect.bmp", 350, 50, 50, 50, 1, 0.2f, 1000);
 	IMAGEMANAGER->addImage("defenseEffect", "source/effect/defenseEffect.bmp", 350, 50, true, MAGENTA);
 	EFFECTMANAGER->addEffect("defenseEffect1", "source/effect/defenseEffect.bmp", 350, 50, 50, 50, 1, 0.2f, 1000);
+	IMAGEMANAGER->addImage("coinEffect", "source/effect/coinEffect.bmp", 264, 54, true, MAGENTA);
+	EFFECTMANAGER->addEffect("coinEffect1", "source/effect/coinEffect.bmp", 264, 54, 66, 50, 1, 0.2f, 1000);
 	return S_OK;
 }
 

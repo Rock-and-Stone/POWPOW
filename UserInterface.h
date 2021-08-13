@@ -2,6 +2,10 @@
 #include "gameNode.h"
 #include "volumeProgressBar.h"
 
+//player 데이터 받아오기
+
+class player;
+
 class UserInterface : public gameNode
 {
 private:
@@ -35,6 +39,8 @@ private:
 	float _currentBGMVolume;
 	float _currentSFXVolume;
 
+	player* _player;
+
 public:
 	virtual HRESULT init();
 	virtual void release();
@@ -42,6 +48,8 @@ public:
 	virtual void render();
 
 	bool GetIsPause() { return _isPause; }
+
+	void setPlayerMemoryAddress(player* player) { _player = player; }
 
 };
 

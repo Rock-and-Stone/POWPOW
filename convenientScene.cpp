@@ -17,8 +17,12 @@ HRESULT convenientScene::init()
 	_select = IMAGEMANAGER->findImage("shopsceneBox");
 	_rc = RectMake(_x, _y, _select->getWidth(), _select->getHeight());
 
+	_player = new player;
 	_ui = new UserInterface;
 	_ui->init();
+
+	_ui->setPlayerMemoryAddress(_player);
+
 	SOUNDMANAGER->play("상점", getBGMVolume()/10);
 	return S_OK;
 }
@@ -44,7 +48,10 @@ void convenientScene::update()
 			SOUNDMANAGER->stop("상점");
 			SCENEMANAGER->changeScene("stage1");
 		}
+		
 		Interaction();
+
+
 	}
 	
 
@@ -61,16 +68,21 @@ void convenientScene::render()
 
 void convenientScene::Interaction()
 {
-	//풍선껌: 플레이어 STR&&DEF 10 증가 , COIN == 200원
-	if (KEYMANAGER->isOnceKeyDown(VK_RETURN) && _y == 0)
+	if (!_player->getCoin() < 200)
 	{
-		//coin - 200원
-		//_player->setSTR || setDEF() +10;
-	}
-	//카페라떼: 플레이어 SPD&GP 10 증가, COIN == 200원
-	if (KEYMANAGER->isOnceKeyDown(VK_RETURN) && _y == 200)
-	{
-		//coin -200원
-		//_player->setSPD || setDEF() +10;
+		//풍선껌: 플레이어 STR&&DEF 10 증가 , COIN == 200원
+		if (KEYMANAGER->isOnceKeyDown(VK_RETURN) && _y == 0)
+		{
+			_player->setCoin(_player->getCoin() - 200);
+			//coin - 200원
+			//_player->setSTR || setDEF() +10;
+		}
+		//카페라떼: 플레이어 SPD&GP 10 증가, COIN == 200원
+		if (KEYMANAGER->isOnceKeyDown(VK_RETURN) && _y == 200)
+		{
+			_player->setCoin(_player->getCoin() - 200);
+			//coin -200원
+			//_player->setSPD || setDEF() +10;
+		}
 	}
 }

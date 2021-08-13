@@ -20,8 +20,9 @@ HRESULT restaurantScene::init()
 	_ui = new UserInterface;
 	_ui->init();
 
+	_player = new player;
 
-	
+	_ui->setPlayerMemoryAddress(_player);
 
 	SOUNDMANAGER->play("ªÛ¡°", getBGMVolume()/10);
 

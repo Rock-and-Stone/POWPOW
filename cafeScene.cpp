@@ -46,6 +46,7 @@ void cafeScene::update()
 			SOUNDMANAGER->stop("상점");
 			SCENEMANAGER->changeScene("stage1");
 		}
+		
 		Interaction();
 	}
 	_ui->update();
@@ -62,16 +63,23 @@ void cafeScene::render()
 
 void cafeScene::Interaction()
 {
-	//아메리카노: 플레이어 HP모두 회복, COIN == 100원
-	if (KEYMANAGER->isOnceKeyDown(VK_RETURN) && _y == 0)
+	if (!_player->getCoin() < 100)
 	{
-		//coin - 100원
-		//_player->setHP() -> 100;
-	}
-	//카페라떼: 플레이어 GP모두 회복, COIN == 100원
-	if (KEYMANAGER->isOnceKeyDown(VK_RETURN) && _y == 200)
-	{
-		//coin -100원
-		//_player->getHP() -> 100;
+		//아메리카노: 플레이어 HP모두 회복, COIN == 100원
+		if (KEYMANAGER->isOnceKeyDown(VK_RETURN) && _y == 0)
+		{
+			_player->setCoin(_player->getCoin() - 100);
+			_player->setPlayerHP(100);
+			//coin - 100원
+			//_player->setHP() -> 100;
+		}
+		//카페라떼: 플레이어 GP모두 회복, COIN == 100원
+		if (KEYMANAGER->isOnceKeyDown(VK_RETURN) && _y == 200)
+		{
+			_player->setCoin(_player->getCoin() - 100);
+			_player->setPlayerGP(100);
+			//coin -100원
+			//_player->getHP() -> 100;
+		}
 	}
 }

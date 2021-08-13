@@ -1,6 +1,8 @@
 #pragma once
 #include "gameNode.h"
 #include "UserInterface.h"
+#include "player.h"
+
 class cafeScene :
     public gameNode
 {
@@ -10,6 +12,7 @@ private:
 	float _x, _y;
 
 	UserInterface* _ui;
+	player* _player;
 
 
 public:

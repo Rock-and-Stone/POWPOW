@@ -19,10 +19,13 @@ HRESULT sushiScene::init()
 
 
 
-	
+	_player = new player;
 
 	_ui = new UserInterface;
 	_ui->init();
+
+	_ui->setPlayerMemoryAddress(_player);
+
 	SOUNDMANAGER->play("상점", getBGMVolume()/10);
 
 	return S_OK;
@@ -70,24 +73,28 @@ void sushiScene::Interaction()
 	//계란초밥: 플레이어 WP 10 영구증가 , COIN == 300원
 	if (KEYMANAGER->isOnceKeyDown(VK_RETURN) && _y == 0)
 	{
+		_player->setCoin(_player->getCoin() - 300);
 		//coin - 300원
 		//_player->setWP +10;
 	}
 	//연어초밥: 플레이어 SPD 10 영구증가, COIN == 300원
 	if (KEYMANAGER->isOnceKeyDown(VK_RETURN) && _y == 200)
 	{
+		_player->setCoin(_player->getCoin() - 300);
 		//coin -300원
 		//_player->setSPD +10;
 	}
 	//육회초밥: 플레이어의 DEF 10 영구증가, COIN == 300원
 	if (KEYMANAGER->isOnceKeyDown(VK_RETURN) && _y == 400)
 	{
+		_player->setCoin(_player->getCoin() - 300);
 		//coin -300원
 		//_player->setDEF() +10;
 	}
 	//햄버거: 플레이어의 STR 10 영구증가, COIN == 300원
 	if (KEYMANAGER->isOnceKeyDown(VK_RETURN) && _y == 600)
 	{
+		_player->setCoin(_player->getCoin() - 300);
 		//coin -300원
 		//_player->setSTR() +10;
 	}

@@ -6,37 +6,55 @@ HRESULT stage1::init()
 	RENDERMANAGER->release();
 	SOUNDMANAGER->play("인게임", getBGMVolume() / 10);
 	_player = new Ramona;
+	_luke = new Luke;
+	_cm = new CameraManager;
+	_em = new EnemyManager;
+	_om = new ObjectManager;
+	_ui = new UserInterface;
 	_player->init(getPlayerPosX(),getPlayerPosY());
 	_player->InitVariables();
 	
+<<<<<<< HEAD
 	_luke = new Luke;
 	_isBattle = false;
+=======
+	//_luke = new Luke;
+>>>>>>> bb2e186e224f105b38617ca0fa2a3c5295070805
 
 	_minMapX = 0;
 	_mapX = MAPSIZEX;
 	_maxY = MAPSIZEY;
 
+<<<<<<< HEAD
 	_cm = new CameraManager;
 	_cm->init(_minMapX, _mapX, _maxY);
+=======
+	//_cm = new CameraManager;
+	_cm->init(31812, _maxY);
+>>>>>>> bb2e186e224f105b38617ca0fa2a3c5295070805
 
-	_em = new EnemyManager;
+	//_em = new EnemyManager;
 
 	_em->init();
 	_em->SetPlayerLink(_player);
 	_em->SetCamera(_cm);
+	_em->SetOMLink(_om);
 	_em->SetLuke();
 	_em->SetMike();
 	_em->SetMalcolm();
 
-	_om = new ObjectManager;
+	//_om = new ObjectManager;
 	_om->init();
 	_om->SetPlayerLink(_player);
+	_om->SetEMLink(_em);
 	_om->SetCamera(_cm);
 	_om->SetBat();
 	_om->SetTrash();
 
-	_ui = new UserInterface;
+	//_ui = new UserInterface;
 	_ui->init();
+
+	_ui->setPlayerMemoryAddress(_player);
 
 	return S_OK;
 }
@@ -52,6 +70,7 @@ void stage1::update()
 		_em->update();
 
 		_om->update();
+<<<<<<< HEAD
 #pragma region 언덕카메라무브
 		if (_player->getPosX() >= 24765)
 		{
@@ -65,23 +84,20 @@ void stage1::update()
 		_cm->init(_minMapX,_mapX, _maxY);
 #pragma endregion
 
+=======
+>>>>>>> bb2e186e224f105b38617ca0fa2a3c5295070805
 
 		if (KEYMANAGER->isOnceKeyDown(VK_F1)) SCENEMANAGER->changeScene("bossScene");
-
 
 		EFFECTMANAGER->update();
 
 		RENDERMANAGER->update();
 
+		pixelCollision();
 	}
 
 	_ui->update();
 
-
-	pixelCollision();
-
-	EFFECTMANAGER->update();
-	RENDERMANAGER->update();
 }
 
 void stage1::release()
@@ -108,12 +124,8 @@ void stage1::render()
 	_em->render();
 	_om->render();
 
-
-
 	EFFECTMANAGER->render();
 	RENDERMANAGER->render(getMemDC());
-
-	//_player->render(_cm->getRenderPosX(), _cm->getRenderPosY());
 
 	_ui->render();
 
@@ -134,11 +146,7 @@ void stage1::render()
 
 	sprintf_s(str, "render Y : %d", _cm->getRenderPosY());
 	TextOut(getMemDC(), 100, 150, str, strlen(str));
-
-
-
 	
-	//RENDERMANAGER->render(getMemDC());
 	TIMEMANAGER->render(getMemDC());
 
 #pragma endregion
