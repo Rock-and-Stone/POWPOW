@@ -98,27 +98,20 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
     while (loadingHelper->_currentCount != LOADINGMAX)
     {
 #pragma region 이미지 추가
-<<<<<<< HEAD
     	IMAGEMANAGER->addImage("title", "source/titleImage.bmp", WINSIZEX, WINSIZEY, false, RGB(255, 0, 255));
 		IMAGEMANAGER->addImage("background", "source/Level 1 - Frozen Suburbs.bmp", 31812, 1000, true, RGB(255,0,255));
 		IMAGEMANAGER->addImage("settingBackGround", "source/settingScene.bmp", WINSIZEX, WINSIZEY, true, MAGENTA);
 		IMAGEMANAGER->addImage("mainMenu", "source/mainMenu.bmp", WINSIZEX, WINSIZEY, false, MAGENTA);
-		IMAGEMANAGER->addImage("mainMenubox", "source/mainmenubox.bmp", 200, 50, true, MAGENTA);
-        IMAGEMANAGER->addImage("volumeBackBar", "source/volumnBackBar.bmp", 180, 50, true, RGB(255, 0, 255));
-        IMAGEMANAGER->addImage("volumeFrontBar", "source/volumnFrontBar.bmp", 180, 50, false, RGB(255, 0, 255));
+		IMAGEMANAGER->addImage("mainMenubox", "source/mainmenubox.bmp", 330, 70, true, MAGENTA);
         IMAGEMANAGER->addImage("bossBackground", "source/Level 1 - Boss Room.bmp", WINSIZEX, WINSIZEY, true, MAGENTA);
         IMAGEMANAGER->addImage("shadow", "source/Shadow.bmp", 126, 36, true, RGB(255,0,255));
-=======
         IMAGEMANAGER->addImage("title", "source/titleImage.bmp", WINSIZEX, WINSIZEY, false, RGB(255, 0, 255));
         IMAGEMANAGER->addImage("background", "source/Level 1 - Frozen Suburbs.bmp", 31812, 1000, true, RGB(255, 0, 255));
         IMAGEMANAGER->addImage("settingBackGround", "source/settingScene.bmp", WINSIZEX, WINSIZEY, true, MAGENTA);
         IMAGEMANAGER->addImage("mainMenu", "source/mainMenu.bmp", WINSIZEX, WINSIZEY, false, MAGENTA);
         IMAGEMANAGER->addImage("mainMenubox", "source/mainmenubox.bmp", 200, 50, true, MAGENTA);
-        IMAGEMANAGER->addImage("volumeBackBar", "source/volumnBackBar.bmp", 180, 50, true, RGB(255, 0, 255));
-        IMAGEMANAGER->addImage("volumeFrontBar", "source/volumnFrontBar.bmp", 180, 50, false, RGB(255, 0, 255));
         IMAGEMANAGER->addImage("bossBackground", "source/Level 1 - Boss Room.bmp", WINSIZEX, WINSIZEY, true, MAGENTA);
         IMAGEMANAGER->addImage("shadow", "source/Shadow.bmp", 126, 36, true, RGB(255, 0, 255));
->>>>>>> c60780ee6029baecfb4e9351258f028a552a7b46
         IMAGEMANAGER->addImage("col", "source/col.bmp", 31812, 1000, false, RGB(255, 0, 255));
 #pragma endregion
 
@@ -460,11 +453,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 #pragma endregion
 
 #pragma region Object Images
-<<<<<<< HEAD
        //COIN 오브젝트
-=======
-        //COIN 오브젝트
->>>>>>> c60780ee6029baecfb4e9351258f028a552a7b46
         IMAGEMANAGER->addFrameImage("smallCoin", "source/object/coin/smallCoin.bmp", 300, 50, 6, 1, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("mediumCoin", "source/object/coin/mediumCoin.bmp", 360, 60, 6, 1, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("largeCoin", "source/object/coin/largeCoin.bmp", 384, 64, 6, 1, true, MAGENTA);
@@ -477,11 +466,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         KEYANIMANAGER->addArrayFrameAnimation("largeCoin", "largeCoin", largeCoin, 6, 8, true);
 
 
-<<<<<<< HEAD
-       //BAT 오브젝트 
-=======
         //BAT 오브젝트 
->>>>>>> c60780ee6029baecfb4e9351258f028a552a7b46
         IMAGEMANAGER->addFrameImage("bat_left_atk", "source/object/bat/bat_left_atk.bmp", 1875, 375, 5, 1, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("bat_left_dash", "source/object/bat/bat_left_dash.bmp", 3000, 375, 8, 1, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("bat_left_get", "source/object/bat/bat_left_get.bmp", 750, 375, 2, 1, true, MAGENTA);
