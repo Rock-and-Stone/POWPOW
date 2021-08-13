@@ -20,7 +20,8 @@ HRESULT UserInterface::init()
 	_gp100 = IMAGEMANAGER->findImage("gpNum");
 	_gp10 = IMAGEMANAGER->findImage("gpNum");
 	_gp1 = IMAGEMANAGER->findImage("gpNum");
-
+	
+	_coin1000 = IMAGEMANAGER->findImage("coinNum");
 	_coin100 = IMAGEMANAGER->findImage("coinNum");
 	_coin10 = IMAGEMANAGER->findImage("coinNum");
 	_coin1 = IMAGEMANAGER->findImage("coinNum");
@@ -36,11 +37,11 @@ HRESULT UserInterface::init()
 
 	_selectRc = RectMake(WINSIZEX / 2, WINSIZEY / 2 + (_selectNum * 90) + 50, 200, 50);
 
-	_BGMbar = new volumeProgressBar;
+	_BGMbar = new ingameProgress;
 	_BGMbar->init(846,400, 86, 30);
 	_BGMbar->setGauge(getBGMVolume()/10, 1.0f);
 
-	_SFXbar = new volumeProgressBar;
+	_SFXbar = new ingameProgress;
 	_SFXbar->init(846,440, 86, 30);
 	_SFXbar->setGauge(getSFXVolume()/10, 1.0f);
 
@@ -210,9 +211,10 @@ void UserInterface::render()
 	_gp10->frameRender(getMemDC(), 110, 84, getPlayerGP() % 100 / 10, 0);
 	_gp1->frameRender(getMemDC(), 125, 84, getPlayerGP() % 10, 0);
 
-	_coin100->frameRender(getMemDC(), 95, 104, _player->getCoin() / 100, 0);
-	_coin10->frameRender(getMemDC(), 110, 104, _player->getCoin() % 100 / 10, 0);
-	_coin1->frameRender(getMemDC(), 125, 104, _player->getCoin() % 10, 0);
+	_coin1000->frameRender(getMemDC(), 95, 104, _player->getCoin() / 1000, 0);
+	_coin100->frameRender(getMemDC(), 110, 104, _player->getCoin()  % 1000 /100, 0);
+	_coin10->frameRender(getMemDC(), 125, 104, _player->getCoin() % 100 / 10, 0);
+	_coin1->frameRender(getMemDC(), 140, 104, _player->getCoin() % 10, 0);
 
 	char str[50];
 	sprintf_s(str, "hp: %d", getPlayerHP());

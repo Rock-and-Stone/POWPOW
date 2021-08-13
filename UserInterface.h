@@ -1,6 +1,6 @@
 #pragma once
 #include "gameNode.h"
-#include "volumeProgressBar.h"
+#include "ingameProgress.h"
 
 //player 데이터 받아오기
 
@@ -18,6 +18,7 @@ private:
 	image* _gp10;
 	image* _gp1;
 
+	image* _coin1000;
 	image* _coin100;
 	image* _coin10;
 	image* _coin1;
@@ -33,8 +34,8 @@ private:
 	int _selectNum;
 	int _volumeSelectNum;
 
-	volumeProgressBar* _BGMbar;
-	volumeProgressBar* _SFXbar;
+	ingameProgress* _BGMbar;
+	ingameProgress* _SFXbar;
 
 	float _currentBGMVolume;
 	float _currentSFXVolume;
