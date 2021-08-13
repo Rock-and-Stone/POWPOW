@@ -160,6 +160,7 @@ public:
 	int getAtkCount() { return _atkCount; }
 	void setAtkCount(int atkCount) { _atkCount = atkCount; }
 
+	int getCurrentHp() { return _currentHP; }
 #pragma endregion
 };
 

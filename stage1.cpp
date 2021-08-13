@@ -35,6 +35,8 @@ HRESULT stage1::init()
 	_ui = new UserInterface;
 	_ui->init();
 
+	_ui->setPlayerMemoryAddress(_player);
+
 	return S_OK;
 }
 
@@ -49,19 +51,6 @@ void stage1::update()
 		_em->update();
 
 		_om->update();
-#pragma region 언덕카메라무브
-		if (_player->getPosX() >= 24765)
-		{
-			if (_maxY <= 1000) _maxY = 1000 + 0.6 * (_player->getPosX() - 24765);
-		}
-
-		if (_maxY >= 1000)
-		{
-			_maxY = 1000;
-		}
-		_cm->init(31812, _maxY);	
-#pragma endregion
-
 
 		if (KEYMANAGER->isOnceKeyDown(VK_F1)) SCENEMANAGER->changeScene("bossScene");
 
@@ -69,11 +58,11 @@ void stage1::update()
 
 		RENDERMANAGER->update();
 
+		pixelCollision();
 	}
 
 	_ui->update();
 
-	pixelCollision();
 }
 
 void stage1::release()
@@ -96,12 +85,8 @@ void stage1::render()
 	_em->render();
 	_om->render();
 
-
-
 	EFFECTMANAGER->render();
 	RENDERMANAGER->render(getMemDC());
-
-	//_player->render(_cm->getRenderPosX(), _cm->getRenderPosY());
 
 	_ui->render();
 
@@ -122,11 +107,7 @@ void stage1::render()
 
 	sprintf_s(str, "render Y : %d", _cm->getRenderPosY());
 	TextOut(getMemDC(), 100, 150, str, strlen(str));
-
-
-
 	
-	//RENDERMANAGER->render(getMemDC());
 	TIMEMANAGER->render(getMemDC());
 
 #pragma endregion
