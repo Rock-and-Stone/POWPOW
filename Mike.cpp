@@ -42,18 +42,6 @@ void Mike::SwitchImage()
             _motionName = KEYANIMANAGER->findAnimation("MIKErightIdle");
         }
         break;
-    case ENEMYSTATEMENT::WALK:
-        _imageName = IMAGEMANAGER->findImage("MIKE_WALK");
-        if (_direction == -1)
-        {
-            _motionName = KEYANIMANAGER->findAnimation("MIKEleftWalk");
-        }
-        else if (_direction == 1)
-        {
-            _motionName = KEYANIMANAGER->findAnimation("MIKErightWalk");
-        }
-        break;
-
     case ENEMYSTATEMENT::WANDER:
         _imageName = IMAGEMANAGER->findImage("MIKE_WALK");
         if (_direction == -1)
@@ -65,7 +53,7 @@ void Mike::SwitchImage()
             _motionName = KEYANIMANAGER->findAnimation("MIKErightWalk");
         }
         break;
-    case ENEMYSTATEMENT::RUN:
+    case ENEMYSTATEMENT::CHASE:
         _imageName = IMAGEMANAGER->findImage("MIKE_RUN");
         if (_direction == -1)
         {

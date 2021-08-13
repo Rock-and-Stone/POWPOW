@@ -11,11 +11,12 @@ CameraManager::~CameraManager()
 
 }
 
-HRESULT CameraManager::init(int mapSizeX, float mapSizeY)
+HRESULT CameraManager::init(float minMapSizeX,int mapSizeX, float mapSizeY)
 {
     _posX = WINSIZEX / 2;
     _posY = WINSIZEY / 2;
 
+    _minMapSizeX = minMapSizeX;
     _mapSizeX = mapSizeX;
     _mapSizeY = mapSizeY;
 
@@ -43,7 +44,7 @@ void CameraManager::CameraWork(float playerX, float playerY)
 
 void CameraManager::CameraClamp()
 {
-    if (_rc.left <= 0) _rc.left = 0;
+    if (_rc.left <= _minMapSizeX) _rc.left = _minMapSizeX;
     if (_rc.top <= 0) _rc.top = 0;
     if (_rc.left + WINSIZEX >= _mapSizeX) _rc.left = _mapSizeX - WINSIZEX;
     if (_rc.top + WINSIZEY >= _mapSizeY) _rc.top = _mapSizeY - WINSIZEY;

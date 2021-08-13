@@ -19,8 +19,9 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
 
 #pragma region STATES
 
+    _init = new EnemyInit;
     _idle = new EnemyIdle;
-    _move = new EnemyMove;
+    _wander = new EnemyWander;
     _jump = new EnemyJump;
     _attack = new EnemyAttack;
     _damaged = new EnemyDamaged;
@@ -29,9 +30,9 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
     _guard = new EnemyGuard;
     _fall = new EnemyFall;
 
-
+    _init->SetEnemy(this);
     _idle->SetEnemy(this);
-    _move->SetEnemy(this);
+    _wander->SetEnemy(this);
     _jump->SetEnemy(this);
     _attack->SetEnemy(this);
     _damaged->SetEnemy(this);
@@ -40,9 +41,9 @@ HRESULT Enemy::init(const char* imageName, const char* animationName, POINT posi
     _guard->SetEnemy(this);
     _fall->SetEnemy(this);
 
-    _state = _idle;
-    _direction = 0;
-    _enemyStatement = ENEMYSTATEMENT::IDLE;
+    _enemyStatement = ENEMYSTATEMENT::INIT;
+    _state = _init;
+    _direction = -1;
 
 #pragma endregion
 
@@ -95,10 +96,8 @@ void Enemy::render()
 void Enemy::EnemyUpdate()
 {
     Move();
-    TracePlayer();
     MakeAttackRect();
     DownGauge();
-    if (_player->getIsVulnerable()) StateCount();
     //SwitchImage();
     pixelCollision();
 }
@@ -183,7 +182,6 @@ void Enemy::Draw()
 
     _imageName->aniRender(getMemDC(), _rc.left, _rc.top, _motionName);
 
-    LineMake(getMemDC(), _rendX, _rendY, _player->getRendX(), _player->getRendY());
     if (KEYMANAGER->isToggleKey(VK_TAB))
     {
         Rectangle(getMemDC(), _attackRect);
@@ -285,7 +283,7 @@ void Enemy::pixelCollision()
 
 
 
-void Enemy::TracePlayer() // 플레이어 추적하여 좌우 변경
+void Enemy::ChasePlayer() // 플레이어 추적하여 좌우 변경
 {
     if (_isVulnerable)
     {
@@ -333,14 +331,14 @@ void Enemy::ChangeStatement(ENEMYSTATEMENT enemyStatement)
 
     switch (_enemyStatement)
     {
+    case ENEMYSTATEMENT::INIT:
+        _state = _init;
+        break;
     case ENEMYSTATEMENT::IDLE:
         _state = _idle;
         break;
-    case ENEMYSTATEMENT::WALK:
-        _state = _move;
-        break;
-    case ENEMYSTATEMENT::RUN:
-        _state = _move;
+    case ENEMYSTATEMENT::CHASE:
+        _state = _chase;
         break;
     case ENEMYSTATEMENT::JUMP:
         _state = _jump;
@@ -364,7 +362,7 @@ void Enemy::ChangeStatement(ENEMYSTATEMENT enemyStatement)
         _state = _getUp;
         break;
     case ENEMYSTATEMENT::WANDER:
-        _state = _move;
+        _state = _wander;
         break;
     }
     _motionName->stop();
@@ -394,7 +392,7 @@ void Enemy::DownGauge()
     {
         _hitCount++;
 
-        if (_hitCount % 40 == 0)
+        if (_hitCount % 50 == 0)
         {
             _hitGauge--;
             _hitCount = 0;

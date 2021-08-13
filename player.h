@@ -50,7 +50,7 @@ protected:
 	int				_jumpCount;		// 현재 점프 횟수
 	int				_hitCount;
 	int				_maxHP, _currentHP; // 최대 체력, 현재 체력
-	int				_coin;				//코인 값
+	int				_coin;
 
 	bool			_animLoop;		// 애니메이션이 루프인지 여부
 	bool			_trigger;		// 애니메이션이 끝났을때 작동하는 트리거
@@ -73,8 +73,6 @@ protected:
 
 	
 
-	
-
 public:
 	player();
 	~player();
@@ -92,9 +90,9 @@ public:
 
 	void Collision(); 
 
-	void hitDamage(int damage); // 피격 함수
-
 	void coinGet(int coin);
+
+	void hitDamage(int damage); // 피격 함수
 
 	void ChangeState(Statement statement); //상태 변경 함수
 
@@ -165,12 +163,12 @@ public:
 	int getAtkCount() { return _atkCount; }
 	void setAtkCount(int atkCount) { _atkCount = atkCount; }
 
-
 	int getCoin() { return _coin; }
 	void setCoin(int coin) { _coin = coin; }
 
 
 	int getCurrentHp() { return _currentHP; }
+
 
 #pragma endregion
 };

@@ -19,10 +19,9 @@
 enum class ENEMYSTATEMENT
 {
 	INIT,						//등장
-	IDLE,						//기본
-	WALK,						//걷기
-	RUN,						//뛰기
-	WANDER,
+	IDLE,						//대기
+	CHASE,						//뛰기
+	WANDER,						//걷기
 	JUMP,						//점프
 	FALL,						//떨어짐
 	ATTACK,					    //약공격1
@@ -52,16 +51,18 @@ protected:
 	RECT _attackComboRect;
 
 	//상태패턴
-	EnemyState* _state;
-	EnemyIdle* _idle;
-	EnemyMove* _move;
-	EnemyJump* _jump;
-	EnemyAttack* _attack;
-	EnemyDamaged* _damaged;
-	EnemyDown* _down;
-	EnemyGuard* _guard;
-	EnemyGetUp* _getUp;
-	EnemyFall* _fall;
+	EnemyState*		_state;
+	EnemyInit*		_init;
+	EnemyIdle*		_idle;
+	EnemyWander*	_wander;
+	EnemyChase*		_chase;
+	EnemyJump*		_jump;
+	EnemyAttack*	_attack;
+	EnemyDamaged*	_damaged;
+	EnemyDown*		_down;
+	EnemyGuard*		_guard;
+	EnemyGetUp*		_getUp;
+	EnemyFall*		_fall;
 
 	
 	int _direction;					//에너미의 방향
@@ -75,6 +76,7 @@ protected:
 	int _attackCount;
 	int _releaseCount;
 
+
 	bool _isAir;
 	bool _isChange;
 	bool _isAttack;
@@ -82,6 +84,7 @@ protected:
 	bool _isRun;
 	bool _isVulnerable;
 	bool _isDead;
+
 
 	float _posX, _posY;				//실제 x, y 좌표
 	float _rendX, _rendY;			//렌더 x, y 좌표
@@ -94,8 +97,11 @@ protected:
 	float _attackRange;				//공격 가능한 거리
 	float _searchRange;				//플레이어 감지 거리
 	float _airY;					//공중 Y 좌표
+
+
 	int _alpha;
 	int _temp;
+
 
 	int _maxHP, _currentHP;			//최대 체력, 현재 체력
 	int _rndSelection;
@@ -124,7 +130,7 @@ public:
 
 	void pixelCollision();
 
-	void TracePlayer();
+	void ChasePlayer();
 	
 	void ChangeStatement(ENEMYSTATEMENT enemyStatement);
 

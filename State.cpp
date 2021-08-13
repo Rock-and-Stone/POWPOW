@@ -242,6 +242,7 @@ void Fall::Trigger()
 #pragma region ATTACK
 HRESULT Attack::init()
 {
+
 	return S_OK;
 }
 
