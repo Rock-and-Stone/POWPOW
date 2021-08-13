@@ -6,8 +6,8 @@
 #include "Malcolm.h"
 #include "CameraManager.h"
 
-class ObjectManager;
 
+class ObjectManager;
 
 class EnemyManager : public gameNode
 {
@@ -16,14 +16,13 @@ private:
 	typedef vector<Enemy*>::iterator	 viEnemy;
 
 private:
-	vEnemy	_vLuke;
-	viEnemy _viLuke;
+	vEnemy	_vEnemy;
+	viEnemy _viEnemy;
 
 	ObjectManager* _om;
 	CameraManager* _cm;
 	player* _player;
 	
-	Luke* _Luke;
 
 public:
 	HRESULT init();
@@ -31,7 +30,6 @@ public:
 	void update();
 	void render();
 
-	void EnemyImageStorage();
 
 	void SetLuke();
 	void SetMike();
@@ -39,8 +37,8 @@ public:
 	
 	void Collision();
 
-	vector<Enemy*> GetVLuke() { return _vLuke; }
-	vector<Enemy*>::iterator GetVILuke() { return _viLuke; }
+	vector<Enemy*> GetVEnemy() { return _vEnemy; }
+	vector<Enemy*>::iterator GetVIEnemy() { return _viEnemy; }
 
 	void SetCamera(CameraManager* cm) { _cm = cm; }
 	void SetPlayerLink(player* player) { _player = player; }

@@ -16,6 +16,19 @@ public:
 	virtual void SetEnemy(Enemy* enemy) = 0;
 };
 
+class EnemyInit : public EnemyState
+{
+private:
+
+public:
+	virtual HRESULT init() override;
+	virtual void release() override;
+	virtual void update() override;
+
+	virtual void SetEnemy(Enemy* enemy) override { _enemy = enemy; }
+};
+
+
 class EnemyIdle : public EnemyState
 {
 private:
@@ -28,7 +41,7 @@ public:
 	virtual void SetEnemy(Enemy* enemy) override { _enemy = enemy; }
 };
 
-class EnemyMove : public EnemyState
+class EnemyWander : public EnemyState
 {
 private:
 	int rndX;
@@ -41,7 +54,7 @@ public:
 	virtual void SetEnemy(Enemy* enemy) override { _enemy = enemy; }
 };
 
-class EnemyRun : public EnemyState
+class EnemyChase : public EnemyState
 {
 private:
 

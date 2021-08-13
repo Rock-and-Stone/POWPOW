@@ -6,22 +6,21 @@ HRESULT stage1::init()
 	RENDERMANAGER->release();
 	SOUNDMANAGER->play("인게임", getBGMVolume() / 10);
 	_player = new Ramona;
-	_luke = new Luke;
 	_cm = new CameraManager;
 	_em = new EnemyManager;
 	_om = new ObjectManager;
 	_ui = new UserInterface;
 	_player->init(getPlayerPosX(),getPlayerPosY());
 	_player->InitVariables();
-	
-	//_luke = new Luke;
 
-	_maxY = 1000;
+	_isBattle = false;
 
-	//_cm = new CameraManager;
-	_cm->init(31812, _maxY);
+	_minMapX = 0;
+	_mapX = MAPSIZEX;
+	_maxY = MAPSIZEY;
 
-	//_em = new EnemyManager;
+	_cm = new CameraManager;
+	_cm->init(_minMapX, _mapX, _maxY);
 
 	_em->init();
 	_em->SetPlayerLink(_player);
@@ -31,7 +30,7 @@ HRESULT stage1::init()
 	_em->SetMike();
 	_em->SetMalcolm();
 
-	//_om = new ObjectManager;
+
 	_om->init();
 	_om->SetPlayerLink(_player);
 	_om->SetEMLink(_em);
@@ -39,7 +38,6 @@ HRESULT stage1::init()
 	_om->SetBat();
 	_om->SetTrash();
 
-	//_ui = new UserInterface;
 	_ui->init();
 
 	_ui->setPlayerMemoryAddress(_player);
@@ -58,6 +56,19 @@ void stage1::update()
 		_em->update();
 
 		_om->update();
+
+#pragma region 언덕카메라무브
+		if (_player->getPosX() >= 24765)
+		{
+			if (_maxY <= 1000) _maxY = 1000 + 0.6 * (_player->getPosX() - 24765);
+		}
+
+		if (_maxY >= 1000)
+		{
+			_maxY = 1000;
+		}
+		_cm->init(_minMapX,_mapX, _maxY);
+#pragma endregion
 
 		if (KEYMANAGER->isOnceKeyDown(VK_F1)) SCENEMANAGER->changeScene("bossScene");
 
@@ -78,12 +89,16 @@ void stage1::release()
 
 void stage1::render()
 {
+
+	
 	IMAGEMANAGER->findImage("background")->render(getMemDC(), 0, 0, _cm->getCamX(), _cm->getCamY(), WINSIZEX, WINSIZEY);
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
 		IMAGEMANAGER->findImage("col")->render(getMemDC(), 0, 0, _cm->getCamX(), _cm->getCamY(), WINSIZEX, WINSIZEY);
 	}
 	
+	
+
 
 	_player->setRendX(_cm->getRenderPosX());
 	_player->setRendY(_cm->getRenderPosY());
@@ -148,10 +163,6 @@ void stage1::pixelCollision()
 	_probePlayerBY = _player->getPosY() + 90;		//플레이어 발 부분
 
 	
-
-
-	
-	
 	//상점 이동 및 보스방 이동
 	for (int i = _probePlayerBY - 1; i < _probePlayerBY; ++i)
 	{
@@ -163,7 +174,8 @@ void stage1::pixelCollision()
 
 		if ((r == 255 && g == 0 && b == 0))
 		{
-			SaveData();
+
+			SaveData(_player->getCurrentHp(), 100, _player->getCoin());
 			setPlayerPosX(_player->getPosX());
 			setPlayerPosY(_player->getPosY() + 50 );
 			SOUNDMANAGER->stop("인게임");
@@ -172,7 +184,7 @@ void stage1::pixelCollision()
 
 		if ((r == 0 && g == 255 && b == 0))
 		{
-			SaveData();
+			SaveData(_player->getCurrentHp(), 100, _player->getCoin());
 			setPlayerPosX(_player->getPosX());
 			setPlayerPosY(_player->getPosY() + 50);
 			SOUNDMANAGER->stop("인게임");
@@ -181,7 +193,7 @@ void stage1::pixelCollision()
 
 		if ((r == 0 && g == 0 && b == 255))
 		{
-			SaveData();
+			SaveData(_player->getCurrentHp(), 100, _player->getCoin());
 			setPlayerPosX(_player->getPosX());
 			setPlayerPosY(_player->getPosY() + 50);
 			SOUNDMANAGER->stop("인게임");
@@ -190,7 +202,7 @@ void stage1::pixelCollision()
 
 		if ((r == 0 && g == 255 && b == 255))
 		{
-			SaveData();
+			SaveData(_player->getCurrentHp(), 100, _player->getCoin());
 			setPlayerPosX(_player->getPosX());
 			setPlayerPosY(_player->getPosY() + 50);
 			SOUNDMANAGER->stop("인게임");
@@ -199,6 +211,7 @@ void stage1::pixelCollision()
 
 		if ((r == 0 && g == 170 && b == 255))
 		{
+			SaveData(_player->getCurrentHp(), 100, _player->getCoin());
 			SOUNDMANAGER->stop("인게임");
 			SCENEMANAGER->changeScene("bossScene");
 		}
@@ -217,7 +230,7 @@ void stage1::pixelCollision()
 		if ((r == 255 && g == 255 && b == 0))
 		{
 			_player->setSpeedY(0);
-			_player->setPosY(i - 85);
+			_player->setPosY(i - 84);
 		}
 	}
 	
@@ -277,4 +290,18 @@ void stage1::pixelCollision()
 		}
 	}
 	
+}
+
+void stage1::CameraLock()
+{
+	if (!_isBattle)
+	{
+		_minMapX = 0;
+		_mapX = MAPSIZEX;
+	}
+	else
+	{
+		_minMapX = _cm->getCamX();
+		_mapX = _cm->getCamX() + WINSIZEX;
+	}
 }

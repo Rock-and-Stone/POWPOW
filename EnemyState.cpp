@@ -10,6 +10,27 @@ EnemyState::~EnemyState()
 {
 }
 
+
+#pragma region INIT
+HRESULT EnemyInit::init()
+{
+
+	return S_OK;
+}
+
+void EnemyInit::release()
+{
+
+}
+
+void EnemyInit::update()
+{
+
+}
+#pragma endregion 
+
+#pragma region IDLE
+
 HRESULT EnemyIdle::init()
 {
 	_enemy->setIsChange(false);
@@ -26,21 +47,25 @@ void EnemyIdle::release()
 
 void EnemyIdle::update()
 {
+	_enemy->StateCount();
+
 	if(_enemy->getIsChange())
 	{
 		if (_enemy->AttackSession()) _enemy->ChangeStatement(ENEMYSTATEMENT::ATTACK);
 
 		else if (_enemy->ChaseSession())
 		{
-			_enemy->ChangeStatement(ENEMYSTATEMENT::WALK);
+			_enemy->ChangeStatement(ENEMYSTATEMENT::CHASE);
 		}
 
 		else _enemy->ChangeStatement(ENEMYSTATEMENT::WANDER);
 	}
 }
 
+#pragma endregion
 
-HRESULT EnemyMove::init()
+#pragma region MOVE
+HRESULT EnemyWander::init()
 {
 	//rndX = RND->getFromIntTo(-1, 2);
 	//rndY = RND->getFromIntTo(-1, 2);
@@ -58,28 +83,20 @@ HRESULT EnemyMove::init()
 	return S_OK;
 }
 
-void EnemyMove::release()
+void EnemyWander::release()
 {
 }
 
-void EnemyMove::update()
+void EnemyWander::update()
 {
+	_enemy->StateCount();
+
 	_enemy->setSpeedX(_enemy->getSpeedX() + 2.0f);
 	_enemy->setSpeedY(_enemy->getSpeedY() + 1.0f);
 
-	if (_enemy->GetEnemyStatement() == ENEMYSTATEMENT::WANDER)
+	if (_enemy->getIsChange())
 	{
-		if (_enemy->getIsChange())
-		{
-			if (_enemy->AttackSession())	_enemy->ChangeStatement(ENEMYSTATEMENT::ATTACK);
-
-			else if (_enemy->ChaseSession())
-			{
-				_enemy->ChangeStatement(ENEMYSTATEMENT::WALK);
-			}
-
-			else _enemy->ChangeStatement(ENEMYSTATEMENT::IDLE);
-		}
+		_enemy->ChangeStatement(ENEMYSTATEMENT::IDLE);
 	}
 
 	else
@@ -101,6 +118,30 @@ void EnemyMove::update()
 
 }
 
+#pragma endregion
+
+
+HRESULT EnemyChase::init()
+{
+	_enemy->setIsChange(false);
+	_enemy->setIsVulnerable(true);
+	return S_OK;
+}
+
+void EnemyChase::release()
+{
+
+}
+
+void EnemyChase::update()
+{
+	_enemy->ChasePlayer();
+	_enemy->setSpeedX(_enemy->getSpeedX() + 4.0f);
+	_enemy->setSpeedY(_enemy->getSpeedY() + 2.0f);
+
+}
+
+#pragma region JUMP
 
 HRESULT EnemyJump::init()
 {
@@ -123,6 +164,9 @@ void EnemyJump::update()
 	}
 }
 
+#pragma endregion
+
+#pragma region FALL
 HRESULT EnemyFall::init()
 {
 	_enemy->setIsChange(false);
@@ -137,6 +181,10 @@ void EnemyFall::update()
 {
 	if (_enemy->GetJumpPower() < 0) _enemy->SetIsAir(false);
 }
+
+#pragma endregion
+
+#pragma region ATTACK
 
 HRESULT EnemyAttack::init()
 {
@@ -153,6 +201,8 @@ void EnemyAttack::release()
 
 void EnemyAttack::update()
 {
+	_enemy->StateCount();
+
 	_enemy->setIsAttack(false);
 	if (!_enemy->GetMotionName()->isPlay())
 	{
@@ -160,7 +210,7 @@ void EnemyAttack::update()
 
 		if (_enemy->getAtkCount() >= 3) 
 		{
-			_enemy->ChangeStatement(ENEMYSTATEMENT::IDLE);
+			_enemy->ChangeStatement(ENEMYSTATEMENT::WANDER);
 			return;
 		}
 
@@ -169,10 +219,11 @@ void EnemyAttack::update()
 		if (_enemy->getAtkCount() < 4) _enemy->ChangeStatement(ENEMYSTATEMENT::ATTACK);
 
 	}
-
 }
 
+#pragma endregion
 
+#pragma region DAMAGED
 HRESULT EnemyDamaged::init()
 {
 	//IMAGEMANAGER->addImage("attackEffect", "source/effect/attackEffect.bmp", 350, 50, true, MAGENTA);
@@ -209,8 +260,9 @@ void EnemyDamaged::update()
 		_enemy->ChangeStatement(ENEMYSTATEMENT::IDLE);
 	}
 }
+#pragma endregion 
 
-
+#pragma region DOWN
 HRESULT EnemyDown::init()
 {
 	_enemy->SetIsAir(true);
@@ -225,7 +277,7 @@ void EnemyDown::release()
 
 void EnemyDown::update()
 {
-	if (_enemy->GetMotionName()->GetNowPlayIdx() < 6)
+	if (!_enemy->getReleased() && _enemy->GetMotionName()->GetNowPlayIdx() < 6  )
 	{
 		_enemy->setSpeedX(-4.0f);
 	}
@@ -238,8 +290,9 @@ void EnemyDown::update()
 		else _enemy->setIsDead(true);
 	}
 }
+#pragma endregion 
 
-
+#pragma region GUARD
 HRESULT EnemyGuard::init()
 {
 	_enemy->setIsTrace(false);
@@ -267,7 +320,9 @@ void EnemyGuard::update()
 		_enemy->ChangeStatement(ENEMYSTATEMENT::IDLE);
 	}
 }
+#pragma endregion 
 
+#pragma region GETUP
 HRESULT EnemyGetUp::init()
 {
 	_enemy->setIsVulnerable(false);
@@ -287,3 +342,5 @@ void EnemyGetUp::update()
 		_enemy->ChangeStatement(ENEMYSTATEMENT::IDLE);
 	}
 }
+#pragma endregion 
+

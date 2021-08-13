@@ -3,9 +3,9 @@
 #include "progressBar.h"
 
 loadingScene::loadingScene()
-	: _loadingBG(nullptr),
-	_loadingBar(nullptr),
-	_currentCount(0)
+    : _loadingBG(nullptr),
+    _loadingBar(nullptr),
+    _currentCount(0)
 
 {
 }
@@ -17,11 +17,11 @@ loadingScene::~loadingScene()
 
 HRESULT loadingScene::init()
 {
-	_loadingBG = IMAGEMANAGER->addImage("로딩배경", "source/loadingBG.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
+    _loadingBG = IMAGEMANAGER->addImage("로딩배경", "source/loadingBG.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 
-	_loadingBar = new progressBar;
-	_loadingBar->init(0, WINSIZEY - 50, WINSIZEX, 50);
-	_loadingBar->setGauge(0, 0);
+    _loadingBar = new progressBar;
+    _loadingBar->init(0, WINSIZEY - 50, WINSIZEX, 50);
+    _loadingBar->setGauge(0, 0);
 
 
     IMAGEMANAGER->addFrameImage("loading1", "source/로딩1.bmp", 120, 34, 4, 1, true, MAGENTA);
@@ -41,34 +41,34 @@ HRESULT loadingScene::init()
 
     SOUNDMANAGER->addSound("menuBGM", "source/music/메뉴.mp3", true, true);
 
-    SOUNDMANAGER->play("menuBGM", getBGMVolume()/10);
+    SOUNDMANAGER->play("menuBGM", getBGMVolume() / 10);
 
-	CreateThread(
-		NULL,				//스레드 보안속성(자식윈도우 존재할때)
-		NULL,				//스레드의 스택크기(0이면 메인쓰레드 동일)
-		threadFunction,		//사용할 함수
-		this,				//스레드 매개변수(this 로 뒀으니 본 클래스)
-		NULL,				//스레드 특성
-		NULL);				//스레드 ID
+    CreateThread(
+        NULL,				//스레드 보안속성(자식윈도우 존재할때)
+        NULL,				//스레드의 스택크기(0이면 메인쓰레드 동일)
+        threadFunction,		//사용할 함수
+        this,				//스레드 매개변수(this 로 뒀으니 본 클래스)
+        NULL,				//스레드 특성
+        NULL);				//스레드 ID
 
-	return S_OK;
+    return S_OK;
 }
 
 void loadingScene::release()
 {
-	SAFE_DELETE(_loadingBar);
+    SAFE_DELETE(_loadingBar);
 }
 
 void loadingScene::update()
 {
-	_loadingBar->update();
-	_loadingBar->setGauge(_currentCount, LOADINGMAX);
-    
+    _loadingBar->update();
+    _loadingBar->setGauge(_currentCount, LOADINGMAX);
 
-	if (_currentCount == LOADINGMAX)
-	{
-		SCENEMANAGER->changeScene("selectScene");
-	}
+
+    if (_currentCount == LOADINGMAX)
+    {
+        SCENEMANAGER->changeScene("selectScene");
+    }
 
     _count++;
 
@@ -85,28 +85,28 @@ void loadingScene::update()
 
 void loadingScene::render()
 {
-	_loadingBG->render(getMemDC());
-	_loadingBar->render();
+    _loadingBG->render(getMemDC());
+    _loadingBar->render();
     _loadingImg->frameRender(getMemDC(), WINSIZEX - 50, WINSIZEY - 100, frameX, 0);
 }
 
 DWORD CALLBACK threadFunction(LPVOID lpParameter)
 {
-	loadingScene* loadingHelper = (loadingScene*)lpParameter;
+    loadingScene* loadingHelper = (loadingScene*)lpParameter;
 
-//이미지 및 사운드 추가 
-	while (loadingHelper->_currentCount != LOADINGMAX)
-	{
+    //이미지 및 사운드 추가 
+    while (loadingHelper->_currentCount != LOADINGMAX)
+    {
 #pragma region 이미지 추가
-    	IMAGEMANAGER->addImage("title", "source/titleImage.bmp", WINSIZEX, WINSIZEY, false, RGB(255, 0, 255));
-		IMAGEMANAGER->addImage("background", "source/Level 1 - Frozen Suburbs.bmp", 31812, 1000, true, RGB(255,0,255));
-		IMAGEMANAGER->addImage("settingBackGround", "source/settingScene.bmp", WINSIZEX, WINSIZEY, true, MAGENTA);
-		IMAGEMANAGER->addImage("mainMenu", "source/mainMenu.bmp", WINSIZEX, WINSIZEY, false, MAGENTA);
-		IMAGEMANAGER->addImage("mainMenubox", "source/mainmenubox.bmp", 200, 50, true, MAGENTA);
+        IMAGEMANAGER->addImage("title", "source/titleImage.bmp", WINSIZEX, WINSIZEY, false, RGB(255, 0, 255));
+        IMAGEMANAGER->addImage("background", "source/Level 1 - Frozen Suburbs.bmp", 31812, 1000, true, RGB(255, 0, 255));
+        IMAGEMANAGER->addImage("settingBackGround", "source/settingScene.bmp", WINSIZEX, WINSIZEY, true, MAGENTA);
+        IMAGEMANAGER->addImage("mainMenu", "source/mainMenu.bmp", WINSIZEX, WINSIZEY, false, MAGENTA);
+        IMAGEMANAGER->addImage("mainMenubox", "source/mainmenubox.bmp", 200, 50, true, MAGENTA);
         IMAGEMANAGER->addImage("volumeBackBar", "source/volumnBackBar.bmp", 180, 50, true, RGB(255, 0, 255));
         IMAGEMANAGER->addImage("volumeFrontBar", "source/volumnFrontBar.bmp", 180, 50, false, RGB(255, 0, 255));
         IMAGEMANAGER->addImage("bossBackground", "source/Level 1 - Boss Room.bmp", WINSIZEX, WINSIZEY, true, MAGENTA);
-        IMAGEMANAGER->addImage("shadow", "source/Shadow.bmp", 126, 36, true, RGB(255,0,255));
+        IMAGEMANAGER->addImage("shadow", "source/Shadow.bmp", 126, 36, true, RGB(255, 0, 255));
         IMAGEMANAGER->addImage("col", "source/col.bmp", 31812, 1000, false, RGB(255, 0, 255));
 #pragma endregion
 
@@ -448,7 +448,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 #pragma endregion
 
 #pragma region Object Images
-       //COIN 오브젝트
+        //COIN 오브젝트
         IMAGEMANAGER->addFrameImage("smallCoin", "source/object/coin/smallCoin.bmp", 300, 50, 6, 1, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("mediumCoin", "source/object/coin/mediumCoin.bmp", 360, 60, 6, 1, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("largeCoin", "source/object/coin/largeCoin.bmp", 384, 64, 6, 1, true, MAGENTA);
@@ -461,7 +461,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         KEYANIMANAGER->addArrayFrameAnimation("largeCoin", "largeCoin", largeCoin, 6, 8, true);
 
 
-       //BAT 오브젝트 
+        //BAT 오브젝트 
         IMAGEMANAGER->addFrameImage("bat_left_atk", "source/object/bat/bat_left_atk.bmp", 1875, 375, 5, 1, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("bat_left_dash", "source/object/bat/bat_left_dash.bmp", 3000, 375, 8, 1, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("bat_left_get", "source/object/bat/bat_left_get.bmp", 750, 375, 2, 1, true, MAGENTA);
@@ -481,7 +481,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         IMAGEMANAGER->addFrameImage("bat_right_throw", "source/object/bat/bat_right_throw.bmp", 750, 375, 2, 1, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("bat_right_walk", "source/object/bat/bat_right_walk.bmp", 2250, 375, 6, 1, true, MAGENTA);
 
-        
+
         int bat_left_atk[] = { 0,1,2,3,4 };
         KEYANIMANAGER->addArrayFrameAnimation("bat_left_atk", "bat_left_atk", bat_left_atk, 5, 8, false);
         int bat_left_dash[] = { 0,1,2,3,4,5,6,7 };
@@ -574,7 +574,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         KEYANIMANAGER->addArrayFrameAnimation("trash_right_walk", "trash_right_walk", trash_right_walk, 6, 8, false);
 
 
-       
+
 
 #pragma endregion
 
@@ -592,14 +592,14 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         IMAGEMANAGER->addFrameImage("Ramona_Attack_0", "Ramona/Attack_Combo_0.bmp", 1032, 960, 3, 2, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("Ramona_Attack_1", "Ramona/Attack_Combo_1.bmp", 1032, 960, 3, 2, true, MAGENTA);
         IMAGEMANAGER->addFrameImage("Ramona_Attack_2", "Ramona/Attack_Combo_2.bmp", 1032, 960, 3, 2, true, MAGENTA);
-        
+
 #pragma endregion
 
 #pragma region bossImage & animation
 
         IMAGEMANAGER->addFrameImage("BOSS IDLE", "source/BOSS/BOSS IDLE.bmp", 2277, 600, 6, 2, true, MAGENTA);
 
-        int bossLeftIdleArr[] = { 0, 1, 2, 3, 4, 5};
+        int bossLeftIdleArr[] = { 0, 1, 2, 3, 4, 5 };
         KEYANIMANAGER->addArrayFrameAnimation("bossRightIdle", "BOSS IDLE", bossLeftIdleArr, 6, 6, true);
         int bossRightIdleArr[] = { 6, 7, 8, 9, 10, 11 };
         KEYANIMANAGER->addArrayFrameAnimation("bossLeftIdle", "BOSS IDLE", bossRightIdleArr, 6, 6, true);
@@ -622,7 +622,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 
         IMAGEMANAGER->addFrameImage("BOSS ATTACK3", "source/BOSS/BOSS ATTACK3.bmp", 2277, 600, 6, 2, true, MAGENTA);
 
-        int bossRightAttack3Arr[] = { 0,1,2,3,4,5};
+        int bossRightAttack3Arr[] = { 0,1,2,3,4,5 };
         KEYANIMANAGER->addArrayFrameAnimation("bossRightAttack3", "BOSS ATTACK3", bossRightAttack3Arr, 6, 6, false);
         int bossLeftAttack3Arr[] = { 11,10,9,8,7,6 };
         KEYANIMANAGER->addArrayFrameAnimation("bossLeftAttack3", "BOSS ATTACK3", bossLeftAttack3Arr, 6, 6, false);
@@ -641,7 +641,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 
         IMAGEMANAGER->addFrameImage("BOSS HITTED", "source/BOSS/BOSS DAMAGE.bmp", 1897, 600, 5, 2, true, MAGENTA);
 
-        int bossRightHittedArr[] = { 4,3,2,1,0};
+        int bossRightHittedArr[] = { 4,3,2,1,0 };
         KEYANIMANAGER->addArrayFrameAnimation("bossRightHitted", "BOSS HITTED", bossRightHittedArr, 5, 10, false);
         int bossLeftHittedArr[] = { 5,6,7,8,9 };
         KEYANIMANAGER->addArrayFrameAnimation("bossLeftHitted", "BOSS HITTED", bossLeftHittedArr, 5, 10, false);
@@ -651,22 +651,22 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
         int bossDeathArr[] = { 0,1,2,3,4,5,6,7,8,9,10,11,12 };
         KEYANIMANAGER->addArrayFrameAnimation("bossDeath", "BOSS DEATH", bossDeathArr, 13, 8, false);
 
-        IMAGEMANAGER->addFrameImage("BOSS RUN","source/BOSS/BOSS RUN.bmp",3036,600,8,2,true,MAGENTA);
+        IMAGEMANAGER->addFrameImage("BOSS RUN", "source/BOSS/BOSS RUN.bmp", 3036, 600, 8, 2, true, MAGENTA);
 
         int bossRightRunArr[] = { 0,1,2,3,4,5,6,7 };
-        KEYANIMANAGER->addArrayFrameAnimation("bossRightRun","BOSS RUN",bossRightRunArr,8,8,true);
+        KEYANIMANAGER->addArrayFrameAnimation("bossRightRun", "BOSS RUN", bossRightRunArr, 8, 8, true);
 
         int bossLeftRunArr[] = { 15,14,13,12,11,10,9,8 };
         KEYANIMANAGER->addArrayFrameAnimation("bossLeftRun", "BOSS RUN", bossLeftRunArr, 8, 8, true);
 
-        IMAGEMANAGER->addFrameImage("BOSS DOWN","source/BOSS/BOSS DOWN.bmp",5313,600,14,2,true,MAGENTA);
+        IMAGEMANAGER->addFrameImage("BOSS DOWN", "source/BOSS/BOSS DOWN.bmp", 5313, 600, 14, 2, true, MAGENTA);
 
         int bossRightDownArr[] = { 27,26,25,24,23,22,21,20,19,18,17,16,15,14 };
         KEYANIMANAGER->addArrayFrameAnimation("bossRightDown", "BOSS DOWN", bossRightDownArr, 14, 8, false);
         int bossLeftDownArr[] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13 };
         KEYANIMANAGER->addArrayFrameAnimation("bossLeftDown", "BOSS DOWN", bossLeftDownArr, 14, 8, false);
 
-        IMAGEMANAGER->addFrameImage("BOSS UP","source/BOSS/BOSS UP.bmp",4174,600,11,2,true,MAGENTA);
+        IMAGEMANAGER->addFrameImage("BOSS UP", "source/BOSS/BOSS UP.bmp", 4174, 600, 11, 2, true, MAGENTA);
 
         int bossRightUpArr[] = { 0,1,2,3,4,5,6,7,8,9,10 };
         KEYANIMANAGER->addArrayFrameAnimation("bossRightUp", "BOSS UP", bossRightUpArr, 11, 8, false);
@@ -697,8 +697,8 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 
 #pragma endregion
 
-		loadingHelper->_currentCount++;
-	}
+        loadingHelper->_currentCount++;
+    }
 
-	return 0;
+    return 0;
 }

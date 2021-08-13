@@ -44,17 +44,6 @@ void Malcolm::SwitchImage()
             _motionName = KEYANIMANAGER->findAnimation("MALCOLMrightIdle");
         }
         break;
-    case ENEMYSTATEMENT::WALK:
-        _imageName = IMAGEMANAGER->findImage("MALCOLM_WALK");
-        if (_direction == -1)
-        {
-            _motionName = KEYANIMANAGER->findAnimation("MALCOLMleftWalk");
-        }
-        else if (_direction == 1)
-        {
-            _motionName = KEYANIMANAGER->findAnimation("MALCOLMrightWalk");
-        }
-        break;
 
     case ENEMYSTATEMENT::WANDER:
         _imageName = IMAGEMANAGER->findImage("MALCOLM_WALK");
@@ -67,7 +56,8 @@ void Malcolm::SwitchImage()
             _motionName = KEYANIMANAGER->findAnimation("MALCOLMrightWalk");
         }
         break;
-    case ENEMYSTATEMENT::RUN:
+
+    case ENEMYSTATEMENT::CHASE:
         _imageName = IMAGEMANAGER->findImage("MALCOLM_RUN");
         if (_direction == -1)
         {
