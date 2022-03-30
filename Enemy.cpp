@@ -103,6 +103,8 @@ void Enemy::EnemyUpdate()
     DownGauge();
     //SwitchImage();
     pixelCollision();
+
+    if (KEYMANAGER->isOnceKeyDown('Q')) HitDamage(500);
 }
 
 void Enemy::Move()
@@ -150,8 +152,7 @@ void Enemy::Move()
 
     if (_enemyStatement == ENEMYSTATEMENT::WANDER)
     {
-        if (_direction == -1) _posX -= _speedX * _wanderDirX;
-        else if (_direction == 1)_posX += _speedX * _wanderDirX;
+        _posX += _speedX * _wanderDirX;
 
         if (_highlow == -1) _posY -= _speedY * _wanderDirY;
         else if (_highlow == 1)_posY += _speedY * _wanderDirY;

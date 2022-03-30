@@ -40,6 +40,7 @@ using namespace TN_UTILS;
 #define WINSIZEY	900								//윈도우 세로크기
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU
 #define MAGENTA		(COLORREF)0x00FF00FF
+#define SPAWNRATE	5000
 
 
 #define RND randomFunction::getSingleton()

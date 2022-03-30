@@ -43,10 +43,16 @@ HRESULT stage1::init()
 
 void stage1::update()
 {
-	if (_player->getPosX() > _stage * 3000 + 1000 && !_isBattle)
+	if (_em->GetEnemyCount() == 0)
+	{
+		_isBattle = false;
+		CameraLock();
+	}
+
+	if (_player->getPosX() > _stage * SPAWNRATE + 1000 && !_isBattle)
 	{
 		_isBattle = true;
-		_em->SpawnEnemy(2, 3, 1, _stage);
+		_em->SpawnEnemy(1, 1, 1, _stage);
 		_stage++;
 		CameraLock();
 	}
@@ -118,23 +124,8 @@ void stage1::render()
 
 #pragma region µð¹ö±ë
 
-	char str[256];
-	HFONT oldFont, font1;
 
-	sprintf_s(str, "char X : %f", _player->getPosX());
-	TextOut(getMemDC(), 100, 90, str, strlen(str));
-
-	sprintf_s(str, "render X : %d", _cm->getRenderPosX());
-	TextOut(getMemDC(), 100, 110, str, strlen(str));
-
-
-	sprintf_s(str, "char Y : %f", _player->getPosY());
-	TextOut(getMemDC(), 100, 130, str, strlen(str));
-
-	sprintf_s(str, "render Y : %d", _cm->getRenderPosY());
-	TextOut(getMemDC(), 100, 150, str, strlen(str));
-	
-	TIMEMANAGER->render(getMemDC());
+	//TIMEMANAGER->render(getMemDC());
 
 #pragma endregion
 

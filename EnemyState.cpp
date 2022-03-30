@@ -32,7 +32,7 @@ void EnemyInit::release()
 void EnemyInit::update()
 {
 	_enemy->StateCount();
-	if (_enemy->getIsChange()) _enemy->ChangeStatement(ENEMYSTATEMENT::WANDER);
+	if (_enemy->getIsChange()) _enemy->ChangeStatement(ENEMYSTATEMENT::CHASE);
 }
 #pragma endregion 
 
@@ -100,6 +100,7 @@ void EnemyWander::update()
 
 	if (_enemy->GetEnemyRendX() < 50) _enemy->setWanderDirX(1);
 	else if (_enemy->GetEnemyRendX() > WINSIZEX - 50) _enemy->setWanderDirX(-1);
+
 	_enemy->setSpeedX(_enemy->getSpeedX() + 2.0f);
 	_enemy->setSpeedY(_enemy->getSpeedY() + 1.0f);
 
