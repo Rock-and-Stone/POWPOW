@@ -56,6 +56,7 @@
     <ClCompile Include="sCoin.cpp" />
     <ClCompile Include="mCoin.cpp" />
     <ClCompile Include="lCoin.cpp" />
+    <ClCompile Include="ingameProgress.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="action.h" />
@@ -117,6 +118,7 @@
     <ClInclude Include="sCoin.h" />
     <ClInclude Include="mCoin.h" />
     <ClInclude Include="lCoin.h" />
+    <ClInclude Include="ingameProgress.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsAPI.rc" />
